@@ -19,7 +19,11 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false
+                }}
+            >
                 {props.token == null ? (
                     <Stack.Screen name="Login" component={Login}/>
                 ) : 

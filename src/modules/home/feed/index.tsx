@@ -9,7 +9,7 @@ export const Feed: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <View style={styles.container}>
-                <Text>{I18n.translate('test')}</Text>
+                <Text>{I18n.translate('personal.title')}</Text>
             </View>
         </>
     )
