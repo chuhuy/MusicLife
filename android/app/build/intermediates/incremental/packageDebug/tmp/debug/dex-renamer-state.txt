@@ -1,0 +1,4 @@
+#Wed Sep 30 20:19:11 ICT 2020
+base.0=E\:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
