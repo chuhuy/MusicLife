@@ -1,3 +1,3 @@
 export const explore = {
-    "title": "Explore"
-}
+    'title': 'Explore',
+};
