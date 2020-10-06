@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import I18n from './../../../i18n';
-import { touch } from 'react-native-fs';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
 interface Props extends DispatchProps {}
 
@@ -70,6 +70,23 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                             <Text style={styles.error}>{errors.password}</Text>
                         }
                         <Button title={I18n.translate('authentication.login.login')} onClick={() => handleSubmit()}/>
+                        <LoginButton
+                            onLoginFinished={
+                                (error, result) => {
+                                    if (error) {
+                                        console.log("login has error: " + result.error);
+                                    } else if (result.isCancelled) {
+                                        console.log("login is cancelled.");
+                                    } else {
+                                        AccessToken.getCurrentAccessToken().then(
+                                        (data) => {
+                                            console.log(`${data.accessToken}`);
+                                        }
+                                        )
+                                    }
+                                }
+                            }
+                            onLogoutFinished={() => console.log("logout.")}/>
                     </React.Fragment>
                 }
             </Formik>

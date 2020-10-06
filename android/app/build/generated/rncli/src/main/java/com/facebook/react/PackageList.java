@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// react-native-fbsdk
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 // react-native-fs
 import com.rnfs.RNFSPackage;
 // react-native-gesture-handler
@@ -76,6 +78,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNCMaskedViewPackage(),
+      new FBSDKPackage(),
       new RNFSPackage(),
       new RNGestureHandlerPackage(),
       new RNI18nPackage(),
