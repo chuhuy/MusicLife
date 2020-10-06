@@ -10,6 +10,8 @@ target 'MusicLife' do
 
   pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'MusicLifeTests' do
     inherit! :complete
     # Pods for testing
