@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { styles } from './styles';
 import { Button } from './../../../shared/components/button';
@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import I18n from './../../../i18n';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginUser } from './../../../models/LoginUser';
 
 interface Props extends DispatchProps {}
 
@@ -20,10 +21,10 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
     //  Response from API getToken
-    const loginUser = {
-        token: 'token',
-        refresh_token: 'refresh_token',
-    };
+    const [loginUser, setLoginUser] = useState<LoginUser>({
+        username: null,
+        refresh_token: null,
+    });
 
     // Login
     const handleLogin = () => {
@@ -38,7 +39,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     const validationSchema = Yup.object().shape({
         // username: Yup.string().required(),
         // password: Yup.string().required()
-    })
+    });
 
     return (
         <>
@@ -74,19 +75,19 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                             onLoginFinished={
                                 (error, result) => {
                                     if (error) {
-                                        console.log("login has error: " + result.error);
+                                        console.log('login has error: ' + result.error);
                                     } else if (result.isCancelled) {
-                                        console.log("login is cancelled.");
+                                        console.log('login is cancelled.');
                                     } else {
                                         AccessToken.getCurrentAccessToken().then(
                                         (data) => {
                                             console.log(`${data.accessToken}`);
                                         }
-                                        )
+                                        );
                                     }
                                 }
                             }
-                            onLogoutFinished={() => console.log("logout.")}/>
+                            onLogoutFinished={() => console.log('logout.')}/>
                     </React.Fragment>
                 }
             </Formik>
