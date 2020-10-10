@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect} from 'react';
 import { View, Text } from 'react-native';
 import { StackActions } from '@react-navigation/native';
@@ -22,7 +21,9 @@ const SplashScreen: React.FunctionComponent<Props> = (props: Props) => {
     useEffect(() => {
         props.getCurrentLanguage();
         const timer = setTimeout(() => {
-            props.navigation.navigate('Login');
+            props.navigation.dispatch(
+                StackActions.replace('Login')
+            );
         }, 1000);
         return () => clearTimeout(timer);
     }, []);

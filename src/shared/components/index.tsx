@@ -1,1 +1,4 @@
-export {Button} from './button';
+export { Button } from './button';
+export { FacebookButton } from './facebook-button';
+export { GoogleButton } from './google-button';
+export { LinkButton } from './link-button';

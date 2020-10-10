@@ -1,21 +1,19 @@
 import React, {FunctionComponent} from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
-import {styles} from './styles';
+import { Text, TouchableOpacity} from 'react-native';
+import { styles } from './styles';
 
 interface Props {
     onClick: () => void;
     title: string;
 }
 
-export const Button: FunctionComponent<Props> = (props: Props) => {
+export const LinkButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <TouchableOpacity
             style={styles.container}
             onPressOut={props.onClick}>
-                <View>
-                    <Text style={styles.text}>{props.title}</Text>
-                </View>
+                <Text style={styles.title}>{props.title}</Text>
             </TouchableOpacity>
         </>
     );

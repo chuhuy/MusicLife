@@ -4,7 +4,10 @@ export const authentication = {
         'username-placeholder': 'Hãy nhập username hoặc email',
         'password': 'Mật khẩu',
         'password-placeholder': 'Hãy nhập mật khẩu',
-        'login': 'Đăng nhập',
+        'signin': 'Đăng nhập',
+        'signup': 'Đăng ký',
+        'forgot-password': 'Quên mật khẩu?',
+        'or': 'Hoặc',
     },
     'register': {
 
