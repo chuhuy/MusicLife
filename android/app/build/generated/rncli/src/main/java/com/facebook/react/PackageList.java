@@ -25,6 +25,8 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
+// react-native-restart
+import com.reactnativerestart.RestartPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
@@ -83,6 +85,7 @@ public class PackageList {
       new RNGestureHandlerPackage(),
       new RNI18nPackage(),
       new ReanimatedPackage(),
+      new RestartPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SQLitePluginPackage()

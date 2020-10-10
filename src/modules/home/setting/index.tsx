@@ -1,29 +1,30 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import {styles} from './styles';
+import { styles } from './styles';
 import { Button } from './../../../shared/components';
 import { LOGOUT } from './../../../redux/modules/auth/actions';
 import { connect } from 'react-redux';
 import I18n from './../../../i18n';
+import { changeLanguage } from './../../../i18n/utils';
 
 
 interface Props extends DispatchProps {}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        logout: () => dispatch({type: LOGOUT})
-    }
-}
+        logout: () => dispatch({type: LOGOUT}),
+    };
+};
 
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleChangeLanguage = (language: string) => {
-        console.log(language)
-    }
+        changeLanguage(language);
+    };
 
     const handleLogout = () => {
         props.logout();
-    }
+    };
 
     return (
         <>
@@ -34,8 +35,8 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <Button title="Logout" onClick={handleLogout} />
             </View>
         </>
-    )
-}
+    );
+};
 
 export default connect(null, mapDispatchToProps)(Setting);
 

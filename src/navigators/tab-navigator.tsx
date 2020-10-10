@@ -10,11 +10,11 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     return (
         <Tab.Navigator>
-            <Tab.Screen name={I18n.translate('personal.title')}  component={Personal}/>
-            <Tab.Screen name={I18n.translate('explore.title')}  component={Explore}/>
-            <Tab.Screen name={I18n.translate('setting.title')}  component={Setting}/>
+            <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>
+            <Tab.Screen name="Explore"  component={Explore} options={{title: I18n.translate('explore.title')}}/>
+            <Tab.Screen name="Setting"  component={Setting} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
-    )
-}
+    );
+};
 
 export default TabNavigator;

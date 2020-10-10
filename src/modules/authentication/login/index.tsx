@@ -15,15 +15,16 @@ interface Props extends DispatchProps {}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        login: (payload) => dispatch({type: LOGIN, payload}),
+        login: (payload: any) => dispatch({type: LOGIN, payload}),
     };
 };
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
     //  Response from API getToken
     const [loginUser, setLoginUser] = useState<LoginUser>({
-        username: null,
-        refresh_token: null,
+        username: 'user',
+        refresh_token: 'refreshtoken',
+        token: 'token',
     });
 
     // Login

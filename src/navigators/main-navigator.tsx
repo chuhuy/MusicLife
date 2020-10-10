@@ -7,10 +7,11 @@ const Stack = createStackNavigator();
 interface Props extends StateProps {}
 
 const mapStateToProps = (state: any) => ({
-    token: state.auth.token
+    token: state.auth.token,
 });
 
-const Login = React.lazy(() => import ('./../modules/authentication/login'));
+const Splash = React.lazy(() => import('./../modules/splash'));
+const Login = React.lazy(() => import('./../modules/authentication/login'));
 const TabNavigator = React.lazy(() => import('./tab-navigator'));
 
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
@@ -21,19 +22,22 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
                 }}
             >
                 {props.token == null ? (
-                    <Stack.Screen name="Login" component={Login}/>
-                ) : 
+                    <>
+                        <Stack.Screen name="Splash" component={Splash}/>
+                        <Stack.Screen name="Login" component={Login}/>
+                    </>
+                ) :
                 (
                     <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                 )}
             </Stack.Navigator>
         </>
-    )
-}
+    );
+};
 
 type StateProps = ReturnType<typeof mapStateToProps>
 
