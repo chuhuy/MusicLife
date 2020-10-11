@@ -1,13 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const Stack = createStackNavigator();
 
 interface Props extends StateProps {}
 
 const mapStateToProps = (state: any) => ({
-    token: state.auth.token,
+    refresh_token: state.auth.refresh_token,
 });
 
 const Splash = React.lazy(() => import('./../modules/splash'));
@@ -25,7 +25,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     headerShown: false,
                 }}
             >
-                {props.token == null ? (
+                {props.refresh_token === null ? (
                     <>
                         <Stack.Screen name="Splash" component={Splash}/>
                         <Stack.Screen name="Login" component={Login}/>

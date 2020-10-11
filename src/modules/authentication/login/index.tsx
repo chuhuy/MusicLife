@@ -11,6 +11,8 @@ import I18n from './../../../i18n';
 import { LoginManager } from 'react-native-fbsdk';
 import { LoginUser } from './../../../models/LoginUser';
 import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
+import { SignInForm } from '../../../models/form/signin';
+import { ErrorMessage } from './../../../models/error-message';
 
 interface Props extends DispatchProps {}
 
@@ -21,6 +23,10 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
+    //  Error message list
+    const [errorMessageList, setErrorMessageList] = useState<ErrorMessage[]>([]);
+    //  Password visibility
+    const [isPasswordShown, setPasswordShown] = useState<boolean>(false);
     //  Response from API getToken
     const [loginUser, setLoginUser] = useState<LoginUser>({
         username: 'user',
@@ -28,20 +34,45 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         token: 'token',
     });
 
-    // Login
-    const handleSignIn = () => {
-        props.login(loginUser);
-    };
-
     // Form control
     const initialFormValue = {
         username: '',
         password: '',
     };
+    //  Validate form
     const validationSchema = Yup.object().shape({
-        // username: Yup.string().required(),
-        // password: Yup.string().required()
+        username: Yup.string().required('Username is required'),
+        password: Yup.string().required('Password is required'),
     });
+    const validateForm = (values: SignInForm) => {
+        validationSchema.validate(values, {abortEarly: false})
+        .then(() => {
+            //  Validate successfully
+            handleSignIn(values.username, values.password);
+        })
+        .catch((errors) => {
+            setErrorMessageList((errors.inner.map((error: any, index: number) => {
+                console.log(error);
+                return {
+                    id: index,
+                    message: error.message,
+                };
+            })));
+        });
+    };
+
+    //  Toggle show password
+    const toggleShowPassword = () => {
+        setPasswordShown(!isPasswordShown);
+    };
+
+    // Login
+    const handleSignIn = (username: string, password: string) => {
+        props.login({
+            email: username,
+            password: password,
+        });
+    };
 
     const handleSignInWithFacebook = () => {
         LoginManager.logInWithPermissions(['email']).then(
@@ -74,34 +105,29 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <Formik
                 initialValues={initialFormValue}
-                onSubmit={handleSignIn}
-                validationSchema={validationSchema}
+                onSubmit={(values) => {validateForm(values);}}
+                // validationSchema={validationSchema}
             >
-                {({values, handleChange, setFieldTouched, touched, errors, handleSubmit}) =>
+                {({values, handleChange, errors, handleSubmit, handleBlur}) =>
                     <React.Fragment>
                         <View style={styles.container}>
                             <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.username')}</Text>
                             <TextInput
                                 style={styles.textInput}
                                 value={values.username}
-                                onChange={handleChange('username')}
-                                onBlur={() => setFieldTouched('username')}
+                                onChangeText={handleChange('username')}
+                                onBlur={handleBlur('username')}
                                 placeholder={I18n.translate('authentication.login.username-placeholder')}
                             />
-                            {touched.username && errors.username &&
-                                <Text style={styles.error}>{errors.username}</Text>
-                            }
                             <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.password')}</Text>
                             <TextInput
+                                secureTextEntry={!isPasswordShown}
                                 style={styles.textInput}
                                 value={values.password}
-                                onChange={handleChange('password')}
-                                onBlur={() => setFieldTouched('password')}
+                                onChangeText={handleChange('password')}
+                                onBlur={handleBlur('password')}
                                 placeholder={I18n.translate('authentication.login.password-placeholder')}
                             />
-                            {touched.password && errors.password &&
-                                <Text style={styles.error}>{errors.password}</Text>
-                            }
                             <View style={styles.signInButton}>
                                 <Button title={I18n.translate('authentication.login.signin')} onClick={() => handleSubmit()}/>
                             </View>

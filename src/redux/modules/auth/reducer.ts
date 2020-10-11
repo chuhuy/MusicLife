@@ -1,45 +1,53 @@
 import {
-    LOGIN,
     LOGIN_SUCCESS,
     LOGIN_FAILED,
     LOGOUT,
-    FETCH_CURRENT_USER,
+    FETCH_CURRENT_USER_SUCCESS,
     REFRESH_TOKEN_SUCCESS,
+    FETCH_CURRENT_USER_FAILED,
 } from './actions';
 import {Action} from './../../../models/redux/Action';
 
 const initState = {
-    user: null,
-    token: null,
+    username: null,
+    display_name: null,
+    validation: false,
+    access_token: null,
     error: null,
     refresh_token: null,
-}
+};
 
 export const authReducer = (state: any = initState, action: Action) => {
     switch (action.type) {
-        case LOGIN:
-        case REFRESH_TOKEN_SUCCESS:
-            console.log("Logged in")
+        case LOGIN_SUCCESS:
+            console.log('Logged in');
             return {
                 ...state,
-                token: action.payload.token,
+                access_token: action.payload.access_token,
                 refresh_token: action.payload.refresh_token,
             };
-        
+        case REFRESH_TOKEN_SUCCESS:
+            return {
+                ...state,
+                access_token: action.payload.access_token,
+            };
         case LOGIN_FAILED:
         case LOGOUT:
             return {
-                user: null,
-                token: null,
+                username: null,
+                access_token: null,
                 refresh_token: null,
             };
 
-        case FETCH_CURRENT_USER:
+        case FETCH_CURRENT_USER_SUCCESS:
             return {
                 ...state,
-                user: action.payload.user,
+                username: action.payload.username,
+                display_name: action.payload.display_name,
             };
+        case FETCH_CURRENT_USER_FAILED:
+            return state;
         default:
             return state;
     }
-}
+};

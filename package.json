@@ -24,6 +24,7 @@
     "@types/yup": "^0.29.7",
     "axios": "^0.20.0",
     "formik": "^2.1.6",
+    "query-string": "^6.13.5",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-fbsdk": "^2.0.0",
