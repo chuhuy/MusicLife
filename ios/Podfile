@@ -12,6 +12,8 @@ target 'MusicLife' do
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'MusicLifeTests' do
     inherit! :complete
     # Pods for testing

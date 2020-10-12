@@ -23,26 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\e1a755a5eb4e9c5b244c1a9f660f0c11\\media-1.0.0\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5,8,11",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,223,386,554",
-                        "endLines": "4,7,10,13",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "218,381,549,716"
-                    },
-                    "to": {
-                        "startLines": "305,308,312,316",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "22665,22833,23122,23418",
-                        "endLines": "307,310,314,318",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "22828,22991,23285,23580"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\639e914bfc1efa21e36199d3ff2c5eef\\core-1.1.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -58,6 +39,25 @@
                         "endLines": "2,13,14,15,303,304,311,315,361,366",
                         "endColumns": "103,63,66,63,115,125,125,127,12,12",
                         "endOffsets": "154,1065,1132,1196,22534,22660,23117,23413,26413,26751"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\bc8dc435b9a736a095a262fe740c6af0\\media-1.1.0\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5,8,11",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,223,386,554",
+                        "endLines": "4,7,10,13",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "218,381,549,716"
+                    },
+                    "to": {
+                        "startLines": "305,308,312,316",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "22665,22833,23122,23418",
+                        "endLines": "307,310,314,318",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "22828,22991,23285,23580"
                     }
                 },
                 {

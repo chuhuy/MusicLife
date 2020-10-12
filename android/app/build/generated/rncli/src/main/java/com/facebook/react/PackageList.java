@@ -33,6 +33,10 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-sqlite-storage
 import org.pgsqlite.SQLitePluginPackage;
+// react-native-track-player
+import com.guichaguri.trackplayer.TrackPlayer;
+// react-native-video
+import com.brentvatne.react.ReactVideoPackage;
 
 public class PackageList {
   private Application application;
@@ -88,7 +92,9 @@ public class PackageList {
       new RestartPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
-      new SQLitePluginPackage()
+      new SQLitePluginPackage(),
+      new TrackPlayer(),
+      new ReactVideoPackage()
     ));
   }
 }

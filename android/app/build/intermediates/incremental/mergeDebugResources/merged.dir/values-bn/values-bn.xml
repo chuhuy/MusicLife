@@ -51,5 +51,5 @@
     <string gender="unknown" name="com_facebook_smart_login_confirmation_title">লগ ইন নিশ্চিত করুন</string>
     <string gender="unknown" name="com_facebook_tooltip_default">আপনার নিয়ন্ত্রণ রয়েছে - আপনি অ্যাপগুলির সাথে কোন তথ্য শেয়ার করতে চান সেটি বেছে নিন।</string>
     <string msgid="730395136688082741" name="search_menu_title">"সার্চ করুন"</string>
-    <string msgid="8106346172024741305" name="status_bar_notification_info_overflow">"৯৯৯+"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"৯৯৯+"</string>
 </resources>
