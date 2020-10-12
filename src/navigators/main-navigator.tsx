@@ -13,6 +13,9 @@ const mapStateToProps = (state: any) => ({
 const Splash = React.lazy(() => import('./../modules/splash'));
 const Login = React.lazy(() => import('./../modules/authentication/login'));
 const TabNavigator = React.lazy(() => import('./tab-navigator'));
+const Register = React.lazy(() => import('./../modules/authentication/register'));
+const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
+const Player = React.lazy(() => import('./../modules/home/player'));
 
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
 
@@ -29,10 +32,16 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     <>
                         <Stack.Screen name="Splash" component={Splash}/>
                         <Stack.Screen name="Login" component={Login}/>
+                        <Stack.Screen name="Register" component={Register}/>
+                        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
                     </>
                 ) :
                 (
-                    <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+                    <>
+                        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
+                        <Stack.Screen name="Player" component={Player}/>
+                    </>
+
                 )}
             </Stack.Navigator>
         </>

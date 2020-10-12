@@ -14,7 +14,9 @@ import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/comp
 import { SignInForm } from '../../../models/form/signin';
 import { ErrorMessage } from './../../../models/error-message';
 
-interface Props extends DispatchProps {}
+interface Props extends DispatchProps {
+    navigation: any,
+}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
@@ -94,11 +96,11 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleSignUp = () => {
-        console.log('Signed up');
+        props.navigation.navigate('Register');
     };
 
     const handleForgotPassword = () => {
-        console.log('Forgot password');
+        props.navigation.navigate('ForgotPassword');
     };
 
     return (
