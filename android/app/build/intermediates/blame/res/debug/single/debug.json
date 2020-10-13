@@ -28,12 +28,12 @@
         "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\previous.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_btn_radio_material.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_extended_fab_text_color_selector.xml.flat",
@@ -64,12 +64,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\interpolator\\mtrl_linear.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_design_ic_visibility_off.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable-xxxhdpi-v4\\design_ic_visibility_off.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b8a4d529017c24828f11f89c7f9bdbfb\\facebook-login-7.1.0\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_bottomnub.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_design_error.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\design_error.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b8a4d529017c24828f11f89c7f9bdbfb\\facebook-login-7.1.0\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_bottomnub.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_black_topnub.png.flat",
@@ -156,12 +156,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b36fd6f51fcabd90b1211e4d11a2e3c4\\facebook-messenger-5.15.3\\res\\drawable-xhdpi-v4\\messenger_button_send_round_shadow.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-ldrtl-mdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_filled_background_color.xml.flat",
@@ -172,16 +172,16 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_popupmenu_overlay_color.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_popupmenu_overlay_color.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_btn_ripple_color.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_popupmenu_overlay_color.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_popupmenu_overlay_color.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_topnub.png.flat",
@@ -256,12 +256,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable\\design_password_eye.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action_tombstone.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\layout-v21\\notification_action_tombstone.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\interpolator-v21_mtrl_fast_out_linear_in.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\interpolator-v21\\mtrl_fast_out_linear_in.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
@@ -304,12 +304,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_colored_item_tint.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_bottom_nav_colored_item_tint.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v26_mtrl_calendar_month.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\layout-v26\\mtrl_calendar_month.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_colored_item_tint.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_bottom_nav_colored_item_tint.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -384,24 +384,24 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b36fd6f51fcabd90b1211e4d11a2e3c4\\facebook-messenger-5.15.3\\res\\drawable-xxhdpi-v4\\messenger_bubble_small_white.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_messenger_bubble_small_white.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b36fd6f51fcabd90b1211e4d11a2e3c4\\facebook-messenger-5.15.3\\res\\drawable-hdpi-v4\\messenger_bubble_small_white.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_hide_motion_spec.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\animator\\mtrl_fab_hide_motion_spec.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_messenger_bubble_small_white.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b36fd6f51fcabd90b1211e4d11a2e3c4\\facebook-messenger-5.15.3\\res\\drawable-hdpi-v4\\messenger_bubble_small_white.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_design_snackbar_in.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
@@ -548,12 +548,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_device_auth_dialog_fragment.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\c235f9ea59e25ca4c17bf33edf63d8ab\\facebook-common-7.1.0\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_device_auth_dialog_fragment.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\c235f9ea59e25ca4c17bf33edf63d8ab\\facebook-common-7.1.0\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_stop.png.flat",
@@ -604,12 +604,12 @@
         "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\previous.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -636,12 +636,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\37aaca75d3d19faa6fb296103cea95d8\\fragment-1.2.1\\res\\anim\\fragment_fade_exit.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_test_mtrl_calendar_day_selected.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\test_mtrl_calendar_day_selected.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -752,12 +752,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_tabs_icon_color_selector.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_fragment_fast_out_extra_slow_in.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\37aaca75d3d19faa6fb296103cea95d8\\fragment-1.2.1\\res\\anim\\fragment_fast_out_extra_slow_in.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_rewind.png.flat",
         "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\rewind.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_fragment_fast_out_extra_slow_in.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\37aaca75d3d19faa6fb296103cea95d8\\fragment-1.2.1\\res\\anim\\fragment_fast_out_extra_slow_in.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
@@ -776,12 +776,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b36fd6f51fcabd90b1211e4d11a2e3c4\\facebook-messenger-5.15.3\\res\\drawable-xxhdpi-v4\\messenger_bubble_large_white.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_go_search_api_material.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_ic_go_search_api_material.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_go_search_api_material.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_ic_go_search_api_material.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_btn_radio_to_off_mtrl_animation_interpolator_0.xml.flat",
@@ -908,12 +908,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color\\abc_primary_text_material_dark.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_edit_text_material.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -944,16 +944,16 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_design_icon_tint.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\design_icon_tint.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_mtrl_picker_header_dialog.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\layout-land\\mtrl_picker_header_dialog.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_design_icon_tint.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\design_icon_tint.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_com_facebook_button_text_color.xml.flat",
@@ -976,16 +976,16 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\interpolator\\btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_alert_select_dialog_item.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\layout\\mtrl_alert_select_dialog_item.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\interpolator\\btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_btn_colored_borderless_text_material.xml.flat",
@@ -1040,12 +1040,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_catalyst_push_up_in.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\59e3fbf67d9c15db80e7d83631377546\\jetified-react-native-0.63.2\\res\\anim\\catalyst_push_up_in.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_catalyst_push_up_in.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\59e3fbf67d9c15db80e7d83631377546\\jetified-react-native-0.63.2\\res\\anim\\catalyst_push_up_in.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_choice_chip_background_color.xml.flat",
@@ -1096,12 +1096,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_next.png.flat",
-        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\next.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_in.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_next.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\next.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_checkbox_to_unchecked_box_inner_merged_animation.xml.flat",
@@ -1120,20 +1120,20 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_popupmenu_background_dark.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable\\mtrl_popupmenu_background_dark.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color\\abc_hint_foreground_material_light.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_button_send_icon_blue.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\c8f4bec2fcfc4e3ebc852038d4d86132\\facebook-share-7.1.0\\res\\drawable-xhdpi-v4\\com_facebook_button_send_icon_blue.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_popupmenu_background_dark.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable\\mtrl_popupmenu_background_dark.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_checkbox.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_button_send_icon_blue.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\c8f4bec2fcfc4e3ebc852038d4d86132\\facebook-share-7.1.0\\res\\drawable-xhdpi-v4\\com_facebook_button_send_icon_blue.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -1208,16 +1208,16 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\xml\\standalone_badge_gravity_bottom_end.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_background.9.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b8a4d529017c24828f11f89c7f9bdbfb\\facebook-login-7.1.0\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_background.9.png"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_title_item.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility_off.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_title_item.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\layout\\abc_action_bar_title_item.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_background.9.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\b8a4d529017c24828f11f89c7f9bdbfb\\facebook-login-7.1.0\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_background.9.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_multichoice_material.xml.flat",
@@ -1228,12 +1228,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_arrow_drop_right_black_24dp.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -1284,12 +1284,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\layout\\design_navigation_menu_item.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg_low.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\drawable\\notification_bg_low.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg_low.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0dfbfccd881ef79419407cc1a91e9d97\\core-1.2.0-beta01\\res\\drawable\\notification_bg_low.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
@@ -1344,12 +1344,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color\\abc_tint_btn_checkable.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_ripple_color.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_bottom_nav_ripple_color.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_design_bottom_sheet_slide_in.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_ripple_color.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_bottom_nav_ripple_color.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_messenger_button_white_bg_round.xml.flat",
@@ -1396,12 +1396,12 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\mtrl_outlined_icon_tint.xml"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_clear_material.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_ic_clear_material.xml"
-    },
-    {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_clear_material.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_ic_clear_material.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
