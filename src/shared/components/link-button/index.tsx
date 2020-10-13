@@ -5,6 +5,7 @@ import { styles } from './styles';
 interface Props {
     onClick: () => void;
     title: string;
+    color?: string
 }
 
 export const LinkButton: FunctionComponent<Props> = (props: Props) => {
@@ -13,7 +14,7 @@ export const LinkButton: FunctionComponent<Props> = (props: Props) => {
             <TouchableOpacity
             style={styles.container}
             onPressOut={props.onClick}>
-                <Text style={styles.title}>{props.title}</Text>
+                <Text style={[styles.title, {color: props.color}]}>{props.title}</Text>
             </TouchableOpacity>
         </>
     );
