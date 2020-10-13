@@ -1,18 +1,17 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container:{
-        height: height,
-        width: width,
+        flex: 1,
     },
     headerContainer:{
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 10,
+        paddingTop: 20,
     },
     logo:{
         width: 60, 
@@ -25,34 +24,42 @@ export const styles = StyleSheet.create({
         color: styleVars.secondaryColor,
     },
     bodyContainer: {
-        display: "flex",
+        flex: 2,
         justifyContent: "space-between",
-        height: 420,
         padding: 20,
+        paddingBottom: 15,
         backgroundColor: styleVars.primaryColor,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
     },
+    formContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
     error: {
         fontSize: styleVars.smallFontSize,
         color: styleVars.red,
+        marginTop: 5,
+    },
+    inputGroup: {
+        marginBottom: 15,
     },
     textInput: {
         backgroundColor: styleVars.white,
         borderRadius: 4,
         paddingVertical: 8,
         paddingHorizontal: 10,
-        marginBottom: 15,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
+        marginBottom: 8,
+    },
+    signInButton: {
         marginBottom: 10,
     },
     separator: {
-        marginTop: 15,
         marginBottom: 10,
-        display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -70,11 +77,9 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: (width - 150) / 2,
-        marginBottom: 15,
     },
     linkButtonGroup: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: 15,
     },
 });
