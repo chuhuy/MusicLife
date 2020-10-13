@@ -1,24 +1,48 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, Image } from 'react-native';
+import { View, Text, ImageBackground, Image, Animated } from 'react-native';
 import { styles } from './styles';
 import TrackPlayer from 'react-native-track-player';
 import { PlayPauseButton, PreviousNextButton, PlaybackMode } from './components';
-import { LinkButton } from '../../../shared/components';
+import { LinkButton, IconButton } from '../../../shared/components';
 import I18n from './../../../i18n';
+import Plus from './../../../assets/icons/plus.svg';
+import Download from './../../../assets/icons/download.svg';
+import Heart from './../../../assets/icons/heart.svg';
+import List from './../../../assets/icons/list.svg';
+import ArrowDown from './../../../assets/icons/arrow-down.svg';
+import ArrowUp from './../../../assets/icons/arrow-up.svg';
+import { Easing } from 'react-native';
 
 interface Props {}
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
     const [isPlaying, setPlaying] = useState<boolean>(true);
 
+    let spinValue = new Animated.Value(0);
+
+    let diskAnimation = Animated.loop(
+        Animated.timing(
+          spinValue,
+          {
+           toValue: 1,
+           duration: 30000,
+           easing: Easing.linear,
+           useNativeDriver: true,
+          }
+        )
+    );
+
     const togglePlayPause = () => {
         if (isPlaying) {
             TrackPlayer.pause();
+            spinValue.stopAnimation();
         }
         else {
             TrackPlayer.play();
+            spinValue.setValue(0);
         }
         setPlaying(!isPlaying);
     };
@@ -34,6 +58,16 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     const handleRepeat = () => {
 
     };
+
+    useEffect(() => {
+        diskAnimation.start();
+    }, []);
+
+    // Second interpolate beginning and end values (in this case 0 and 1)
+    const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+    });
 
     const track = {
         id: '1',
@@ -78,12 +112,12 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}}>
                 <View style={styles.container}>
                     <View style={styles.header}>
-                        <LinkButton title="Back" onClick={() => {}} color="white"/>
+                        <IconButton icon={ArrowDown} onClick={() => {}}/>
                         <Text style={styles.headerTitle}>Anh đâu đấy</Text>
-                        <LinkButton title="Back" onClick={() => {}} color="transparent"/>
+                        <View style={{width: 20}}/>
                     </View>
                     <View style={styles.body}>
-                        <Image source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}} style={styles.disk}/>
+                        <Animated.Image source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
                         <Text style={styles.song}>Anh đâu đấy</Text>
                         <Text style={styles.artist}>Huy Chu</Text>
                     </View>
@@ -95,14 +129,14 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         <PlaybackMode mode="repeat" onClick={() => handleRepeat()}/>
                     </View>
                     <View style={styles.buttonGroup2}>
-                        <LinkButton title="Add" onClick={() => {}} color="white"/>
-                        <LinkButton title="Download" onClick={() => {}} color="white"/>
-                        <LinkButton title="Like" onClick={() => {}} color="white"/>
-                        <LinkButton title="Playlist" onClick={() => {}} color="white"/>
+                        <IconButton icon={Plus} onClick={() => {}}/>
+                        <IconButton icon={Download} onClick={() => {}}/>
+                        <IconButton icon={Heart} onClick={() => {}}/>
+                        <IconButton icon={List} onClick={() => {}}/>
                     </View>
                     <View style={styles.commentHeader}>
                         <Text style={styles.commentText}>{I18n.translate('player.comment')}</Text>
-                        <LinkButton title="Open" onClick={() => {}} color="white"/>
+                        <IconButton icon={ArrowUp} onClick={() => {}}/>
                     </View>
                 </View>
             </ImageBackground>

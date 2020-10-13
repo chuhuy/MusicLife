@@ -1,20 +1,23 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import Play from './../../../../assets/icons/play.svg';
+import Pause from './../../../../assets/icons/pause.svg';
+import { isPromise } from 'formik';
 
 interface Props {
     isPlaying: boolean,
     onClick: () => void
 }
 
+
 const PlayPauseButton: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <TouchableOpacity
             style={styles.container}
+            activeOpacity={0.8}
             onPressOut={props.onClick}>
-                <View>
-                    <Text style={styles.icon}>{props.isPlaying ? 'Pause' : 'Play'}</Text>
-                </View>
+                    {props.isPlaying ? <Pause height={30} width={30}/> : <Play height={30} width={30} marginLeft={5}/>}
             </TouchableOpacity>
         </>
     );
@@ -28,9 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#00132B',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    icon: {
-        color: 'white',
+        // paddingLeft: 5,
     },
 });
 
