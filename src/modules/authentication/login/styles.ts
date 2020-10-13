@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
         paddingTop: 10,
     },
     logo:{
-        width: 75.46, 
-        height: 87.56,
+        width: 60, 
+        height: 70,
     },
     appName:{
         paddingTop: 10,
@@ -38,22 +38,19 @@ export const styles = StyleSheet.create({
     },
     textInput: {
         backgroundColor: styleVars.white,
-        borderRadius: 10,
+        borderRadius: 4,
         paddingVertical: 8,
         paddingHorizontal: 10,
-        marginBottom: 15,
+        marginBottom: 20,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
         marginBottom: 10,
     },
-    signInButton: {
-        fontSize: styleVars.baseFontSize,
-        marginVertical: 10,
-    },
     separator: {
-        marginVertical: 10,
+        marginTop: 15,
+        marginBottom: 10,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',

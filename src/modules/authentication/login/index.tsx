@@ -107,7 +107,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
-                   <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
+                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
                     <Text style={styles.appName}>Life Music</Text>            
                 </View>
 
@@ -136,7 +136,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                     onBlur={handleBlur('password')}
                                     placeholder={I18n.translate('authentication.login.password-placeholder')}
                                 />
-                                <View style={styles.signInButton}>
+                                <View>
                                     <Button title={I18n.translate('authentication.login.signin')} onClick={() => handleSubmit()}/>
                                 </View>
                                 <View style={styles.separator}>
