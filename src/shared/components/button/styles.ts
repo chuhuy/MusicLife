@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
+import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 10,
-        paddingVertical: 15,
+        paddingVertical: 10,
         borderRadius: 10,
-        backgroundColor: '#F34E5F',
+        backgroundColor: styleVars.secondaryColor,
         alignItems: 'center',
     },
     text: {
-        color: '#FFF',
-        fontSize: 16,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
     },
 });
