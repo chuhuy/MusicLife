@@ -107,7 +107,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <ScrollView>
                 <View style={styles.headerContainer}>
-                    <Image source={require("./../../../assets/images/logo.png")} style={styles.logo}/>
+                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
                     <Text style={styles.appTitle}>Life Music</Text>
                 </View>
 
