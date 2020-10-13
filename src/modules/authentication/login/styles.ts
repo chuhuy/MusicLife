@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     },
     headerContainer:{
         flex: 1,
-        alignSelf: 'stretch',
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 10,
@@ -26,6 +25,8 @@ export const styles = StyleSheet.create({
         color: styleVars.secondaryColor,
     },
     bodyContainer: {
+        display: "flex",
+        justifyContent: "space-between",
         height: 420,
         padding: 20,
         backgroundColor: styleVars.primaryColor,
@@ -41,7 +42,7 @@ export const styles = StyleSheet.create({
         borderRadius: 4,
         paddingVertical: 8,
         paddingHorizontal: 10,
-        marginBottom: 20,
+        marginBottom: 15,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
@@ -74,5 +75,6 @@ export const styles = StyleSheet.create({
     linkButtonGroup: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingBottom: 15,
     },
 });

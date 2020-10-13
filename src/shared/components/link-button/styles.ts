@@ -7,6 +7,5 @@ export const styles = StyleSheet.create({
     },
     title: {
         fontSize: styleVars.baseFontSize,
-        color: styleVars.white,
     },
 });
