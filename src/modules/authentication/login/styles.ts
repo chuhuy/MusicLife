@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     appTitle:{
         paddingTop: 10,
         fontSize: styleVars.largeFontSize,
-        fontWeight: "bold",
+        
         color: styleVars.secondaryColor,
     },
     bodyContainer: {
