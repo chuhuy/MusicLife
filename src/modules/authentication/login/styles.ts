@@ -1,64 +1,52 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container:{
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: styleVars.white, 
+        height: height,
+        width: width,
     },
     headerContainer:{
         flex: 1,
-        justifyContent: 'center',
+        alignSelf: 'stretch',
         alignItems: 'center',
-        paddingTop: 40,
-        paddingBottom: 20,
+        justifyContent: 'center',
+        paddingTop: 10,
     },
     logo:{
         width: 75.46, 
         height: 87.56,
     },
-    appTitle:{
+    appName:{
         paddingTop: 10,
         fontSize: styleVars.largeFontSize,
         fontWeight: "bold",
         color: styleVars.secondaryColor,
     },
     bodyContainer: {
-        flex: 1,
-        justifyContent: 'center',
+        height: 420,
         padding: 20,
-        paddingTop: 30,
-        paddingBottom: 15,
         backgroundColor: styleVars.primaryColor,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-    },
-    bodyTitle:{
-        color: styleVars.white,
-        fontSize: styleVars.bigFontSize,
-        fontWeight: "bold",
-        textAlign: 'center',
-        marginBottom: 15,
     },
     error: {
         fontSize: styleVars.smallFontSize,
         color: styleVars.red,
     },
     textInput: {
-        color: styleVars.white,
-        borderColor: styleVars.greyColor,
-        borderWidth: 1,
+        backgroundColor: styleVars.white,
         borderRadius: 10,
+        paddingVertical: 8,
         paddingHorizontal: 10,
-        marginBottom: 10,
+        marginBottom: 15,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
-        marginVertical: 10,
+        marginBottom: 10,
     },
     signInButton: {
         fontSize: styleVars.baseFontSize,
@@ -84,7 +72,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: (width - 150) / 2,
-        marginBottom: 30,
+        marginBottom: 15,
     },
     linkButtonGroup: {
         flexDirection: 'row',

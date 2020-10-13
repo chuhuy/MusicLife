@@ -105,10 +105,10 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <ScrollView>
+            <View style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
-                    <Text style={styles.appTitle}>Life Music</Text>
+                   <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
+                    <Text style={styles.appName}>Life Music</Text>            
                 </View>
 
                 <Formik
@@ -119,7 +119,6 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                     {({values, handleChange, errors, handleSubmit, handleBlur}) =>
                         <React.Fragment>
                             <View style={styles.bodyContainer}>
-                                <Text style={styles.bodyTitle}>Login To Your Account</Text>
                                 <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.username')}</Text>
                                 <TextInput
                                     style={styles.textInput}
@@ -157,7 +156,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                         </React.Fragment>
                     }
                 </Formik>
-            </ScrollView>
+            </View>
         </>
     );
 };

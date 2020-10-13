@@ -1,6 +1,6 @@
 export const styleVars = {
     // Font size
-    largeFontSize: 30,
+    largeFontSize: 25,
     bigFontSize: 20,
     baseFontSize: 16,
     smallFontSize: 14,

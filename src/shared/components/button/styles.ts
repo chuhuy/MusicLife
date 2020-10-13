@@ -4,7 +4,7 @@ import { styleVars } from '../../../shared/constance/style-variables';
 export const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 10,
-        paddingVertical: 15,
+        paddingVertical: 10,
         borderRadius: 10,
         backgroundColor: styleVars.secondaryColor,
         alignItems: 'center',
