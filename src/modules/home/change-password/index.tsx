@@ -13,6 +13,8 @@ interface Props {
 
 const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
     const [isPasswordShown, setPasswordShown] = useState<boolean>(false);
+    const initialValues = {oldPassword: '', newPassword: '', re_newPassword: ''};
+    const [values, setValues] = useState(initialValues);
     const toggleShowPassword = () => {
         setPasswordShown(!isPasswordShown);
     };
@@ -31,8 +33,8 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
                 <View style={styles.main}>
                     <Formik
-                        initialValues={{oldPassword: '', newPassword: '', re_newPassword: ''}}
-                        onSubmit={value => Alert.alert(value.toString())}
+                        initialValues={initialValues}
+                        onSubmit={values => Alert.alert('submit')}
                         validationSchema={
                             Yup.object().shape({
                                 oldPassword : Yup.string().
@@ -43,7 +45,9 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                                 required(I18n.translate('changePassword.errNewPassword_require')),
                                 re_newPassword : Yup.string().
                                                 min(6, I18n.translate('changePassword.errRe_newPassword_least')).
-                                                required(I18n.translate('changePassword.errRe_newPassword_require')),
+                                                required(I18n.translate('changePassword.errRe_newPassword_require')).
+                                                test("password-match", "re_password must be match password",
+                                                     (value) => values.newPassword === value),
                             })
                         }
                     >
@@ -55,7 +59,7 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                         value={values.oldPassword}
                                         onChangeText={handleChange('oldPassword')}
                                         onBlur={() => setFieldTouched('oldPassword')}
-                                        placeholder={I18n.translate('changePassword.phdOldPassword')}
+                                        //placeholder={I18n.translate('changePassword.phdOldPassword')}
                                         placeholderTextColor={'#737373'}
                                         style={styles.input}
                                         secureTextEntry={!isPasswordShown}
@@ -72,7 +76,7 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                         value={values.newPassword}
                                         onChangeText={handleChange('newPassword')}
                                         onBlur={() => setFieldTouched('newPassword')}
-                                        placeholder={I18n.translate('changePassword.phdNewPassword')}
+                                        //placeholder={I18n.translate('changePassword.phdNewPassword')}
                                         placeholderTextColor={'#737373'}
                                         style={styles.input}
                                         secureTextEntry={!isPasswordShown}
@@ -89,7 +93,7 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                         value={values.re_newPassword}
                                         onChangeText={handleChange('re_newPassword')}
                                         onBlur={() => setFieldTouched('re_newPassword')}
-                                        placeholder={I18n.translate('changePassword.phdreNewPassword')}
+                                       // placeholder={I18n.translate('changePassword.phdreNewPassword')}
                                         placeholderTextColor={'#737373'}
                                         style={styles.input}
                                         secureTextEntry={!isPasswordShown}
