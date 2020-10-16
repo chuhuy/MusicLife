@@ -14,7 +14,6 @@ interface Props {
 const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
     const [isPasswordShown, setPasswordShown] = useState<boolean>(false);
     const initialValues = {oldPassword: '', newPassword: '', re_newPassword: ''};
-    const [values, setValues] = useState(initialValues);
     const toggleShowPassword = () => {
         setPasswordShown(!isPasswordShown);
     };
@@ -37,17 +36,19 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                         onSubmit={values => Alert.alert('submit')}
                         validationSchema={
                             Yup.object().shape({
-                                oldPassword : Yup.string().
-                                                min(6, I18n.translate('changePassword.errOldPassword_least')).
-                                                required(I18n.translate('changePassword.errOldPassword_require')),
-                                newPassword : Yup.string().
-                                                min(6, I18n.translate('changePassword.errNewPassword_least')).
-                                                required(I18n.translate('changePassword.errNewPassword_require')),
-                                re_newPassword : Yup.string().
-                                                min(6, I18n.translate('changePassword.errRe_newPassword_least')).
-                                                required(I18n.translate('changePassword.errRe_newPassword_require')).
-                                                test("password-match", "re_password must be match password",
-                                                     (value) => values.newPassword === value),
+                                oldPassword :   Yup.string().
+                                                    min(6, I18n.translate('changePassword.errOldPassword_least')).
+                                                    required(I18n.translate('changePassword.errOldPassword_require')),
+                                newPassword :   Yup.string().
+                                                    min(6, I18n.translate('changePassword.errNewPassword_least')).
+                                                    required(I18n.translate('changePassword.errNewPassword_require')),
+                                re_newPassword: Yup.string().when("newPassword", {
+                                                    is: val => (val && val.length > 0 ? true : false),
+                                                    then: Yup.string().oneOf(
+                                                        [Yup.ref("newPassword")],
+                                                        I18n.translate('changePassword.errRe_newPassword')
+                                                    )
+                                                })
                             })
                         }
                     >
