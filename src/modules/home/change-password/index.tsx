@@ -6,9 +6,7 @@ import ArrowBackSvg from '../../../assets/icons/arrow-back.svg';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as Yup  from 'yup';
-import { changePassword } from '../../../i18n/locales/en/changePassword';
-import { LinkButton } from '../../../shared/components';
-import { Link } from '@react-navigation/native';
+
 interface Props {
     navigation: any,
 }
@@ -38,14 +36,14 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                         validationSchema={
                             Yup.object().shape({
                                 oldPassword : Yup.string().
-                                                min(6, I18n.translate('errOldPassword_least')).
-                                                required(I18n.translate('errOldPassword_require')),
+                                                min(6, I18n.translate('changePassword.errOldPassword_least')).
+                                                required(I18n.translate('changePassword.errOldPassword_require')),
                                 newPassword : Yup.string().
-                                                min(6, I18n.translate('errNewPassword_least')).
-                                                required(I18n.translate('errNewPassword_require')),
+                                                min(6, I18n.translate('changePassword.errNewPassword_least')).
+                                                required(I18n.translate('changePassword.errNewPassword_require')),
                                 re_newPassword : Yup.string().
-                                                min(6, I18n.translate('errRe_newPassword_least')).
-                                                required(I18n.translate('errRe_newPassword_require')),
+                                                min(6, I18n.translate('changePassword.errRe_newPassword_least')).
+                                                required(I18n.translate('changePassword.errRe_newPassword_require')),
                             })
                         }
                     >
