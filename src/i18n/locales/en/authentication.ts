@@ -8,11 +8,9 @@ export const authentication = {
         'signup': 'Sign Up',
         'forgot-password': 'Forgot password?',
         'or': 'Or',
-        'err-length-username': 'Username must have a maximum length of 40',
-        'err-required-username': 'Username is required',
-        'err-length-password': 'Password must have at least 8 characters',
-        'err-regex-password': 'Password must have at least 1 upper letter, 1 lower letter and 1 number',
-        'err-required-password': 'Password is required',
+        'err-failed-username': 'Username is invalid',
+        'err-failed-password': 'Password is invalid',
+        'err-toast-msg': 'You have entered an invalid username or password',
     },
     'register': {
 

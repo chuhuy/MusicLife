@@ -1,21 +1,21 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { styleVars } from '../../../shared/constance/style-variables';
+import { isLargeDevice, styleVars } from '../../../shared/constance/style-variables';
 
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
+        backgroundColor: styleVars.white,
     },
     headerContainer:{
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 20,
     },
     logo:{
-        width: 60, 
-        height: 70,
+        width: isLargeDevice() ? 60 : 50,  
+        height: isLargeDevice() ? 70 : 60,
     },
     appName:{
         paddingTop: 10,
@@ -27,33 +27,35 @@ export const styles = StyleSheet.create({
         flex: 2,
         justifyContent: "space-between",
         padding: 20,
-        paddingBottom: 15,
         backgroundColor: styleVars.primaryColor,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
     },
     formContainer: {
         display: 'flex',
-        justifyContent: 'space-between',
-    },
-    error: {
-        fontSize: styleVars.smallFontSize,
-        color: styleVars.red,
-        marginTop: 5,
     },
     inputGroup: {
-        marginBottom: 15,
+        marginBottom: isLargeDevice() ? 20 : 15,
     },
     textInput: {
         backgroundColor: styleVars.white,
         borderRadius: 4,
-        paddingVertical: 8,
+        paddingVertical: 5,
         paddingHorizontal: 10,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
         marginBottom: 8,
+    },
+    textSecurity:{
+        width: 25,
+        height: '100%',
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 10,
+        top: 0,
+        zIndex: 10,
     },
     signInButton: {
         marginBottom: 10,

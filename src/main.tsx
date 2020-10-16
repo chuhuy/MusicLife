@@ -8,6 +8,7 @@ import MainNavigator from './navigators/main-navigator';
 import SQLite from 'react-native-sqlite-storage';
 import TrackPlayer from 'react-native-track-player';
 import TrackService from './services/track-player';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 //  Set up player
 TrackPlayer.setupPlayer().then(() => {});
@@ -52,12 +53,15 @@ export const Main: React.FunctionComponent<Props> = (prop: Props) => {
     //TODO: Suspense fallback loading component
 
     return (
-        <Provider store={store}>
-            <NavigationContainer>
-                <React.Suspense fallback={null}>
-                    <MainNavigator />
-                </React.Suspense>
-            </NavigationContainer>
-        </Provider>
+        <RootSiblingParent>
+            <Provider store={store}>
+                <NavigationContainer>
+                    <React.Suspense fallback={null}>
+                        <MainNavigator />
+                    </React.Suspense>
+                </NavigationContainer>
+            </Provider>
+        </RootSiblingParent>
+        
     );
 };

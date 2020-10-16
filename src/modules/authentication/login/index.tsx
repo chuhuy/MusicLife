@@ -1,18 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
-import { styles } from './styles';
-import { Button } from './../../../shared/components/button';
-import { LOGIN } from './../../../redux/modules/auth/actions';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { LoginManager } from 'react-native-fbsdk';
+import Toast from 'react-native-root-toast';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
-import I18n from './../../../i18n';
-import { LoginManager } from 'react-native-fbsdk';
-import { LoginUser } from './../../../models/LoginUser';
-import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
 import { SignInForm } from '../../../models/form/signin';
+import { notifyError } from '../../../shared/components/notify';
+import I18n from './../../../i18n';
 import { ErrorMessage } from './../../../models/error-message';
+import { LoginUser } from './../../../models/LoginUser';
+import { LOGIN } from './../../../redux/modules/auth/actions';
+import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
+import { Button } from './../../../shared/components/button';
+import { styles } from './styles';
+import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
+import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
+import { styleVars } from '../../../shared/constance/style-variables';
 
 interface Props extends DispatchProps {
     navigation: any,
@@ -35,6 +41,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         refresh_token: 'refresh_token',
         token: 'token',
     });
+    // Empty input
+    const [isEmptyInput, setEmptyInput] = useState<boolean>(true);
 
     // Form control
     const initialFormValue = {
@@ -44,13 +52,13 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     //  Validate form
     const validationSchema = Yup.object().shape({
         username: Yup.string()
-            .max(40, I18n.translate('authentication.login.err-length-username'))
-            .required(I18n.translate('authentication.login.err-required-username')),
+            .max(40, I18n.translate('authentication.login.err-failed-username'))
+            .required(I18n.translate('authentication.login.err-failed-username')),
 
         password: Yup.string()
-            .min(8, I18n.translate('authentication.login.err-length-password'))
-            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('authentication.login.err-regex-password'))
-            .required(I18n.translate('authentication.login.err-required-password')),
+            .min(8, I18n.translate('authentication.login.err-failed-password'))
+            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('authentication.login.err-failed-password'))
+            .required(I18n.translate('authentication.login.err-failed-password')),
     });
     const validateForm = (values: SignInForm) => {
         validationSchema.validate(values, {abortEarly: false})
@@ -110,30 +118,38 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     // Render Toast Error Message
-    const renderErrorMessage = msg => {
-        return <Text style={styles.error}>{msg}</Text>
+    const renderToast = errors => {
+        if (errors.username !== '' && errors.password !== '')
+            notifyError(I18n.translate('authentication.login.err-toast-msg'), {position: Toast.positions.BOTTOM - 50});
+    }
+
+    // Check if input empty
+    const onChangeInput = (values: typeof initialFormValue) => {
+        if (values.username === '' && values.password === '' && !isEmptyInput) setEmptyInput(true);
+        else if (values.username !== '' && values.password !== '' && isEmptyInput) setEmptyInput(false);
     }
 
     return (
-        <KeyboardAvoidingView 
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
-            style={styles.container}
-        >
-            <ScrollView
-                scrollEnabled={false}
-                contentContainerStyle={styles.container}
+            <KeyboardAvoidingView 
+                behavior={Platform.OS == "ios" ? "padding" : "height"}
+                style={styles.container}
             >
-                <View style={styles.headerContainer}>
-                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
-                    <Text style={styles.appName}>Life Music</Text>            
-                </View>
-
-                <Formik
-                    initialValues={initialFormValue}
-                    onSubmit={(values) => {validateForm(values);}}
-                    validationSchema={validationSchema}
+                <ScrollView
+                    scrollEnabled={false}
+                    contentContainerStyle={styles.container}
                 >
-                    {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, touched}) =>
+                    <View style={styles.headerContainer}>
+                        <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
+                        <Text style={styles.appName}>Life Music</Text>            
+                    </View>
+
+                    <Formik
+                        initialValues={initialFormValue}
+                        onSubmit={(values) => {validateForm(values);}}
+                        validationSchema={validationSchema}
+                        validate={(values) => onChangeInput(values)}
+                    >
+                    {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched}) =>
                         <React.Fragment>
                             <View style={styles.bodyContainer}>
                                 <View style={styles.formContainer}>
@@ -143,27 +159,40 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                             style={styles.textInput}
                                             value={values.username}
                                             onChangeText={handleChange('username')}
-                                            onBlur={() => { handleBlur('username'); setFieldTouched('username')}}
+                                            onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
                                             placeholder={I18n.translate('authentication.login.username-placeholder')}
                                         />
-                                        { touched.username && errors.username && renderErrorMessage(errors.username) }
                                     </View>
 
                                     <View style={styles.inputGroup}>
                                         <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.password')}</Text>
-                                        <TextInput
-                                            secureTextEntry={!isPasswordShown}
-                                            style={styles.textInput}
-                                            value={values.password}
-                                            onChangeText={handleChange('password')}
-                                            onBlur={() => { handleBlur('password'); setFieldTouched('password')}}
-                                            placeholder={I18n.translate('authentication.login.password-placeholder')}
-                                        />
-                                        { touched.password && errors.password && renderErrorMessage(errors.password) }
+                                        <View>
+                                            <TextInput
+                                                secureTextEntry={!isPasswordShown}
+                                                style={styles.textInput}
+                                                value={values.password}
+                                                onChangeText={handleChange('password')}
+                                                onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
+                                                placeholder={I18n.translate('authentication.login.password-placeholder')}
+                                            />
+                                            <View style={styles.textSecurity}>
+                                                <TouchableWithoutFeedback onPress={toggleShowPassword}>
+                                                    {
+                                                        isPasswordShown ? 
+                                                            <EyeShowIcon fill={styleVars.greyColor} width={25} height={25} /> :
+                                                            <EyeyHideIcon fill={styleVars.greyColor} width={25} height={25} /> 
+                                                    }
+                                                </TouchableWithoutFeedback>
+                                            </View>
+                                        </View>
                                     </View>
 
                                     <View style={styles.signInButton}>
-                                        <Button title={I18n.translate('authentication.login.signin')} onClick={() => handleSubmit()}/>
+                                        <Button 
+                                            title={I18n.translate('authentication.login.signin')} 
+                                            onClick={() => { renderToast(errors); handleSubmit()}} 
+                                            disabled={isEmptyInput} 
+                                        />
                                     </View>
 
                                     <View style={styles.separator}>
@@ -179,8 +208,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                 </View>
 
                                 <View style={styles.linkButtonGroup}>
-                                    <LinkButton title={I18n.translate('authentication.login.signup')} color="#fff" onClick={() => handleSignUp()}/>
-                                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color="#fff" onClick={() => handleForgotPassword()}/>
+                                    <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
+                                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
                                 </View>
                             </View>   
                         </React.Fragment>
