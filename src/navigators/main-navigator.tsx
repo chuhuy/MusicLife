@@ -20,6 +20,8 @@ const ChangePassword = React.lazy(() => import('../modules/home/change-password'
 const ChangeLanguage = React.lazy(() => import('../modules/home/change-language'));
 const Notification = React.lazy(() => import('../modules/home/notification'));
 const EditProfile = React.lazy(() => import('../modules/home/edit-profile'));
+const Playlist = React.lazy(() => import('./../modules/home/playlist'));
+
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
 
     //TODO: Splash Screen
@@ -47,6 +49,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         <Stack.Screen name="ChangeLanguage" component={ChangeLanguage} />
                         <Stack.Screen name="Notification" component={Notification} />
                         <Stack.Screen name="EditProfile" component={EditProfile} />
+                        <Stack.Screen name="Playlist" component={Playlist}/>
                     </>
 
                 )}

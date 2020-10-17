@@ -22,6 +22,10 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
         props.navigation.navigate('Player');
     };
 
+    const handleOpenPlaylist = () => {
+        props.navigation.navigate('Playlist');
+    };
+
     return (
         <>
             <View style={styles.header}>
@@ -85,7 +89,7 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     <FlatList
                         horizontal={true}
                         data={playlistDummyData}
-                        renderItem={({item}) => (<PlaylistItem title={item.title} image={item.image} onClick={() => {}}/>)}
+                        renderItem={({item}) => (<PlaylistItem title={item.title} image={item.image} onClick={() => handleOpenPlaylist()}/>)}
                         keyExtractor={item => item.id.toString()}
                     />
                 </View>
