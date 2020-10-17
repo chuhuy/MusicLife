@@ -56,7 +56,6 @@ export const styles = StyleSheet.create({
     main__left: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
         flex: 1,
     },
     main__left__svgView: {
@@ -73,7 +72,4 @@ export const styles = StyleSheet.create({
     main__icon__arrow: {
         flex: 2,
     },
-    main__out: {
-        justifyContent: 'flex-start'
-    }
 });

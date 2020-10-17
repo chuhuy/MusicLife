@@ -45,10 +45,10 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     <>
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name="Player" component={Player}/>
-                        <Stack.Screen name="ChangePassword" component={ChangePassword} />
-                        <Stack.Screen name="ChangeLanguage" component={ChangeLanguage} />
-                        <Stack.Screen name="Notification" component={Notification} />
-                        <Stack.Screen name="EditProfile" component={EditProfile} />
+                        <Stack.Screen name="ChangePassword" component={ChangePassword}/>
+                        <Stack.Screen name="ChangeLanguage" component={ChangeLanguage}/>
+                        <Stack.Screen name="Notification" component={Notification}/>
+                        <Stack.Screen name="EditProfile" component={EditProfile}/>
                         <Stack.Screen name="Playlist" component={Playlist}/>
                     </>
 
