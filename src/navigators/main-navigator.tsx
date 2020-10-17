@@ -16,6 +16,7 @@ const TabNavigator = React.lazy(() => import('./tab-navigator'));
 const Register = React.lazy(() => import('./../modules/authentication/register'));
 const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
 const Player = React.lazy(() => import('./../modules/home/player'));
+const Playlist = React.lazy(() => import('./../modules/home/playlist'));
 
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
 
@@ -40,6 +41,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     <>
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name="Player" component={Player}/>
+                        <Stack.Screen name="Playlist" component={Playlist}/>
                     </>
 
                 )}
