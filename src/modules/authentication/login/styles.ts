@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
         marginBottom: 8,
     },
     textSecurity:{
-        width: 25,
+        width: 24,
         height: '100%',
         justifyContent: 'center',
         position: 'absolute',
