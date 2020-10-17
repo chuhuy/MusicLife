@@ -2,7 +2,6 @@ import React, {FunctionComponent} from 'react';
 import { TouchableOpacity} from 'react-native';
 import { styles } from './styles';
 import GoogleIcon from '../../../assets/icons/google-plus.svg';
-import FacebookIcon from '../../../assets/icons/facebook.svg';
 
 interface Props {
     onClick: () => void;

@@ -12,8 +12,9 @@ export const LinkButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <TouchableOpacity
-            style={styles.container}
-            onPressOut={props.onClick}>
+                style={styles.container}
+                onPressOut={props.onClick}
+            >
                 <Text style={[styles.title, {color: props.color}]}>{props.title}</Text>
             </TouchableOpacity>
         </>
