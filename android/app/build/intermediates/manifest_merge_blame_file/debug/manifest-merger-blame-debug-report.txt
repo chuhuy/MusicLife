@@ -9,146 +9,146 @@
 9        android:targetSdkVersion="29" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\debug\AndroidManifest.xml:5:5-77
-11-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\debug\AndroidManifest.xml:5:22-75
+11-->E:\mobile\MusicLife\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->E:\mobile\MusicLife\android\app\src\debug\AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:4:5-67
-12-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:4:22-64
+12-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:5-76
-13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:22-73
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:5-76
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:22-73
 14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-14-->[:react-native-fs] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-81
-14-->[:react-native-fs] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-78
+14-->[:react-native-fs] E:\mobile\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-81
+14-->[:react-native-fs] E:\mobile\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-78
 15    <uses-permission android:name="android.permission.WAKE_LOCK" />
-15-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-68
-15-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-65
+15-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-68
+15-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-65
 16    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-16-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-77
-16-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-74
+16-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-77
+16-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-74
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->[com.google.android.exoplayer:exoplayer-core:2.10.1] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\0a833a874de6bdaefb20d534488f429c\jetified-exoplayer-core-2.10.1\AndroidManifest.xml:24:5-79
-17-->[com.google.android.exoplayer:exoplayer-core:2.10.1] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\0a833a874de6bdaefb20d534488f429c\jetified-exoplayer-core-2.10.1\AndroidManifest.xml:24:22-76
+17-->[com.google.android.exoplayer:exoplayer-core:2.10.1] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\38567c03df8004f3ac950c6b0b246dcc\jetified-exoplayer-core-2.10.1\AndroidManifest.xml:24:5-79
+17-->[com.google.android.exoplayer:exoplayer-core:2.10.1] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\38567c03df8004f3ac950c6b0b246dcc\jetified-exoplayer-core-2.10.1\AndroidManifest.xml:24:22-76
 18    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-18-->[com.android.installreferrer:installreferrer:1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\d60cc80fd0f033da6784acdcd6ecd487\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
-18-->[com.android.installreferrer:installreferrer:1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\d60cc80fd0f033da6784acdcd6ecd487\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+18-->[com.android.installreferrer:installreferrer:1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\cbf7bf63bbaf5a6dc18e50f833a3f45c\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+18-->[com.android.installreferrer:installreferrer:1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\cbf7bf63bbaf5a6dc18e50f833a3f45c\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
 19
 20    <application
-20-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:6:5-26:19
+20-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:6:5-26:19
 21        android:name="com.musiclife.MainApplication"
-21-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:7:7-38
+21-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:7:7-38
 22        android:allowBackup="false"
-22-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:11:7-34
+22-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:11:7-34
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-23-->[androidx.core:core:1.2.0-beta01] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\0dfbfccd881ef79419407cc1a91e9d97\core-1.2.0-beta01\AndroidManifest.xml:24:18-86
+23-->[androidx.core:core:1.2.0-beta01] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\0dfbfccd881ef79419407cc1a91e9d97\core-1.2.0-beta01\AndroidManifest.xml:24:18-86
 24        android:debuggable="true"
 25        android:icon="@mipmap/ic_launcher"
-25-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:9:7-41
+25-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:9:7-41
 26        android:label="@string/app_name"
-26-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:8:7-39
+26-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:8:7-39
 27        android:roundIcon="@mipmap/ic_launcher_round"
-27-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:10:7-52
+27-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:10:7-52
 28        android:supportsRtl="true"
-28-->[com.facebook.android:facebook-android-sdk:5.15.3] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\49634053b4a3935f288eb47763025b5d\facebook-android-sdk-5.15.3\AndroidManifest.xml:28:18-44
+28-->[com.facebook.android:facebook-android-sdk:5.15.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\49634053b4a3935f288eb47763025b5d\facebook-android-sdk-5.15.3\AndroidManifest.xml:28:18-44
 29        android:theme="@style/AppTheme"
-29-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:12:7-38
+29-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:12:7-38
 30        android:usesCleartextTraffic="true" >
-30-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\debug\AndroidManifest.xml:7:18-53
+30-->E:\mobile\MusicLife\android\app\src\debug\AndroidManifest.xml:7:18-53
 31        <activity
-31-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:13:7-23:18
+31-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:13:7-23:18
 32            android:name="com.musiclife.MainActivity"
-32-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:14:9-37
+32-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:14:9-37
 33            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-33-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:16:9-86
+33-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:16:9-86
 34            android:label="@string/app_name"
-34-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:15:9-41
+34-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:15:9-41
 35            android:launchMode="singleTask"
-35-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:17:9-40
+35-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:17:9-40
 36            android:windowSoftInputMode="adjustResize" >
-36-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:18:9-51
+36-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:18:9-51
 37            <intent-filter>
-37-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:19:9-22:25
+37-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:19:9-22:25
 38                <action android:name="android.intent.action.MAIN" />
-38-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:20:13-65
-38-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:20:21-62
+38-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:20:13-65
+38-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:20:21-62
 39
 40                <category android:name="android.intent.category.LAUNCHER" />
-40-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:21:13-73
-40-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:21:23-70
+40-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:21:13-73
+40-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:21:23-70
 41            </intent-filter>
 42        </activity>
 43        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-43-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:24:7-84
-43-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:24:17-81
+43-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:24:7-84
+43-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:24:17-81
 44
 45        <meta-data
-45-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:25:7-105
+45-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:25:7-105
 46            android:name="com.facebook.sdk.ApplicationId"
-46-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:25:18-63
+46-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:25:18-63
 47            android:value="@string/facebook_app_id" /> <!-- The main service, handles playback, playlists and media buttons -->
-47-->E:\UET1920I\Mobile\music-life\MusicLife\android\app\src\main\AndroidManifest.xml:25:64-103
+47-->E:\mobile\MusicLife\android\app\src\main\AndroidManifest.xml:25:64-103
 48        <service
-48-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-24:19
+48-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-24:19
 49            android:name="com.guichaguri.trackplayer.service.MusicService"
-49-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-75
+49-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-75
 50            android:enabled="true"
-50-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-35
+50-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-35
 51            android:exported="true" >
-51-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-36
+51-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-36
 52            <intent-filter>
-52-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
+52-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
 53                <action android:name="android.intent.action.MEDIA_BUTTON" />
-53-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
-53-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
+53-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
+53-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
 54            </intent-filter>
 55        </service> <!-- A receiver that will receive media buttons. Required on pre-lollipop devices -->
 56        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
-56-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:20
-56-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:19-76
+56-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:20
+56-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:19-76
 57            <intent-filter>
-57-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
+57-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
 58                <action android:name="android.intent.action.MEDIA_BUTTON" />
-58-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
-58-->[:react-native-track-player] E:\UET1920I\Mobile\music-life\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
+58-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
+58-->[:react-native-track-player] E:\mobile\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
 59            </intent-filter>
 60        </receiver>
 61
 62        <activity
-62-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:30:9-33:66
+62-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:30:9-33:66
 63            android:name="com.facebook.FacebookActivity"
-63-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:31:13-57
+63-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:31:13-57
 64            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-64-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:32:13-96
+64-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:32:13-96
 65            android:theme="@style/com_facebook_activity_theme" />
-65-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:33:13-63
+65-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:33:13-63
 66        <activity android:name="com.facebook.CustomTabMainActivity" />
-66-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:34:9-71
-66-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:34:19-68
+66-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:34:9-71
+66-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:34:19-68
 67        <activity
-67-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:35:9-49:20
+67-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:35:9-49:20
 68            android:name="com.facebook.CustomTabActivity"
-68-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:36:13-58
+68-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:36:13-58
 69            android:exported="true" >
-69-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:37:13-36
+69-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:37:13-36
 70            <intent-filter>
-70-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:39:13-48:29
+70-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:39:13-48:29
 71                <action android:name="android.intent.action.VIEW" />
-71-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:40:17-69
-71-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:40:25-66
+71-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:40:17-69
+71-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:40:25-66
 72
 73                <category android:name="android.intent.category.DEFAULT" />
-73-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:42:17-76
-73-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:42:27-73
+73-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:42:17-76
+73-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:42:27-73
 74                <category android:name="android.intent.category.BROWSABLE" />
-74-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:43:17-78
-74-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:43:27-75
+74-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:43:17-78
+74-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:43:27-75
 75
 76                <data
-76-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:45:17-47:50
+76-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:45:17-47:50
 77                    android:host="cct.com.musiclife"
-77-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:46:21-56
+77-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:46:21-56
 78                    android:scheme="fbconnect" />
-78-->[com.facebook.android:facebook-common:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:47:21-47
+78-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c235f9ea59e25ca4c17bf33edf63d8ab\facebook-common-7.1.0\AndroidManifest.xml:47:21-47
 79            </intent-filter>
 80        </activity>
 81        <!--
@@ -161,25 +161,25 @@
 88         a completely different provider.
 89        -->
 90        <provider
-90-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:39:9-42:40
+90-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:39:9-42:40
 91            android:name="com.facebook.internal.FacebookInitProvider"
-91-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:40:13-70
+91-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:40:13-70
 92            android:authorities="com.musiclife.FacebookInitProvider"
-92-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:41:13-72
+92-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:41:13-72
 93            android:exported="false" />
-93-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:42:13-37
+93-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:42:13-37
 94
 95        <receiver
-95-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:44:9-50:20
+95-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:44:9-50:20
 96            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-96-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:45:13-86
+96-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:45:13-86
 97            android:exported="false" >
-97-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:46:13-37
+97-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:46:13-37
 98            <intent-filter>
-98-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:47:13-49:29
+98-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:47:13-49:29
 99                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-99-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:17-95
-99-->[com.facebook.android:facebook-core:7.1.0] C:\Users\chuhu\.gradle\caches\transforms-2\files-2.1\542bd754d8402f3dd29400581001bc1b\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:25-92
+99-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:17-95
+99-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\7b48503392c7c4882a23fa196fb24162\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:25-92
 100            </intent-filter>
 101        </receiver>
 102    </application>

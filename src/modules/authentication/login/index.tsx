@@ -12,7 +12,7 @@ import { notifyError } from '../../../shared/components/notify';
 import I18n from './../../../i18n';
 import { ErrorMessage } from './../../../models/error-message';
 import { LoginUser } from './../../../models/LoginUser';
-import { LOGIN } from './../../../redux/modules/auth/actions';
+import { loginUsername, loginEmail } from './../../../redux/modules/auth/actions';
 import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
 import { Button } from './../../../shared/components/button';
 import { styles } from './styles';
@@ -26,11 +26,14 @@ interface Props extends DispatchProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        login: (payload: any) => dispatch({type: LOGIN, payload}),
+        loginUsername: (user: SignInForm) => dispatch(loginUsername(user)),
+        loginEmail: (user: SignInForm) => dispatch(loginEmail(user)),
     };
 };
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
+    const { loginUsername, loginEmail } = props;
+
     //  Error message list
     const [errorMessageList, setErrorMessageList] = useState<ErrorMessage[]>([]);
     //  Password visibility
@@ -39,7 +42,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     const [loginUser, setLoginUser] = useState<LoginUser>({
         username: 'user',
         refresh_token: 'refresh_token',
-        token: 'token',
+        access_token: 'token',
     });
     // Empty input
     const [isEmptyInput, setEmptyInput] = useState<boolean>(true);
@@ -53,6 +56,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .max(40, I18n.translate('authentication.login.err-failed-username'))
+            .matches(/^(.+@[a-z0-9]+\.[a-z]{2,4})|(\w+[^@]\w*)$/g, I18n.translate('authentication.login.err-failed-username'))
             .required(I18n.translate('authentication.login.err-failed-username')),
 
         password: Yup.string()
@@ -84,10 +88,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     // Login
     const handleSignIn = (username: string, password: string) => {
-        props.login({
-            email: username,
-            password: password,
-        });
+        if (/^.+@.+$/) loginEmail({ username, password });
+        else loginUsername({ username, password })
     };
 
     const handleSignInWithFacebook = () => {
@@ -119,12 +121,13 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     // Render Toast Error Message
     const renderToast = errors => {
-        if (errors.username !== '' && errors.password !== '')
+        if (Object.keys(errors).length){
             notifyError(I18n.translate('authentication.login.err-toast-msg'), {position: Toast.positions.BOTTOM - 50});
+        }
     }
 
     // Check if input empty
-    const onChangeInput = (values: typeof initialFormValue) => {
+    const onChangeInput = (values: SignInForm) => {
         if (values.username === '' && values.password === '' && !isEmptyInput) setEmptyInput(true);
         else if (values.username !== '' && values.password !== '' && isEmptyInput) setEmptyInput(false);
     }
@@ -179,8 +182,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                                 <TouchableWithoutFeedback onPress={toggleShowPassword}>
                                                     {
                                                         isPasswordShown ? 
-                                                            <EyeShowIcon fill={styleVars.greyColor} width={25} height={25} /> :
-                                                            <EyeyHideIcon fill={styleVars.greyColor} width={25} height={25} /> 
+                                                            <EyeShowIcon fill={styleVars.greyColor} width={24} height={24} /> :
+                                                            <EyeyHideIcon fill={styleVars.greyColor} width={24} height={24} /> 
                                                     }
                                                 </TouchableWithoutFeedback>
                                             </View>
