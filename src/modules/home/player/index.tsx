@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, Image, Animated } from 'react-native';
 import { styles } from './styles';
 import TrackPlayer from 'react-native-track-player';
-import { PlayPauseButton, PreviousNextButton, PlaybackMode } from './components';
+import { PlayPauseButton, PreviousNextButton, PlaybackMode, Comment } from './components';
 import { LinkButton, IconButton } from '../../../shared/components';
 import I18n from './../../../i18n';
 import Plus from './../../../assets/icons/plus.svg';
@@ -16,10 +16,13 @@ import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import ArrowUp from './../../../assets/icons/arrow-up.svg';
 import { Easing } from 'react-native';
 
-interface Props {}
+interface Props {
+    navigation: any
+}
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
     const [isPlaying, setPlaying] = useState<boolean>(true);
+    const [isCommentShown, setCommentShown] = useState<boolean>(false);
 
     let spinValue = new Animated.Value(0);
 
@@ -34,6 +37,10 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
           }
         )
     );
+
+    const toggleShowComment = () => {
+        setCommentShown(!isCommentShown);
+    };
 
     const togglePlayPause = () => {
         if (isPlaying) {
@@ -57,6 +64,9 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     };
     const handleRepeat = () => {
 
+    };
+    const handleBack = () => {
+        props.navigation.goBack();
     };
 
     useEffect(() => {
@@ -112,7 +122,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}}>
                 <View style={styles.container}>
                     <View style={styles.header}>
-                        <IconButton icon={ArrowDown} onClick={() => {}}/>
+                        <IconButton icon={ArrowDown} onClick={() => handleBack()}/>
                         <Text style={styles.headerTitle}>Anh đâu đấy</Text>
                         <View style={{width: 20}}/>
                     </View>
@@ -134,10 +144,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         <IconButton icon={Heart} onClick={() => {}}/>
                         <IconButton icon={List} onClick={() => {}}/>
                     </View>
-                    <View style={styles.commentHeader}>
-                        <Text style={styles.commentText}>{I18n.translate('player.comment')}</Text>
-                        <IconButton icon={ArrowUp} onClick={() => {}}/>
-                    </View>
+                    <Comment />
                 </View>
             </ImageBackground>
         </>
