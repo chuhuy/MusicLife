@@ -1,10 +1,11 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 import { TouchableOpacity} from 'react-native';
 import { styles } from './styles';
+import { SvgProps } from 'react-native-svg';
 
 interface Props {
     onClick: () => void
-    icon: React.Component
+    icon: React.FC<SvgProps>
 }
 
 export const IconButton: FunctionComponent<Props> = (props: Props) => {

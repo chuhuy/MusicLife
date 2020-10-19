@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity, Image, Text } from 'react-native';
 import { IconButton } from '../../../../shared/components';
 import Option from './../../../../assets/icons/option.svg';
+import { styleVars } from './../../../../shared/constance/style-variables';
 
 const { width } = Dimensions.get('window');
 
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     artist: {
-        color: '#A7A7A7',
+        color: styleVars.greyColor,
         fontSize: 14,
     },
 });

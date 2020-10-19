@@ -7,6 +7,7 @@ import { Personal } from './../modules/home/personal';
 import { Explore } from './../modules/home/explore';
 import I18n from './../i18n';
 import { Text } from 'react-native';
+import { styleVars } from './../shared/constance/style-variables';
 import ExploreIcon from './../assets/icons/explore.svg';
 import PersonalIcon from './../assets/icons/personal.svg';
 import SettingIcon from './../assets/icons/setting.svg';
@@ -21,8 +22,8 @@ const TabNavigator = () => {
     return (
         <Tab.Navigator
             tabBarOptions={{
-                activeBackgroundColor: '#00132B',
-                inactiveBackgroundColor: '#00132B',
+                activeBackgroundColor: styleVars.lightPrimaryColor,
+                inactiveBackgroundColor: styleVars.lightPrimaryColor,
                 keyboardHidesTabBar: true,
                 style: {height: 50},
             }}
@@ -30,15 +31,15 @@ const TabNavigator = () => {
                 tabBarLabel: ({focused}) => {
                     if (route.name === 'Explore') {
                         return (
-                            <Text style={{color: focused ? '#F34E5F' : 'white', fontSize: 12}}>{I18n.translate('explore.title')}</Text>
+                            <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('explore.title')}</Text>
                         );
                     } else if (route.name === 'Personal') {
                         return (
-                            <Text style={{color: focused ? '#F34E5F' : 'white', fontSize: 12}}>{I18n.translate('personal.title')}</Text>
+                            <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('personal.title')}</Text>
                         );
                     } else if (route.name === 'Setting') {
                         return (
-                            <Text style={{color: focused ? '#F34E5F' : 'white', fontSize: 12}}>{I18n.translate('setting.title')}</Text>
+                            <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('setting.title')}</Text>
                         );
                     }
                 },

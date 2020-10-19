@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { styleVars } from './../../../shared/constance/style-variables';
 
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000A19',
+        backgroundColor: styleVars.primaryColor,
     },
     header: {
         width: width,
@@ -13,12 +14,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#000A19',
+        backgroundColor: styleVars.primaryColor,
         paddingVertical: 20,
     },
     userButton: {
         borderWidth: 1,
-        borderColor: '#F34E5F',
+        borderColor: styleVars.secondaryColor,
         width: 30,
         height: 30,
         borderRadius: 15,
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
     },
     chartTitleInactive: {
-        color: '#A7A7A7',
+        color: styleVars.greyColor,
         fontSize: 20,
     },
     chartButton: {

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Previous from './../../../../assets/icons/previous.svg';
 import Next from './../../../../assets/icons/next.svg';
+import { styleVars } from './../../../../shared/constance/style-variables';
 
 interface Props {
     type: 'previous' | 'next',
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         borderRadius: 30,
-        backgroundColor: '#00132B',
+        backgroundColor: styleVars.lightPrimaryColor,
         alignItems: 'center',
         justifyContent: 'center',
     },

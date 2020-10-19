@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     body: {
         width: width,
         backgroundColor: '#020403',
-        height: height * 0.7 - 70,
+        height: height * 0.6 - 70,
     },
     commentInput: {
         width: width - 40,
@@ -34,8 +34,14 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         alignSelf: 'center',
         marginBottom: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     commentList: {
         flex: 1,
+    },
+    input: {
+        color: 'white',
     },
 });

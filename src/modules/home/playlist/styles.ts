@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { styleVars } from './../../../shared/constance/style-variables';
 
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000A19',
+        backgroundColor: styleVars.primaryColor,
     },
     header: {
         paddingHorizontal: 20,
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     },
     sectionTwo: {
         flex: 3,
-        backgroundColor: '#000A19',
+        backgroundColor: styleVars.primaryColor,
         width: width,
         paddingHorizontal: 20,
     },
@@ -49,7 +50,7 @@ export const styles = StyleSheet.create({
     },
     artist: {
         fontSize: 14,
-        color: '#A7A7A7',
+        color: styleVars.greyColor,
     },
     buttonGroup: {
         flexDirection: 'row',
@@ -57,5 +58,5 @@ export const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 12,
-    }
+    },
 });
