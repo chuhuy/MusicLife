@@ -1,9 +1,12 @@
+import { string } from "yup";
 import { SignInForm } from "../../../models/form/signin";
 import { LoginUser } from "../../../models/LoginUser";
+import { ReduxCallbacks } from "../../../models/redux/ReduxCallback";
 
 //Login
 export const LOGIN_USERNAME = 'LOGIN_USERNAME';
 export const LOGIN_EMAIL = 'LOGIN_EMAIL';
+export const LOGIN_FACEBOOK = 'LOGIN_FACEBOOK';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 
@@ -20,28 +23,39 @@ export const REFRESH_TOKEN_FAILED = 'REFRESH_TOKEN_FAILED';
 //Logout
 export const LOGOUT = 'LOGOUT';
 
-export const loginUsername = (user: SignInForm) => {
+export const loginUsername = (user: SignInForm, callbacks?: ReduxCallbacks) => {
     return {
         type: LOGIN_USERNAME,
-        payload: user
+        payload: { ...user, callbacks}
     }
 };
 
-export const loginEmail = (user: SignInForm) => {
+export const loginEmail = (user: SignInForm, callbacks?: ReduxCallbacks) => {
     return {
         type: LOGIN_EMAIL,
-        payload: { 
+        payload: {
             email: user.username, 
-            password: user.password
+            password: user.password,
+            callbacks
         }
     }
 };
+
+export const loginFacebook = (access_token: string, callbacks?: ReduxCallbacks) => {
+    return {
+        type: LOGIN_FACEBOOK,
+        payload: {
+            access_token,
+            callbacks
+        }
+    }
+}
 
 export const loginSuccess = ({
     username,
     access_token,
     refresh_token,
-}:  LoginUser) => {
+}: LoginUser) => {
     return {
         type: LOGIN_SUCCESS,
         payload: { username, access_token, refresh_token }
