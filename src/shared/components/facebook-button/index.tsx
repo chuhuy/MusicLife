@@ -11,6 +11,7 @@ export const FacebookButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <TouchableOpacity
+                delayPressIn={0}
                 style={styles.container}
                 onPressOut={props.onClick}
             >
