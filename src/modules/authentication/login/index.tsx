@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { LoginManager } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import Toast from 'react-native-root-toast';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
@@ -12,27 +12,41 @@ import { notifyError } from '../../../shared/components/notify';
 import I18n from './../../../i18n';
 import { ErrorMessage } from './../../../models/error-message';
 import { LoginUser } from './../../../models/LoginUser';
-import { loginUsername, loginEmail } from './../../../redux/modules/auth/actions';
+import { loginUsername, loginEmail, loginFacebook } from './../../../redux/modules/auth/actions';
 import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
 import { Button } from './../../../shared/components/button';
 import { styles } from './styles';
 import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
 import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
 import { styleVars } from '../../../shared/constance/style-variables';
+import { ReduxCallbacks } from '../../../models/redux/ReduxCallback';
+import { Messages } from '../../../shared/constance/messages';
 
-interface Props extends DispatchProps {
+interface Props extends DispatchProps, StateProps {
     navigation: any,
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loading: state.auth.loading
+    }
+};
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        loginUsername: (user: SignInForm) => dispatch(loginUsername(user)),
-        loginEmail: (user: SignInForm) => dispatch(loginEmail(user)),
+        onLoginUsername: (user: SignInForm, callbacks?: ReduxCallbacks) => dispatch(loginUsername(user, callbacks)),
+        onLoginEmail: (user: SignInForm, callbacks?: ReduxCallbacks) => dispatch(loginEmail(user, callbacks)),
+        onLoginFacebook: (access_token: string, callbacks?: ReduxCallbacks) => dispatch(loginFacebook(access_token, callbacks)),
     };
 };
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
-    const { loginUsername, loginEmail } = props;
+    const { loading, onLoginUsername, onLoginEmail, onLoginFacebook } = props;
+    
+    // Loading
+    useEffect(() => {
+        console.log(loading);
+    }, [loading])
 
     //  Error message list
     const [errorMessageList, setErrorMessageList] = useState<ErrorMessage[]>([]);
@@ -55,20 +69,20 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     //  Validate form
     const validationSchema = Yup.object().shape({
         username: Yup.string()
-            .max(40, I18n.translate('authentication.login.err-failed-username'))
-            .matches(/^(.+@[a-z0-9]+\.[a-z]{2,4})|(\w+[^@]\w*)$/g, I18n.translate('authentication.login.err-failed-username'))
-            .required(I18n.translate('authentication.login.err-failed-username')),
+            .max(40, 'Sign in failed')
+            .matches(/(^(.+@[a-z0-9]+\.[a-z]{2,4})$)|(^\w*[^\@]\w*$)/g, 'Sign in failed')
+            .required('Sign in failed'),
 
         password: Yup.string()
-            .min(8, I18n.translate('authentication.login.err-failed-password'))
-            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('authentication.login.err-failed-password'))
-            .required(I18n.translate('authentication.login.err-failed-password')),
+            .min(8, 'Sign in failed')
+            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, 'Sign in failed')
+            .required('Sign in failed'),
     });
     const validateForm = (values: SignInForm) => {
         validationSchema.validate(values, {abortEarly: false})
         .then(() => {
             //  Validate successfully
-            handleSignIn(values.username, values.password);
+            handleSignIn(values);
         })
         .catch((errors) => {
             setErrorMessageList((errors.inner.map((error: any, index: number) => {
@@ -87,22 +101,35 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     // Login
-    const handleSignIn = (username: string, password: string) => {
-        if (/^.+@.+$/) loginEmail({ username, password });
-        else loginUsername({ username, password })
+    const handleSignIn = (values: SignInForm) => {
+        console.log(values)
+        if (/^.+@.+$/.test(values.username)) 
+            onLoginEmail(values, {
+                onFailed: error =>  renderToast({ error })
+            });
+        else onLoginUsername(values,{
+            onFailed: error =>  renderToast({ error })
+        });
     };
 
-    const handleSignInWithFacebook = () => {
+    const handleSignInWithFacebook = async () => {
         LoginManager.logInWithPermissions(['email']).then(
-            function (result) {
-              if (result.isCancelled) {
-                console.log('Login cancelled');
-              } else {
-                console.log('Login success with permissions: ' + result.grantedPermissions.toString());
-              }
+            async function (result) {
+                if (result.isCancelled) {
+                    renderToast({ cancelLogin: 'Cancel login' });
+                    console.log('Login cancelled');
+                } else {
+                    const { accessToken } = await AccessToken.getCurrentAccessToken();
+                    console.log(accessToken);
+                    onLoginFacebook(accessToken, {
+                        onFailed: error =>  renderToast({ error })
+                    })
+                    console.log('Login success with permissions: ' + result.grantedPermissions.toString());
+                }
             },
             function (error) {
-              console.log('Login fail with error: ' + error);
+                renderToast({ error });
+                console.log('Login fail with error: ' + error);
             }
           );
     };
@@ -121,8 +148,30 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     // Render Toast Error Message
     const renderToast = errors => {
-        if (Object.keys(errors).length){
-            notifyError(I18n.translate('authentication.login.err-toast-msg'), {position: Toast.positions.BOTTOM - 50});
+        const keys = Object.keys(errors);
+        const totalErrors = keys.length;
+        console.log(errors)
+        if (totalErrors){
+            let errorMessage = '';
+
+            if (totalErrors === 2){
+                errorMessage = I18n.translate('authentication.login.account-not-exist');
+            } else {
+                let error = errors[keys[0]];
+
+                switch (error){
+                    case Messages.Auth.IncorrectPassword:
+                        errorMessage = I18n.translate('authentication.login.incorrect-password');
+                        break;
+                    case Messages.Auth.AccountNotExist:
+                        errorMessage = I18n.translate('authentication.login.account-not-exist');
+                        break;
+                    default:
+                        errorMessage = I18n.translate('authentication.login.fail-to-sign-in');
+                }
+            }
+
+            notifyError(errorMessage, {position: Toast.positions.BOTTOM - 50});
         }
     }
 
@@ -133,96 +182,94 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     }
 
     return (
+        <ScrollView contentContainerStyle={styles.mainContainer}>
             <KeyboardAvoidingView 
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}
             >
-                <ScrollView
-                    scrollEnabled={false}
-                    contentContainerStyle={styles.container}
+                <View style={styles.headerContainer}>
+                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
+                    <Text style={styles.appName}>Life Music</Text>            
+                </View>
+
+                <Formik
+                    initialValues={initialFormValue}
+                    onSubmit={(values) => {validateForm(values);}}
+                    validationSchema={validationSchema}
+                    validate={(values) => onChangeInput(values)}
                 >
-                    <View style={styles.headerContainer}>
-                        <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
-                        <Text style={styles.appName}>Life Music</Text>            
-                    </View>
+                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched}) =>
+                    <React.Fragment>
+                        <View style={styles.formContainer}>
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.username')}</Text>
+                                <TextInput
+                                    style={styles.textInput}
+                                    value={values.username}
+                                    onChangeText={handleChange('username')}
+                                    onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
+                                    placeholder={I18n.translate('authentication.login.username-placeholder')}
+                                    placeholderTextColor={styleVars.greyColor}
+                                />
+                            </View>
 
-                    <Formik
-                        initialValues={initialFormValue}
-                        onSubmit={(values) => {validateForm(values);}}
-                        validationSchema={validationSchema}
-                        validate={(values) => onChangeInput(values)}
-                    >
-                    {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched}) =>
-                        <React.Fragment>
-                            <View style={styles.bodyContainer}>
-                                <View style={styles.formContainer}>
-                                    <View style={styles.inputGroup}>
-                                        <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.username')}</Text>
-                                        <TextInput
-                                            style={styles.textInput}
-                                            value={values.username}
-                                            onChangeText={handleChange('username')}
-                                            onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
-                                            placeholder={I18n.translate('authentication.login.username-placeholder')}
-                                        />
-                                    </View>
-
-                                    <View style={styles.inputGroup}>
-                                        <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.password')}</Text>
-                                        <View>
-                                            <TextInput
-                                                secureTextEntry={!isPasswordShown}
-                                                style={styles.textInput}
-                                                value={values.password}
-                                                onChangeText={handleChange('password')}
-                                                onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
-                                                placeholder={I18n.translate('authentication.login.password-placeholder')}
-                                            />
-                                            <View style={styles.textSecurity}>
-                                                <TouchableWithoutFeedback onPress={toggleShowPassword}>
-                                                    {
-                                                        isPasswordShown ? 
-                                                            <EyeShowIcon fill={styleVars.greyColor} width={24} height={24} /> :
-                                                            <EyeyHideIcon fill={styleVars.greyColor} width={24} height={24} /> 
-                                                    }
-                                                </TouchableWithoutFeedback>
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.signInButton}>
-                                        <Button 
-                                            title={I18n.translate('authentication.login.signin')} 
-                                            onClick={() => { renderToast(errors); handleSubmit()}} 
-                                            disabled={isEmptyInput} 
-                                        />
-                                    </View>
-
-                                    <View style={styles.separator}>
-                                        <View style={styles.separatorLine}/>
-                                        <Text style={styles.separatorLabel}>{I18n.translate('authentication.login.or')}</Text>
-                                        <View style={styles.separatorLine}/>
-                                    </View>
-                                    
-                                    <View style={styles.buttonGroup}>
-                                        <FacebookButton onClick={() => handleSignInWithFacebook()} />
-                                        <GoogleButton onClick={() => handleSignInWithGoogle()}/>
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.password')}</Text>
+                                <View>
+                                    <TextInput
+                                        secureTextEntry={!isPasswordShown}
+                                        style={styles.textInput}
+                                        value={values.password}
+                                        onChangeText={handleChange('password')}
+                                        onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
+                                        placeholder={I18n.translate('authentication.login.password-placeholder')}
+                                        placeholderTextColor={styleVars.greyColor}
+                                    />
+                                    <View style={styles.textSecurity}>
+                                        <TouchableWithoutFeedback onPress={toggleShowPassword}>
+                                            {
+                                                isPasswordShown ? 
+                                                    <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
+                                                    <EyeyHideIcon fill={styleVars.white} width={24} height={24} /> 
+                                            }
+                                        </TouchableWithoutFeedback>
                                     </View>
                                 </View>
+                            </View>
 
-                                <View style={styles.linkButtonGroup}>
-                                    <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
-                                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
-                                </View>
-                            </View>   
-                        </React.Fragment>
-                    }
+                            <View style={styles.signInButton}>
+                                <Button 
+                                    title={I18n.translate('authentication.login.signin')} 
+                                    onClick={() => { renderToast(errors); handleSubmit() }} 
+                                    disabled={isEmptyInput} 
+                                />
+                            </View>
+
+                            <View style={styles.separator}>
+                                <View style={styles.separatorLine}/>
+                                <Text style={styles.separatorLabel}>{I18n.translate('authentication.login.or')}</Text>
+                                <View style={styles.separatorLine}/>
+                            </View>
+                            
+                            <View style={styles.buttonGroup}>
+                                <FacebookButton onClick={() => handleSignInWithFacebook()} />
+                                <GoogleButton onClick={() => handleSignInWithGoogle()}/>
+                            </View>
+                        </View>
+                    </React.Fragment>
+                }
                 </Formik>
-            </ScrollView>
-        </KeyboardAvoidingView>
+
+                <View style={styles.linkButtonGroup}>
+                    <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
+                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
+                </View>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+type StateProps = ReturnType<typeof mapStateToProps>;

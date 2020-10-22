@@ -15,12 +15,12 @@ export const styleVars = {
 
 
     // Colors
+    bgToastColor: '#E5E5E5',
     primaryColor: '#020403',
     lightPrimaryColor: '#1B1B1B',
     secondaryColor: '#FF245A',
-    greyColor: '#A7A7A7',
-    darkGreyColor: '#333',
+    greyColor: '#868686',
     white: '#fff',
     redColor: '#F70000',
-    greenColor: '#28A745',
+    greenColor: '#388E3C',
 };
