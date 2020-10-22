@@ -23,5 +23,5 @@ export const signinWithUsername = async (username: string, password: string) => 
 };
 
 export const signinWithFacebook = async (access_token: string) => {
-    return API.post(AUTH_URL + SIGNINFB, { access_token: access_token });
+    return API.post(AUTH_URL + SIGNINFB, { access_token });
 }
