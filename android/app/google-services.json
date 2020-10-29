@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "312958439484",
+    "firebase_url": "https://music-life-291816.firebaseio.com",
+    "project_id": "music-life-291816",
+    "storage_bucket": "music-life-291816.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312958439484:android:dc52359fd5f1ae8c827339",
+        "android_client_info": {
+          "package_name": "com.musiclife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312958439484-orh1jphm5er8u0ris457m4a8sh84rsnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFYWkh9BRD0u__34Wbj02YFahKGXQEog8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312958439484-orh1jphm5er8u0ris457m4a8sh84rsnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
