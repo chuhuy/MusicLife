@@ -21,6 +21,7 @@ import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
 import { styleVars } from '../../../shared/constance/style-variables';
 import { ReduxCallbacks } from '../../../models/redux/ReduxCallback';
 import { Messages } from '../../../shared/constance/messages';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -28,8 +29,8 @@ interface Props extends DispatchProps, StateProps {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.auth.loading
-    }
+        loading: state.auth.loading,
+    };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -42,11 +43,11 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
     const { loading, onLoginUsername, onLoginEmail, onLoginFacebook } = props;
-    
+
     // Loading
     useEffect(() => {
         console.log(loading);
-    }, [loading])
+    }, [loading]);
 
     //  Error message list
     const [errorMessageList, setErrorMessageList] = useState<ErrorMessage[]>([]);
@@ -102,14 +103,14 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     // Login
     const handleSignIn = (values: SignInForm) => {
-        console.log(values)
-        if (/^.+@.+$/.test(values.username)) 
-            onLoginEmail(values, {
-                onFailed: error =>  renderToast({ error })
-            });
-        else onLoginUsername(values,{
-            onFailed: error =>  renderToast({ error })
-        });
+        console.log(values);
+        if (/^.+@.+$/.test(values.username))
+            {onLoginEmail(values, {
+                onFailed: error =>  renderToast({ error }),
+            });}
+        else {onLoginUsername(values,{
+            onFailed: error =>  renderToast({ error }),
+        });}
     };
 
     const handleSignInWithFacebook = async () => {
@@ -122,8 +123,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                     const { accessToken } = await AccessToken.getCurrentAccessToken();
                     console.log(accessToken);
                     onLoginFacebook(accessToken, {
-                        onFailed: error =>  renderToast({ error })
-                    })
+                        onFailed: error =>  renderToast({ error }),
+                    });
                     console.log('Login success with permissions: ' + result.grantedPermissions.toString());
                 }
             },
@@ -134,8 +135,24 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
           );
     };
 
-    const handleSignInWithGoogle = () => {
-        console.log('Signed in with google');
+    const handleSignInWithGoogle = async () => {
+        try {
+          await GoogleSignin.hasPlayServices();
+          const userInfo = await GoogleSignin.signIn();
+          console.log(userInfo);
+          const currentUser = await GoogleSignin.getTokens();
+          console.log(currentUser);
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            console.log('Sign in canceled');
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            console.log('Sign in in progress');
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            console.log('Play services not available');
+          } else {
+            console.log(error);
+          }
+        }
     };
 
     const handleSignUp = () => {
@@ -150,7 +167,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     const renderToast = errors => {
         const keys = Object.keys(errors);
         const totalErrors = keys.length;
-        console.log(errors)
+        console.log(errors);
         if (totalErrors){
             let errorMessage = '';
 
@@ -173,23 +190,23 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
             notifyError(errorMessage, {position: Toast.positions.BOTTOM - 50});
         }
-    }
+    };
 
     // Check if input empty
     const onChangeInput = (values: SignInForm) => {
-        if (values.username === '' && values.password === '' && !isEmptyInput) setEmptyInput(true);
-        else if (values.username !== '' && values.password !== '' && isEmptyInput) setEmptyInput(false);
-    }
+        if (values.username === '' && values.password === '' && !isEmptyInput) {setEmptyInput(true);}
+        else if (values.username !== '' && values.password !== '' && isEmptyInput) {setEmptyInput(false);}
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.mainContainer}>
-            <KeyboardAvoidingView 
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
+            <KeyboardAvoidingView
+                behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
                 style={styles.container}
             >
                 <View style={styles.headerContainer}>
-                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>
-                    <Text style={styles.appName}>Life Music</Text>            
+                    <Image source={require('../../../assets/images/logo.png')} style={styles.logo}/>
+                    <Text style={styles.appName}>Life Music</Text>
                 </View>
 
                 <Formik
@@ -207,7 +224,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                     style={styles.textInput}
                                     value={values.username}
                                     onChangeText={handleChange('username')}
-                                    onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
+                                    onBlur={() => {handleBlur('username'); setFieldTouched('username');}}
                                     placeholder={I18n.translate('authentication.login.username-placeholder')}
                                     placeholderTextColor={styleVars.greyColor}
                                 />
@@ -221,16 +238,16 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                         style={styles.textInput}
                                         value={values.password}
                                         onChangeText={handleChange('password')}
-                                        onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
+                                        onBlur={() => {handleBlur('password'); setFieldTouched('password');}}
                                         placeholder={I18n.translate('authentication.login.password-placeholder')}
                                         placeholderTextColor={styleVars.greyColor}
                                     />
                                     <View style={styles.textSecurity}>
                                         <TouchableWithoutFeedback onPress={toggleShowPassword}>
                                             {
-                                                isPasswordShown ? 
+                                                isPasswordShown ?
                                                     <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
-                                                    <EyeyHideIcon fill={styleVars.white} width={24} height={24} /> 
+                                                    <EyeyHideIcon fill={styleVars.white} width={24} height={24} />
                                             }
                                         </TouchableWithoutFeedback>
                                     </View>
@@ -238,10 +255,10 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
 
                             <View style={styles.signInButton}>
-                                <Button 
-                                    title={I18n.translate('authentication.login.signin')} 
-                                    onClick={() => { renderToast(errors); handleSubmit() }} 
-                                    disabled={isEmptyInput} 
+                                <Button
+                                    title={I18n.translate('authentication.login.signin')}
+                                    onClick={() => { renderToast(errors); handleSubmit(); }}
+                                    disabled={isEmptyInput}
                                 />
                             </View>
 
@@ -250,7 +267,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                 <Text style={styles.separatorLabel}>{I18n.translate('authentication.login.or')}</Text>
                                 <View style={styles.separatorLine}/>
                             </View>
-                            
+
                             <View style={styles.buttonGroup}>
                                 <FacebookButton onClick={() => handleSignInWithFacebook()} />
                                 <GoogleButton onClick={() => handleSignInWithGoogle()}/>

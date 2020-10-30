@@ -10,8 +10,11 @@ import TrackPlayer from 'react-native-track-player';
 import TrackService from './services/track-player';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import messaging from '@react-native-firebase/messaging';
-import { Alert } from 'react-native';
 import notifee, { AndroidStyle, AndroidImportance, AndroidVisibility } from '@notifee/react-native';
+import { GoogleSignin } from '@react-native-community/google-signin';
+
+//  Set up Google Authentication
+GoogleSignin.configure();
 
 //  Set up player
 TrackPlayer.setupPlayer().then(() => {});
@@ -54,16 +57,12 @@ interface Props {}
 export const Main: React.FunctionComponent<Props> = (prop: Props) => {
 
     useEffect(() => {
-        // Assume a message-notification contains a "type" property in the data payload of the screen to open
-
         messaging().onNotificationOpenedApp(remoteMessage => {
           console.log(
             'Notification caused app to open from background state:',
             remoteMessage.notification,
           );
         });
-
-        // Check whether an initial notification is available
         messaging()
           .getInitialNotification()
           .then(remoteMessage => {
@@ -78,7 +77,6 @@ export const Main: React.FunctionComponent<Props> = (prop: Props) => {
 
     useEffect(() => {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-        // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
         const channelId = await notifee.createChannel({
             id: 'notification',
             name: 'Notification Channel',

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "312958439484-fc4434g2qucb570tgqg7bjpfdj7i5670.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.musiclife",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "312958439484-orh1jphm5er8u0ris457m4a8sh84rsnp.apps.googleusercontent.com",
           "client_type": 3
         }
