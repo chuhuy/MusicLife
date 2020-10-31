@@ -14,11 +14,17 @@ import SettingIcon from './../assets/icons/setting.svg';
 import ExploreActiveIcon from './../assets/icons/explore-active.svg';
 import PersonalActiveIcon from './../assets/icons/personal-active.svg';
 import SettingActiveIcon from './../assets/icons/setting-active.svg';
-
+import { connect } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const mapStateToProps = (state: any) => ({
+    refresh_token: state.auth.refresh_token,
+});
+
+interface Props extends StateProps {}
+
+const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <Tab.Navigator
             tabBarOptions={{
@@ -58,10 +64,12 @@ const TabNavigator = () => {
             })}
         >
             <Tab.Screen name="Explore"  component={Explore} options={{title: I18n.translate('explore.title')}}/>
-            <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>
+            {props.refresh_token !== null && <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name="Setting"  component={Setting} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
     );
 };
 
-export default TabNavigator;
+type StateProps = ReturnType<typeof mapStateToProps>
+
+export default connect(mapStateToProps, null)(TabNavigator);
