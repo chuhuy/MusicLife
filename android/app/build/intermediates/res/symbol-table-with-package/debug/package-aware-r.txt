@@ -1635,9 +1635,12 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pause
 drawable play
+drawable play_icon
 drawable previous
 drawable redbox_top_border_background
 drawable rewind
+drawable search_icon
+drawable shuffle_icon
 drawable stop
 drawable test_custom_background
 drawable tooltip_frame_dark

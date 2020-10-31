@@ -396,6 +396,10 @@
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\d2974ac36bf11b6e048576ef94732df8\\appcompat-1.1.0\\res\\anim\\btn_radio_to_on_mtrl_ring_outer_path_animation.xml"
     },
     {
+        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_search_icon.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\src\\main\\res\\drawable\\search_icon.png"
+    },
+    {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_popupmenu_background_dark.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\drawable\\mtrl_popupmenu_background_dark.xml"
     },
@@ -1176,16 +1180,16 @@
         "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\play.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_choice_chip_background_color.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\color\\mtrl_choice_chip_background_color.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\color\\mtrl_btn_ripple_color.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_forward.png.flat",
         "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\forward.png"
     },
     {
-        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
-        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\color\\mtrl_btn_ripple_color.xml"
+        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_choice_chip_background_color.xml.flat",
+        "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\color\\mtrl_choice_chip_background_color.xml"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_test_design_checkbox.xml.flat",
@@ -2720,6 +2724,10 @@
         "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\node_modules\\react-native-track-player\\android\\build\\intermediates\\packaged_res\\debug\\drawable-xxxhdpi-v4\\next.png"
     },
     {
+        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_shuffle_icon.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\src\\main\\res\\drawable\\shuffle_icon.png"
+    },
+    {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_alert_select_dialog_item.xml.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\0de090eb085e2927f79d80e53e48fe4a\\material-1.1.0\\res\\layout\\mtrl_alert_select_dialog_item.xml"
     },
@@ -3006,6 +3014,10 @@
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\d2974ac36bf11b6e048576ef94732df8\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_play_icon.png.flat",
+        "source": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\src\\main\\res\\drawable\\play_icon.png"
     },
     {
         "merged": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_on_mtrl_dot_group_animation.xml.flat",

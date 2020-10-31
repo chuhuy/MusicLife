@@ -12,6 +12,47 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import messaging from '@react-native-firebase/messaging';
 import notifee, { AndroidStyle, AndroidImportance, AndroidVisibility } from '@notifee/react-native';
 import { GoogleSignin } from '@react-native-community/google-signin';
+import QuickActions from 'react-native-quick-actions';
+
+//  Set up quick action
+QuickActions.setShortcutItems([
+    {
+        type: 'Message',
+        title: 'Message',
+        subtitle: 'Chat with friends',
+        icon: 'message',
+        userInfo: {
+          url: 'app://orders',
+        },
+    },
+    {
+        type: 'Search',
+        title: 'Search',
+        subtitle: 'Search music',
+        icon: 'search_icon',
+        userInfo: {
+          url: 'app://orders',
+        },
+    },
+    {
+        type: 'Shuffle',
+        title: 'Shuffle',
+        subtitle: 'Shuffle current playlist',
+        icon: 'shuffle_icon',
+        userInfo: {
+          url: 'app://orders',
+        },
+    },
+    {
+        type: 'Play',
+        title: 'Play',
+        subtitle: 'Play music',
+        icon: 'play_icon',
+        userInfo: {
+            url: 'app://orders',
+        },
+    },
+]);
 
 //  Set up Google Authentication
 GoogleSignin.configure();

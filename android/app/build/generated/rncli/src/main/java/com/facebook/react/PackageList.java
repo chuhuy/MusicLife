@@ -31,6 +31,8 @@ import com.rnfs.RNFSPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 // react-native-i18n
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+// react-native-quick-actions
+import com.reactNativeQuickActions.AppShortcutsPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-restart
@@ -102,6 +104,7 @@ public class PackageList {
       new RNFSPackage(),
       new RNGestureHandlerPackage(),
       new RNI18nPackage(),
+      new AppShortcutsPackage(),
       new ReanimatedPackage(),
       new RestartPackage(),
       new SafeAreaContextPackage(),
