@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, Dimensions, View } from 'react-native';
+import { styleVars } from './../../../../shared/constance/style-variables';
 
 const { width } = Dimensions.get('window');
 
@@ -32,8 +33,9 @@ const styles = StyleSheet.create({
         width: (width - 50) / 2,
         height: 45,
         flexDirection: 'row',
-        backgroundColor: '#00132B',
+        backgroundColor: styleVars.lightPrimaryColor,
         marginRight: 10,
+        marginBottom: 10,
     },
     titleColumn: {
         height: 45,
@@ -50,6 +52,6 @@ const styles = StyleSheet.create({
     },
     artist: {
         fontSize: 12,
-        color: '#A7A7A7',
+        color: styleVars.greyColor,
     },
 });

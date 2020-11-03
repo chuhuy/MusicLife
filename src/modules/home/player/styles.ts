@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { styleVars } from './../../../shared/constance/style-variables';
 
 const { width, height } = Dimensions.get('window');
 
@@ -25,6 +26,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
+        marginBottom: 70,
     },
     header: {
         width: width,
@@ -41,7 +43,7 @@ export const styles = StyleSheet.create({
     commentHeader: {
         width: width,
         height: 85,
-        backgroundColor: '#F34E5F',
+        backgroundColor: styleVars.secondaryColor,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         flexDirection: 'row',
@@ -56,6 +58,7 @@ export const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
+        alignItems: 'center',
     },
     song: {
         color: 'white',
@@ -65,7 +68,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     artist: {
-        color: '#A7A7A7',
+        color: styleVars.greyColor,
         fontSize: 14,
         alignSelf: 'center',
     },
@@ -76,5 +79,25 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'white',
         marginVertical: 20,
+    },
+    comment: {
+        position: 'absolute',
+        bottom: 0,
+    },
+    tab: {
+        width: width,
+        flex: 1,
+    },
+    dotGroup: {
+        width: width,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    dot: {
+        height: 10,
+        width: 10,
+        borderRadius: 5,
+        borderWidth: 1,
+        marginHorizontal: 5,
     },
 });

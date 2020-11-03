@@ -1,10 +1,10 @@
 import { API } from './index';
-import { AUTH_URL, SIGNIN } from './../shared/constance/api';
+import { AUTH_URL, SIGNIN, SIGNINFB } from './../shared/constance/api';
 
 export const signinWithEmail = (email: string, password: string) => {
     const body = {
-        email: email,
-        password: password,
+        email,
+        password,
     };
     // return axios({
     //     method: 'POST',
@@ -16,8 +16,12 @@ export const signinWithEmail = (email: string, password: string) => {
 
 export const signinWithUsername = async (username: string, password: string) => {
     const body = {
-        username: username,
-        password: password,
+        username,
+        password,
     };
     return API.post(AUTH_URL + SIGNIN, body);
 };
+
+export const signinWithFacebook = async (access_token: string) => {
+    return API.post(AUTH_URL + SIGNINFB, { access_token });
+}

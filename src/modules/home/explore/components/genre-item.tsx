@@ -28,6 +28,7 @@ export const GenreItem: React.FunctionComponent<Props> = (props: Props) => {
 const styles = StyleSheet.create({
     container: {
         marginRight: 20,
+        marginBottom: 10,
     },
     image: {
         height: 100,

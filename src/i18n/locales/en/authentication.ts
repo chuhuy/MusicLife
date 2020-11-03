@@ -8,9 +8,9 @@ export const authentication = {
         'signup': 'Sign Up',
         'forgot-password': 'Forgot password?',
         'or': 'Or',
-        'err-failed-username': 'Username is invalid',
-        'err-failed-password': 'Password is invalid',
-        'err-toast-msg': 'You have entered an invalid username or password',
+        'incorrect-password': 'Password is incorrect',
+        'account-not-exist': 'This account does not exist',
+        'fail-to-sign-in': 'Fail to sign in',
     },
     'register': {
 

@@ -8,4 +8,8 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: styleVars.baseFontSize,
     },
+    touchArea: {
+        paddingHorizontal: 5,
+        paddingVertical: 5,
+    },
 });

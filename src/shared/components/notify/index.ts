@@ -10,12 +10,15 @@ const mergeOptions = (options?: ToastOptions) =>
             containerStyle:{
                 width: width - 40,
             },
-            backgroundColor: styleVars.white,
+            backgroundColor: styleVars.bgToastColor,
             hideOnPress: true,
             opacity: 1,
             shadow: false,
             position: DefaultToast.positions.CENTER,
             visible: true,
+            textStyle: {
+                fontSize: styleVars.baseFontSize
+            }
 		},
 		options
 	);

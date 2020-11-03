@@ -3,14 +3,14 @@ import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 10,
-        paddingVertical: 8,
+        padding: 10,
         borderRadius: 10,
-        backgroundColor: styleVars.secondaryColor,
+        backgroundColor: styleVars.white,
         alignItems: 'center',
     },
     text: {
-        color: styleVars.white,
+        color: styleVars.secondaryColor,
         fontSize: styleVars.baseFontSize,
+        fontWeight: 'bold'
     },
 });

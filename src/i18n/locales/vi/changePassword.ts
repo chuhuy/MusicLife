@@ -13,5 +13,7 @@ export const changePassword = {
     "errOldPassword_least": "Mật khẩu cũ phải có ít nhất 6 ký tự",
     "errNewPassword_least": "Mật khẩu mới phải có ít nhất 6 ký tự",
     "errRe_newPassword_least": "Nhập lại mật khẩu phải có ít nhất 6 ký tự",
-    "errRe_newPassword": "Nhập lại mật khẩu với trùng với mật khẩu"
+    "errRe_newPassword": "Nhập lại mật khẩu với trùng với mật khẩu",
+    "save" : "LƯU",
+    "match" : "Mật khẩu phải chứa ít nhất 1 ký tự in hoa, 1 ký tự in thường và 1 số",
 }

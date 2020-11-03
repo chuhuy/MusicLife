@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { styleVars } from './../../../../shared/constance/style-variables';
 import Shuffle from './../../../../assets/icons/shuffle.svg';
 import Repeat from './../../../../assets/icons/repeat.svg';
 
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     icon: {
-        color: '#F34E5F',
+        color: styleVars.secondaryColor,
     },
 });
 

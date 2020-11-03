@@ -10,25 +10,25 @@ interface Props extends StateProps, DispatchProps{
 }
 
 const mapStateToProps = (state: any) => ({
-    counter: state.counter.value
-})
+    counter: state.counter.value,
+});
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
         increase: () => dispatch({type: INCREASE}),
-        decrease: () => dispatch({type: DECREASE})
-    }
-}
+        decrease: () => dispatch({type: DECREASE}),
+    };
+};
 
 const CounterScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleIncrease = () => {
         props.increase();
-    }
+    };
 
     const handleDecrease = () => {
         props.decrease();
-    }
+    };
 
     return (
         <>
@@ -38,10 +38,10 @@ const CounterScreen: React.FunctionComponent<Props> = (props: Props) => {
                 <Button title="Decrease" onClick={handleDecrease} />
             </View>
         </>
-    )
-}
+    );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CounterScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CounterScreen);
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;

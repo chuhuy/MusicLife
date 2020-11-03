@@ -13,5 +13,7 @@ export const changePassword = {
     "errOldPassword_least": "Old Password must be at least 6 characters",
     "errNewPassword_least": "New Password must be at least 6 characters",
     "errRe_newPassword_least": "Confirm Password must be at least 6 characters",
-    "errRe_newPassword" : "Both password must be the same"
+    "errRe_newPassword" : "Both password must be the same",
+    "save" : "SAVE",
+    "match": "Password must contain at least 1 uppercase character, 1 lowercase character and 1 number"
 }

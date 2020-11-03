@@ -8,9 +8,9 @@ export const authentication = {
         'signup': 'Đăng ký',
         'forgot-password': 'Quên mật khẩu?',
         'or': 'Hoặc',
-        'err-failed-username': 'Username không chính xác',
-        'err-failed-password': 'Mật khẩu không chính xác',
-        'err-toast-msg': 'Thông tin tài khoản không đúng',
+        'incorrect-password': 'Mật khẩu không đúng',
+        'account-not-exist': 'Tài khoản không tồn tại',
+        'fail-to-sign-in': 'Đăng nhập thất bại',
     },
     'register': {
 

@@ -4,12 +4,17 @@ import { isLargeDevice, styleVars } from '../../../shared/constance/style-variab
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+    mainContainer:{
+        flex: 1,
+        backgroundColor: styleVars.primaryColor,
+        paddingHorizontal: 15,
+        paddingVertical: 20,
+    },
     container:{
         flex: 1,
-        backgroundColor: styleVars.white,
     },
     headerContainer:{
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -18,27 +23,20 @@ export const styles = StyleSheet.create({
         height: isLargeDevice() ? 70 : 60,
     },
     appName:{
-        paddingTop: 10,
+        paddingTop: 15,
         fontSize: styleVars.largeFontSize,
         fontWeight: "bold",
         color: styleVars.secondaryColor,
     },
-    bodyContainer: {
-        flex: 2,
-        justifyContent: "space-between",
-        padding: 20,
-        backgroundColor: styleVars.primaryColor,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-    },
     formContainer: {
-        display: 'flex',
+        flex: 4,
     },
     inputGroup: {
         marginBottom: isLargeDevice() ? 20 : 15,
     },
     textInput: {
-        backgroundColor: styleVars.white,
+        backgroundColor: styleVars.lightPrimaryColor,
+        color: styleVars.white,
         borderRadius: 4,
         paddingVertical: 5,
         paddingHorizontal: 10,
@@ -46,7 +44,7 @@ export const styles = StyleSheet.create({
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
-        marginBottom: 8,
+        marginBottom: 10,
     },
     textSecurity:{
         width: 24,
@@ -78,10 +76,12 @@ export const styles = StyleSheet.create({
     buttonGroup: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: (width - 150) / 2,
+        marginHorizontal: (width - 140) / 2,
     },
     linkButtonGroup: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'flex-end',
     },
 });

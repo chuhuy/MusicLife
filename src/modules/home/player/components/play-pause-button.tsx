@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Play from './../../../../assets/icons/play.svg';
 import Pause from './../../../../assets/icons/pause.svg';
-import { isPromise } from 'formik';
+import { styleVars } from './../../../../shared/constance/style-variables';
 
 interface Props {
     isPlaying: boolean,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
         borderRadius: 40,
-        backgroundColor: '#00132B',
+        backgroundColor: styleVars.lightPrimaryColor,
         alignItems: 'center',
         justifyContent: 'center',
         // paddingLeft: 5,

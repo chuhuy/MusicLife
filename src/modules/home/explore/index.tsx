@@ -15,7 +15,7 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const [isTop100, setTop100] = useState<boolean>(false);
 
     const handleUserProfile = () => {
-        console.log('User profile');
+        props.navigation.navigate('Setting');
     };
 
     const handlePlayMusic = () => {

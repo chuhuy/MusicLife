@@ -2,24 +2,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, Image, Animated } from 'react-native';
+import { View, Text, ImageBackground, ScrollView, Animated, Easing, Dimensions } from 'react-native';
 import { styles } from './styles';
 import TrackPlayer from 'react-native-track-player';
-import { PlayPauseButton, PreviousNextButton, PlaybackMode } from './components';
-import { LinkButton, IconButton } from '../../../shared/components';
+import { PlayPauseButton, PreviousNextButton, PlaybackMode, Comment } from './components';
+import { IconButton } from '../../../shared/components';
 import I18n from './../../../i18n';
+import { styleVars } from './../../../shared/constance/style-variables';
 import Plus from './../../../assets/icons/plus.svg';
 import Download from './../../../assets/icons/download.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
 import ArrowDown from './../../../assets/icons/arrow-down.svg';
-import ArrowUp from './../../../assets/icons/arrow-up.svg';
-import { Easing } from 'react-native';
 
-interface Props {}
+interface Props {
+    navigation: any
+}
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
     const [isPlaying, setPlaying] = useState<boolean>(true);
+    const [isNowPlaying, setNowPlaying] = useState(false);
 
     let spinValue = new Animated.Value(0);
 
@@ -57,6 +59,13 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     };
     const handleRepeat = () => {
 
+    };
+    const handleBack = () => {
+        props.navigation.goBack();
+    };
+    const handleScrollTab = (event: any) => {
+        if (Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1))) {setNowPlaying(true);}
+        else {setNowPlaying(false);}
     };
 
     useEffect(() => {
@@ -112,15 +121,29 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}}>
                 <View style={styles.container}>
                     <View style={styles.header}>
-                        <IconButton icon={ArrowDown} onClick={() => {}}/>
+                        <IconButton icon={ArrowDown} onClick={() => handleBack()}/>
                         <Text style={styles.headerTitle}>Anh đâu đấy</Text>
                         <View style={{width: 20}}/>
                     </View>
-                    <View style={styles.body}>
-                        <Animated.Image source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
-                        <Text style={styles.song}>Anh đâu đấy</Text>
-                        <Text style={styles.artist}>Huy Chu</Text>
+                    <View style={styles.dotGroup}>
+                        <View style={[styles.dot, isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
+                        <View style={[styles.dot, !isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
                     </View>
+                    <ScrollView
+                        horizontal={true}
+                        pagingEnabled={true}
+                        showsHorizontalScrollIndicator={false}
+                        onMomentumScrollEnd={handleScrollTab}
+                        >
+                        <View style={styles.tab}>
+                            <View style={styles.body}>
+                                <Animated.Image source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
+                                <Text style={styles.song}>Anh đâu đấy</Text>
+                                <Text style={styles.artist}>Huy Chu</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tab} />
+                    </ScrollView>
                     <View style={styles.buttonGroup}>
                         <PlaybackMode mode="shuffle" onClick={() => handleShuffle()}/>
                         <PreviousNextButton type="previous" onClick={() => handlePrevious()}/>
@@ -134,9 +157,8 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         <IconButton icon={Heart} onClick={() => {}}/>
                         <IconButton icon={List} onClick={() => {}}/>
                     </View>
-                    <View style={styles.commentHeader}>
-                        <Text style={styles.commentText}>{I18n.translate('player.comment')}</Text>
-                        <IconButton icon={ArrowUp} onClick={() => {}}/>
+                    <View style={styles.comment}>
+                        <Comment />
                     </View>
                 </View>
             </ImageBackground>
