@@ -41,11 +41,11 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
             </View>
             <TouchableOpacity onPressOut={handleSaveName}>
                     <View style={styles.btn}>
-<<<<<<< HEAD
-                        <Text style={styles.btn__title}>{I18n.translate('editProfile.save')}</Text>
-=======
+
+                      
+
                         <Text style={styles.btn__title}>{I18n.translate('setting.save')}</Text>
->>>>>>> dev
+
                     </View>
             </TouchableOpacity>
         </View>

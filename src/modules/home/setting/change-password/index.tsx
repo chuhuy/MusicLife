@@ -29,10 +29,11 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                                     .required(I18n.translate('changePassword.errOldPassword_require')),
                                 newPassword :   Yup.string()
                                                     .min(6, I18n.translate('changePassword.errNewPassword_least'))
+                                                    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('changePassword.match'))
                                                     .required(I18n.translate('changePassword.errNewPassword_require')),
                                 re_newPassword: Yup.string()
                                                     .required(I18n.translate('changePassword.errRe_newPassword_require'))
-                                                    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('changePassword.match'))
+                                                    
                                                     .when("newPassword", {
                                                         is: val => (val && val.length > 0 ? true : false),
                                                         then: Yup.string().oneOf(

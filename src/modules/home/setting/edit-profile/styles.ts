@@ -35,11 +35,7 @@ export const styles = StyleSheet.create({
     avatar: {
         width: 300,
         height: 300,
-<<<<<<< HEAD
-        
-=======
         borderRadius: 150,
->>>>>>> dev
         marginTop: 50
     },
     input: {
