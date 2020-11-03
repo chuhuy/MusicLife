@@ -1,10 +1,10 @@
 export const setting = {
     'title': 'Cài đặt',
-    'password': 'Mật khẩu',
+    'change-password': 'Đổi mật khẩu',
     'notification': 'Thông báo',
-    'language': 'Ngôn ngữ',
+    'change-language': 'Thay đổi ngôn ngữ',
     'logout': 'Đăng xuất',
     'editProfile' : 'Chỉnh sửa thông tin',
-    'save' : 'Lưu',
+    'save' : 'LƯU',
     'signin': 'Đăng nhập',
 };
