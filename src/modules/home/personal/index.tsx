@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from './styles';
@@ -5,6 +6,7 @@ import I18n from './../../../i18n';
 import { Button } from './../../../shared/components/button';
 import { SearchBar } from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
+import Controller from '../controller';
 
 interface Props {
     navigation: any,
@@ -46,6 +48,7 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
                     </TouchableOpacity>
                 </View>
             </View>
+            <Controller />
         </>
     );
 };

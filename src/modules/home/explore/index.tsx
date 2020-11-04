@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { styles } from './styles';
@@ -5,12 +6,22 @@ import I18n from './../../../i18n';
 import { MusicChartItem, SongItem, SectionTitle, PlaylistItem, GenreItem } from './components';
 import { SearchBar } from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
+import Controller from '../controller';
+import { connect } from 'react-redux';
 
 interface Props {
     navigation: any
 }
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        // logout: () => dispatch({type: LOGOUT}),
+    };
+};
+const mapStateToProps = (state: any) => ({
+    refresh_token: state.auth.refresh_token,
+});
 
-export const Explore: React.FunctionComponent<Props> = (props: Props) => {
+const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
     const [isTop100, setTop100] = useState<boolean>(false);
 
@@ -19,7 +30,8 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handlePlayMusic = () => {
-        props.navigation.navigate('Player');
+
+        // props.navigation.navigate('Player');
     };
 
     const handleOpenPlaylist = () => {
@@ -94,7 +106,7 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     />
                 </View>
                 <View style={styles.latestGenre}>
-                    <SectionTitle title={I18n.translate('explore.latest-song')} onClick={() => {}} />
+                    <SectionTitle title={I18n.translate('explore.genre')} onClick={() => {}} />
                     <FlatList
                         horizontal={true}
                         data={genreDummyData}
@@ -111,9 +123,16 @@ export const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     />
                 </View>
             </ScrollView>
+            <Controller />
         </>
     );
 };
+
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+type StateProps = ReturnType<typeof mapStateToProps>
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explore);
+
 
 const genreDummyData = [
     {
