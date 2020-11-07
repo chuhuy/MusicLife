@@ -112,20 +112,6 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </TouchableOpacity>}
 
-                    {/* Notification */}
-                    <TouchableOpacity onPressOut={() => props.navigation.navigate('Notification')}>
-                        <View style={styles.main__item}>
-                            <View style={styles.main__left}>
-                                <View style={styles.main__left__svgView}>
-                                    <NotificationSvg width={22} height={22} />
-                                </View>
-                                <Text style={styles.main__item__text}>
-                                    {I18n.translate('setting.notification')}
-                                </Text>
-                            </View>
-                            <ArrowSvg width={11} height={20}/>
-                        </View>
-                    </TouchableOpacity>
 
                     {/* Change Language */}
                     <TouchableOpacity onPressOut={() => {
