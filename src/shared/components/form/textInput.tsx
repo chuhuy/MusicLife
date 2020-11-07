@@ -48,9 +48,7 @@ const styles = StyleSheet.create({
         marginBottom: isLargeDevice() ? 20 : 15
     },
     inputContainer: {
-        // flex: 1,
         flexDirection: 'row',
-        // justifyContent: 'center',
         alignItems: 'center',
     },
     textInput: {
