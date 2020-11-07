@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#161622',
-        flexDirection: "column",
+        flexDirection: 'column',
     },
     header: {
         backgroundColor: '#242633',
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: '4%',
-        
+
     },
     avatar: {
         width: 100,
@@ -30,11 +30,11 @@ export const styles = StyleSheet.create({
         color: 'white',
         fontSize: 23,
         fontWeight: '900',
-        marginLeft: '5%'
+        marginLeft: '5%',
     },
     edit__icon: {
         marginRight: '3%',
-        
+
     },
     main: {
         flexDirection: 'column',
@@ -45,13 +45,13 @@ export const styles = StyleSheet.create({
         paddingHorizontal: '4%',
         paddingVertical: '3%',
         alignItems: 'center',
-        
+
     },
     main__rule: {
         borderBottomWidth: 2,
         borderBottomColor: '#333333',
         width: '100%',
-       
+
     },
     main__left: {
         flexDirection: 'row',
@@ -67,9 +67,12 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
     main__icon: {
-        
+
     },
     main__icon__arrow: {
         flex: 2,
+    },
+    main__out: {
+
     },
 });

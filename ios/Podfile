@@ -16,6 +16,8 @@ target 'MusicLife' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'RNQuickAction', :path => '../node_modules/react-native-quick-actions'
+
   target 'MusicLifeTests' do
     inherit! :complete
     # Pods for testing

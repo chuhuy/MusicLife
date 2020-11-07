@@ -1,7 +1,6 @@
-import { string } from "yup";
-import { SignInForm } from "../../../models/form/signin";
-import { LoginUser } from "../../../models/LoginUser";
-import { ReduxCallbacks } from "../../../models/redux/ReduxCallback";
+import { SignInForm } from '../../../models/form/signin';
+import { LoginUser } from '../../../models/LoginUser';
+import { ReduxCallbacks } from '../../../models/redux/ReduxCallback';
 
 //Login
 export const LOGIN_USERNAME = 'LOGIN_USERNAME';
@@ -23,22 +22,24 @@ export const REFRESH_TOKEN_FAILED = 'REFRESH_TOKEN_FAILED';
 //Logout
 export const LOGOUT = 'LOGOUT';
 
+export const TOKEN_FROM_STORAGE = 'TOKEN_FROM_STORAGE';
+
 export const loginUsername = (user: SignInForm, callbacks?: ReduxCallbacks) => {
     return {
         type: LOGIN_USERNAME,
-        payload: { ...user, callbacks}
-    }
+        payload: { ...user, callbacks},
+    };
 };
 
 export const loginEmail = (user: SignInForm, callbacks?: ReduxCallbacks) => {
     return {
         type: LOGIN_EMAIL,
         payload: {
-            email: user.username, 
+            email: user.username,
             password: user.password,
-            callbacks
-        }
-    }
+            callbacks,
+        },
+    };
 };
 
 export const loginFacebook = (access_token: string, callbacks?: ReduxCallbacks) => {
@@ -46,10 +47,10 @@ export const loginFacebook = (access_token: string, callbacks?: ReduxCallbacks) 
         type: LOGIN_FACEBOOK,
         payload: {
             access_token,
-            callbacks
-        }
-    }
-}
+            callbacks,
+        },
+    };
+};
 
 export const loginSuccess = ({
     username,
@@ -58,13 +59,13 @@ export const loginSuccess = ({
 }: LoginUser) => {
     return {
         type: LOGIN_SUCCESS,
-        payload: { username, access_token, refresh_token }
-    }
+        payload: { username, access_token, refresh_token },
+    };
 };
 
 export const loginFailed = error => {
     return {
         type: LOGIN_FAILED,
-        payload: { error }
-    }
+        payload: { error },
+    };
 };

@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { authReducer } from './../../redux/modules/auth/reducer';
 
 export const saveTokenToLocalStorage = async (token: string) => {
     try {
@@ -12,7 +11,7 @@ export const saveTokenToLocalStorage = async (token: string) => {
 export const getTokenFromLocalStorage = async () => {
     try {
         const token = await AsyncStorage.getItem('token');
-        if(token !== null) {
+        if (token !== null && token !== '') {
             return token;
         }
     } catch (err) {
@@ -23,7 +22,7 @@ export const getTokenFromLocalStorage = async () => {
 
 export const removeTokenFromLocalStorage = async () => {
     try {
-        await AsyncStorage.removeItem('token');
+        await AsyncStorage.setItem('token', '');
     } catch (err) {
         console.log(err);
     }

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert, Text, View, Image, TouchableOpacity} from 'react-native';
+import { Text, View, Image, TouchableOpacity} from 'react-native';
 import { styles } from './styles';
-import { Button } from './../../../shared/components';
 import { LOGOUT } from './../../../redux/modules/auth/actions';
 import { connect } from 'react-redux';
 import I18n from './../../../i18n';
@@ -11,13 +10,9 @@ import ArrowSvg from '../../../assets/icons/arrow.svg';
 import LanguageSvg from '../../../assets/icons/language.svg';
 import LockSvg from '../../../assets/icons/lock.svg';
 import LogoutSvg from '../../../assets/icons/logout.svg';
-import { changeLanguage } from './../../../i18n/utils';
+import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
 
-import Svg, { SvgUri, Circle, Path, G} from 'react-native-svg';
-import Animated from 'react-native-reanimated';
-
-
-interface Props extends DispatchProps {
+interface Props extends DispatchProps, StateProps {
     navigation: any,
 }
 
@@ -26,15 +21,19 @@ const mapDispatchToProps = (dispatch: any) => {
         logout: () => dispatch({type: LOGOUT}),
     };
 };
+const mapStateToProps = (state: any) => ({
+    refresh_token: state.auth.refresh_token,
+});
 
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
 
-    const handleChangeLanguage = (language: string) => {
-        changeLanguage(language);
+    const handleLogout = () => {
+        removeTokenFromLocalStorage();
+        props.logout();
     };
 
-    const handleLogout = () => {
-        props.logout();
+    const handleSignIn = () => {
+        props.navigation.navigate('Login');
     };
 
     return (
@@ -45,9 +44,9 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                         <Image source={ require( '../../../assets/img/avatar.png') } style={styles.avatar}/>
                         <Text style={styles.title}>Hoang Anh</Text>
                     </View>
-                    <TouchableOpacity onPressOut={() => props.navigation.navigate('EditProfile')}>
+                    {props.refresh_token !== null && <TouchableOpacity onPressOut={() => props.navigation.navigate('EditProfile')}>
                         <EditSvg width={27} height={27} style={styles.edit__icon}/>
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                 </View>
 
                 <View style={styles.main}>
@@ -89,17 +88,17 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                             <ArrowSvg width={10} height={19}/>
                         </View>
                     </TouchableOpacity>
-                    
+
                     {/* hr */}
-                    <View style={styles.main__rule}></View>
+                    <View style={styles.main__rule} />
 
                     {/* Dang xuat */}
-                    <TouchableOpacity onPressOut={handleLogout}>
+                    <TouchableOpacity onPressOut={props.refresh_token === null ? handleSignIn : handleLogout}>
                         <View style={[styles.main__item, styles.main__out]}>
                             <View style={styles.main__left__svgView}>
                                 <LogoutSvg width={18} height={21} />
                             </View>
-                                <Text style={styles.main__item__text}>{I18n.translate('setting.logout')}</Text>
+                            <Text style={styles.main__item__text}>{props.refresh_token === null ? I18n.translate('setting.signin') : I18n.translate('setting.logout')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -115,6 +114,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
     );
 };
 
-export default connect(null, mapDispatchToProps)(Setting);
+export default connect(mapStateToProps, mapDispatchToProps)(Setting);
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+type StateProps = ReturnType<typeof mapStateToProps>
