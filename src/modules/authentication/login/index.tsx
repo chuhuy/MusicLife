@@ -137,6 +137,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleSignUp = () => {
+        if (isPasswordShown) toggleShowPassword();
         props.navigation.navigate('Register');
     };
 
@@ -195,7 +196,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                     validationSchema={validationSchema}
                     validate={(values) => onChangeInput(values)}
                 >
-                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched}) =>
+                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
                     <React.Fragment>
                         <View style={styles.formContainer}>
                             <TextInputGroup 
@@ -235,14 +236,16 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                 <GoogleButton onClick={() => handleSignInWithGoogle()}/>
                             </View>
                         </View>
+
+                        <View style={styles.linkButtonGroup}>
+                            <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => {handleReset(); handleSignUp()}}/>
+                            <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={ handleForgotPassword }/>
+                        </View>
                     </React.Fragment>
                 }
                 </Formik>
 
-                <View style={styles.linkButtonGroup}>
-                    <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
-                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
-                </View>
+                
             </KeyboardAvoidingView>
         </ScrollView>
     );

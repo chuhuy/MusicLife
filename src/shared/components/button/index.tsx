@@ -17,7 +17,7 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                 disabled={disabled}
                 delayPressIn={0}
                 activeOpacity={0.75}
-                style={[styles.container, {opacity: disabled ? 0.8 : 1}]}
+                style={[styles.container, {opacity: disabled ? 0.6 : 1}]}
                 onPressOut={onClick}
             >
                 <View style={styles.buttonLayout}>
