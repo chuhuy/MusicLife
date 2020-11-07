@@ -17,7 +17,7 @@ import ArrowBackSvg from '../../../assets/icons/arrow-back.svg';
 import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
 import { changeLanguage, getLanguage } from '../../../i18n/utils';
 import { styleVars } from '../../../shared/constance/style-variables';
-import ChangeLanguage from './change-language/index';
+
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
