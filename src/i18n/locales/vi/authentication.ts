@@ -13,7 +13,17 @@ export const authentication = {
         'fail-to-sign-in': 'Đăng nhập thất bại',
     },
     'register': {
-
+        'username': 'Username',
+        'username-placeholder': 'Hãy nhập username',
+        'email': 'Email',
+        'email-placeholder': 'Hãy nhập email',
+        'password': 'Mật khẩu',
+        'password-placeholder': 'Nhập mật khẩu',
+        'repeatPassword': 'Repeat Password',
+        'repeatPassword-placeholder': 'Nhập lại mật khẩu',
+        'signup': 'Đăng ký',
+        'or': 'Hoặc',
+        'error-repeat-password': 'Mật khẩu nhập lại không khớp'
     },
     'reset-password': {
 
