@@ -20,7 +20,7 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                 style={[styles.container, {opacity: disabled ? 0.8 : 1}]}
                 onPressOut={onClick}
             >
-                <View>
+                <View style={styles.buttonLayout}>
                     <Text style={styles.text}>{title}</Text>
                 </View>
             </TouchableOpacity>
