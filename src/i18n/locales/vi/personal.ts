@@ -5,4 +5,8 @@ export const personal = {
     'songs': 'Bài hát',
     'albums': 'Album',
     'playlists': 'Danh sách phát',
+    'add=playlist': 'Thêm playlist',
+    'add-playlist-placeholder': 'Nhập tên danh sách phát',
+    'cancel': 'Hủy',
+    'save': 'Lưu',
 };

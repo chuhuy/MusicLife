@@ -8,6 +8,8 @@ import { SearchBar } from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
 import Controller from '../controller';
 import { connect } from 'react-redux';
+import NotificationIcon from './../../../assets/icons/notification-active.svg';
+
 
 interface Props {
     navigation: any
@@ -37,10 +39,18 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const handleOpenPlaylist = () => {
         props.navigation.navigate('Playlist');
     };
+    const handleNotification = () => {
+
+    };
 
     return (
         <>
             <View style={styles.header}>
+                    <TouchableOpacity
+                        delayPressOut={0}
+                        onPressOut={() => handleNotification()}>
+                        <NotificationIcon />
+                    </TouchableOpacity>
                     <SearchBar/>
                     <TouchableOpacity
                         style={styles.userButton}
