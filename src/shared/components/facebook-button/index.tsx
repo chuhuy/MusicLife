@@ -15,7 +15,7 @@ export const FacebookButton: FunctionComponent<Props> = (props: Props) => {
                 style={styles.container}
                 onPressOut={props.onClick}
             >
-                <FacebookIcon width={45} height={45} />
+                <FacebookIcon width={50} height={50} />
             </TouchableOpacity>
         </>
     );

@@ -14,6 +14,7 @@ export const LinkButton: FunctionComponent<Props> = (props: Props) => {
             <TouchableOpacity
                 style={styles.container}
                 onPress={props.onClick}
+                delayPressIn={0}
             >
                 <View style={styles.touchArea}>
                     <Text style={[styles.title, {color: props.color}]}>{props.title}</Text>

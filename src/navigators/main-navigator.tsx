@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Splash from './../modules/splash';
 // import Login from './../modules/authentication/login';
 import TabNavigator from './tab-navigator';
-import Register from './../modules/authentication/register';
+// import Register from './../modules/authentication/register';
 import ForgotPassword from './../modules/authentication/forgot-password';
 import Player from './../modules/home/player';
 import ChangePassword from '../modules/home/setting/change-password'
@@ -23,7 +23,7 @@ const mapStateToProps = (state: any) => ({
 // const Splash = React.lazy(() => import('./../modules/splash'));
 const Login = React.lazy(() => import('./../modules/authentication/login'));
 // const TabNavigator = React.lazy(() => import('./tab-navigator'));
-// const Register = React.lazy(() => import('./../modules/authentication/register'));
+const Register = React.lazy(() => import('./../modules/authentication/register'));
 // const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
 // const Player = React.lazy(() => import('./../modules/home/player'));
 // const ChangePassword = React.lazy(() => import('../modules/home/change-password'));
