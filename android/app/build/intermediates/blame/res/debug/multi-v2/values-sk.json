@@ -1,44 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\UET1920I\\Mobile\\music-life-new\\MusicLife\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sk\\values-sk.xml",
+            "outputFile": "E:\\Monhocnam3\\UI\\Music\\MusicLife\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sk\\values-sk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\f354410efc6d31bf6f176e41e7798cf0\\core-1.2.0\\res\\values-sk\\values-sk.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "72",
-                        "startColumns": "4",
-                        "startOffsets": "8359",
-                        "endColumns": "100",
-                        "endOffsets": "8455"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\4d5f53c37ac733a66c074a597b9f9f26\\jetified-play-services-basement-17.3.0\\res\\values-sk\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "197",
-                        "endOffsets": "444"
-                    },
-                    "to": {
-                        "startLines": "60",
-                        "startColumns": "4",
-                        "startOffsets": "6576",
-                        "endColumns": "197",
-                        "endOffsets": "6769"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\70fb07ab94a5f03de6ab2046974c1e25\\facebook-login-7.1.0\\res\\values-sk\\values-sk.xml",
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\70fb07ab94a5f03de6ab2046974c1e25\\facebook-login-7.1.0\\res\\values-sk\\values-sk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\c4fb6b3249f446fdb0995f0c1cd7339f\\play-services-base-17.1.0\\res\\values-sk\\values.xml",
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\c4fb6b3249f446fdb0995f0c1cd7339f\\play-services-base-17.1.0\\res\\values-sk\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -72,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\ee453a5680904018b24efb2872bb3022\\jetified-firebase-messaging-20.3.0\\res\\values-sk\\values.xml",
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\9260e7105be19ce7f19e7c7d703d6a75\\jetified-firebase-messaging-20.3.0\\res\\values-sk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -89,7 +55,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\chuhu\\.gradle\\caches\\transforms-2\\files-2.1\\d2974ac36bf11b6e048576ef94732df8\\appcompat-1.1.0\\res\\values-sk\\values-sk.xml",
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\c4e8feffe6e342171c11ece02ffa0e20\\jetified-play-services-basement-17.3.0\\res\\values-sk\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "197",
+                        "endOffsets": "444"
+                    },
+                    "to": {
+                        "startLines": "60",
+                        "startColumns": "4",
+                        "startOffsets": "6576",
+                        "endColumns": "197",
+                        "endOffsets": "6769"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\f354410efc6d31bf6f176e41e7798cf0\\core-1.2.0\\res\\values-sk\\values-sk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "72",
+                        "startColumns": "4",
+                        "startOffsets": "8359",
+                        "endColumns": "100",
+                        "endOffsets": "8455"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-2\\files-2.1\\d2974ac36bf11b6e048576ef94732df8\\appcompat-1.1.0\\res\\values-sk\\values-sk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
