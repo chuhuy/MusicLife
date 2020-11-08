@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        height: 45,
-        width: 45,
+        height: 50,
+        width: 50,
         overflow: 'hidden',
     },
 });

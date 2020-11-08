@@ -5,11 +5,12 @@ import {styles} from './styles';
 interface Props {
     onClick: () => void;
     title: string;
-    disabled?: boolean
+    disabled?: boolean,
+    size?: string
 }
 
 export const Button: FunctionComponent<Props> = (props: Props) => {
-    const { onClick, title, disabled = false } = props;
+    const { onClick, title, disabled = false, size } = props;
 
     return (
         <>
@@ -17,10 +18,10 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                 disabled={disabled}
                 delayPressIn={0}
                 activeOpacity={0.75}
-                style={[styles.container, {opacity: disabled ? 0.8 : 1}]}
+                style={[styles.buttonLayout, {opacity: disabled ? 0.6 : 1}]}
                 onPressOut={onClick}
             >
-                <View>
+                <View style={size ? styles.bigButton : undefined}>
                     <Text style={styles.text}>{title}</Text>
                 </View>
             </TouchableOpacity>

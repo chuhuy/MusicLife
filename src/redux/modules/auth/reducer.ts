@@ -9,6 +9,7 @@ import {
     LOGIN_EMAIL,
     LOGIN_FACEBOOK,
     FETCH_CURRENT_USER,
+    TOKEN_FROM_STORAGE,
 } from './actions';
 import {Action} from './../../../models/redux/Action';
 
@@ -31,15 +32,14 @@ export const authReducer = (state: any = initState, action: Action) => {
         case FETCH_CURRENT_USER:
             return {
                 ...state,
-                loading: true
-            }
+                loading: true,
+            };
         case LOGIN_SUCCESS:
-            console.log('Logged in');
             return {
                 ...state,
                 access_token: action.payload.access_token,
                 refresh_token: action.payload.refresh_token,
-                loading: false
+                loading: false,
             };
         case REFRESH_TOKEN_SUCCESS:
             return {
@@ -67,6 +67,11 @@ export const authReducer = (state: any = initState, action: Action) => {
             return {
                 ...state,
                 loading: false,
+            };
+        case TOKEN_FROM_STORAGE:
+            return {
+                ...state,
+                refresh_token: action.payload.refresh_token,
             };
         default:
             return state;

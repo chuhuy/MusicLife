@@ -19,44 +19,14 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logo:{
-        width: isLargeDevice() ? 60 : 50,  
-        height: isLargeDevice() ? 70 : 60,
-    },
-    appName:{
-        paddingTop: 15,
-        fontSize: styleVars.largeFontSize,
-        fontWeight: "bold",
-        color: styleVars.secondaryColor,
+        width: 50,  
+        height: 58,
     },
     formContainer: {
         flex: 4,
     },
-    inputGroup: {
-        marginBottom: isLargeDevice() ? 20 : 15,
-    },
-    textInput: {
-        backgroundColor: styleVars.lightPrimaryColor,
-        color: styleVars.white,
-        borderRadius: 4,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-    },
-    textInputLabel: {
-        fontSize: styleVars.baseFontSize,
-        color: styleVars.white,
-        marginBottom: 10,
-    },
-    textSecurity:{
-        width: 24,
-        height: '100%',
-        justifyContent: 'center',
-        position: 'absolute',
-        right: 10,
-        top: 0,
-        zIndex: 10,
-    },
     signInButton: {
-        marginBottom: 10,
+        marginBottom: 10
     },
     separator: {
         marginBottom: 10,
@@ -76,7 +46,7 @@ export const styles = StyleSheet.create({
     buttonGroup: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: (width - 140) / 2,
+        marginHorizontal: (width - 150) / 2,
     },
     linkButtonGroup: {
         flex: 1,

@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: width,
         paddingHorizontal: 20,
-        marginVertical: 10,
+        marginTop: 10,
+        marginBottom: 5,
     },
     locationButton: {
         marginRight: 20,
@@ -42,5 +43,41 @@ export const styles = StyleSheet.create({
     locationTitleInactive: {
         color: styleVars.greyColor,
         fontSize: 20,
+    },
+    typeTitle: {
+        flexDirection: 'row',
+        width: width,
+        paddingHorizontal: 20,
+        marginVertical: 10,
+    },
+    typeButton: {
+        marginRight: 20,
+    },
+    typeTitleActive: {
+        color: '#FFFFFF',
+        fontSize: 16,
+    },
+    typeTitleInactive: {
+        color: styleVars.greyColor,
+        fontSize: 16,
+    },
+    body: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+    },
+    addPlaylistModal: {
+        width: width / 1.5,
+        height: width / 3,
+        backgroundColor: styleVars.primaryColor,
+        alignSelf: 'center',
+        borderRadius: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    },
+    modalTitle: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16,
     },
 });

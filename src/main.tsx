@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import MainNavigator from './navigators/main-navigator';
 import SQLite from 'react-native-sqlite-storage';
 import TrackPlayer from 'react-native-track-player';
-import TrackService from './services/track-player';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import messaging from '@react-native-firebase/messaging';
 import notifee, { AndroidStyle, AndroidImportance, AndroidVisibility } from '@notifee/react-native';
@@ -59,7 +58,6 @@ GoogleSignin.configure();
 
 //  Set up player
 TrackPlayer.setupPlayer().then(() => {});
-TrackPlayer.registerPlaybackService(() => TrackService);
 TrackPlayer.updateOptions({
     stopWithApp: false,
     capabilities: [

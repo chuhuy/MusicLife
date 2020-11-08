@@ -2,15 +2,22 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    container: {
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: styleVars.white,
-        alignItems: 'center',
+    buttonLayout: {
+        alignSelf: 'center',
+        backgroundColor: styleVars.secondaryColor,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 50,
+    },
+    bigButton: {
+        paddingHorizontal: 5,
+        paddingVertical: 10,
     },
     text: {
-        color: styleVars.secondaryColor,
-        fontSize: styleVars.baseFontSize,
-        fontWeight: 'bold'
+        color: styleVars.white,
+        fontSize: styleVars.bigFontSize,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: 1.5
     },
 });

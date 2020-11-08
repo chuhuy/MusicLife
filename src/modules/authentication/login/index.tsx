@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import Toast from 'react-native-root-toast';
 import { connect } from 'react-redux';
@@ -16,12 +15,12 @@ import { loginUsername, loginEmail, loginFacebook } from './../../../redux/modul
 import { FacebookButton, GoogleButton, LinkButton } from './../../../shared/components';
 import { Button } from './../../../shared/components/button';
 import { styles } from './styles';
-import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
-import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
 import { styleVars } from '../../../shared/constance/style-variables';
 import { ReduxCallbacks } from '../../../models/redux/ReduxCallback';
 import { Messages } from '../../../shared/constance/messages';
+import TextInputGroup from '../../../shared/components/form/textInput';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import Header from '../components/header';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -137,26 +136,27 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleSignInWithGoogle = async () => {
         try {
-          await GoogleSignin.hasPlayServices();
-          const userInfo = await GoogleSignin.signIn();
-          console.log(userInfo);
-          const currentUser = await GoogleSignin.getTokens();
-          console.log(currentUser);
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            console.log(userInfo);
+            const currentUser = await GoogleSignin.getTokens();
+            console.log(currentUser);
         } catch (error) {
-          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-            console.log('Sign in canceled');
-          } else if (error.code === statusCodes.IN_PROGRESS) {
-            console.log('Sign in in progress');
-          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-            console.log('Play services not available');
-          } else {
-            console.log(error);
-          }
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                console.log('Sign in canceled');
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                console.log('Sign in in progress');
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                console.log('Play services not available');
+            } else {
+                console.log(error);
+            }
         }
     };
 
-    const handleSignUp = () => {
-        props.navigation.navigate('Register');
+    const handleChangeScreen = (screenName: string) => {
+        if (isPasswordShown) toggleShowPassword();
+        props.navigation.navigate(screenName);
     };
 
     const handleForgotPassword = () => {
@@ -204,55 +204,34 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                 behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
                 style={styles.container}
             >
-                <View style={styles.headerContainer}>
-                    <Image source={require('../../../assets/images/logo.png')} style={styles.logo}/>
-                    <Text style={styles.appName}>Life Music</Text>
-                </View>
-
                 <Formik
                     initialValues={initialFormValue}
                     onSubmit={(values) => {validateForm(values);}}
                     validationSchema={validationSchema}
                     validate={(values) => onChangeInput(values)}
                 >
-                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched}) =>
+                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
                     <React.Fragment>
+                        <Header goBack={() => { handleReset(); handleChangeScreen('TabNavigator')}}/>
+                        
                         <View style={styles.formContainer}>
-                            <View style={styles.inputGroup}>
-                                <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.username')}</Text>
-                                <TextInput
-                                    style={styles.textInput}
-                                    value={values.username}
-                                    onChangeText={handleChange('username')}
-                                    onBlur={() => {handleBlur('username'); setFieldTouched('username');}}
-                                    placeholder={I18n.translate('authentication.login.username-placeholder')}
-                                    placeholderTextColor={styleVars.greyColor}
-                                />
-                            </View>
+                            <TextInputGroup 
+                                label={I18n.translate('authentication.login.username')}
+                                value={values.username}
+                                onChangeText={handleChange('username')}
+                                onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
+                                placeholder={I18n.translate('authentication.login.username-placeholder')}
+                            />
 
-                            <View style={styles.inputGroup}>
-                                <Text style={styles.textInputLabel}>{I18n.translate('authentication.login.password')}</Text>
-                                <View>
-                                    <TextInput
-                                        secureTextEntry={!isPasswordShown}
-                                        style={styles.textInput}
-                                        value={values.password}
-                                        onChangeText={handleChange('password')}
-                                        onBlur={() => {handleBlur('password'); setFieldTouched('password');}}
-                                        placeholder={I18n.translate('authentication.login.password-placeholder')}
-                                        placeholderTextColor={styleVars.greyColor}
-                                    />
-                                    <View style={styles.textSecurity}>
-                                        <TouchableWithoutFeedback onPress={toggleShowPassword}>
-                                            {
-                                                isPasswordShown ?
-                                                    <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
-                                                    <EyeyHideIcon fill={styleVars.white} width={24} height={24} />
-                                            }
-                                        </TouchableWithoutFeedback>
-                                    </View>
-                                </View>
-                            </View>
+                            <TextInputGroup 
+                                label={I18n.translate('authentication.login.password')}
+                                value={values.password}
+                                onChangeText={handleChange('password')}
+                                onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
+                                placeholder={I18n.translate('authentication.login.password-placeholder')}
+                                secureTextEntry={!isPasswordShown}
+                                onToggleShowPassword={toggleShowPassword}
+                            />
 
                             <View style={styles.signInButton}>
                                 <Button
@@ -273,14 +252,14 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                                 <GoogleButton onClick={() => handleSignInWithGoogle()}/>
                             </View>
                         </View>
+
+                        <View style={styles.linkButtonGroup}>
+                            <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => {handleReset(); handleChangeScreen('Register')}}/>
+                            <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={ handleForgotPassword }/>
+                        </View>
                     </React.Fragment>
                 }
                 </Formik>
-
-                <View style={styles.linkButtonGroup}>
-                    <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
-                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
-                </View>
             </KeyboardAvoidingView>
         </ScrollView>
     );

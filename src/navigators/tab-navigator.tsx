@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import screen here
 import Setting from './../modules/home/setting';
 import { Personal } from './../modules/home/personal';
-import { Explore } from './../modules/home/explore';
+import Explore from './../modules/home/explore';
 import I18n from './../i18n';
 import { Text } from 'react-native';
 import { styleVars } from './../shared/constance/style-variables';
@@ -14,18 +14,24 @@ import SettingIcon from './../assets/icons/setting.svg';
 import ExploreActiveIcon from './../assets/icons/explore-active.svg';
 import PersonalActiveIcon from './../assets/icons/personal-active.svg';
 import SettingActiveIcon from './../assets/icons/setting-active.svg';
-
+import { connect } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const mapStateToProps = (state: any) => ({
+    refresh_token: state.auth.refresh_token,
+});
+
+interface Props extends StateProps {}
+
+const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <Tab.Navigator
             tabBarOptions={{
                 activeBackgroundColor: styleVars.lightPrimaryColor,
                 inactiveBackgroundColor: styleVars.lightPrimaryColor,
                 keyboardHidesTabBar: true,
-                style: {height: 50},
+                style: {height: 60},
             }}
             screenOptions={({route}) => ({
                 tabBarLabel: ({focused}) => {
@@ -58,10 +64,12 @@ const TabNavigator = () => {
             })}
         >
             <Tab.Screen name="Explore"  component={Explore} options={{title: I18n.translate('explore.title')}}/>
-            <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>
+            {props.refresh_token !== null && <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name="Setting"  component={Setting} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
     );
 };
 
-export default TabNavigator;
+type StateProps = ReturnType<typeof mapStateToProps>
+
+export default connect(mapStateToProps, null)(TabNavigator);
