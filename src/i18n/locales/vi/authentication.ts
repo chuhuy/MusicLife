@@ -13,7 +13,26 @@ export const authentication = {
         'fail-to-sign-in': 'Đăng nhập thất bại',
     },
     'register': {
-
+        'username': 'Username',
+        'username-placeholder': 'Hãy nhập username',
+        'email': 'Email',
+        'email-placeholder': 'Hãy nhập email',
+        'password': 'Mật khẩu',
+        'password-placeholder': 'Nhập mật khẩu',
+        'repeatPassword': 'Repeat Password',
+        'repeatPassword-placeholder': 'Nhập lại mật khẩu',
+        'signup': 'Đăng ký',
+        'or': 'Hoặc',
+        'error-required-username': 'Bạn không được để trống username',
+        'error-length-username': 'Username không được quá 40 ký tự',
+        'error-regex-username': 'Chỉ nhập chữ và số cho username',
+        'error-required-email': 'Bạn không được để trống email',
+        'error-email': 'Email không hợp lệ',
+        'error-required-password': 'Bạn không được để trống mật khẩu',
+        'error-length-password': 'Mật khẩu cần ít nhất 8 ký tự',
+        'error-password': 'Mật khẩu cần có ít nhất 1 ký tự số, 1 chữ in hoa và 1 chữ thường',
+        'error-required-repeat-password': 'Bạn không được để trống mật khẩu nhập lại',
+        'error-repeat-password': 'Mật khẩu nhập lại không khớp'
     },
     'reset-password': {
 
