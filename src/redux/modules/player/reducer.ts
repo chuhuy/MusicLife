@@ -1,16 +1,17 @@
 import { PLAY, PAUSE, SKIP } from './actions';
 import { Action } from './../../../models/redux/Action';
+import { Song } from '../../../models/song';
 
-const initialState = {
+const initialState: Song = {
     isPlaying: false,
-    name: '',
+    title: '',
     artist: '',
     url: '',
-    id: 0,
+    id: '',
     image_url: '',
 };
 
-export const playerReducer = (state: any = initialState, action: Action) => {
+export const playerReducer = (state: Song = initialState, action: Action) => {
     switch (action.type) {
         case PLAY:
             return {
@@ -25,7 +26,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         case SKIP:
             return {
                 id: action.payload.id,
-                name: action.payload.name,
+                title: action.payload.title,
                 artist: action.payload.artist,
                 url: action.payload.url,
                 image_url: action.payload.image_url,

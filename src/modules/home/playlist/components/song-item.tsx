@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         width: width - 40,
         flexDirection: 'row',
         alignContent: 'center',
-        marginVertical: 5,
+        marginVertical: 10,
     },
     metadata: {
         flex: 1,

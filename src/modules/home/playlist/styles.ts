@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     sectionOne: {
         flex: 2,
         width: width,
+        opacity: 0.7,
     },
     sectionTwo: {
         flex: 3,

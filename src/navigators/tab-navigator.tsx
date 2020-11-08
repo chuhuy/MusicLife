@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import screen here
 import Setting from './../modules/home/setting';
 import { Personal } from './../modules/home/personal';
-import { Explore } from './../modules/home/explore';
+import Explore from './../modules/home/explore';
 import I18n from './../i18n';
 import { Text } from 'react-native';
 import { styleVars } from './../shared/constance/style-variables';
