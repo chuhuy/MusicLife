@@ -31,7 +31,7 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                 activeBackgroundColor: styleVars.lightPrimaryColor,
                 inactiveBackgroundColor: styleVars.lightPrimaryColor,
                 keyboardHidesTabBar: true,
-                style: {height: 50},
+                style: {height: 60},
             }}
             screenOptions={({route}) => ({
                 tabBarLabel: ({focused}) => {

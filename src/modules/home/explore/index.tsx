@@ -9,14 +9,20 @@ import UserIcon from './../../../assets/icons/user.svg';
 import Controller from '../controller';
 import { connect } from 'react-redux';
 import NotificationIcon from './../../../assets/icons/notification-active.svg';
+import { playlist } from './../../../data/playlist';
+import { songs } from './../../../data/song';
+import { genre } from './../../../data/genre';
+import { SKIP } from './../../../redux/modules/player/actions';
+import { Song } from '../../../models/song';
+import { playSong } from '../../../shared/helper/player';
 
 
-interface Props {
+interface Props extends DispatchProps, StateProps {
     navigation: any
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        // logout: () => dispatch({type: LOGOUT}),
+        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song})
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -31,9 +37,17 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         props.navigation.navigate('Setting');
     };
 
-    const handlePlayMusic = () => {
-
-        // props.navigation.navigate('Player');
+    const handlePlayMusic = (song: any) => {
+        const formatedSong: Song = {
+            id: song.id,
+            title: song.title,
+            image_url: song.image_url,
+            artist: song.artists[0].name,
+            url: song.url,
+        };
+        props.saveSongToStore(formatedSong);
+        playSong(formatedSong);
+        props.navigation.navigate('Player');
     };
 
     const handleOpenPlaylist = () => {
@@ -46,17 +60,17 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <View style={styles.header}>
-                    <TouchableOpacity
-                        delayPressOut={0}
-                        onPressOut={() => handleNotification()}>
-                        <NotificationIcon />
-                    </TouchableOpacity>
-                    <SearchBar/>
-                    <TouchableOpacity
-                        style={styles.userButton}
-                        onPressOut={() => handleUserProfile()}>
-                        <UserIcon />
-                    </TouchableOpacity>
+                <TouchableOpacity
+                    delayPressOut={0}
+                    onPressOut={() => handleNotification()}>
+                    <NotificationIcon />
+                </TouchableOpacity>
+                <SearchBar/>
+                <TouchableOpacity
+                    style={styles.userButton}
+                    onPressOut={() => handleUserProfile()}>
+                    <UserIcon />
+                </TouchableOpacity>
             </View>
             <ScrollView style={styles.container}>
                 <View style={styles.chart}>
@@ -76,9 +90,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     {isTop100 ?
                     <FlatList
                         horizontal={true}
-                        data={top100DummyData}
-                        renderItem={({item}) => (<MusicChartItem title={item.title} image={item.image} onClick={() => {}}/>)}
-                        keyExtractor={item => item.id.toString()}
+                        data={playlist}
+                        renderItem={({item}) => (<MusicChartItem title={item.name} image={item.image_url} onClick={() => {}}/>)}
+                        keyExtractor={item => item.playlist_id.toString()}
                     />
                     : <FlatList
                         horizontal={true}
@@ -91,12 +105,12 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     <SectionTitle title={I18n.translate('explore.latest-song')} onClick={() => {}} />
                     <FlatList
                         horizontal={true}
-                        data={latestSongDummyData}
+                        data={songs}
                         renderItem={({index}) => {
                             if (index % 2 === 0) {return (
                                 <View style={styles.multipleRow}>
-                                    <SongItem name={latestSongDummyData[index].name} artist={latestSongDummyData[index].artist} image={latestSongDummyData[index].image} onClick={() => handlePlayMusic()}/>
-                                    <SongItem name={latestSongDummyData[index + 1].name} artist={latestSongDummyData[index + 1].artist} image={latestSongDummyData[index + 1].image} onClick={() => handlePlayMusic()}/>
+                                    <SongItem name={songs[index].title} artist={songs[index].artists[0].name} image={songs[index].image_url} onClick={() => handlePlayMusic(songs[index])}/>
+                                    <SongItem name={songs[index + 1].title} artist={songs[index + 1].artists[0].name} image={songs[index + 1].image_url} onClick={() => handlePlayMusic(songs[index + 1])}/>
                                 </View>
                             );}
                             else {return (<></>);}
@@ -110,26 +124,26 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
                     <FlatList
                         horizontal={true}
-                        data={playlistDummyData}
-                        renderItem={({item}) => (<PlaylistItem title={item.title} image={item.image} onClick={() => handleOpenPlaylist()}/>)}
-                        keyExtractor={item => item.id.toString()}
+                        data={playlist}
+                        renderItem={({item}) => (<PlaylistItem title={item.name} image={item.image_url} onClick={() => handleOpenPlaylist()}/>)}
+                        keyExtractor={item => item.playlist_id.toString()}
                     />
                 </View>
                 <View style={styles.latestGenre}>
                     <SectionTitle title={I18n.translate('explore.genre')} onClick={() => {}} />
                     <FlatList
                         horizontal={true}
-                        data={genreDummyData}
+                        data={genre}
                         renderItem={({index}) => {
                             if (index % 2 === 0) {return (
                                 <View style={styles.multipleRow}>
-                                    <GenreItem title={genreDummyData[index].title} image={genreDummyData[index].image} onClick={() => {}}/>
-                                    <GenreItem title={genreDummyData[index + 1].title} image={genreDummyData[index + 1].image} onClick={() => {}}/>
+                                    <GenreItem title={genre[index].name} image={genre[index].image_url} onClick={() => {}}/>
+                                    <GenreItem title={genre[index + 1].name} image={genre[index + 1].image_url} onClick={() => {}}/>
                                 </View>
                             );}
                             else {return (<></>);}
                         }}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.genre_id.toString()}
                     />
                 </View>
             </ScrollView>
@@ -225,17 +239,17 @@ const latestSongDummyData = [
 const chartDummyData = [
     {
         id: 1,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
+        image: 'https://avatar-nct.nixcdn.com/topic/share/2017/12/06/9/4/b/b/1512556174027.jpg',
         title: 'V-pop',
     },
     {
         id: 2,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
+        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
         title: 'K-pop',
     },
     {
         id: 3,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
+        image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
         title: 'US-UK',
     },
 ];

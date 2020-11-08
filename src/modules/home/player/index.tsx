@@ -121,43 +121,43 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     outputRange: ['0deg', '360deg'],
     });
 
-    const track = {
-        id: '1',
-        url: 'https://f9-stream.nixcdn.com/NhacCuaTui1005/TrenTinhBanDuoiTinhYeu-MIN-6802163.mp3?st=cb28yaeTP3YF8rW-P4ZfTw&e=1604910600&t=1604824200459',
-        title: 'Trên tình bạn dưới tình yêu',
-        artist: 'Min',
-        album: 'Test album',
-        genre: 'pop',
-        date: '2020-10-20T07:00:00+00:00',
-        artwork: 'https://cuoifly.tuoitre.vn/820/0/ttc/r/2020/11/05/toa23-1604590587.jpg',
-    };
-    const track2 = {
-        id: '2',
-        url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
-        title: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-        album: 'Test album',
-        genre: 'pop',
-        date: '2020-10-20T07:00:00+00:00',
-        artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    };
-    const track3 = {
-        id: '3',
-        url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
-        title: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-        album: 'Test album',
-        genre: 'pop',
-        date: '2020-10-20T07:00:00+00:00',
-        artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    };
+    // const track = {
+    //     id: '1',
+    //     url: 'https://f9-stream.nixcdn.com/NhacCuaTui1005/TrenTinhBanDuoiTinhYeu-MIN-6802163.mp3?st=cb28yaeTP3YF8rW-P4ZfTw&e=1604910600&t=1604824200459',
+    //     title: 'Trên tình bạn dưới tình yêu',
+    //     artist: 'Min',
+    //     album: 'Test album',
+    //     genre: 'pop',
+    //     date: '2020-10-20T07:00:00+00:00',
+    //     artwork: 'https://cuoifly.tuoitre.vn/820/0/ttc/r/2020/11/05/toa23-1604590587.jpg',
+    // };
+    // const track2 = {
+    //     id: '2',
+    //     url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
+    //     title: 'Anh đâu đấy',
+    //     artist: 'Huy Chu',
+    //     album: 'Test album',
+    //     genre: 'pop',
+    //     date: '2020-10-20T07:00:00+00:00',
+    //     artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
+    // };
+    // const track3 = {
+    //     id: '3',
+    //     url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
+    //     title: 'Anh đâu đấy',
+    //     artist: 'Huy Chu',
+    //     album: 'Test album',
+    //     genre: 'pop',
+    //     date: '2020-10-20T07:00:00+00:00',
+    //     artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
+    // };
 
-    useEffect(() => {
-        TrackPlayer.add([track, track2, track3]).then(() => {
-            TrackPlayer.play();
-        });
+    // useEffect(() => {
+    //     TrackPlayer.add([track, track2, track3]).then(() => {
+    //         TrackPlayer.play();
+    //     });
 
-    }, []);
+    // }, []);
 
     return (
         <>

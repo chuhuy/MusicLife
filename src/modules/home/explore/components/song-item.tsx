@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         backgroundColor: styleVars.lightPrimaryColor,
         marginRight: 10,
         marginBottom: 10,
+        overflow: 'hidden',
     },
     titleColumn: {
         height: 45,
