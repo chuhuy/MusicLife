@@ -16,7 +16,7 @@ export const songs = [
             },
         ],
         title: 'Thương Lắm Miền Trung Ơi',
-        image_url: 'https://res.cloudinary.com/anhnguyen3001/image/upload/v1604843888/MusicLife/songImages/5151ca4c01a47dccf6f6d1201ef4a729_co51yc.jpg',
+        image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/1/5/1/5151ca4c01a47dccf6f6d1201ef4a729.jpg',
         url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844234/MusicLife/songImages/7809219116099738386_lwnjlw.mp3',
         playlist_id: '2'
     },

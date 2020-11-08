@@ -24,6 +24,8 @@ export const PlaylistItem: React.FunctionComponent<Props> = (props: Props) => {
 const styles = StyleSheet.create({
     container: {
         marginLeft: 20,
+        overflow: 'hidden',
+        width: 100,
     },
     image: {
         height: 100,
