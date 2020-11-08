@@ -176,6 +176,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
                                     inputRef={(ref) => { inputs[1] = ref }}
                                     label={I18n.translate('authentication.register.email')}
                                     value={values.email}
+                                    error={errors.email}
                                     keyboardType='email-address'
                                     returnKeyType='next'
                                     onChangeText={handleChange('email')}

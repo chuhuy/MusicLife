@@ -4,6 +4,11 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: styleVars.primaryColor,
+        paddingVertical: 20
+    },
+    loginContainer: {
+        flex: 1,
+        alignItems: 'center'
     },
     info: {
         backgroundColor: styleVars.lightPrimaryColor,
@@ -12,18 +17,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        marginTop: '10%',
     },
     header: {
         backgroundColor: styleVars.primaryColor,
-        height: '10%',
+        // height: '10%',
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomColor: styleVars.greyColor,
         borderBottomWidth: 1,
-        paddingHorizontal: '3%'
     },
     header__right:{
         width: '100%',
@@ -38,7 +41,8 @@ export const styles = StyleSheet.create({
     info__left: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: '4%',
+        paddingHorizontal: 15,
+        paddingVertical: 30,
     },
     avatar: {
         width: 85,
@@ -49,7 +53,7 @@ export const styles = StyleSheet.create({
         color: styleVars.white,
         fontSize: styleVars.largeFontSize,
         fontWeight: 'bold',
-        marginLeft: '5%'
+        marginLeft: 15
     },
     edit__icon: {
         marginRight: '3%',
@@ -60,7 +64,7 @@ export const styles = StyleSheet.create({
     main__item: {
         flexDirection: 'row',
         paddingHorizontal: '4%',
-        paddingVertical: '3%',
+        paddingVertical: 20,
         alignItems: 'center',
     },
     main__rule: {
@@ -74,13 +78,13 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     main__left__svgView: {
-        width: 30,
+        width: 22,
     },
     main__item__text: {
         color: styleVars.white,
         width: '100%',
         fontSize: styleVars.baseFontSize,
-        marginLeft: 5
+        marginLeft: 15
     },
     main__icon__arrow: {
         flex: 2,
@@ -97,14 +101,18 @@ export const styles = StyleSheet.create({
     modal__language__title:{
         color: styleVars.white,
         fontSize: styleVars.bigFontSize,
-        fontWeight: '700',
+        fontWeight: '600',
     },
     modal__language__main:{
         marginTop: 15,
     },
     modal__language__label:{
         color: styleVars.greyColor,
-        fontSize: styleVars.baseFontSize
+        fontSize: styleVars.baseFontSize,
+        paddingRight: 15
+    },
+    language__radio: {
+        marginBottom: 25,
     },
     modal__language__footer:{
         flexDirection: 'row',
