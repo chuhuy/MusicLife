@@ -11,14 +11,11 @@ export const styleVars = {
     baseFontSize: isLargeDevice() ? 16 : 14,
     smallFontSize: isLargeDevice() ? 14 : 12,
 
-    // Padding
-
-
     // Colors
     bgToastColor: '#E5E5E5',
     primaryColor: '#020403',
     lightPrimaryColor: '#1B1B1B',
-    secondaryColor: '#FF245A',
+    secondaryColor: '#D63346',
     greyColor: '#868686',
     white: '#fff',
     redColor: '#F70000',

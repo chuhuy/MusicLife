@@ -1,30 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, KeyboardTypeOptions, ReturnKeyTypeOptions } from 'react-native';
 import { TextInput, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { isLargeDevice, styleVars } from '../../constance/style-variables';
 import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
 import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
 
 interface Props {
+    inputRef?: (ref: HTMLElement) => void,
     label: string,
     value: string,
-    onChangeText: (name: string) => void,
-    onBlur: () => void,
     placeholder: string,
     secureTextEntry?: boolean,
+    keyboardType?: KeyboardTypeOptions,
+    returnKeyType?: ReturnKeyTypeOptions,
+    onChangeText: (name: string) => void,
+    onBlur: () => void,
     onToggleShowPassword?: () => void,
+    onSubmitEditing?: () => void
 }
 
 const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
-    const { label, secureTextEntry, onToggleShowPassword } = props;
-    
+    const { inputRef, label, secureTextEntry, onToggleShowPassword } = props;
+
     return (
         <View style={styles.inputGroup}>
             <Text style={styles.textInputLabel}>{ label }</Text>
             <View style={styles.inputContainer}>
                 <TextInput
+                    {...props}
+                    ref={(r) => inputRef && inputRef(r)}
                     style={styles.textInput}
-                    { ...props }
                     placeholderTextColor={styleVars.greyColor}
                 />
                 {

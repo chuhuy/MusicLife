@@ -17,10 +17,10 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                 disabled={disabled}
                 delayPressIn={0}
                 activeOpacity={0.75}
-                style={[styles.container, {opacity: disabled ? 0.6 : 1}]}
+                style={[styles.buttonLayout, {opacity: disabled ? 0.6 : 1}]}
                 onPressOut={onClick}
             >
-                <View style={styles.buttonLayout}>
+                <View>
                     <Text style={styles.text}>{title}</Text>
                 </View>
             </TouchableOpacity>

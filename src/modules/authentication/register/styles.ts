@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
     },
     logo:{
         alignSelf: 'center',
-        width: 50,  
-        height: 58,
+        width: 40,  
+        height: 48,
         marginTop: 15
     },
     formContainer: {

@@ -2,16 +2,13 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        marginBottom: 10,
-    },
     buttonLayout: {
         alignSelf: 'center',
         backgroundColor: styleVars.secondaryColor,
-        paddingVertical: 15,
-        paddingHorizontal: 30,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         borderRadius: 50,
+        marginBottom: 10,
     },
     text: {
         color: styleVars.white,

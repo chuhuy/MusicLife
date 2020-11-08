@@ -14,7 +14,7 @@ import { Button, FacebookButton, GoogleButton } from '../../../shared/components
 import TextInputGroup from '../../../shared/components/form/textInput';
 import { SignUpForm } from '../../../models/form/signup';
 import ArrowBack from '../../../assets/icons/arrow-back.svg';
-import { styleVars } from '../../../shared/constance/style-variables';
+import { SafeAreaView } from 'react-native';
 
 interface Props {
     navigation: any
@@ -26,7 +26,18 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
     const [isPasswordShown, setPasswordShown] = useState<Array<boolean>>([false, false]);
     // Empty input
     const [isEmptyInput, setEmptyInput] = useState<boolean>(true);
-    console.log(isPasswordShown)
+    
+    // Ref for input
+    const inputs = [];
+
+    // Focus next input
+    const onSubmitEditing = (index) => {
+        if (index < inputs.length - 1){
+            console.log(inputs[index]);
+            inputs[index + 1].focus()
+        }
+    }
+
     // Form control
     const initialFormValue: SignUpForm = {
         username: '',
@@ -86,10 +97,10 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
     const onChangeInput = (values: SignUpForm) => {
         let valueEmpty = Object.keys(values).map(key => values[key] === ''),
             emptyIndex = valueEmpty.findIndex(ele => ele === true);
-        console.log(valueEmpty)
-        if (emptyIndex === -1 && !isEmptyInput){
+
+        if (emptyIndex === -1 && isEmptyInput){
             setEmptyInput(!isEmptyInput)
-        } else if (emptyIndex !== -1 && isEmptyInput) setEmptyInput(!isEmptyInput)
+        } else if (emptyIndex !== -1 && !isEmptyInput) setEmptyInput(!isEmptyInput)
     }
 
     // Signup
@@ -146,94 +157,102 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.mainContainer}>
+        <SafeAreaView style={styles.mainContainer}>
             <KeyboardAvoidingView 
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={styles.container}
+                style={{flex: 1}}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
             >
-                <Formik
-                    initialValues={initialFormValue}
-                    onSubmit={(values) => validateForm(values)}
-                    validationSchema={validationSchema}
-                    validate={(values) => onChangeInput(values)}
-                >
-                {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
-                    <React.Fragment>
-                        <View style={styles.headerContainer}>
-                            <TouchableOpacity
-                                onPressOut={() => { handleReset(); handleSignIn() }}
-                                delayPressIn={0}
-                            >
-                                <ArrowBack width={15} height={26} />
-                            </TouchableOpacity>
-                            <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>        
-                        </View>
-                        <View style={styles.formContainer}>
-                            <TextInputGroup 
-                                label={I18n.translate('authentication.register.username')}
-                                value={values.username}
-                                onChangeText={handleChange('username')}
-                                onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
-                                placeholder={I18n.translate('authentication.register.username-placeholder')}
-                            />
-
-                            <TextInputGroup 
-                                label={I18n.translate('authentication.register.email')}
-                                value={values.email}
-                                onChangeText={handleChange('email')}
-                                onBlur={() => {handleBlur('email'); setFieldTouched('email')}}
-                                placeholder={I18n.translate('authentication.register.email-placeholder')}
-                            />
-
-                            <TextInputGroup 
-                                label={I18n.translate('authentication.register.password')}
-                                value={values.password}
-                                onChangeText={handleChange('password')}
-                                onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
-                                placeholder={I18n.translate('authentication.register.password-placeholder')}
-                                secureTextEntry={!isPasswordShown[0]}
-                                onToggleShowPassword={() => toggleShowPassword(0)}
-                            />
-
-                            <TextInputGroup 
-                                label={I18n.translate('authentication.register.repeatPassword')}
-                                value={values.repeatPassword}
-                                onChangeText={handleChange('repeatPassword')}
-                                onBlur={() => {handleBlur('repeatPassword'); setFieldTouched('repeatPassword')}}
-                                placeholder={I18n.translate('authentication.register.repeatPassword-placeholder')}
-                                secureTextEntry={!isPasswordShown[1]}
-                                onToggleShowPassword={() => toggleShowPassword(1)}
-                            />
-
-                            <View style={styles.signUpButton}>
-                                <Button 
-                                    title={I18n.translate('authentication.register.signup')} 
-                                    onClick={() => { renderToast(errors); handleSubmit() }} 
-                                    disabled={isEmptyInput} 
+                <ScrollView style={{flex: 1}}>
+                    <Formik
+                        initialValues={initialFormValue}
+                        onSubmit={(values) => validateForm(values)}
+                        validationSchema={validationSchema}
+                        validate={(values) => onChangeInput(values)}
+                    >
+                    {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
+                        <React.Fragment>
+                            <View style={styles.headerContainer}>
+                                <TouchableOpacity
+                                    onPressOut={() => { handleReset(); handleSignIn() }}
+                                    delayPressIn={0}
+                                >
+                                    <ArrowBack width={15} height={26} />
+                                </TouchableOpacity>
+                                <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>        
+                            </View>
+                            <View style={styles.formContainer}>
+                                <TextInputGroup 
+                                    inputRef={(ref) => { inputs[0] = ref }}
+                                    label={I18n.translate('authentication.register.username')}
+                                    value={values.username}
+                                    returnKeyType={'next'}
+                                    onChangeText={handleChange('username')}
+                                    onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
+                                    placeholder={I18n.translate('authentication.register.username-placeholder')}
+                                    onSubmitEditing={() => onSubmitEditing(0)}
                                 />
-                            </View>
 
-                            <View style={styles.separator}>
-                                <View style={styles.separatorLine}/>
-                                <Text style={styles.separatorLabel}>{I18n.translate('authentication.register.or')}</Text>
-                                <View style={styles.separatorLine}/>
-                            </View>
-                            
-                            <View style={styles.buttonGroup}>
-                                <FacebookButton onClick={handleSignUpWithFacebook} />
-                                <GoogleButton onClick={handleSignUpWithGoogle}/>
-                            </View>
-                        </View>
-                    </React.Fragment>
-                }
-                </Formik>
+                                <TextInputGroup 
+                                    inputRef={(ref) => { inputs[1] = ref }}
+                                    label={I18n.translate('authentication.register.email')}
+                                    value={values.email}
+                                    keyboardType='email-address'
+                                    returnKeyType='next'
+                                    onChangeText={handleChange('email')}
+                                    onBlur={() => {handleBlur('email'); setFieldTouched('email')}}
+                                    placeholder={I18n.translate('authentication.register.email-placeholder')}
+                                    onSubmitEditing={() => onSubmitEditing(1)}
+                                />
 
-                {/* <View style={styles.linkButtonGroup}>
-                    <LinkButton title={I18n.translate('authentication.register.signup')} color={styleVars.white} onClick={() => handleSignUp()}/>
-                    <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={() => handleForgotPassword()}/>
-                </View> */}
+                                <TextInputGroup 
+                                    inputRef={(ref) => { inputs[2] = ref }}
+                                    label={I18n.translate('authentication.register.password')}
+                                    value={values.password}
+                                    returnKeyType={'next'}
+                                    onChangeText={handleChange('password')}
+                                    onBlur={() => {handleBlur('password'); setFieldTouched('password')}}
+                                    placeholder={I18n.translate('authentication.register.password-placeholder')}
+                                    secureTextEntry={!isPasswordShown[0]}
+                                    onToggleShowPassword={() => toggleShowPassword(0)}
+                                    onSubmitEditing={() => onSubmitEditing(2)}
+                                />
+
+                                <TextInputGroup 
+                                    inputRef={(ref) => { inputs[3] = ref }}
+                                    label={I18n.translate('authentication.register.repeatPassword')}
+                                    value={values.repeatPassword}
+                                    onChangeText={handleChange('repeatPassword')}
+                                    onBlur={() => {handleBlur('repeatPassword'); setFieldTouched('repeatPassword')}}
+                                    placeholder={I18n.translate('authentication.register.repeatPassword-placeholder')}
+                                    secureTextEntry={!isPasswordShown[1]}
+                                    onToggleShowPassword={() => toggleShowPassword(1)}
+                                />
+
+                                <View>
+                                    <Button 
+                                        title={I18n.translate('authentication.register.signup')} 
+                                        onClick={() => { renderToast(errors); handleSubmit() }} 
+                                        disabled={isEmptyInput} 
+                                    />
+                                </View>
+
+                                <View style={styles.separator}>
+                                    <View style={styles.separatorLine}/>
+                                    <Text style={styles.separatorLabel}>{I18n.translate('authentication.register.or')}</Text>
+                                    <View style={styles.separatorLine}/>
+                                </View>
+                                
+                                <View style={styles.buttonGroup}>
+                                    <FacebookButton onClick={handleSignUpWithFacebook} />
+                                    <GoogleButton onClick={handleSignUpWithGoogle}/>
+                                </View>
+                            </View>
+                        </React.Fragment>
+                    }
+                    </Formik>
+                </ScrollView>
             </KeyboardAvoidingView>
-        </ScrollView>
+        </SafeAreaView>
     );
 };
 
