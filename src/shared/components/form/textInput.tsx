@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, KeyboardTypeOptions, ReturnKeyTypeOptions } from 'react-native';
 import { TextInput, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { isLargeDevice, styleVars } from '../../constance/style-variables';
+import { styleVars } from '../../constance/style-variables';
 import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
 import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
 
@@ -13,6 +13,7 @@ interface Props {
     secureTextEntry?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
+    error?: string,
     onChangeText: (name: string) => void,
     onBlur: () => void,
     onToggleShowPassword?: () => void,
@@ -20,7 +21,7 @@ interface Props {
 }
 
 const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
-    const { inputRef, label, secureTextEntry, onToggleShowPassword } = props;
+    const { inputRef, label, secureTextEntry, onToggleShowPassword, error } = props;
 
     return (
         <View style={styles.inputGroup}>
@@ -29,7 +30,7 @@ const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
                 <TextInput
                     {...props}
                     ref={(r) => inputRef && inputRef(r)}
-                    style={styles.textInput}
+                    style={[styles.textInput, error ? styles.inputError : undefined]}
                     placeholderTextColor={styleVars.greyColor}
                 />
                 {
@@ -42,6 +43,12 @@ const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
                         </View> : null
                 }
             </View>
+            { error ? 
+                <View style={styles.errorContainer}>
+                    <Text style={styles.error}>
+                        {error}
+                    </Text>
+                </View> : null}
         </View>
     )
 }
@@ -50,7 +57,7 @@ export default TextInputGroup;
 
 const styles = StyleSheet.create({
     inputGroup: {
-        marginBottom: isLargeDevice() ? 20 : 15
+        marginBottom: 15
     },
     inputContainer: {
         flexDirection: 'row',
@@ -62,6 +69,10 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         padding: 10,
         flex: 1,
+    },
+    inputError: {
+        borderWidth: 1,
+        borderColor: styleVars.redColor
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
@@ -76,6 +87,12 @@ const styles = StyleSheet.create({
         right: 5,
         zIndex: 10
     },
+    errorContainer: {
+        marginTop: 10
+    }, 
+    error: {
+        color: styleVars.redColor
+    }
 });
 
 // EyeIcon for password input

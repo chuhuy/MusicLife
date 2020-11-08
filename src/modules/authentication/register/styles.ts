@@ -13,15 +13,6 @@ export const styles = StyleSheet.create({
     container:{
         flex: 1,
     },
-    headerContainer:{
-        marginBottom: 30,
-    },
-    logo:{
-        alignSelf: 'center',
-        width: 40,  
-        height: 48,
-        marginTop: 15
-    },
     formContainer: {
         flex: 1,
     },

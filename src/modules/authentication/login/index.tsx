@@ -20,6 +20,7 @@ import { ReduxCallbacks } from '../../../models/redux/ReduxCallback';
 import { Messages } from '../../../shared/constance/messages';
 import TextInputGroup from '../../../shared/components/form/textInput';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import Header from '../components/header';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -153,9 +154,9 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         }
     };
 
-    const handleSignUp = () => {
+    const handleChangeScreen = (screenName: string) => {
         if (isPasswordShown) toggleShowPassword();
-        props.navigation.navigate('Register');
+        props.navigation.navigate(screenName);
     };
 
     const handleForgotPassword = () => {
@@ -203,10 +204,6 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                 behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
                 style={styles.container}
             >
-                <View style={styles.headerContainer}>
-                    <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>        
-                </View>
-
                 <Formik
                     initialValues={initialFormValue}
                     onSubmit={(values) => {validateForm(values);}}
@@ -215,6 +212,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                 >
                 {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
                     <React.Fragment>
+                        <Header goBack={() => { handleReset(); handleChangeScreen('TabNavigator')}}/>
+                        
                         <View style={styles.formContainer}>
                             <TextInputGroup 
                                 label={I18n.translate('authentication.login.username')}
@@ -255,7 +254,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
 
                         <View style={styles.linkButtonGroup}>
-                            <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => {handleReset(); handleSignUp()}}/>
+                            <LinkButton title={I18n.translate('authentication.login.signup')} color={styleVars.white} onClick={() => {handleReset(); handleChangeScreen('Register')}}/>
                             <LinkButton title={I18n.translate('authentication.login.forgot-password')} color={styleVars.white} onClick={ handleForgotPassword }/>
                         </View>
                     </React.Fragment>

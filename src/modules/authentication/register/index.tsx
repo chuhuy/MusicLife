@@ -13,8 +13,8 @@ import * as Yup from 'yup';
 import { Button, FacebookButton, GoogleButton } from '../../../shared/components';
 import TextInputGroup from '../../../shared/components/form/textInput';
 import { SignUpForm } from '../../../models/form/signup';
-import ArrowBack from '../../../assets/icons/arrow-back.svg';
 import { SafeAreaView } from 'react-native';
+import Header from '../components/header';
 
 interface Props {
     navigation: any
@@ -49,22 +49,22 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .max(40, I18n.translate('authentication.register.error-length-username'))
-            .matches(/^\w*[^\@]\w*$/, I18n.translate('authentication.register.error-regex-username'))
-            .required('Sign up failed'),
+            .matches(/^[a-z0-9]+$/i, I18n.translate('authentication.register.error-regex-username'))
+            .required(I18n.translate('authentication.register.error-required-username')),
 
         email: Yup.string()
             .max(40, I18n.translate('authentication.register.error-length-username'))
             .matches(/(^.+@[a-z0-9]+\.[a-z]{2,4})$/, I18n.translate('authentication.register.error-email'))
-            .required('Sign up failed'),
+            .required(I18n.translate('authentication.register.error-required-email')),
 
         password: Yup.string()
-            .min(8, I18n.translate('authentication.register.error-length-username'))
+            .min(8, I18n.translate('authentication.register.error-length-password'))
             .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, I18n.translate('authentication.register.error-password'))
-            .required('Sign up failed'),
+            .required(I18n.translate('authentication.register.error-required-password')),
 
         repeatPassword: Yup.string()
             .oneOf([Yup.ref('repeatPassword'), null], I18n.translate('authentication.register.error-repeat-password'))
-            .required('Sign up failed'),
+            .required(I18n.translate('authentication.register.error-required-repeat-password')),
     })
 
     const validateForm = (values: SignUpForm) => {
@@ -128,32 +128,19 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     // Render Toast Error Message
-    const renderToast = errors => {
-        const keys = Object.keys(errors),
-            totalErrors = keys.length;
-        
-        if (totalErrors){
-            let errorMessage = '';
-
-            if (totalErrors === 2){
-                errorMessage = I18n.translate('authentication.login.account-not-exist');
-            } else {
-                let error = errors[keys[0]];
-
-                switch (error){
-                    case Messages.Auth.IncorrectPassword:
-                        errorMessage = I18n.translate('authentication.login.incorrect-password');
-                        break;
-                    case Messages.Auth.AccountNotExist:
-                        errorMessage = I18n.translate('authentication.login.account-not-exist');
-                        break;
-                    default:
-                        errorMessage = I18n.translate('authentication.login.fail-to-sign-in');
-                }
-            }
-
-            notifyError(errorMessage, {position: Toast.positions.BOTTOM - 50});
+    const renderToast = error => {
+        switch (error){
+            case Messages.Auth.IncorrectPassword:
+                error = I18n.translate('authentication.login.incorrect-password');
+                break;
+            case Messages.Auth.AccountNotExist:
+                error = I18n.translate('authentication.login.account-not-exist');
+                break;
+            default:
+                error = I18n.translate('authentication.login.fail-to-sign-in');
         }
+    
+        notifyError(error, {position: Toast.positions.CENTER});
     }
 
     return (
@@ -171,20 +158,13 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
                     >
                     {({values, handleChange, errors, handleSubmit, handleBlur, setFieldTouched, handleReset}) =>
                         <React.Fragment>
-                            <View style={styles.headerContainer}>
-                                <TouchableOpacity
-                                    onPressOut={() => { handleReset(); handleSignIn() }}
-                                    delayPressIn={0}
-                                >
-                                    <ArrowBack width={15} height={26} />
-                                </TouchableOpacity>
-                                <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>        
-                            </View>
+                            <Header goBack={() => {handleReset(); handleSignIn()}}/>
                             <View style={styles.formContainer}>
                                 <TextInputGroup 
                                     inputRef={(ref) => { inputs[0] = ref }}
                                     label={I18n.translate('authentication.register.username')}
                                     value={values.username}
+                                    error={errors.username}
                                     returnKeyType={'next'}
                                     onChangeText={handleChange('username')}
                                     onBlur={() => {handleBlur('username'); setFieldTouched('username')}}
@@ -231,7 +211,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
                                 <View>
                                     <Button 
                                         title={I18n.translate('authentication.register.signup')} 
-                                        onClick={() => { renderToast(errors); handleSubmit() }} 
+                                        onClick={handleSubmit} 
                                         disabled={isEmptyInput} 
                                     />
                                 </View>
