@@ -47,7 +47,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                 image_url: track.artwork,
                 title: track.title,
             };
-            setCurrentSong(song);
+            // setCurrentSong(song);
         });
     });
 

@@ -1,24 +1,20 @@
-// import React from 'react';
-// import { StyleSheet, View, Text } from 'react-native';
-// import TrackPlayer from 'react-native-track-player';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
 
-// const SeekBar: TrackPlayer.ProgressComponent = () => {
-//     return (
-//         <>
-//             <View>
-//                 <Text>{formatTime(this.state.position)}</Text>
-//                 <ProgressBar
-//                     progress={this.getProgress()}
-//                     buffered={this.getBufferedProgress()}
-//                 />
-//             </View>
-//         </>
-//     );
-// };
+class SeekBar extends TrackPlayer.ProgressComponent {
 
-// const styles = StyleSheet.create({
+    render() {
+        return (
+            <View>
+            </View>
+        );
+    }
+}
 
-// });
+const styles = StyleSheet.create({
 
-// export default SeekBar;
+});
+
+export default SeekBar;
 
