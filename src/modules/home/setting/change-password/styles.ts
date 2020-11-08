@@ -1,15 +1,12 @@
 import { styleVars } from './../../../../shared/constance/style-variables';
 import {StyleSheet} from 'react-native';
-
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
         backgroundColor: styleVars.primaryColor,
-        flexDirection: 'column',
     },
     header: {
-        
         backgroundColor: styleVars.primaryColor,
         height: '10%',
         width: '100%',
@@ -28,19 +25,12 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.bigFontSize,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginRight: '10%'
+        marginRight: '10%',
     },
-    back:{
-       
-    }, 
     main: {
         width: '100%',
         marginTop: '10%',
         paddingHorizontal: '5%'
-    },
-    form:{
-        
-        
     },
     form__group: {
         marginBottom: '10%',
@@ -58,15 +48,11 @@ export const styles = StyleSheet.create({
         marginTop: '3%',
         fontSize: styleVars.baseFontSize,
         paddingHorizontal: '3%'
-        
     },
     error:{
         fontSize: styleVars.smallFontSize, 
-        color: styleVars.redColor, 
+        color: styleVars.crimsonColor, 
         marginTop: 5
-    },
-    button : {
-        
     },
     btn:{
         marginTop: '5%',
@@ -82,6 +68,7 @@ export const styles = StyleSheet.create({
         color: styleVars.white,
         textAlign: 'center',
         fontSize: styleVars.bigFontSize,
-        fontWeight: '700'
+        fontWeight: '700',
+        textTransform: 'uppercase',
     }
 });

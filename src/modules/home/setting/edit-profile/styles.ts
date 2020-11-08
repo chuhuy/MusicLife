@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         backgroundColor: styleVars.primaryColor,
-        flexDirection: 'column',
     },
     header: {
         backgroundColor: styleVars.primaryColor,
@@ -27,10 +26,6 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginRight: '10%'
-    },
-    
-    main: {
-
     },
     avatar: {
         width: 300,
@@ -60,6 +55,7 @@ export const styles = StyleSheet.create({
         color: styleVars.white,
         textAlign: 'center',
         fontSize: styleVars.bigFontSize,
-        fontWeight: '700'
+        fontWeight: '700',
+        textTransform: 'uppercase'
     }
 });

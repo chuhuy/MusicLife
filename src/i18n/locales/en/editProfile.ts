@@ -1,3 +1,3 @@
 export const editProfile = {
-    'save' : 'SAVE',
+    'save' : 'save',
 }

@@ -1,11 +1,9 @@
 import { styleVars } from './../../../shared/constance/style-variables';
 import {StyleSheet} from 'react-native';
-
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: styleVars.primaryColor,
-        flexDirection: "column",
     },
     info: {
         backgroundColor: styleVars.lightPrimaryColor,
@@ -17,7 +15,6 @@ export const styles = StyleSheet.create({
         marginTop: '10%',
     },
     header: {
-        
         backgroundColor: styleVars.primaryColor,
         height: '10%',
         width: '100%',
@@ -42,7 +39,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: '4%',
-        
     },
     avatar: {
         width: 85,
@@ -57,10 +53,8 @@ export const styles = StyleSheet.create({
     },
     edit__icon: {
         marginRight: '3%',
-        
     },
     main: {
-        flexDirection: 'column',
         marginTop: '15%',
     },
     main__item: {
@@ -68,13 +62,11 @@ export const styles = StyleSheet.create({
         paddingHorizontal: '4%',
         paddingVertical: '3%',
         alignItems: 'center',
-        
     },
     main__rule: {
         borderBottomWidth: 2,
         borderBottomColor: styleVars.greyColor,
         width: '100%',
-       
     },
     main__left: {
         flexDirection: 'row',
@@ -90,15 +82,9 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.baseFontSize,
         marginLeft: 5
     },
-    main__icon: {
-        
-    },
     main__icon__arrow: {
         flex: 2,
     },
-
-    // Modal 
-
     modal__language: {
         justifyContent: 'space-between',
         paddingHorizontal: '10%',
@@ -107,9 +93,6 @@ export const styles = StyleSheet.create({
         height: 200,
         borderRadius: 20,
         backgroundColor: styleVars.lightPrimaryColor,
-    },
-    modal__language__header:{
-
     },
     modal__language__title:{
         color: styleVars.white,
@@ -129,7 +112,6 @@ export const styles = StyleSheet.create({
     },
     modal__language__group:{
         marginLeft: '5%',
-        
         padding: 5
     },
     modal__language__footer__text:{
@@ -137,9 +119,6 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.bigFontSize,
         fontWeight: 'bold'
     },
-
-
-
     modal__restart: {
         justifyContent: 'space-between',
         paddingHorizontal: '10%',
@@ -149,16 +128,10 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: styleVars.lightPrimaryColor,
     },
-    modal__restart__header:{
-
-    },
     modal__restart__title:{
         color: styleVars.white,
         fontSize: styleVars.bigFontSize,
         fontWeight: '700',
-    },
-    modal__restart__main:{
-
     },
     modal__restart__main__text:{
         color: styleVars.greyColor,
@@ -174,7 +147,6 @@ export const styles = StyleSheet.create({
     },
     modal__restart__group:{
         marginLeft: '5%',
-        
         padding: 5
     },
     modal__restart__footer__text:{
@@ -182,5 +154,4 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.bigFontSize,
         fontWeight: 'bold'
     },
-    
 });

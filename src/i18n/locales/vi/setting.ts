@@ -5,6 +5,6 @@ export const setting = {
     'change-language': 'Thay đổi ngôn ngữ',
     'logout': 'Đăng xuất',
     'editProfile' : 'Chỉnh sửa thông tin',
-    'save' : 'LƯU',
+    'save' : 'lưu',
     'signin': 'Đăng nhập',
 };

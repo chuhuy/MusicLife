@@ -1,10 +1,10 @@
 export const setting = {
     'title': 'Setting',
-    'change-password': 'Change Password',
+    'change-password': 'Change password',
     'notification': 'Notification',
     'change-language': 'Change language',
     'logout': 'Log out',
-    'editProfile' : 'Edit Profile',
-    'save': 'SAVE',
+    'editProfile' : 'Edit profile',
+    'save': 'save',
     'signin': 'Sign in',
 };
