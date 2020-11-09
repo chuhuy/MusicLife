@@ -6,6 +6,7 @@ import ArrowBackSvg from '../../../../assets/icons/arrow-back.svg';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as Yup  from 'yup';
+import { Button } from '../../../../shared/components';
 interface Props {
     navigation: any,
 }
@@ -104,11 +105,12 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
                                         }
                                     </View>
                                     <View style={{display: 'flex', alignItems: 'center'}}>
-                                        <TouchableOpacity onPressOut={handleSubmit} disabled={!isValid} >
-                                            <View style={styles.btn}>
-                                                <Text style={styles.btn__title}>{I18n.translate('changePassword.save')}</Text>
-                                            </View>
-                                        </TouchableOpacity>
+                                    <Button 
+                                            title={I18n.translate('changePassword.save')}
+                                            onClick={handleSubmit}
+                                            disabled={!isValid}
+                                            size='big'
+                                        />
                                     </View>
                                 </View>
                             </Fragment>

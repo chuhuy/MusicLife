@@ -5,17 +5,19 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         backgroundColor: styleVars.primaryColor,
+        paddingVertical: 20
     },
     header: {
         backgroundColor: styleVars.primaryColor,
-        height: '10%',
+        // height: '10%',
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomColor: styleVars.greyColor,
         borderBottomWidth: 1,
-        paddingHorizontal: '3%'
+        paddingHorizontal: 15,
+        paddingBottom: 20
     },
     header__right:{
         width: '100%',
@@ -25,7 +27,6 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.bigFontSize,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginRight: '10%',
     },
     main: {
         width: '100%',
