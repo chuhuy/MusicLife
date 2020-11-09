@@ -15,6 +15,7 @@ import { genre } from './../../../data/genre';
 import { SKIP } from './../../../redux/modules/player/actions';
 import { Song } from '../../../models/song';
 import { playSong } from '../../../shared/helper/player';
+import { Playlist } from '../../../models/playlist';
 
 
 interface Props extends DispatchProps, StateProps {
@@ -38,20 +39,26 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handlePlayMusic = (song: any) => {
-        const formatedSong: Song = {
+        const formattedSong: Song = {
             id: song.id,
             title: song.title,
             image_url: song.image_url,
             artist: song.artists[0].name,
             url: song.url,
+            isPlaying: true,
         };
-        props.saveSongToStore(formatedSong);
-        playSong(formatedSong);
+        props.saveSongToStore(formattedSong);
+        playSong(formattedSong);
         props.navigation.navigate('Player');
     };
 
-    const handleOpenPlaylist = () => {
-        props.navigation.navigate('Playlist');
+    const handleOpenPlaylist = (value: any) => {
+        const playlist: Playlist = {
+            id: value.playlist_id,
+            name: value.name,
+            image_url: value.image_url
+        }
+        props.navigation.navigate('Playlist', {playlist});
     };
     const handleNotification = () => {
 
@@ -125,7 +132,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     <FlatList
                         horizontal={true}
                         data={playlist}
-                        renderItem={({item}) => (<PlaylistItem title={item.name} image={item.image_url} onClick={() => handleOpenPlaylist()}/>)}
+                        renderItem={({item}) => (<PlaylistItem title={item.name} image={item.image_url} onClick={() => handleOpenPlaylist(item)}/>)}
                         keyExtractor={item => item.playlist_id.toString()}
                     />
                 </View>
@@ -157,85 +164,6 @@ type StateProps = ReturnType<typeof mapStateToProps>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore);
 
-
-const genreDummyData = [
-    {
-        id: 1,
-        title: 'Genre 1',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 2,
-        title: 'Genre 2',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 3,
-        title: 'Genre 3',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 4,
-        title: 'Genre 4',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-];
-
-const playlistDummyData = [
-    {
-        id: 1,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Playlist 1',
-    },
-    {
-        id: 2,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Playlist 2',
-    },
-    {
-        id: 3,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Playlist 3',
-    },
-    {
-        id: 4,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Playlist 4',
-    },
-    {
-        id: 5,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Playlist 5',
-    },
-];
-
-const latestSongDummyData = [
-    {
-        id: 1,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        name: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-    },
-    {
-        id: 2,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        name: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-    },
-    {
-        id: 3,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        name: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-    },
-    {
-        id: 4,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        name: 'Anh đâu đấy',
-        artist: 'Huy Chu',
-    },
-];
-
 const chartDummyData = [
     {
         id: 1,
@@ -251,28 +179,5 @@ const chartDummyData = [
         id: 3,
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
         title: 'US-UK',
-    },
-];
-
-const top100DummyData = [
-    {
-        id: 1,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Top 100 Nhạc Trẻ',
-    },
-    {
-        id: 2,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Top 100 EDM',
-    },
-    {
-        id: 3,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Top 100 Kpop',
-    },
-    {
-        id: 4,
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-        title: 'Top 100 USUK',
     },
 ];

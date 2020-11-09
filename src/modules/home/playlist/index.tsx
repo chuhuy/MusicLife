@@ -6,13 +6,15 @@ import ArrowLeft from './../../../assets/icons/arrow-left.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import Option from './../../../assets/icons/option.svg';
 import { SongItem } from './components';
-
+import { songs } from './../../../data/song';
 interface Props {
-    navigation: any
+    navigation: any,
+    route: any,
 }
 
-const Playlist: React.FunctionComponent<Props> = (props: Props) => {
+const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
+    const { playlist } = props.route.params;
     const handleBack = () => {
         props.navigation.goBack();
     };
@@ -26,15 +28,15 @@ const Playlist: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <View style={styles.container}>
-                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}}>
+                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: playlist.image_url || ''}}>
                     <View style={styles.header}>
                         <IconButton icon={ArrowLeft} onClick={() => handleBack()}/>
                     </View>
-                    <Image source={{uri: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg'}} style={styles.image}/>
+                    <Image source={{uri: playlist.image_url || ''}} style={styles.image}/>
                     <View style={styles.control}>
                         <View style={styles.titleGroup}>
-                            <Text style={styles.playlistName}>Playlist name</Text>
-                            <Text style={styles.artist}>Artist</Text>
+                            <Text style={styles.playlistName}>{playlist.name || ''}</Text>
+                            {/* <Text style={styles.artist}>Artist</Text> */}
                         </View>
                         <View style={styles.buttonGroup}>
                             <View style={styles.button}>
@@ -48,8 +50,8 @@ const Playlist: React.FunctionComponent<Props> = (props: Props) => {
                 </ImageBackground>
                 <View style={styles.sectionTwo}>
                     <FlatList
-                        data={playlistDummyData}
-                        renderItem={({item}) => (<SongItem title={item.title} artist={item.artist} image={item.image} onOptionClick={() => handleOpenOption()} onClick={() => handlePlayMusic()}/>)}
+                        data={songs}
+                        renderItem={({item}) => (<SongItem title={item.title} artist={item.artists[0].name} image={item.image_url} onOptionClick={() => handleOpenOption()} onClick={() => handlePlayMusic()}/>)}
                         keyExtractor={item => item.id.toString()}
                     />
                 </View>
@@ -121,4 +123,4 @@ const playlistDummyData = [
     },
 ];
 
-export default Playlist;
+export default PlaylistScreen;

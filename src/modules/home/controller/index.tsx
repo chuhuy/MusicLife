@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { styles } from './styles';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import PreviousIcon from './../../../assets/icons/previous-active.svg';
@@ -11,46 +11,82 @@ import { useNavigation } from '@react-navigation/native';
 import { Song } from '../../../models/song';
 import { SKIP } from '../../../redux/modules/player/actions';
 import { connect } from 'react-redux';
+import TrackPlayer from 'react-native-track-player';
+import { PLAY, PAUSE } from './../../../redux/modules/player/actions';
 
 
-interface Props extends DispatchProps{}
+interface Props extends DispatchProps, StateProps {}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
         saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
+        playMusic: () => dispatch({type: PLAY}),
+        pauseMusic: () => dispatch({type: PAUSE}),
     };
 };
+const mapStateToProps = (state: any) => ({
+    song: state.player,
+});
 
 const Controller: React.FunctionComponent<Props> = (props: Props) => {
     const navigation = useNavigation();
 
-    const dummySong: Song = {
-        id: '1',
-        url: 'https://f9-stream.nixcdn.com/NhacCuaTui1005/TrenTinhBanDuoiTinhYeu-MIN-6802163.mp3?st=cb28yaeTP3YF8rW-P4ZfTw&e=1604910600&t=1604824200459',
-        title: 'Trên tình bạn dưới tình yêu',
-        artist: 'Min',
-        image_url: 'https://cuoifly.tuoitre.vn/820/0/ttc/r/2020/11/05/toa23-1604590587.jpg',
+    const handlePrevious = () => {
+        TrackPlayer.skipToPrevious()
+        .then(() => {
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
+        })
+        .catch((e) => {
+            console.log(e);
+            TrackPlayer.seekTo(0);
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
+        });
     };
-    const [isPlaying, setPlaying] = useState<boolean>(true);
-    const handlePrevious = () => {};
-    const handlePlayPause = () => {};
-    const handleNext = () => {};
+    const handlePlayPause = () => {
+        console.log(props.song.isPlaying)
+        if (props.song.isPlaying) {
+            TrackPlayer.pause()
+            .then(() => {props.pauseMusic()})
+            .catch((error) => console.log(error));
+        } else {
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
+        }
+    };
+    const handleNext = () => {
+        TrackPlayer.skipToNext()
+        .then(() => {
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
+        })
+        .catch((e) => {
+            console.log(e);
+            TrackPlayer.pause()
+            .then(() => {props.pauseMusic()})
+            .catch((error) => console.log(error));
+        });
+    };
     const handleOnClick = () => {
-        props.saveSongToStore(dummySong)
-        navigation.navigate('Player');
+        if(props.song.id !== '') navigation.navigate('Player');
     };
 
-    return (
+    return props.song.image_url ? (
         <TouchableOpacity
             style={styles.view}
             activeOpacity={1}
             onPress={() => handleOnClick()}>
             <View style={styles.container}>
                 <View style={styles.section}>
-                    <Image style={styles.image} source={{uri: dummySong.image_url}}/>
+                    <Image style={styles.image} source={{uri: props.song.image_url}}/>
                     <View style={styles.titleGroup}>
-                        <Text style={styles.song}>{dummySong.title}</Text>
-                        <Text style={styles.artist}>{dummySong.artist}</Text>
+                        <Text style={styles.song}>{props.song.title}</Text>
+                        <Text style={styles.artist}>{props.song.artist}</Text>
                     </View>
                 </View>
                 <View style={styles.section}>
@@ -58,7 +94,7 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
                         <IconButton icon={PreviousIcon} onClick={() => handlePrevious()}/>
                     </View>
                     <View style={styles.button}>
-                        <IconButton icon={isPlaying ? PauseIcon : PlayIcon} onClick={() => handlePlayPause()}/>
+                        <IconButton icon={props.song.isPlaying ? PauseIcon : PlayIcon} onClick={() => handlePlayPause()}/>
                     </View>
                     <View style={styles.button}>
                         <IconButton icon={NextIcon} onClick={() => handleNext()}/>
@@ -66,8 +102,9 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
             </View>
         </TouchableOpacity>
-    );
+    ) : (<></>);
 };
 
-export default connect(null, mapDispatchToProps)(Controller);
+export default connect(mapStateToProps, mapDispatchToProps)(Controller);
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+type StateProps = ReturnType<typeof mapStateToProps>;
