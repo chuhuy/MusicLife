@@ -8,7 +8,7 @@ import TabNavigator from './tab-navigator';
 import ForgotPassword from './../modules/authentication/forgot-password';
 import Player from './../modules/home/player';
 import ChangePassword from '../modules/home/setting/change-password'
-
+import Notification from './../modules/home/notification';
 import EditProfile from '../modules/home/setting/edit-profile';
 import Playlist from './../modules/home/playlist';
 
@@ -52,7 +52,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name="Player" component={Player}/>
                         <Stack.Screen name="ChangePassword" component={ChangePassword}/>
-                        
+                        <Stack.Screen name="Notification" component={Notification}/>
                         <Stack.Screen name="EditProfile" component={EditProfile}/>
                         <Stack.Screen name="Playlist" component={Playlist}/>
                     </>

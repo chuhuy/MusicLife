@@ -121,6 +121,7 @@ export const Main: React.FunctionComponent<Props> = (prop: Props) => {
             name: 'Notification Channel',
             badge: true,
         });
+        console.log(remoteMessage.notification);
 
         await notifee.displayNotification({
             title: remoteMessage.notification.title,

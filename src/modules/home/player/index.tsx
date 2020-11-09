@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, ScrollView, Animated, Easing, Dimensions } from 'react-native';
 import { styles } from './styles';
-import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 import { PlayPauseButton, PreviousNextButton, PlaybackMode, Comment } from './components';
 import { IconButton } from '../../../shared/components';
 import I18n from './../../../i18n';
@@ -50,7 +50,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                 props.saveSongToStore(song);
             })
             .catch((error) => {
-                console.log(error);
+                diskAnimation.stop();
             });
         });
     });
@@ -124,8 +124,9 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     useEffect(() => {
-        diskAnimation.start();
-    }, []);
+        if(props.song.isPlaying) diskAnimation.start();
+        else diskAnimation;
+    }, [props.song.isPlaying]);
 
     // Second interpolate beginning and end values (in this case 0 and 1)
     const spin = spinValue.interpolate({
