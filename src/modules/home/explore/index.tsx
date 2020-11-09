@@ -17,6 +17,8 @@ import { Song } from '../../../models/song';
 import { Playlist } from '../../../models/playlist';
 import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
+import { insertNotification } from '../../../shared/helper/sqlite';
+import { Notification } from '../../../models/notification';
 
 
 interface Props extends DispatchProps, StateProps {}
@@ -75,15 +77,24 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleOpenPlaylist = (value: any) => {
-        const playlist: Playlist = {
+        const newPlaylist: Playlist = {
             id: value.playlist_id,
             name: value.name,
-            image_url: value.image_url
-        }
-        navigation.navigate('Playlist', {playlist});
+            image_url: value.image_url,
+        };
+        navigation.navigate('Playlist', {newPlaylist});
     };
     const handleNotification = () => {
-        navigation.navigate('Notification');
+        // navigation.navigate('Notification');
+        const time = new Date(Date.now());
+        const newNotification: Notification = {
+            title: 'remoteMessage.notification.title',
+            body: 'remoteMessage.notification.body',
+            image_url: 'remoteMessage.notification.android.imageUrl',
+            created_at: time.toString(),
+        };
+        console.log(newNotification);
+        insertNotification(newNotification);
     };
 
     return (

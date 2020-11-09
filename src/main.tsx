@@ -12,6 +12,8 @@ import messaging from '@react-native-firebase/messaging';
 import notifee, { AndroidStyle, AndroidImportance, AndroidVisibility } from '@notifee/react-native';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import QuickActions from 'react-native-quick-actions';
+import { Notification } from './models/notification';
+import { insertNotification } from './shared/helper/sqlite';
 
 //  Set up quick action
 QuickActions.setShortcutItems([
@@ -121,7 +123,15 @@ export const Main: React.FunctionComponent<Props> = (prop: Props) => {
             name: 'Notification Channel',
             badge: true,
         });
-        console.log(remoteMessage.notification);
+        const time = new Date(Date.now());
+        const newNotification: Notification = {
+            title: remoteMessage.notification.title,
+            body: remoteMessage.notification.body,
+            image_url: remoteMessage.notification.android.imageUrl,
+            created_at: time.toString(),
+        };
+        console.log(newNotification);
+        insertNotification(newNotification);
 
         await notifee.displayNotification({
             title: remoteMessage.notification.title,
