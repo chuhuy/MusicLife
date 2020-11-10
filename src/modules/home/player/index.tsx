@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, ScrollView, Animated, Easing, Dimensions } from 'react-native';
 import { styles } from './styles';
@@ -15,7 +14,7 @@ import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
 import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import { connect } from 'react-redux';
-import { SKIP } from './../../../redux/modules/player/actions';
+import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
 import { Song } from './../../../models/song';
 
 interface Props extends DispatchProps, StateProps {
@@ -25,6 +24,8 @@ interface Props extends DispatchProps, StateProps {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
+        playMusic: () => dispatch({type: PLAY}),
+        pauseMusic: () => dispatch({type: PAUSE}),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -33,21 +34,24 @@ const mapStateToProps = (state: any) => ({
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
 
-    const [isPlaying, setPlaying] = useState<boolean>(true);
     const [isNowPlaying, setNowPlaying] = useState<boolean>(false);
-    const [currentSong, setCurrentSong] = useState<Song>(props.song);
 
     useEffect(() => {
         TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-            const track = await TrackPlayer.getTrack(data.nextTrack);
-            const song: Song = {
-                id: track.id,
-                url: track.url,
-                artist: track.artist,
-                image_url: track.artwork,
-                title: track.title,
-            };
-            // setCurrentSong(song);
+            await TrackPlayer.getTrack(data.nextTrack)
+            .then((value) => {
+                const song: Song = {
+                    id: value.id,
+                    url: value.url,
+                    artist: value.artist,
+                    image_url: value.artwork,
+                    title: value.title,
+                };
+                props.saveSongToStore(song);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         });
     });
 
@@ -66,35 +70,43 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     );
 
     const togglePlayPause = () => {
-        if (isPlaying) {
-            TrackPlayer.pause();
-            spinValue.stopAnimation();
+        if (props.song.isPlaying) {
+            TrackPlayer.pause()
+            .then(() => {props.pauseMusic()})
+            .catch((error) => console.log(error));
+        } else {
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
         }
-        else {
-            TrackPlayer.play();
-            spinValue.setValue(0);
-        }
-        setPlaying(!isPlaying);
     };
     const handlePrevious = () => {
         TrackPlayer.skipToPrevious()
         .then(() => {
-            TrackPlayer.play();
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
         })
         .catch((e) => {
             console.log(e);
             TrackPlayer.seekTo(0);
-            TrackPlayer.play();
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
         });
     };
     const handleNext = () => {
         TrackPlayer.skipToNext()
         .then(() => {
-            TrackPlayer.play();
+            TrackPlayer.play()
+            .then(() => {props.playMusic()})
+            .catch((error) => console.log(error));;
         })
         .catch((e) => {
             console.log(e);
-            TrackPlayer.pause();
+            TrackPlayer.pause()
+            .then(() => {props.pauseMusic()})
+            .catch((error) => console.log(error));
         });
     };
     const handleShuffle = () => {
@@ -121,51 +133,13 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     outputRange: ['0deg', '360deg'],
     });
 
-    // const track = {
-    //     id: '1',
-    //     url: 'https://f9-stream.nixcdn.com/NhacCuaTui1005/TrenTinhBanDuoiTinhYeu-MIN-6802163.mp3?st=cb28yaeTP3YF8rW-P4ZfTw&e=1604910600&t=1604824200459',
-    //     title: 'Trên tình bạn dưới tình yêu',
-    //     artist: 'Min',
-    //     album: 'Test album',
-    //     genre: 'pop',
-    //     date: '2020-10-20T07:00:00+00:00',
-    //     artwork: 'https://cuoifly.tuoitre.vn/820/0/ttc/r/2020/11/05/toa23-1604590587.jpg',
-    // };
-    // const track2 = {
-    //     id: '2',
-    //     url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
-    //     title: 'Anh đâu đấy',
-    //     artist: 'Huy Chu',
-    //     album: 'Test album',
-    //     genre: 'pop',
-    //     date: '2020-10-20T07:00:00+00:00',
-    //     artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    // };
-    // const track3 = {
-    //     id: '3',
-    //     url: 'https://c1-ex-swe.nixcdn.com/NhacCuaTui1003/AnhDauDay-ReddyHuuDuy-6581875.mp3?st=fpIb8G59gEgCqZAqVWQljA&e=1602594009&t=1602507609328',
-    //     title: 'Anh đâu đấy',
-    //     artist: 'Huy Chu',
-    //     album: 'Test album',
-    //     genre: 'pop',
-    //     date: '2020-10-20T07:00:00+00:00',
-    //     artwork: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    // };
-
-    // useEffect(() => {
-    //     TrackPlayer.add([track, track2, track3]).then(() => {
-    //         TrackPlayer.play();
-    //     });
-
-    // }, []);
-
     return (
         <>
-            <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: currentSong.image_url}}>
+            <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: props.song.image_url}}>
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <IconButton icon={ArrowDown} onClick={() => handleBack()}/>
-                        <Text style={styles.headerTitle}>{currentSong.title}</Text>
+                        <Text style={styles.headerTitle}>{props.song.title}</Text>
                         <View style={{width: 20}}/>
                     </View>
                     <View style={styles.dotGroup}>
@@ -180,9 +154,9 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         >
                         <View style={styles.tab}>
                             <View style={styles.body}>
-                                <Animated.Image source={{uri: currentSong.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
-                                <Text style={styles.song}>{currentSong.title}</Text>
-                                <Text style={styles.artist}>{currentSong.artist}</Text>
+                                <Animated.Image source={{uri: props.song.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
+                                <Text style={styles.song}>{props.song.title}</Text>
+                                <Text style={styles.artist}>{props.song.artist}</Text>
                             </View>
                         </View>
                         <View style={styles.tab} />
@@ -190,7 +164,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                     <View style={styles.buttonGroup}>
                         <PlaybackMode mode="shuffle" onClick={() => handleShuffle()}/>
                         <PreviousNextButton type="previous" onClick={() => handlePrevious()}/>
-                        <PlayPauseButton isPlaying={isPlaying} onClick={() => togglePlayPause()}/>
+                        <PlayPauseButton isPlaying={props.song.isPlaying} onClick={() => togglePlayPause()}/>
                         <PreviousNextButton type="next" onClick={() => handleNext()}/>
                         <PlaybackMode mode="repeat" onClick={() => handleRepeat()}/>
                     </View>
