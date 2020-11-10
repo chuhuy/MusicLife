@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity} from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import Modal from 'react-native-modal';
+import CustomModal from '../../../shared/components/modal';
 import { styles } from './styles';
 import { LOGOUT } from './../../../redux/modules/auth/actions';
 import { connect } from 'react-redux';
@@ -48,8 +49,14 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
         changeLanguage(language);
     };
     const toggleModalLanguage = () => {
+        // Toggle modal
         setModalLanguageVisible(!isModalLanguageVisible);
-    };
+        setIsLanguageChange(false);
+
+    }
+    // const toggleModalLanguage = () => {
+    //     setModalLanguageVisible(!isModalLanguageVisible);
+    // };
     const toggleModalRestart = () => {
         setModalRestartVisible(!isModalRestartVisible);
     };
@@ -155,8 +162,26 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                     }
                 </View>
                 {/* <ChangeLanguage /> */}
-                <View style={{ alignItems:'center', display: 'flex', justifyContent: 'space-between',}}>
-                    {/* Modal Change Language */}
+                <CustomModal 
+                    isVisible={isModalLanguageVisible} 
+                    title={I18n.translate('changeLanguage.title')}
+                    footerButtons={
+                    [
+                        {
+                            title: I18n.translate('changeLanguage.cancel'),
+                            onPressOut: toggleModalLanguage,
+                        },
+                        {
+                            title: I18n.translate('changeLanguage.save'),
+                            onPressOut: toggleModalRestart,
+                            isActive: isLanguageChange
+                        },
+                    ]} 
+                >
+                </CustomModal>
+                {/* Modal Change Language */}
+                {/* <View style={{ alignItems:'center', display: 'flex', justifyContent: 'space-between',}}>
+                    
                     <Modal isVisible={isModalLanguageVisible} hasBackdrop={true}>
                         <View style={[styles.modal__language, {display: isModalRestartVisible ? 'none' : 'flex'}]}>
                             <TouchableOpacity >
@@ -203,7 +228,8 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </Modal>
+                    </Modal> */}
+                    <View>
                     {/* Modal Restart ? */}
                     <Modal isVisible={isModalRestartVisible} >
                         <View style={styles.modal__restart}>
