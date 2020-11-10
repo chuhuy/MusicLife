@@ -17,7 +17,7 @@ export const songs = [
         ],
         title: 'Thương Lắm Miền Trung Ơi',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/1/5/1/5151ca4c01a47dccf6f6d1201ef4a729.jpg',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844234/MusicLife/songImages/7809219116099738386_lwnjlw.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011853/MusicLife/songImages/7809219116099738386_orwbas.mp3',
         playlist_id: '2'
     },
     {
@@ -32,7 +32,7 @@ export const songs = [
         ],
         title: 'Bông hoa đẹp nhất',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/f/8/1/e/f81efd92fa9a3d52eb37f3b867ab9d32.jpg',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844276/MusicLife/songImages/9110927111613495727_mpil5j.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011852/MusicLife/songImages/9110927111613495727_n3ick1.mp3',
         playlist_id: '1'
     },
     {
@@ -53,7 +53,7 @@ export const songs = [
         ],
         title: 'Con Trai Cưng',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/7/1/b/1/71b166227f44f5a2ea975e1f2dcf4601.jpg',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844301/MusicLife/songImages/972233365974826665_ijeveh.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011849/MusicLife/songImages/972233365974826665_bj109p.mp3',
         playlist_id: '1'
     },
     {
@@ -74,7 +74,7 @@ export const songs = [
         ],
         title: 'Bigcityboi',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/a/5/1/5a5164496ababbca1496193ec8b8afb1.jpg',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844498/MusicLife/songImages/8632130204507402061_mzi5zc.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011850/MusicLife/songImages/8632130204507402061_tw4tm3.mp3',
         playlist_id: '4'
     },
     {
@@ -89,7 +89,7 @@ export const songs = [
         ],
         title: 'Duyên Phận',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/covers/b/e/bebbeaf3221dfda16ecd42b8d756151c_1370764',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604844571/MusicLife/songImages/1390071857566944257_mro1f0.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011849/MusicLife/songImages/1390071857566944257_v5inen.mp3',
         playlist_id: '2'
     },
     {
@@ -104,7 +104,7 @@ export const songs = [
         ],
         title: 'Cho Ngày Cưới',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_png/covers/4/f/4f145431f43605ea97458f7b94322b38_15096155',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604845693/MusicLife/songImages/5147674768647180313_l0mcbm.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011850/MusicLife/songImages/5147674768647180313_urwsoj.mp3',
         album_id: '190889875',
     },
     {
@@ -119,7 +119,7 @@ export const songs = [
         ],
         title: 'Cánh Cửa Cuối Cùng (Alternate)',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_png/covers/4/f/4f145431f43605ea97458f7b94322b38_15096155',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604845602/MusicLife/songImages/5416943072210009533_ze59zo.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011850/MusicLife/songImages/5416943072210009533_herhsi.mp3',
         album_id: '190889875',
     },
     {
@@ -134,7 +134,7 @@ export const songs = [
         ],
         title: 'Tâm Hồn Của Đá',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/covers/7/f/7fdc1a630c238af0815181f9faa190f5_1285212',
-        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1604845821/MusicLife/songImages/7025915265927189744_z2ahmw.mp3',
+        url: 'https://res.cloudinary.com/anhnguyen3001/video/upload/v1605011852/MusicLife/songImages/7025915265927189744_tu6qnn.mp3',
         album_id: '150362855',
     },
 ]
