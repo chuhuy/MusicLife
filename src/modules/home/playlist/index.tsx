@@ -14,7 +14,7 @@ interface Props {
 
 const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
-    const { playlist } = props.route.params;
+    const { newPlaylist } = props.route.params;
     const handleBack = () => {
         props.navigation.goBack();
     };
@@ -28,14 +28,14 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <View style={styles.container}>
-                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: playlist.image_url || ''}}>
+                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: newPlaylist.image_url || ''}}>
                     <View style={styles.header}>
                         <IconButton icon={ArrowLeft} onClick={() => handleBack()}/>
                     </View>
-                    <Image source={{uri: playlist.image_url || ''}} style={styles.image}/>
+                    <Image source={{uri: newPlaylist.image_url || ''}} style={styles.image}/>
                     <View style={styles.control}>
                         <View style={styles.titleGroup}>
-                            <Text style={styles.playlistName}>{playlist.name || ''}</Text>
+                            <Text style={styles.playlistName}>{newPlaylist.name || ''}</Text>
                             {/* <Text style={styles.artist}>Artist</Text> */}
                         </View>
                         <View style={styles.buttonGroup}>
@@ -59,68 +59,5 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
         </>
     );
 };
-
-const playlistDummyData = [
-    {
-        id: 1,
-        title: 'Song 1',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 2,
-        title: 'Song 2',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 3,
-        title: 'Song 3',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 4,
-        title: 'Song 4',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 5,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 6,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 7,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 8,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 9,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-    {
-        id: 10,
-        title: 'Song 5',
-        artist: 'Huy Chu',
-        image: 'https://i.ytimg.com/vi/VQS_Gj9d028/maxresdefault.jpg',
-    },
-];
 
 export default PlaylistScreen;

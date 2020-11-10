@@ -17,7 +17,7 @@ import { Song } from '../../../models/song';
 import { Playlist } from '../../../models/playlist';
 import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
-import { insertNotification } from '../../../shared/helper/sqlite';
+import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
 import { Notification } from '../../../models/notification';
 
 
@@ -68,11 +68,11 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
             .then(() => {
                 TrackPlayer.play()
                 .then(() => props.playMusic())
-                .catch(() => props.pauseMusic())
+                .catch(() => props.pauseMusic());
             })
-            .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic())})
+            .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
         })
-        .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic())});
+        .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
         navigation.navigate('Player');
     };
 
@@ -84,17 +84,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         };
         navigation.navigate('Playlist', {newPlaylist});
     };
-    const handleNotification = () => {
-        // navigation.navigate('Notification');
-        const time = new Date(Date.now());
-        const newNotification: Notification = {
-            title: 'remoteMessage.notification.title',
-            body: 'remoteMessage.notification.body',
-            image_url: 'remoteMessage.notification.android.imageUrl',
-            created_at: time.toString(),
-        };
-        console.log(newNotification);
-        insertNotification(newNotification);
+    const handleNotification = async () => {
+        const notificationList = await fetchAllNotification();
+        navigation.navigate('Notification', { notificationList });
     };
 
     return (
