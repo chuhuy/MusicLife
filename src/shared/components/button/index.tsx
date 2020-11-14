@@ -6,11 +6,12 @@ interface Props {
     onClick: () => void;
     title: string;
     disabled?: boolean,
-    size?: string
+    size?: string,
+    icon?: SVGElement,
 }
 
 export const Button: FunctionComponent<Props> = (props: Props) => {
-    const { onClick, title, disabled = false, size } = props;
+    const { onClick, title, disabled = false, size, icon } = props;
 
     return (
         <>
@@ -21,7 +22,8 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                 style={[styles.buttonLayout, {opacity: disabled ? 0.6 : 1}]}
                 onPressOut={onClick}
             >
-                <View style={size ? styles.bigButton : undefined}>
+                <View style={[styles.button, size ? styles.bigButton : undefined]}>
+                    {icon}
                     <Text style={styles.text}>{title}</Text>
                 </View>
             </TouchableOpacity>

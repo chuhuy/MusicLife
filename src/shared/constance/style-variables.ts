@@ -6,10 +6,10 @@ export const isLargeDevice = () => height > 700;
 
 export const styleVars = {
     // Font size
-    largeFontSize: isLargeDevice() ? 25 : 20,
-    bigFontSize: isLargeDevice() ? 20 : 18,
-    baseFontSize: isLargeDevice() ? 16 : 14,
-    smallFontSize: isLargeDevice() ? 14 : 12,
+    largeFontSize: 25,
+    bigFontSize: 20,
+    baseFontSize: 16,
+    smallFontSize: 14,
 
     // Colors
     bgToastColor: '#E5E5E5',

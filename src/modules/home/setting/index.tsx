@@ -16,7 +16,7 @@ import ArrowBackSvg from '../../../assets/icons/arrow-back.svg';
 import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
 import { changeLanguage, getLanguage } from '../../../i18n/utils';
 import { styleVars } from '../../../shared/constance/style-variables';
-import { Button } from '../../../shared/components';
+import { Button, LinkButton } from '../../../shared/components';
 interface Props extends DispatchProps, StateProps {
     navigation: any,
 }
@@ -49,10 +49,11 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
         changeLanguage(language);
     };
     const toggleModalLanguage = () => {
+        console.log(2)
         // Toggle modal
         setModalLanguageVisible(!isModalLanguageVisible);
+        console.log(isModalLanguageVisible)
         setIsLanguageChange(false);
-
     }
     // const toggleModalLanguage = () => {
     //     setModalLanguageVisible(!isModalLanguageVisible);
@@ -165,19 +166,33 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <CustomModal 
                     isVisible={isModalLanguageVisible} 
                     title={I18n.translate('changeLanguage.title')}
-                    footerButtons={
-                    [
-                        {
-                            title: I18n.translate('changeLanguage.cancel'),
-                            onPressOut: toggleModalLanguage,
-                        },
-                        {
-                            title: I18n.translate('changeLanguage.save'),
-                            onPressOut: toggleModalRestart,
-                            isActive: isLanguageChange
-                        },
-                    ]} 
-                >
+                    onHide={toggleModalLanguage}
+                >   
+                    <RadioForm
+                        radio_props={languageList}
+                        initial={languageActive === 'en' ? 0 : 1}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        buttonColor={styleVars.white}
+                        buttonSize={10}
+                        buttonOuterSize={25}
+                        selectedButtonColor={styleVars.secondaryColor}
+                        animation={true}
+                        labelStyle={styles.modal__language__label} 
+                        onPress={(value) => {setIsLanguageChange(!isLanguageChange)}}
+                    />
+                    <View style={styles.modal__language__footer}>
+                        <LinkButton 
+                            title={I18n.translate('changeLanguage.cancel')}
+                            onClick={toggleModalLanguage} 
+                            color={styleVars.greyColor}
+                        />
+                        <LinkButton 
+                            title={I18n.translate('changeLanguage.save')}
+                            onClick={toggleModalRestart} 
+                            color={styleVars.secondaryColor}
+                        />
+                    </View>
                 </CustomModal>
                 {/* Modal Change Language */}
                 {/* <View style={{ alignItems:'center', display: 'flex', justifyContent: 'space-between',}}>
@@ -229,7 +244,6 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
                         </View>
                     </Modal> */}
-                    <View>
                     {/* Modal Restart ? */}
                     <Modal isVisible={isModalRestartVisible} >
                         <View style={styles.modal__restart}>
@@ -257,7 +271,6 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
                         </View>
                     </Modal>
-                </View>
             </View>
         </>
     );

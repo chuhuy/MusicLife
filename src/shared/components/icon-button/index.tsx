@@ -12,8 +12,10 @@ export const IconButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <TouchableOpacity
-            style={styles.container}
-            onPress={props.onClick}>
+                style={styles.container}
+                onPress={props.onClick}
+                delayPressIn={0}
+            >
                 <View style={styles.touchArea}>
                     {<props.icon />}
                 </View>

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     touchArea: {
-        paddingVertical: 5,
-        paddingHorizontal: 5,
+        // paddingVertical: 5,
+        // paddingHorizontal: 5,
     },
 });
