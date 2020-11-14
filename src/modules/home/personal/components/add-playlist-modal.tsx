@@ -15,10 +15,12 @@ interface Props {
 }
 
 const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
+    const {isShow, onHide} = props;
 
     const initialFormValue = {
         name: '',
     };
+
     const validationSchema = Yup.object().shape({
         name: Yup.string().trim()
         .max(50, "Playlist's name cannot exceed 50 characters")
@@ -40,12 +42,12 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <Modal
             useNativeDriver={true}
-            backdropColor={'white'}
-            onBackButtonPress={() => props.onHide()}
-            onBackdropPress={() => props.onHide()}
-            backdropOpacity={0.1}
+            onBackButtonPress={onHide}
+            onBackdropPress={onHide}
+            backdropOpacity={0.5}
             avoidKeyboard={true}
-            isVisible={props.isShow}>
+            isVisible={isShow}
+        >
             <View style={styles.addPlaylistModal}>
                 <Text style={styles.modalTitle}>{I18n.translate('personal.add-playlist')}</Text>
                 <Formik
@@ -83,25 +85,29 @@ export default AddPlaylistModal;
 const styles = StyleSheet.create({
     addPlaylistModal: {
         width: width / 1.5,
-        height: width / 3,
-        backgroundColor: styleVars.primaryColor,
+        backgroundColor: styleVars.lightPrimaryColor,
         alignSelf: 'center',
-        borderRadius: 10,
-        padding: 20,
+        borderRadius: 20,
+        padding: 15,
     },
+
     modalTitle: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 18,
+        marginBottom: 15,
+        color: styleVars.white,
+        fontWeight: '600',
+        fontSize: styleVars.bigFontSize,
     },
     textInput: {
-        color: 'white',
-        marginLeft: -5,
+        color: styleVars.white,
+        padding: 0,
+        paddingBottom: 5,
+        paddingRight: 5,
+        borderBottomColor: styleVars.white,
+        borderBottomWidth: 1,
     },
     buttonGroup: {
         flexDirection: 'row',
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
+        justifyContent: 'flex-end',
+        marginTop: 15
     },
 });

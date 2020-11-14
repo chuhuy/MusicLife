@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.baseFontSize,
     },
     touchArea: {
-        paddingHorizontal: 5,
-        paddingVertical: 5,
+        padding: 5
     },
 });

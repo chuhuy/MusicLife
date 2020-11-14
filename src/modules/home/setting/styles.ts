@@ -109,7 +109,10 @@ export const styles = StyleSheet.create({
     modal__language__label:{
         color: styleVars.greyColor,
         fontSize: styleVars.baseFontSize,
-        paddingRight: 15
+        marginLeft: 5
+    },
+    modal_language_radio: {
+        // padding: 20
     },
     language__radio: {
         marginBottom: 25,
