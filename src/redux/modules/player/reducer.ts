@@ -25,12 +25,12 @@ export const playerReducer = (state: Song = initialState, action: Action) => {
             };
         case SKIP:
             return {
+                ...state,
                 id: action.payload.id,
                 title: action.payload.title,
                 artist: action.payload.artist,
                 url: action.payload.url,
                 image_url: action.payload.image_url,
-                isPlaying: action.payload.isPlaying,
             };
         default:
             return state;

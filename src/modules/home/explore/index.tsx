@@ -12,18 +12,22 @@ import NotificationIcon from './../../../assets/icons/notification-active.svg';
 import { playlist } from './../../../data/playlist';
 import { songs } from './../../../data/song';
 import { genre } from './../../../data/genre';
-import { SKIP } from './../../../redux/modules/player/actions';
+import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
 import { Song } from '../../../models/song';
-import { playSong } from '../../../shared/helper/player';
 import { Playlist } from '../../../models/playlist';
+import TrackPlayer from 'react-native-track-player';
+import { useNavigation } from '@react-navigation/native';
+import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
+import { Notification } from '../../../models/notification';
 
 
-interface Props extends DispatchProps, StateProps {
-    navigation: any
-}
+interface Props extends DispatchProps, StateProps {}
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song})
+        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
+        playMusic: () => dispatch({type: PLAY}),
+        pauseMusic: () => dispatch({type: PAUSE}),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -31,11 +35,12 @@ const mapStateToProps = (state: any) => ({
 });
 
 const Explore: React.FunctionComponent<Props> = (props: Props) => {
+    const navigation = useNavigation();
 
     const [isTop100, setTop100] = useState<boolean>(false);
 
     const handleUserProfile = () => {
-        props.navigation.navigate('Setting');
+        navigation.navigate('Setting');
     };
 
     const handlePlayMusic = (song: any) => {
@@ -45,23 +50,43 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
             image_url: song.image_url,
             artist: song.artists[0].name,
             url: song.url,
-            isPlaying: true,
         };
         props.saveSongToStore(formattedSong);
-        playSong(formattedSong);
-        props.navigation.navigate('Player');
+        const track = {
+            id: song.id,
+            url: song.url,
+            title: song.title,
+            artist: song.artists[0].name,
+            album: song.album || '',
+            genre: song.genre || '',
+            date: '2020-10-20T07:00:00+00:00',
+            artwork: song.image_url,
+        };
+        TrackPlayer.reset()
+        .then(() => {
+            TrackPlayer.add(track)
+            .then(() => {
+                TrackPlayer.play()
+                .then(() => props.playMusic())
+                .catch(() => props.pauseMusic());
+            })
+            .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
+        })
+        .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
+        navigation.navigate('Player');
     };
 
     const handleOpenPlaylist = (value: any) => {
-        const playlist: Playlist = {
+        const newPlaylist: Playlist = {
             id: value.playlist_id,
             name: value.name,
-            image_url: value.image_url
-        }
-        props.navigation.navigate('Playlist', {playlist});
+            image_url: value.image_url,
+        };
+        navigation.navigate('Playlist', {newPlaylist});
     };
-    const handleNotification = () => {
-
+    const handleNotification = async () => {
+        const notificationList = await fetchAllNotification();
+        navigation.navigate('Notification', { notificationList });
     };
 
     return (
