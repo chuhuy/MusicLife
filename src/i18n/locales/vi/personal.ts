@@ -9,4 +9,7 @@ export const personal = {
     'add-playlist-placeholder': 'Nhập tên danh sách phát',
     'cancel': 'Hủy',
     'save': 'Lưu',
+    'song-not-found': 'Chưa có bài hát',
+    'album-not-found': 'Chưa có album',
+    'playlist-not-found': 'Chưa có playlist',
 };
