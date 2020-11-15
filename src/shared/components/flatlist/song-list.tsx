@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 };
 const mapStateToProps = (state: any) => ({
-    refresh_token: state.auth.refresh_token,
+    // refresh_token: state.auth.refresh_token,
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
