@@ -49,10 +49,11 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         marginVertical: 30,
     },
-    content:{
+    group:{
         marginHorizontal: 20,
+        marginBottom: 20,
     },
-    info: {
+    title: {
         color: styleVars.white,
         fontSize: styleVars.baseFontSize,
         fontWeight: '700',
@@ -61,16 +62,6 @@ export const styles = StyleSheet.create({
     description: {
         color: styleVars.white,
         fontSize: styleVars.smallFontSize,
-        marginBottom: 20,
         lineHeight: 21,
-    },
-    songList: {
-        marginHorizontal: 20,
-    },
-    songText: {
-        color: styleVars.white,
-        fontSize: styleVars.baseFontSize,
-        fontWeight: '700',
-        marginBottom: 10,
     },
 });
