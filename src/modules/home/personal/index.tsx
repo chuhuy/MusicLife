@@ -16,6 +16,7 @@ import {songs} from '../../../data/song';
 import {album} from '../../../data/album';
 import {playlist} from '../../../data/playlist';
 import {SongList, PlaylistList, AlbumList} from '../../../shared/components/flatlist';
+import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 
 interface Props {
     navigation: any,
@@ -38,21 +39,6 @@ const locations = [
     }
 ];
 
-const types = [
-    {
-        title: I18n.translate('personal.songs'),
-        type: TYPE.SONG
-    },
-    {
-        title: I18n.translate('personal.albums'),
-        type: TYPE.ALBUM
-    },
-    {
-        title: I18n.translate('personal.playlists'),
-        type: TYPE.PLAYLIST
-    },
-];
-
 export const Personal: React.FunctionComponent<Props> = (props: Props) => {
     const {navigation} = props;
     const [addPlaylistModalVisibility, setAddPlaylistVisibility] = useState<boolean>(false);
@@ -72,6 +58,32 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
         setAddPlaylistVisibility(!addPlaylistModalVisibility);
     }
     
+    // Tab menu for type
+    const handleOpenTab = (type: string) => {
+        setType(type);
+    }
+
+    const typeMenu = [
+        {
+            title: I18n.translate('personal.songs'),
+            type: TYPE.SONG,
+            active: currentType === TYPE.SONG,
+            onClick: handleOpenTab
+        },
+        {
+            title: I18n.translate('personal.albums'),
+            type: TYPE.ALBUM,
+            active: currentType === TYPE.ALBUM,
+            onClick: handleOpenTab
+        },
+        {
+            title: I18n.translate('personal.playlists'),
+            type: TYPE.PLAYLIST,
+            active: currentType === TYPE.PLAYLIST,
+            onClick: handleOpenTab
+        },
+    ]
+
     const renderSongTab = (songs) => {
         if (!songs.length)
             return (
@@ -148,49 +160,38 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
                         })
                     }
                 </View>
-
-                <View style={styles.typeTitle}>
-                    {
-                        types.map(({title, type}, index) => {
-                            return (
-                                <TouchableOpacity
-                                    key={index}
-                                    style={styles.typeButton}
-                                    activeOpacity={1}
-                                    delayPressIn={0}
-                                    onPressIn={() => {setType(type);}}
-                                >
-                                    <Text style={type === currentType ? styles.typeTitleActive : styles.typeTitleInactive}>
-                                        {title}
-                                    </Text>
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                </View>
-                <View style={styles.body}>
-                    {currentType === TYPE.SONG && renderSongTab(songs)}
-                    {currentType === TYPE.ALBUM && renderAlbumTab(album)}
-                    {currentType === TYPE.PLAYLIST &&
+                
+                {
+                    isShowAll ? 
                     <>
-                        <View style={styles.addBtnContainer}>
-                            <Button 
-                                title={I18n.translate('personal.add-playlist')} 
-                                onClick={toggleAddPlaylistModal}
-                                icon={<Plus width={18} height={18} />}
-                            />
-                        </View>
+                        {/* Tab menu for type */}
+                        <UnderlineTabBar options={typeMenu} />
 
-                        {renderPlaylistTab(playlist)}
-                    </>}
-                </View>
+                        <View style={styles.body}>
+                            {currentType === TYPE.SONG && renderSongTab(songs)}
+                            {currentType === TYPE.ALBUM && renderAlbumTab(album)}
+                            {currentType === TYPE.PLAYLIST &&
+                            <>
+                                <View style={styles.addBtnContainer}>
+                                    <Button 
+                                        title={I18n.translate('personal.add-playlist')} 
+                                        onClick={toggleAddPlaylistModal}
+                                        icon={<Plus width={18} height={18} />}
+                                    />
+                                </View>
+
+                                {renderPlaylistTab(playlist)}
+                            </>}
+                        </View>
+                    </> : <View style={styles.body}>{renderSongTab(songs)}</View>
+                }
             </View>
             
             <AddPlaylistModal 
                 isShow={addPlaylistModalVisibility} 
                 onHide={() => setAddPlaylistVisibility(false)} 
             />
-           
+
             <Controller />
         </>
     );
