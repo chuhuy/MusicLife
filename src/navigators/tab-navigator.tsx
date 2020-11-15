@@ -5,12 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Setting from './../modules/home/setting';
 import { Personal } from './../modules/home/personal';
 import Explore from './../modules/home/explore';
+import Singer from './../modules/home/singer';
 import I18n from './../i18n';
 import { Text } from 'react-native';
 import { styleVars } from './../shared/constance/style-variables';
 import ExploreIcon from './../assets/icons/explore.svg';
 import PersonalIcon from './../assets/icons/personal.svg';
 import SettingIcon from './../assets/icons/setting.svg';
+import SingerIcon from './../assets/icons/singer.svg';
 import ExploreActiveIcon from './../assets/icons/explore-active.svg';
 import PersonalActiveIcon from './../assets/icons/personal-active.svg';
 import SettingActiveIcon from './../assets/icons/setting-active.svg';
@@ -47,6 +49,10 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         return (
                             <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('setting.title')}</Text>
                         );
+                    } else if (route.name === 'Singer') {
+                        return (
+                            <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('singer.title')}</Text>
+                        );
                     }
                 },
                 tabBarIcon: ({focused}) => {
@@ -59,6 +65,9 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     } else if (route.name === 'Setting') {
                         if (!focused) {return (<SettingIcon/>);}
                         else {return (<SettingActiveIcon/>);}
+                    } else if (route.name === 'Singer'){
+                        if (!focused) {return (<SingerIcon color={'white'} width={25} height={25}/>);}
+                        else {return (<SingerIcon color={styleVars.secondaryColor } width={25} height={25}/>);}
                     }
                 },
             })}
@@ -66,6 +75,7 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
             <Tab.Screen name="Explore"  component={Explore} options={{title: I18n.translate('explore.title')}}/>
             {props.refresh_token !== null && <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name="Setting"  component={Setting} options={{title: I18n.translate('setting.title')}}/>
+            <Tab.Screen name="Singer"  component={Singer} options={{title: I18n.translate('singer.title')}}/>
         </Tab.Navigator>
     );
 };

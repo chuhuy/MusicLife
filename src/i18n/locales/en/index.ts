@@ -1,3 +1,4 @@
+import { singer } from './singer';
 import { changePassword } from './changePassword';
 import { personal } from './personal';
 import { setting } from './setting';
@@ -15,4 +16,5 @@ export default {
     'common': common,
     'changePassword' : changePassword,
     'changeLanguage': changeLanguage,
+    'singer': singer,
 };
