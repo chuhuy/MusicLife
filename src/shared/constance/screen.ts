@@ -1,8 +1,9 @@
 export const Screen = {
-    'Splash': 'Splash',
-    'Authentication': {
-        'Login': "Login",
-        'Register': "Register",
-        'ForgotPassword': 'ForgotPassword'
-    }
+    Splash: 'Splash',
+    Authentication: {
+        Login: "Login",
+        Register: "Register",
+        ForgotPassword: 'ForgotPassword'
+    },
+    Search: 'Search'
 }

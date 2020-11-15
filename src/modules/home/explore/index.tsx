@@ -97,7 +97,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     onPressOut={() => handleNotification()}>
                     <NotificationIcon />
                 </TouchableOpacity>
-                <SearchBar/>
+                <SearchBar navigation={navigation} />
                 <TouchableOpacity
                     style={styles.userButton}
                     onPressOut={() => handleUserProfile()}>
