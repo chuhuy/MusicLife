@@ -41,7 +41,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             await TrackPlayer.getTrack(data.nextTrack)
             .then((value) => {
                 const song: Song = {
-                    id: value.id,
+                    id: parseInt(value.id),
                     url: value.url,
                     artist: value.artist,
                     image_url: value.artwork,
@@ -139,7 +139,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: props.song.image_url}}>
                 <View style={styles.container}>
                     <View style={styles.header}>
-                        <IconButton icon={ArrowDown} onClick={() => handleBack()}/>
+                        <IconButton icon={ArrowDown} onClick={handleBack}/>
                         <Text style={styles.headerTitle}>{props.song.title}</Text>
                         <View style={{width: 20}}/>
                     </View>
@@ -152,7 +152,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         pagingEnabled={true}
                         showsHorizontalScrollIndicator={false}
                         onMomentumScrollEnd={handleScrollTab}
-                        >
+                    >
                         <View style={styles.tab}>
                             <View style={styles.body}>
                                 <Animated.Image source={{uri: props.song.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
@@ -163,11 +163,11 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         <View style={styles.tab} />
                     </ScrollView>
                     <View style={styles.buttonGroup}>
-                        <PlaybackMode mode="shuffle" onClick={() => handleShuffle()}/>
-                        <PreviousNextButton type="previous" onClick={() => handlePrevious()}/>
-                        <PlayPauseButton isPlaying={props.song.isPlaying} onClick={() => togglePlayPause()}/>
-                        <PreviousNextButton type="next" onClick={() => handleNext()}/>
-                        <PlaybackMode mode="repeat" onClick={() => handleRepeat()}/>
+                        <PlaybackMode mode="shuffle" onClick={handleBack}/>
+                        <PreviousNextButton type="previous" onClick={handlePrevious}/>
+                        <PlayPauseButton isPlaying={props.song.isPlaying} onClick={togglePlayPause}/>
+                        <PreviousNextButton type="next" onClick={handleNext}/>
+                        <PlaybackMode mode="repeat" onClick={handleRepeat}/>
                     </View>
                     <View style={styles.buttonGroup2}>
                         <IconButton icon={Plus} onClick={() => {}}/>

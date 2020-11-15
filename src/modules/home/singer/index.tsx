@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ScrollView, Image, ImageBackground } from 'react-native';
 import { styles } from './styles';
 import { connect } from 'react-redux';
-import ArrowBackSvg from '../../../assets/icons/arrow-back.svg';
+import Controller from '../controller';
 import ArrowSvg from '../../../assets/icons/arrow.svg';
 import I18n from './../../../i18n';
 import { SongItem, MusicChartItem } from './components';
+import { HeaderBack, SectionTitle } from '../../../shared/components';
+import SongList from '../../../shared/components/flatlist/song-list';
+import {songs} from '../../../data/song';
+import { Song } from '../../../models/song';
+import { Item } from '../../../shared/components/flatlist/item';
+import { AlbumList } from '../../../shared/components/flatlist';
+import { album } from '../../../data/album';
+
 interface Props extends DispatchProps, StateProps {
     navigation: any,
 }
@@ -18,67 +26,79 @@ const mapStateToProps = (state: any) => ({
     refresh_token: state.auth.refresh_token,
 });
 const Singer: React.FunctionComponent<Props> = (props: Props) => {
+    const {navigation} = props;
     let description = 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum';
     const [name, setName] = useState<string>('Aille');
+    const [shortSongs, setShortSongs] = useState<Array<Song>>(undefined);
+
+    useEffect(() => {
+        setShortSongs(songs.slice(0, 3));
+    }, [])
+
     const handlePlayMusic = () => {
         props.navigation.navigate('Player');
     };
     const handleOpenOption = () => {
         console.log('Opened option');
     };
+
+    const renderSongList = () => {
+        return (
+            shortSongs && 
+            <SongList 
+                navigation={navigation} 
+                songs={shortSongs} 
+                disableScroll={true}
+            />
+        )
+    };
+
     return (
         <>
-            <ImageBackground style={styles.container} source={require('../../../assets/img/singer.png')} >
-                {/* <Image 
-                    source={require('../../../assets/img/singer.png')} 
-                    style={styles.backgroundAvatar} 
-                    blurRadius={3}
-                /> */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
-                        <ArrowBackSvg width={20} height={20}/>
-                    </TouchableOpacity>
+            <ImageBackground style={styles.imageBackground} source={require('../../../assets/images/singer.png')} >
+                <View style={styles.container}>
+                    <HeaderBack navigation={navigation} />
+
+                    <ScrollView nestedScrollEnabled={true} >
+                        <View style={styles.avatarView}>
+                            <Image 
+                                source={require('../../../assets/images/singer.png')} 
+                                style={styles.avatar}
+                            />
+                        </View>
+
+                        <View style={styles.group}>
+                            <SectionTitle 
+                                title={I18n.translate('singer.info')}
+                                onClick={() => {}}
+                            />
+                            <Text numberOfLines={2} style={styles.description}>
+                                {description}
+                            </Text>
+                        </View>
+
+                        <View style={styles.group}>
+                            <SectionTitle 
+                                title={I18n.translate('singer.songs')}
+                                onClick={() => {}}
+                            />
+                            {renderSongList()}
+                        </View>
+
+                        <View style={styles.group}>
+                            <SectionTitle 
+                                title={I18n.translate('singer.album')}
+                                onClick={() => {}}
+                            />
+                            <AlbumList 
+                                navigation={navigation}
+                                playlist={album}
+                                isHorizontal={true}
+                            />
+                        </View>
+                    </ScrollView>
                 </View>
-                <ScrollView style={styles.main}>
-                    <View style={styles.avatarView}>
-                        <Image 
-                            source={require('../../../assets/img/singer.png')} 
-                            style={styles.avatar}
-                        />
-                    </View>
-                    <View style={styles.group}>
-                        <Text style={styles.name}>{name}</Text>
-                        <TouchableOpacity>
-                            <Text style={styles.title}>{I18n.translate('singer.info')} <ArrowSvg/></Text>
-                        </TouchableOpacity>
-                        <Text numberOfLines={2} style={styles.description}>
-                            {description}
-                        </Text>
-                    </View>
-                    <View style={styles.group}>
-                        <TouchableOpacity>
-                            <Text style={styles.title}>{I18n.translate('singer.songs')} <ArrowSvg/></Text>
-                        </TouchableOpacity>
-                        <FlatList
-                            renderItem={({item}) => (<SongItem name={item.name} image={item.image} artist={name} onClick={() => handlePlayMusic()} onOptionClick={() => handleOpenOption()}/>)}
-                            data={songDummyData}
-                            keyExtractor={item => item.id.toString()}
-                            horizontal={false}
-                        />
-                    </View>
-                    <View style={styles.group}>
-                        <TouchableOpacity>
-                            <Text style={styles.title}>{I18n.translate('singer.album')} <ArrowSvg/></Text>
-                        </TouchableOpacity>
-                        <FlatList
-                            horizontal={true}
-                            data={chartDummyData}
-                            renderItem={({item}) => (<MusicChartItem title={item.title} image={item.image} onClick={() => {}}/>)}
-                            keyExtractor={item => item.id.toString()}
-                            style={{marginLeft: -20}}
-                        />
-                    </View>
-                </ScrollView>
+                <Controller />
             </ImageBackground>
         </>
     );

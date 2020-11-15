@@ -114,7 +114,7 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
         return (
             <AlbumList 
                 navigation={navigation}
-                albums={album}
+                playlist={album}
             />
         );
     };

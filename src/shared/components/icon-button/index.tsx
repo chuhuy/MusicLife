@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { TouchableOpacity, View} from 'react-native';
+import { Pressable, TouchableOpacity, View} from 'react-native';
 import { styles } from './styles';
 import { SvgProps } from 'react-native-svg';
 
@@ -9,17 +9,18 @@ interface Props {
 }
 
 export const IconButton: FunctionComponent<Props> = (props: Props) => {
+    const {onClick} = props;
+    
     return (
         <>
-            <TouchableOpacity
+            <Pressable
                 style={styles.container}
-                onPress={props.onClick}
-                delayPressIn={0}
+                onPressOut={onClick}
             >
                 <View style={styles.touchArea}>
                     {<props.icon />}
                 </View>
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };
