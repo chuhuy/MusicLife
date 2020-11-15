@@ -1,3 +1,4 @@
+import { singer } from './singer';
 import { changePassword } from './../vi/changePassword';
 import { personal } from './personal';
 import { setting } from './setting';
@@ -6,6 +7,7 @@ import { authentication } from './authentication';
 import { player } from './player';
 import { common } from './common';
 import {changeLanguage} from './changeLanguage';
+
 export default {
     'setting': setting,
     'personal': personal,
@@ -14,5 +16,6 @@ export default {
     'player': player,
     'common': common,
     'changePassword' : changePassword,
-    'changeLanguage': changeLanguage
+    'changeLanguage': changeLanguage,
+    'singer': singer,
 }
