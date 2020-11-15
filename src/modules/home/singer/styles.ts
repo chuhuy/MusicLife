@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
     },
     container: {
+        marginBottom: -30,
         paddingHorizontal: 15,
         paddingVertical: 20,
         flex: 1,
@@ -32,7 +33,7 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
     },
     group:{
-        marginBottom: 20,
+        marginBottom: 30,
     },
     title: {
         color: styleVars.white,
@@ -44,6 +45,5 @@ export const styles = StyleSheet.create({
         color: styleVars.white,
         fontSize: styleVars.baseFontSize,
         lineHeight: 20,
-        // marginTop: 15
     },
 });

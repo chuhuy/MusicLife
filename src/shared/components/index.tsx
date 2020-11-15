@@ -46,21 +46,43 @@ const styles = StyleSheet.create({
         marginRight: 10,
         fontWeight: 'bold',
     },
+    headerBackContainer: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: styleVars.greyColor,
+        marginHorizontal: -15,
+        paddingHorizontal: 15,
+        paddingBottom: 20,
+    },
+    headerTitle: {
+        flex: 1,
+        color: styleVars.white,
+        textAlign: 'center',
+        fontSize: styleVars.bigFontSize,
+        fontWeight: 'bold',
+    },
 });
 
-// Go Back button
-interface GoBackProps {
-    navigation: any
+// Go Back Header
+interface HeaderBackProps {
+    navigation: any,
+    title?: string,
 }
 
-export const GoBackButton: React.FunctionComponent<GoBackProps> = (props: GoBackProps) => {
-    const {navigation} = props;
+export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: HeaderBackProps) => {
+    const {navigation, title} = props;
 
     const handleGoBack = () => {
         navigation.goBack()
     }
 
     return (
-        <View><IconButton icon={ArrowLeft} onClick={handleGoBack}/></View>
+        <View style={title && styles.headerBackContainer}>
+            <IconButton 
+                icon={ArrowLeft} 
+                onClick={handleGoBack} 
+            />
+            {title && <Text style={styles.headerTitle}>{title}</Text>}
+        </View>
     )
 }

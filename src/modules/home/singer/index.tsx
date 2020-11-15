@@ -7,7 +7,7 @@ import Controller from '../controller';
 import ArrowSvg from '../../../assets/icons/arrow.svg';
 import I18n from './../../../i18n';
 import { SongItem, MusicChartItem } from './components';
-import { GoBackButton } from '../../../shared/components';
+import { HeaderBack, SectionTitle } from '../../../shared/components';
 import SongList from '../../../shared/components/flatlist/song-list';
 import {songs} from '../../../data/song';
 import { Song } from '../../../models/song';
@@ -57,7 +57,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <ImageBackground style={styles.imageBackground} source={require('../../../assets/images/singer.png')} >
                 <View style={styles.container}>
-                    <GoBackButton navigation={navigation} />
+                    <HeaderBack navigation={navigation} />
 
                     <ScrollView nestedScrollEnabled={true} >
                         <View style={styles.avatarView}>
@@ -68,36 +68,33 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
 
                         <View style={styles.group}>
-                            <Text style={styles.name}>{name}</Text>
-                            <TouchableOpacity>
-                                <Text style={styles.title}>{I18n.translate('singer.info')} <ArrowSvg/></Text>
-                            </TouchableOpacity>
+                            <SectionTitle 
+                                title={I18n.translate('singer.info')}
+                                onClick={() => {}}
+                            />
                             <Text numberOfLines={2} style={styles.description}>
                                 {description}
                             </Text>
                         </View>
+
                         <View style={styles.group}>
-                            <TouchableOpacity>
-                                <Text style={styles.title}>{I18n.translate('singer.songs')} <ArrowSvg/></Text>
-                            </TouchableOpacity>
+                            <SectionTitle 
+                                title={I18n.translate('singer.songs')}
+                                onClick={() => {}}
+                            />
                             {renderSongList()}
                         </View>
+
                         <View style={styles.group}>
-                            <TouchableOpacity>
-                                <Text style={styles.title}>{I18n.translate('singer.album')} <ArrowSvg/></Text>
-                            </TouchableOpacity>
+                            <SectionTitle 
+                                title={I18n.translate('singer.album')}
+                                onClick={() => {}}
+                            />
                             <AlbumList 
                                 navigation={navigation}
                                 playlist={album}
                                 isHorizontal={true}
                             />
-                            {/* <FlatList
-                                horizontal={true}
-                                data={chartDummyData}
-                                renderItem={({item}) => (<MusicChartItem title={item.title} image={item.image} onClick={() => {}}/>)}
-                                keyExtractor={item => item.id.toString()}
-                                style={{marginLeft: -20}}
-                            /> */}
                         </View>
                     </ScrollView>
                 </View>

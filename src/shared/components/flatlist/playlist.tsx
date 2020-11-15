@@ -1,5 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native';
+import { styles } from '../../../modules/splash/styles';
 import {Item} from './item'
 import { SquareItem } from './square-item';
 
@@ -16,7 +17,7 @@ interface Props {
     isAlbum?: boolean,
 }
 
-const AlbumList: React.FunctionComponent<Props> = (props: Props) => {
+const Playlist: React.FunctionComponent<Props> = (props: Props) => {
     const {navigation, isHorizontal = false, size, playlist, isAlbum = false} = props;
 
     const handleAlbum = (album) => {
@@ -30,6 +31,7 @@ const AlbumList: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <FlatList 
+                contentContainerStyle={!isHorizontal && styles.flatListContainer}
                 showsVerticalScrollIndicator={false}
                 data={playlist}
                 horizontal={isHorizontal}
@@ -58,4 +60,4 @@ const AlbumList: React.FunctionComponent<Props> = (props: Props) => {
     )
 }
 
-export default AlbumList;
+export default Playlist;

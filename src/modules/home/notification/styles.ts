@@ -1,32 +1,17 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
-const { width } = Dimensions.get('window');
-
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: styleVars.primaryColor,
-    },
-    header: {
-        width: width,
-        flexDirection: 'row',
         paddingVertical: 20,
-        paddingHorizontal: 20,
-        justifyContent: 'space-between',
-        borderBottomWidth: 1,
-        borderColor: styleVars.greyColor,
-        marginBottom: 20,
+        paddingHorizontal: 15
     },
-    headerTitle: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignSelf: 'center',
+    contentContainer: {
+        marginVertical: 30,
     },
     item: {
-        width: width,
-        paddingHorizontal: 20,
         height: 90,
         flexDirection: 'row',
         marginVertical: 5,
@@ -37,21 +22,22 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     textGroup: {
-        marginLeft: 20,
+        flex: 1,
+        marginLeft: 15,
         justifyContent: 'center',
     },
     title: {
-        color: 'white',
-        fontSize: 16,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
         fontWeight: 'bold',
         marginBottom: 5,
     },
     body: {
-        color: 'white',
-        fontSize: 14,
+        color: styleVars.white,
+        fontSize: styleVars.smallFontSize,
     },
     time: {
         color: styleVars.greyColor,
-        fontSize: 14,
+        fontSize: styleVars.smallFontSize
     },
 });

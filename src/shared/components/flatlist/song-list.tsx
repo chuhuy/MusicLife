@@ -1,6 +1,6 @@
 import React from 'react';
 import TrackPlayer from 'react-native-track-player';
-import {FlatList, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import { Song } from '../../../models/song';
 import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
 import {Item} from './item'
@@ -81,8 +81,11 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         <>
             {
                 disableScroll ? 
-                    <View>{songs.map((item) => renderItem(item))}</View> 
+                    <View style={styles.flatListContainer}>
+                        {songs.map((item) => renderItem(item))}
+                    </View> 
                     : <FlatList 
+                        contentContainerStyle={styles.flatListContainer}
                         data={songs}
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
@@ -95,4 +98,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
 export default connect(mapStateToProps, mapDispatchToProps)(List);
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
-type StateProps = ReturnType<typeof mapStateToProps>
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+const styles = StyleSheet.create({
+    flatListContainer: {
+        marginVertical: -7.5
+    }
+})
