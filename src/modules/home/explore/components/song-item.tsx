@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text, Dimensions, View } from 'react-native';
+import { StyleSheet, Image, Text, Dimensions, View, Pressable } from 'react-native';
 import { styleVars } from './../../../../shared/constance/style-variables';
-
-const { width } = Dimensions.get('window');
 
 interface Props {
     name: string,
@@ -12,47 +10,52 @@ interface Props {
 }
 
 export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
+    const {name, artist, onClick, image} = props;
+
     return (
         <>
-            <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.container}
-            onPressOut={props.onClick}>
-                <Image style={styles.image} source={{uri: props.image}}/>
-                <View style={styles.titleColumn}>
-                    <Text style={styles.song}>{props.name}</Text>
-                    <Text style={styles.artist}>{props.artist}</Text>
-                </View>
-            </TouchableOpacity>
+            <View style={styles.container}>
+                <Pressable
+                    style={styles.contentContainer}
+                    onPressOut={onClick}
+                >
+                    <Image style={styles.image} source={{uri: image}}/>
+                    <View style={styles.titleColumn}>
+                        <Text style={styles.song} numberOfLines={1}>{name}</Text>
+                        <Text style={styles.artist} numberOfLines={1}>{artist}</Text>
+                    </View>
+                </Pressable>
+            </View>
         </>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        width: (width - 50) / 2,
-        height: 45,
+        width: '50%',
+        padding: 7.5,
+    },
+    contentContainer: {
+        height: 55,
         flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: styleVars.lightPrimaryColor,
-        marginRight: 10,
-        marginBottom: 10,
-        overflow: 'hidden',
     },
     titleColumn: {
-        height: 45,
+        flex: 1,
         justifyContent: 'center',
-        marginLeft: 5,
+        marginLeft: 10,
     },
     image: {
-        height: 45,
-        width: 45,
+        height: 55,
+        width: 55,
     },
     song: {
-        fontSize: 14,
-        color: '#FFFFFF',
+        fontSize: styleVars.baseFontSize,
+        color: styleVars.white,
     },
     artist: {
-        fontSize: 12,
+        fontSize: styleVars.smallFontSize,
         color: styleVars.greyColor,
     },
 });

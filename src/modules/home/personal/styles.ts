@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     },
     locationTitle: {
         flexDirection: 'row',
-        marginTop: 30,
         marginBottom: 20,
     },
     locationButton: {

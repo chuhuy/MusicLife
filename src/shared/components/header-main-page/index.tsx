@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, Pressable} from 'react-native';
 import {styles} from './styles';
 import {SearchBar} from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
 import NotificationIcon from './../../../assets/icons/notification-active.svg';
+import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
 
 interface Props {
     navigation: any,
@@ -16,26 +17,25 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (props: Props) => 
     const handleUserProfile = () => {
         navigation.navigate('Setting');
     };
-    const handleNotification = () => {
-        navigation.navigate('Notification');
+    const handleNotification = async () => {
+        const notificationList = await fetchAllNotification();
+        navigation.navigate('Notification', { notificationList });
     };
 
     return (
         <>
             <View style={styles.header}>
-                <TouchableOpacity
-                    delayPressOut={0}
-                    onPressOut={handleNotification}>
+                <Pressable onPress={handleNotification} >
                     <NotificationIcon />
-                </TouchableOpacity>
+                </Pressable>
                 
                 <SearchBar />
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.userButton}
-                    onPressOut={handleUserProfile}>
+                    onPress={handleUserProfile}>
                     <UserIcon />
-                </TouchableOpacity>
+                </Pressable>
             </View>
         </>
     );

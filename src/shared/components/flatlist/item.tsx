@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { IconButton } from '../icon-button';
 import Option from '../../../assets/icons/option.svg';
 import { styleVars } from '../../constance/style-variables';
@@ -8,28 +8,27 @@ interface Props {
     onOptionClick: () => void
     onClick: () => void
     image: string
-    title: string
+    name: string
     artist?: string
 }
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
-    const {onOptionClick, onClick, image, title, artist} = props;
+    const {onOptionClick, onClick, image, name, artist} = props;
     return (
         <>
             <View style={styles.container} >
-                <TouchableOpacity
+                <Pressable
                     style={styles.touchAreaOne}
-                    delayPressIn={0}
-                    onPressOut={onClick}
+                    onPress={onClick}
                 >
                     <View style={styles.metadata} >
                         <Image source={{uri: image}} style={styles.image} />
                         <View style={styles.titleGroup}>
-                            <Text style={styles.title}>{title}</Text>
+                            <Text style={styles.title}>{name}</Text>
                             {artist && <Text style={styles.artist}>{artist}</Text>}
                         </View>
                     </View>
-                </TouchableOpacity>
+                </Pressable>
                 <View style={styles.touchAreaTwo}>
                     <IconButton icon={Option} onClick={onOptionClick} />
                 </View>
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignContent: 'center',
-        marginBottom: 20,
+        marginBottom: 15,
     },
     metadata: {
         flex: 1,
@@ -56,8 +55,8 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     image: {
-        height: 50,
-        width: 50,
+        height: 60,
+        width: 60,
     },
     titleGroup: {
         justifyContent: 'center',

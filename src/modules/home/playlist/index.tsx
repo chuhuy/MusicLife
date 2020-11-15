@@ -13,7 +13,7 @@ interface Props {
 }
 
 const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
-
+    console.log(props.route.params)
     const { newPlaylist } = props.route.params;
     const handleBack = () => {
         props.navigation.goBack();
@@ -30,7 +30,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.container}>
                 <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: newPlaylist.image_url || ''}}>
                     <View style={styles.header}>
-                        <IconButton icon={ArrowLeft} onClick={() => handleBack()}/>
+                        <IconButton icon={ArrowLeft} onClick={handleBack}/>
                     </View>
                     <Image source={{uri: newPlaylist.image_url || ''}} style={styles.image}/>
                     <View style={styles.control}>
@@ -51,7 +51,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 <View style={styles.sectionTwo}>
                     <FlatList
                         data={songs}
-                        renderItem={({item}) => (<SongItem title={item.title} artist={item.artists[0].name} image={item.image_url} onOptionClick={() => handleOpenOption()} onClick={() => handlePlayMusic()}/>)}
+                        renderItem={({item}) => (<SongItem title={item.title} artist={item.artist} image={item.image_url} onOptionClick={handleOpenOption} onClick={handlePlayMusic}/>)}
                         keyExtractor={item => item.id.toString()}
                     />
                 </View>
