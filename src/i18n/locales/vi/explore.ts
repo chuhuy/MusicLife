@@ -4,5 +4,6 @@ export const explore = {
     'top100': 'Top 100',
     'latest-song': 'Bài hát mới nhất',
     'latest-playlist': 'Danh sách mới nhất',
+    'latest-album': 'Album mới nhất',
     'genre': 'Thể loại',
 };

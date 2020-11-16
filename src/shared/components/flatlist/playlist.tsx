@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, ScrollView, StyleSheet} from 'react-native';
 import { Playlist } from '../../../models/playlist';
 import {Item} from './item'
 import { SquareItem } from './square-item';
@@ -10,12 +10,11 @@ interface Props {
     playlist: Array<Playlist>,
     size?: number,
     isAlbum?: boolean,
-    disableScroll?: boolean,
     children?: any
 }
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, isHorizontal = false, disableScroll = false, size, playlist, isAlbum = false, children} = props;
+    const {navigation, isHorizontal = false, size, playlist, isAlbum = false, children} = props;
 
     const handleAlbum = (album) => {
         navigation.navigate('Playlist', {newPlaylist: album, isAlbum});
@@ -25,9 +24,16 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         console.log('Opened option');
     };
 
+    const getFlatListContainerStyle = () => {
+        if (size === 2) 
+            return styles.flexFlatlist;
+        
+        return styles.flatlist;
+    }
+
     const renderItem = (item: Playlist) => {
         return (
-            isHorizontal ? 
+            isHorizontal || size ? 
                 <SquareItem 
                     key={item.id}
                     name={item.name}
@@ -46,18 +52,23 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                 />
         )
     };
-
+    
     return (
         <>
             {
-            disableScroll ? 
-                <ScrollView style={styles.flatListContainer}>
+            !isHorizontal ? 
+                <ScrollView 
+                    contentContainerStyle={getFlatListContainerStyle()}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                >
                     {playlist.map((item) => renderItem(item))}
                     {children}
                 </ScrollView> 
                 : <FlatList 
-                    contentContainerStyle={!isHorizontal && styles.flatListContainer}
+                    contentContainerStyle={styles.flatlist}
                     showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
                     data={playlist}
                     horizontal={isHorizontal}
                     renderItem={({item}) => renderItem(item)}
@@ -72,7 +83,14 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
 export default PlaylistList;
 
 const styles = StyleSheet.create({
-    flatListContainer: {
-        marginVertical: -10
+    flexFlatlist: {
+        flex: 1,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: -15,
+    },
+    flatlist: {
+        marginHorizontal: -10
     }
 })

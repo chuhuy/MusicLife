@@ -60,7 +60,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     onClick={() => chooseType(TYPE.ALBUM)}
                 />
                 <PlaylistList 
-                    disableScroll={true}
+                    isHorizontal={false}
                     navigation={navigation}
                     playlist={album}
                 >
@@ -75,7 +75,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     onClick={() => chooseType(TYPE.PLAYLIST)}    
                 />
                 <PlaylistList 
-                    disableScroll={true}
+                    isHorizontal={false}
                     navigation={navigation}
                     playlist={playlist}
                 >
