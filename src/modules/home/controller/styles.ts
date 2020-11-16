@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         fontSize: 14,
     },
     view: {
-        backgroundColor: styleVars.primaryColor,
+        backgroundColor: 'transparent',
     },
     button: {
         marginHorizontal: 5,

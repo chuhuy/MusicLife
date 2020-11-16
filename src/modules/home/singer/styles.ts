@@ -3,7 +3,7 @@ import { styleVars } from '../../../shared/constance/style-variables';
 export const styles = StyleSheet.create({
     imageBackground: {
         flex: 1,
-        resizeMode: "cover",
+        resizeMode: "center",
         justifyContent: "center",
     },
     container: {
