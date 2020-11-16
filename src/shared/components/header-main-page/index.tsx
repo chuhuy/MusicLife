@@ -29,7 +29,7 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (props: Props) => 
                     <NotificationIcon />
                 </Pressable>
                 
-                <SearchBar />
+                <SearchBar navigation={navigation} />
 
                 <Pressable
                     style={styles.userButton}

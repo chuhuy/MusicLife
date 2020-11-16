@@ -2,9 +2,6 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from './../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    flatListContainer: {
-        // marginVertical: -7.5
-    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -13,5 +10,5 @@ export const styles = StyleSheet.create({
     },
     logo: {
         marginBottom: 20,
-    },
+    }
 });

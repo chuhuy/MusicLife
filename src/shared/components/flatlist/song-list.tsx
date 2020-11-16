@@ -5,6 +5,7 @@ import { Song } from '../../../models/song';
 import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
 import {Item} from './item'
 import { connect } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -30,7 +31,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         console.log('play music')
         const formattedSong: Song = {
             id: song.id,
-            title: song.title,
+            name: song.name,
             image_url: song.image_url,
             artist: song.artist,
             url: song.url,
@@ -39,7 +40,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         const track = {
             id: song.id,
             url: song.url,
-            title: song.title,
+            title: song.name,
             artist: song.artist,
             album: song.album || '',
             genre: song.genre || '',
@@ -68,7 +69,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         return (
             <Item 
                 key={item.id}
-                name={item.title}
+                name={item.name}
                 image={item.image_url}
                 artist={item.artist}
                 onClick={() => handlePlayMusic(item)}
@@ -81,10 +82,11 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         <>
             {
                 disableScroll ? 
-                    <View style={styles.flatListContainer}>
+                    <ScrollView style={styles.flatListContainer}>
                         {songs.map((item) => renderItem(item))}
-                    </View> 
+                    </ScrollView> 
                     : <FlatList 
+                        showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.flatListContainer}
                         data={songs}
                         renderItem={({item}) => renderItem(item)}

@@ -5,7 +5,9 @@ export const styles = StyleSheet.create({
     underlineTabBar: {
         flexDirection: 'row',
         marginBottom: 30,
-        marginLeft: -5
+        // ma
+        marginLeft: -5,
+        marginRight: -15
     },
     tabButton: {
         marginRight: 15,
@@ -21,9 +23,4 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 2,
         paddingBottom: 10,
     },
-    // tabInactive: {
-    //     color: styleVars.greyColor,
-    //     fontSize: styleVars.baseFontSize,
-    //     paddingHorizontal: 8
-    // }
 })
