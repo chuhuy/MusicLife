@@ -10,7 +10,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 interface Props extends DispatchProps, StateProps {
     navigation: any,
     songs: Array<Song>,
-    disableScroll?: boolean
+    disableScroll?: boolean,
+    children?: any,
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -25,13 +26,13 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, songs, disableScroll, saveSongToStore, playMusic, pauseMusic} = props;
+    const {navigation, songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
 
     const handlePlayMusic = (song) => {
         console.log('play music')
         const formattedSong: Song = {
             id: song.id,
-            name: song.name,
+            title: song.title,
             image_url: song.image_url,
             artist: song.artist,
             url: song.url,
@@ -40,7 +41,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         const track = {
             id: song.id,
             url: song.url,
-            title: song.name,
+            title: song.title,
             artist: song.artist,
             album: song.album || '',
             genre: song.genre || '',
@@ -69,7 +70,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         return (
             <Item 
                 key={item.id}
-                name={item.name}
+                name={item.title}
                 image={item.image_url}
                 artist={item.artist}
                 onClick={() => handlePlayMusic(item)}
@@ -84,6 +85,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                 disableScroll ? 
                     <ScrollView style={styles.flatListContainer}>
                         {songs.map((item) => renderItem(item))}
+                        {children}
                     </ScrollView> 
                     : <FlatList 
                         showsVerticalScrollIndicator={false}
@@ -91,6 +93,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                         data={songs}
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
+                        ListFooterComponent={children}
                     />
             }
         </>
@@ -104,6 +107,6 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        marginVertical: -7.5
+        marginVertical: -10
     }
 })

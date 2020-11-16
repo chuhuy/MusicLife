@@ -10,6 +10,7 @@ import { SongList } from '../../../../shared/components/flatlist';
 import PlaylistList from '../../../../shared/components/flatlist/playlist';
 import { MoreButton } from './more-button';
 import { ArtistList } from './artist-list';
+import { styleVars } from '../../../../shared/constance/style-variables';
 
 interface Props {
     navigation: any,
@@ -34,6 +35,9 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     navigation={navigation}
                     artist={artist}
                 />
+                <View style={styles.buttonContainer}>
+                    <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
+                </View>
             </View>
             <View style={styles.section}>
                 <SectionTitle 
@@ -44,10 +48,11 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     navigation={navigation}
                     disableScroll={true}
                     songs={song}
-                />
-                <View style={styles.buttonContainer}>
-                    <MoreButton onClick={() => chooseType(TYPE.SONG)} />
-                </View>
+                >
+                    <View style={styles.buttonContainer}>
+                        <MoreButton onClick={() => chooseType(TYPE.SONG)} />
+                    </View>
+                </SongList>
             </View>
             <View style={styles.section}>
                 <SectionTitle 
@@ -58,10 +63,11 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     disableScroll={true}
                     navigation={navigation}
                     playlist={album}
-                />
-                <View style={styles.buttonContainer}>
-                    <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
-                </View>
+                >
+                    <View style={styles.buttonContainer}>
+                        <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
+                    </View>
+                </PlaylistList>
             </View>
             <View style={styles.section}>
                 <SectionTitle 
@@ -72,10 +78,11 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     disableScroll={true}
                     navigation={navigation}
                     playlist={playlist}
-                />
-                <View style={styles.buttonContainer}>
-                    <MoreButton onClick={() => chooseType(TYPE.PLAYLIST)} />
-                </View>
+                >
+                    <View style={styles.buttonContainer}>
+                        <MoreButton onClick={() => chooseType(TYPE.PLAYLIST)} />
+                    </View>
+                </PlaylistList>
             </View>
         </>
     )
@@ -86,7 +93,6 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     buttonContainer: {
-        justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10
     }

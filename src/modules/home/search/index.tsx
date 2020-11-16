@@ -65,6 +65,12 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             onClick: handleOpenTab
         },
         {
+            title: I18n.translate('search.artists'),
+            type: TYPE.ARTIST,
+            active: activeTab === TYPE.ARTIST,
+            onClick: handleOpenTab
+        },
+        {
             title: I18n.translate('search.songs'),
             type: TYPE.SONG,
             active: activeTab === TYPE.SONG,
@@ -80,12 +86,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             title: I18n.translate('search.playlists'),
             type: TYPE.PLAYLIST,
             active: activeTab === TYPE.PLAYLIST,
-            onClick: handleOpenTab
-        },
-        {
-            title: I18n.translate('search.artists'),
-            type: TYPE.ARTIST,
-            active: activeTab === TYPE.ARTIST,
             onClick: handleOpenTab
         },
     ]
@@ -121,29 +121,33 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                         />
                     </ScrollView>
                 }
-                <View style={styles.body}>
-                    {
-                        activeTab === TYPE.SONG && 
+                {
+                    activeTab === TYPE.SONG && 
+                    <View style={styles.body}>
                         <SongTab 
                             navigation={navigation} 
                             song={resultSong}
                         />
-                    }
-                    {
-                        (activeTab === TYPE.PLAYLIST || activeTab === TYPE.ALBUM) && 
+                    </View>
+                }
+                {
+                    (activeTab === TYPE.PLAYLIST || activeTab === TYPE.ALBUM) && 
+                    <View style={styles.body}>
                         <PlaylistTab 
                             navigation={navigation} 
                             playlist={activeTab === TYPE.PLAYLIST ? resultPlaylist : resultAlbum}
                         />
-                    }
-                    {
-                        activeTab === TYPE.ARTIST && 
+                    </View>
+                }
+                {
+                    activeTab === TYPE.ARTIST && 
+                    <View style={styles.body}>
                         <ArtistTab 
                             navigation={navigation} 
                             artist={artist}
                         />
-                    }
-                </View>
+                        </View>
+                }
             </SafeAreaView>
         </>
     )

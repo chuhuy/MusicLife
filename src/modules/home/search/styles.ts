@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
         marginBottom: 30
     },
     body: {
-        marginBottom: 20
+        flex: 1,
+        marginBottom: -30
     }
 })

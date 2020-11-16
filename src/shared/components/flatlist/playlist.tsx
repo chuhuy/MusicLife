@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, StyleSheet} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import { Playlist } from '../../../models/playlist';
 import {Item} from './item'
 import { SquareItem } from './square-item';
@@ -10,11 +10,12 @@ interface Props {
     playlist: Array<Playlist>,
     size?: number,
     isAlbum?: boolean,
-    disableScroll?: boolean
+    disableScroll?: boolean,
+    children?: any
 }
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, isHorizontal = false, disableScroll = false, size, playlist, isAlbum = false} = props;
+    const {navigation, isHorizontal = false, disableScroll = false, size, playlist, isAlbum = false, children} = props;
 
     const handleAlbum = (album) => {
         navigation.navigate('Playlist', {newPlaylist: album, isAlbum});
@@ -52,6 +53,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             disableScroll ? 
                 <ScrollView style={styles.flatListContainer}>
                     {playlist.map((item) => renderItem(item))}
+                    {children}
                 </ScrollView> 
                 : <FlatList 
                     contentContainerStyle={!isHorizontal && styles.flatListContainer}
@@ -60,6 +62,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                     horizontal={isHorizontal}
                     renderItem={({item}) => renderItem(item)}
                     keyExtractor={(item) => item.id.toString()}
+                    ListFooterComponent={children}
                 />
             }
         </>
@@ -70,6 +73,6 @@ export default PlaylistList;
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        margin: -7.5
+        marginVertical: -10
     }
 })

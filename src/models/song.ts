@@ -1,6 +1,6 @@
 export interface Song {
     id: number,
-    name: string,
+    title: string,
     artist: string,
     image_url: string,
     isPlaying?: boolean,

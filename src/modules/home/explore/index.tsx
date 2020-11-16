@@ -42,7 +42,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const handlePlayMusic = (song: any) => {
         const formattedSong: Song = {
             id: song.id,
-            name: song.name,
+            title: song.title,
             image_url: song.image_url,
             artist: song.artist,
             url: song.url,
@@ -51,7 +51,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         const track = {
             id: song.id,
             url: song.url,
-            title: song.name,
+            title: song.title,
             artist: song.artist,
             album: song.album || '',
             genre: song.genre || '',
@@ -86,7 +86,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         return (
             <SongItem 
                 key={item.id}
-                name={item.name} 
+                name={item.title} 
                 artist={item.artist} 
                 image={item.image_url} 
                 onClick={() => handlePlayMusic(item)}

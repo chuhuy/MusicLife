@@ -41,10 +41,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignContent: 'center',
-        paddingVertical: 7.5
+        paddingVertical: 10
     },
     metadata: {
-        flex: 1,
         flexDirection: 'row',
     },
     touchAreaOne: {
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
     },
     touchAreaTwo: {
         justifyContent: 'center',
-        marginRight: 10,
     },
     image: {
         height: 60,

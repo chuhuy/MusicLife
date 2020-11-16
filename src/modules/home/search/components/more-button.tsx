@@ -4,11 +4,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { styleVars } from '../../../../shared/constance/style-variables';
 
 interface Props {
-    onClick: () => void
+    onClick: () => void,
+    isHorizontal?: boolean
 }
 
 export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
-    const {onClick} = props;
+    const {onClick, isHorizontal = false} = props;
 
     return (
         <>
@@ -17,10 +18,8 @@ export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
                 onPress={onClick}
             >
                 <View style={styles.touchArea}>
-                <Text style={styles.text}>{I18n.translate('search.more-button')}</Text> 
-
+                    <Text style={styles.text}>{I18n.translate('search.more-button')}</Text> 
                 </View>
-                
             </Pressable>
         </>
     )

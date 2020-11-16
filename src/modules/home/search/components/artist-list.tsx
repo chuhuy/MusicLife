@@ -89,18 +89,19 @@ const styles = StyleSheet.create({
     },
     verticalItem: {
         flexDirection: 'row',
-        paddingVertical: 8
+        paddingVertical: 10
     },
     horizontalItem: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        paddingBottom: 10
     },
     artistListHorizontal: {
         marginHorizontal: -15
     },
     artistListVertical: {
-        marginVertical: -8,
+        marginVertical: -10,
     },
     artistImage: {
         width: 70,
@@ -108,9 +109,9 @@ const styles = StyleSheet.create({
         borderRadius: 70
     },
     artistImageVertical: {
-        width: 50,
-        height: 50,
-        borderRadius: 50
+        width: 55,
+        height: 55,
+        borderRadius: 55
     },
     artistName: {
         color: styleVars.white,
