@@ -12,6 +12,7 @@ import Notification from './../modules/home/notification';
 import EditProfile from '../modules/home/setting/edit-profile';
 import Playlist from './../modules/home/playlist';
 import Search from '../modules/home/search';
+import Singer from '../modules/home/singer';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         <Stack.Screen name="EditProfile" component={EditProfile}/>
                         <Stack.Screen name="Playlist" component={Playlist}/>
                         <Stack.Screen name="Search" component={Search}/>
+                        <Stack.Screen name="Singer" component={Singer}/>
                     </>
                 )}
                 {/* {props.refresh_token === null ? (
