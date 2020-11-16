@@ -9,249 +9,249 @@
 9        android:targetSdkVersion="29" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\debug\AndroidManifest.xml:5:5-77
-11-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\debug\AndroidManifest.xml:5:22-75
+11-->E:\App\MusicLife\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->E:\App\MusicLife\android\app\src\debug\AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:4:5-67
-12-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:4:22-64
+12-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:5-76
-13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:22-73
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:5-76
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:22-73
 14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:5-68
-14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:22-65
+14-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:5-68
+14-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:22-65
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:5-79
-15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:22-76
+15-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:5-79
+15-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:22-76
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:5-81
-16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:22-78
+16-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:5-81
+16-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:22-78
 17    <uses-permission android:name="android.permission.VIBRATE" />
-17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:5-66
-17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:22-63
+17-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:5-66
+17-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:22-63
 18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:5-77
-18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:22-74
+18-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:5-77
+18-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:22-74
 19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-19-->[:react-native-fs] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-81
-19-->[:react-native-fs] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-78
+19-->[:react-native-fs] E:\App\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-81
+19-->[:react-native-fs] E:\App\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-78
 20    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-20-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:26:5-82
-20-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:26:22-79
+20-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:26:5-82
+20-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:26:22-79
 21    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:26:5-110
-21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:26:22-107
+21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:26:5-110
+21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:26:22-107
 22
 23    <application
-23-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:6:5-26:19
+23-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:6:5-26:19
 24        android:name="com.musiclife.MainApplication"
-24-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:7:7-38
+24-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:7:7-38
 25        android:allowBackup="false"
-25-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:11:7-34
+25-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:11:7-34
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\f354410efc6d31bf6f176e41e7798cf0\core-1.2.0\AndroidManifest.xml:24:18-86
+26-->[androidx.core:core:1.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\f354410efc6d31bf6f176e41e7798cf0\core-1.2.0\AndroidManifest.xml:24:18-86
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
-28-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:9:7-41
+28-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:9:7-41
 29        android:label="@string/app_name"
-29-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:8:7-39
+29-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:8:7-39
 30        android:roundIcon="@mipmap/ic_launcher_round"
-30-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:10:7-52
+30-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:10:7-52
 31        android:supportsRtl="true"
-31-->[com.facebook.android:facebook-android-sdk:5.15.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6711cf5d28fd787f02bad4d82e6b4845\facebook-android-sdk-5.15.3\AndroidManifest.xml:28:18-44
+31-->[com.facebook.android:facebook-android-sdk:5.15.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6711cf5d28fd787f02bad4d82e6b4845\facebook-android-sdk-5.15.3\AndroidManifest.xml:28:18-44
 32        android:theme="@style/AppTheme"
-32-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:12:7-38
+32-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:12:7-38
 33        android:usesCleartextTraffic="true" >
-33-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\debug\AndroidManifest.xml:7:18-53
+33-->E:\App\MusicLife\android\app\src\debug\AndroidManifest.xml:7:18-53
 34        <activity
-34-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:13:7-23:18
+34-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:13:7-23:18
 35            android:name="com.musiclife.MainActivity"
-35-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:14:9-37
+35-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:14:9-37
 36            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-36-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:16:9-86
+36-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:16:9-86
 37            android:label="@string/app_name"
-37-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:15:9-41
+37-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:15:9-41
 38            android:launchMode="singleTask"
-38-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:17:9-40
+38-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:17:9-40
 39            android:windowSoftInputMode="adjustResize" >
-39-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:18:9-51
+39-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:18:9-51
 40            <intent-filter>
-40-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:19:9-22:25
+40-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:19:9-22:25
 41                <action android:name="android.intent.action.MAIN" />
-41-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:20:13-65
-41-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:20:21-62
+41-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:20:13-65
+41-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:20:21-62
 42
 43                <category android:name="android.intent.category.LAUNCHER" />
-43-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:21:13-73
-43-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:21:23-70
+43-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:21:13-73
+43-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:21:23-70
 44            </intent-filter>
 45        </activity>
 46        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-46-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:24:7-84
-46-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:24:17-81
+46-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:24:7-84
+46-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:24:17-81
 47
 48        <meta-data
-48-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:25:7-105
+48-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:25:7-105
 49            android:name="com.facebook.sdk.ApplicationId"
-49-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:25:18-63
+49-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:25:18-63
 50            android:value="@string/facebook_app_id" />
-50-->E:\Monhocnam3\UI\Music\MusicLife\android\app\src\main\AndroidManifest.xml:25:64-103
+50-->E:\App\MusicLife\android\app\src\main\AndroidManifest.xml:25:64-103
 51
 52        <provider
-52-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-16:40
+52-->[:notifee_react-native] E:\App\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-16:40
 53            android:name="io.invertase.notifee.NotifeeInitProvider"
-53-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-68
+53-->[:notifee_react-native] E:\App\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-68
 54            android:authorities="com.musiclife.notifee-init-provider"
-54-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-73
+54-->[:notifee_react-native] E:\App\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-73
 55            android:exported="false"
-55-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+55-->[:notifee_react-native] E:\App\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
 56            android:initOrder="-100" /> <!-- Receiver Service -->
-56-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
+56-->[:notifee_react-native] E:\App\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
 57        <service
-57-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:21:9-23:40
+57-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:21:9-23:40
 58            android:name="app.notifee.core.ReceiverService"
-58-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:22:13-60
+58-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:22:13-60
 59            android:exported="false" /> <!-- Foreground Service -->
-59-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:23:13-37
+59-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:23:13-37
 60        <service
-60-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:26:9-28:40
+60-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:26:9-28:40
 61            android:name="app.notifee.core.ForegroundService"
-61-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:27:13-62
+61-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:27:13-62
 62            android:exported="false" /> <!-- Broadcast Receiver -->
-62-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:28:13-37
+62-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:28:13-37
 63        <receiver
-63-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:31:9-39:20
+63-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:31:9-39:20
 64            android:name="app.notifee.core.BlockStateBroadcastReceiver"
-64-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:32:13-72
+64-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:32:13-72
 65            android:exported="false" >
-65-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:33:13-37
+65-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:33:13-37
 66            <intent-filter>
-66-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:34:13-38:29
+66-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:34:13-38:29
 67                <action android:name="android.app.action.APP_BLOCK_STATE_CHANGED" />
-67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:17-85
-67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:25-82
+67-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:17-85
+67-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:25-82
 68                <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED" />
-68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:17-102
-68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:25-99
+68-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:17-102
+68-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:25-99
 69                <action android:name="android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED" />
-69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:17-108
-69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:25-105
+69-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:17-108
+69-->[notifee_core_release.aar] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:25-105
 70            </intent-filter>
 71        </receiver>
 72
 73        <service android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService" />
-73-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:9-111
-73-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:18-108
+73-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:9-111
+73-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:18-108
 74        <service
-74-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-23:19
+74-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-23:19
 75            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
-75-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-95
+75-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-95
 76            android:exported="false" >
-76-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-37
+76-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-37
 77            <intent-filter>
-77-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-22:29
+77-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-22:29
 78                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-78-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:17-78
-78-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:25-75
+78-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:17-78
+78-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:25-75
 79            </intent-filter>
 80        </service>
 81
 82        <receiver
-82-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:9-32:20
+82-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:9-32:20
 83            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
-83-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-96
+83-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-96
 84            android:exported="true"
-84-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:13-36
+84-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:13-36
 85            android:permission="com.google.android.c2dm.permission.SEND" >
-85-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-73
+85-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-73
 86            <intent-filter>
-86-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-31:29
+86-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-31:29
 87                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-87-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-81
-87-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-78
+87-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-81
+87-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-78
 88            </intent-filter>
 89        </receiver>
 90
 91        <meta-data
-91-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:9-36:36
+91-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:9-36:36
 92            android:name="firebase_messaging_auto_init_enabled"
-92-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:35:13-64
+92-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:35:13-64
 93            android:value="true" />
-93-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-33
+93-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-33
 94        <meta-data
-94-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:37:9-39:32
+94-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:37:9-39:32
 95            android:name="com.google.firebase.messaging.default_notification_channel_id"
-95-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:13-89
+95-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:13-89
 96            android:value="" />
-96-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-29
+96-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-29
 97        <meta-data
-97-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:9-42:47
+97-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:9-42:47
 98            android:name="com.google.firebase.messaging.default_notification_color"
-98-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-84
+98-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-84
 99            android:resource="@color/white" /> <!-- The main service, handles playback, playlists and media buttons -->
-99-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-44
+99-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-44
 100        <service
-100-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-24:19
+100-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-24:19
 101            android:name="com.guichaguri.trackplayer.service.MusicService"
-101-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-75
+101-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-75
 102            android:enabled="true"
-102-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-35
+102-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-35
 103            android:exported="true" >
-103-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-36
+103-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-36
 104            <intent-filter>
-104-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
+104-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
 105                <action android:name="android.intent.action.MEDIA_BUTTON" />
-105-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
-105-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
+105-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
+105-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
 106            </intent-filter>
 107        </service> <!-- A receiver that will receive media buttons. Required on pre-lollipop devices -->
 108        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
-108-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:20
-108-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:19-76
+108-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:20
+108-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:19-76
 109            <intent-filter>
-109-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
+109-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-23:29
 110                <action android:name="android.intent.action.MEDIA_BUTTON" />
-110-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
-110-->[:react-native-track-player] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
+110-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:17-77
+110-->[:react-native-track-player] E:\App\MusicLife\node_modules\react-native-track-player\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:25-74
 111            </intent-filter>
 112        </receiver>
 113
 114        <activity
-114-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:30:9-33:66
+114-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:30:9-33:66
 115            android:name="com.facebook.FacebookActivity"
-115-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:31:13-57
+115-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:31:13-57
 116            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-116-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:32:13-96
+116-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:32:13-96
 117            android:theme="@style/com_facebook_activity_theme" />
-117-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:33:13-63
+117-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:33:13-63
 118        <activity android:name="com.facebook.CustomTabMainActivity" />
-118-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:34:9-71
-118-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:34:19-68
+118-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:34:9-71
+118-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:34:19-68
 119        <activity
-119-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:35:9-49:20
+119-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:35:9-49:20
 120            android:name="com.facebook.CustomTabActivity"
-120-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:36:13-58
+120-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:36:13-58
 121            android:exported="true" >
-121-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:37:13-36
+121-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:37:13-36
 122            <intent-filter>
-122-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:39:13-48:29
+122-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:39:13-48:29
 123                <action android:name="android.intent.action.VIEW" />
-123-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:40:17-69
-123-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:40:25-66
+123-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:40:17-69
+123-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:40:25-66
 124
 125                <category android:name="android.intent.category.DEFAULT" />
-125-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:42:17-76
-125-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:42:27-73
+125-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:42:17-76
+125-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:42:27-73
 126                <category android:name="android.intent.category.BROWSABLE" />
-126-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:43:17-78
-126-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:43:27-75
+126-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:43:17-78
+126-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:43:27-75
 127
 128                <data
-128-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:45:17-47:50
+128-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:45:17-47:50
 129                    android:host="cct.com.musiclife"
-129-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:46:21-56
+129-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:46:21-56
 130                    android:scheme="fbconnect" />
-130-->[com.facebook.android:facebook-common:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:47:21-47
+130-->[com.facebook.android:facebook-common:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6627d5f1ff9eb1c876dde55713ceccb1\facebook-common-7.1.0\AndroidManifest.xml:47:21-47
 131            </intent-filter>
 132        </activity>
 133        <!--
@@ -264,25 +264,25 @@
 140         a completely different provider.
 141        -->
 142        <provider
-142-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:39:9-42:40
+142-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:39:9-42:40
 143            android:name="com.facebook.internal.FacebookInitProvider"
-143-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:40:13-70
+143-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:40:13-70
 144            android:authorities="com.musiclife.FacebookInitProvider"
-144-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:41:13-72
+144-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:41:13-72
 145            android:exported="false" />
-145-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:42:13-37
+145-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:42:13-37
 146
 147        <receiver
-147-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:44:9-50:20
+147-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:44:9-50:20
 148            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-148-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:45:13-86
+148-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:45:13-86
 149            android:exported="false" >
-149-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:46:13-37
+149-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:46:13-37
 150            <intent-filter>
-150-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:47:13-49:29
+150-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:47:13-49:29
 151                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-151-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:17-95
-151-->[com.facebook.android:facebook-core:7.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\56b259266e3e157ee7b0e21b80b1fa69\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:25-92
+151-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:17-95
+151-->[com.facebook.android:facebook-core:7.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\dea963562ddd90567c5345a7ae53578b\jetified-facebook-core-7.1.0\AndroidManifest.xml:48:25-92
 152            </intent-filter>
 153        </receiver>
 154        <!--
@@ -290,387 +290,387 @@
 156             but set to not exported to explicitly avoid allowing another app to call it.
 157        -->
 158        <service
-158-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:28:9-35:19
+158-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:28:9-35:19
 159            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-159-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:29:13-82
+159-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:29:13-82
 160            android:directBootAware="true"
-160-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:30:13-43
+160-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:30:13-43
 161            android:exported="false" >
-161-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:31:13-37
+161-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:31:13-37
 162            <intent-filter android:priority="-500" >
-162-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-22:29
+162-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-22:29
 163                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-163-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:17-78
-163-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:25-75
+163-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:17-78
+163-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:25-75
 164            </intent-filter>
 165        </service>
 166        <service
-166-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:36:9-42:19
+166-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:36:9-42:19
 167            android:name="com.google.firebase.components.ComponentDiscoveryService"
-167-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:37:13-84
+167-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:37:13-84
 168            android:directBootAware="true"
-168-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+168-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
 169            android:exported="false" >
-169-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:38:13-37
+169-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:38:13-37
 170            <meta-data
-170-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:39:13-41:85
+170-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:39:13-41:85
 171                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-171-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:40:17-119
+171-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:40:17-119
 172                android:value="com.google.firebase.components.ComponentRegistrar" />
-172-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9260e7105be19ce7f19e7c7d703d6a75\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:41:17-82
+172-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\e550aaec491eb4839c88178e62ac045c\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:41:17-82
 173            <meta-data
-173-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:28:13-30:85
+173-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:28:13-30:85
 174                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-174-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:29:17-115
+174-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:29:17-115
 175                android:value="com.google.firebase.components.ComponentRegistrar" />
-175-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:30:17-82
+175-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\340c036630a2895932362cf89284bded\firebase-datatransport-17.0.3\AndroidManifest.xml:30:17-82
 176            <meta-data
-176-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:32:13-34:85
+176-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:32:13-34:85
 177                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-177-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:33:17-96
+177-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:33:17-96
 178                android:value="com.google.firebase.components.ComponentRegistrar" />
-178-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:34:17-82
+178-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:34:17-82
 179            <meta-data
-179-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:30:13-32:85
+179-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:30:13-32:85
 180                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-180-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:31:17-139
+180-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:31:17-139
 181                android:value="com.google.firebase.components.ComponentRegistrar" />
-181-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:32:17-82
+181-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\156df2eac9fa9df701bb6de8b807d36c\play-services-measurement-api-17.6.0\AndroidManifest.xml:32:17-82
 182            <meta-data
-182-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:17:13-19:85
+182-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:17:13-19:85
 183                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-183-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:18:17-127
+183-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:18:17-127
 184                android:value="com.google.firebase.components.ComponentRegistrar" />
-184-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:19:17-82
+184-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\cecf8c108db86954d4b59c86349d15b1\firebase-installations-16.3.3\AndroidManifest.xml:19:17-82
 185        </service>
 186        <service
-186-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:29:9-35:19
+186-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:29:9-35:19
 187            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-187-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:30:13-103
+187-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:30:13-103
 188            android:exported="false" >
-188-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:31:13-37
+188-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:31:13-37
 189            <meta-data
-189-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:32:13-34:39
+189-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:32:13-34:39
 190                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-190-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:33:17-94
+190-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:33:17-94
 191                android:value="cct" />
-191-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:34:17-36
+191-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\9b8e790869747a5dc69620561641f07d\transport-backend-cct-2.2.0\AndroidManifest.xml:34:17-36
 192        </service>
 193        <service
-193-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:26:9-30:19
+193-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:26:9-30:19
 194            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-194-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:27:13-117
+194-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:27:13-117
 195            android:exported="false"
-195-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:28:13-37
+195-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:28:13-37
 196            android:permission="android.permission.BIND_JOB_SERVICE" >
-196-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:29:13-69
+196-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:29:13-69
 197        </service>
 198
 199        <receiver
-199-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:32:9-34:40
+199-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:32:9-34:40
 200            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-200-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:33:13-132
+200-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:33:13-132
 201            android:exported="false" />
-201-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:34:13-37
+201-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\01ae294ad4d744ba24bd055dc995b8e6\transport-runtime-2.2.0\AndroidManifest.xml:34:13-37
 202
 203        <activity
-203-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:23:9-27:75
+203-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:23:9-27:75
 204            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-204-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:24:13-93
+204-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:24:13-93
 205            android:excludeFromRecents="true"
-205-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:25:13-46
+205-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:25:13-46
 206            android:exported="false"
-206-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:26:13-37
+206-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:26:13-37
 207            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-207-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:27:13-72
+207-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:27:13-72
 208        <!--
 209            Service handling Google Sign-In user revocation. For apps that do not integrate with
 210            Google Sign-In, this service will never be started.
 211        -->
 212        <service
-212-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:33:9-37:51
+212-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:33:9-37:51
 213            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-213-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:34:13-89
+213-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:34:13-89
 214            android:exported="true"
-214-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:35:13-36
+214-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:35:13-36
 215            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-215-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:36:13-107
+215-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:36:13-107
 216            android:visibleToInstantApps="true" />
-216-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:37:13-48
+216-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\417cd6b002d4424cfc58e4ad88ce24b6\play-services-auth-18.1.0\AndroidManifest.xml:37:13-48
 217
 218        <receiver
-218-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:37:9-44:20
+218-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:37:9-44:20
 219            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-219-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:38:13-78
+219-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:38:13-78
 220            android:exported="true"
-220-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:39:13-36
+220-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:39:13-36
 221            android:permission="com.google.android.c2dm.permission.SEND" >
-221-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:40:13-73
+221-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\3bba64128da80199431e22a5d815bbf2\firebase-iid-20.3.0\AndroidManifest.xml:40:13-73
 222            <intent-filter>
-222-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-31:29
+222-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-31:29
 223                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-223-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-81
-223-->[:react-native-firebase_messaging] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-78
+223-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-81
+223-->[:react-native-firebase_messaging] E:\App\MusicLife\node_modules\@react-native-firebase\messaging\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-78
 224            </intent-filter>
 225        </receiver>
 226
 227        <activity
-227-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+227-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
 228            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-228-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+228-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
 229            android:exported="false"
-229-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+229-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
 230            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-230-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+230-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\c4fb6b3249f446fdb0995f0c1cd7339f\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
 231
 232        <provider
-232-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+232-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
 233            android:name="com.google.firebase.provider.FirebaseInitProvider"
-233-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+233-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
 234            android:authorities="com.musiclife.firebaseinitprovider"
-234-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+234-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
 235            android:exported="false"
-235-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+235-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
 236            android:initOrder="100" />
-236-->[com.google.firebase:firebase-common:19.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\3e41e62e26d337a36db9ed2aeba0d765\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+236-->[com.google.firebase:firebase-common:19.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\614d71b11733c4a98bd01fd7c54ea289\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
 237
 238        <receiver
-238-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:29:9-33:20
+238-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:29:9-33:20
 239            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-239-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:30:13-85
+239-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:30:13-85
 240            android:enabled="true"
-240-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:31:13-35
+240-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:31:13-35
 241            android:exported="false" >
-241-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:32:13-37
+241-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:32:13-37
 242        </receiver>
 243
 244        <service
-244-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:35:9-38:40
+244-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:35:9-38:40
 245            android:name="com.google.android.gms.measurement.AppMeasurementService"
-245-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:36:13-84
+245-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:36:13-84
 246            android:enabled="true"
-246-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:37:13-35
+246-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:37:13-35
 247            android:exported="false" />
-247-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:38:13-37
+247-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:38:13-37
 248        <service
-248-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:39:9-43:72
+248-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:39:9-43:72
 249            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-249-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:40:13-87
+249-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:40:13-87
 250            android:enabled="true"
-250-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:41:13-35
+250-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:41:13-35
 251            android:exported="false"
-251-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:42:13-37
+251-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:42:13-37
 252            android:permission="android.permission.BIND_JOB_SERVICE" />
-252-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:43:13-69
+252-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\6ad602824357b915c6075deaa31ff0c7\play-services-measurement-17.6.0\AndroidManifest.xml:43:13-69
 253
 254        <meta-data
-254-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4e8feffe6e342171c11ece02ffa0e20\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
+254-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\7583aa945e1607a6d7f73246115c0af9\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
 255            android:name="com.google.android.gms.version"
-255-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4e8feffe6e342171c11ece02ffa0e20\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
+255-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\7583aa945e1607a6d7f73246115c0af9\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
 256            android:value="@integer/google_play_services_version" />
-256-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\c4e8feffe6e342171c11ece02ffa0e20\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
+256-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\7583aa945e1607a6d7f73246115c0af9\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
 257
 258        <provider
-258-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:31:9-37:35
+258-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:31:9-37:35
 259            android:name="androidx.work.impl.WorkManagerInitializer"
-259-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:32:13-69
+259-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:32:13-69
 260            android:authorities="com.musiclife.workmanager-init"
-260-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:33:13-68
+260-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:33:13-68
 261            android:directBootAware="false"
-261-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:34:13-44
+261-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:34:13-44
 262            android:exported="false"
-262-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:35:13-37
+262-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:35:13-37
 263            android:multiprocess="true" />
-263-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:36:13-40
+263-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:36:13-40
 264
 265        <service
-265-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:39:9-44:35
+265-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:39:9-44:35
 266            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
-266-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:40:13-88
+266-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:40:13-88
 267            android:directBootAware="false"
-267-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:41:13-44
+267-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:41:13-44
 268            android:enabled="@bool/enable_system_alarm_service_default"
-268-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:42:13-72
+268-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:42:13-72
 269            android:exported="false" />
-269-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:43:13-37
+269-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:43:13-37
 270        <service
-270-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:45:9-51:35
+270-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:45:9-51:35
 271            android:name="androidx.work.impl.background.systemjob.SystemJobService"
-271-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:46:13-84
+271-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:46:13-84
 272            android:directBootAware="false"
-272-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:47:13-44
+272-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:47:13-44
 273            android:enabled="@bool/enable_system_job_service_default"
-273-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:48:13-70
+273-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:48:13-70
 274            android:exported="true"
-274-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:49:13-36
+274-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:49:13-36
 275            android:permission="android.permission.BIND_JOB_SERVICE" />
-275-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:50:13-69
+275-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:50:13-69
 276        <service
-276-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:52:9-57:35
+276-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:52:9-57:35
 277            android:name="androidx.work.impl.foreground.SystemForegroundService"
-277-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:53:13-81
+277-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:53:13-81
 278            android:directBootAware="false"
-278-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:54:13-44
+278-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:54:13-44
 279            android:enabled="@bool/enable_system_foreground_service_default"
-279-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:55:13-77
+279-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:55:13-77
 280            android:exported="false" />
-280-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:56:13-37
+280-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:56:13-37
 281
 282        <receiver
-282-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:59:9-64:35
+282-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:59:9-64:35
 283            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
-283-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:60:13-88
+283-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:60:13-88
 284            android:directBootAware="false"
-284-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:61:13-44
+284-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:61:13-44
 285            android:enabled="true"
-285-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:62:13-35
+285-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:62:13-35
 286            android:exported="false" />
-286-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:63:13-37
+286-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:63:13-37
 287        <receiver
-287-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:65:9-75:20
+287-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:65:9-75:20
 288            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
-288-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:66:13-106
+288-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:66:13-106
 289            android:directBootAware="false"
-289-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:67:13-44
+289-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:67:13-44
 290            android:enabled="false"
-290-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:68:13-36
+290-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:68:13-36
 291            android:exported="false" >
-291-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:69:13-37
+291-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:69:13-37
 292            <intent-filter>
-292-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:71:13-74:29
+292-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:71:13-74:29
 293                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-293-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:72:17-87
-293-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:72:25-84
+293-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:72:17-87
+293-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:72:25-84
 294                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-294-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:73:17-90
-294-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:73:25-87
+294-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:73:17-90
+294-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:73:25-87
 295            </intent-filter>
 296        </receiver>
 297        <receiver
-297-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:76:9-86:20
+297-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:76:9-86:20
 298            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
-298-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:77:13-104
+298-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:77:13-104
 299            android:directBootAware="false"
-299-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:78:13-44
+299-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:78:13-44
 300            android:enabled="false"
-300-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:79:13-36
+300-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:79:13-36
 301            android:exported="false" >
-301-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:80:13-37
+301-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:80:13-37
 302            <intent-filter>
-302-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:82:13-85:29
+302-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:82:13-85:29
 303                <action android:name="android.intent.action.BATTERY_OKAY" />
-303-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:83:17-77
-303-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:83:25-74
+303-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:83:17-77
+303-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:83:25-74
 304                <action android:name="android.intent.action.BATTERY_LOW" />
-304-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:84:17-76
-304-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:84:25-73
+304-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:84:17-76
+304-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:84:25-73
 305            </intent-filter>
 306        </receiver>
 307        <receiver
-307-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:87:9-97:20
+307-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:87:9-97:20
 308            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
-308-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:88:13-104
+308-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:88:13-104
 309            android:directBootAware="false"
-309-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:89:13-44
+309-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:89:13-44
 310            android:enabled="false"
-310-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:90:13-36
+310-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:90:13-36
 311            android:exported="false" >
-311-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:91:13-37
+311-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:91:13-37
 312            <intent-filter>
-312-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:93:13-96:29
+312-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:93:13-96:29
 313                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
-313-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:94:17-83
-313-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:94:25-80
+313-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:94:17-83
+313-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:94:25-80
 314                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
-314-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:95:17-82
-314-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:95:25-79
+314-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:95:17-82
+314-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:95:25-79
 315            </intent-filter>
 316        </receiver>
 317        <receiver
-317-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:98:9-107:20
+317-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:98:9-107:20
 318            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
-318-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:99:13-103
+318-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:99:13-103
 319            android:directBootAware="false"
-319-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:100:13-44
+319-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:100:13-44
 320            android:enabled="false"
-320-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:101:13-36
+320-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:101:13-36
 321            android:exported="false" >
-321-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:102:13-37
+321-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:102:13-37
 322            <intent-filter>
-322-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:104:13-106:29
+322-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:104:13-106:29
 323                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-323-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:105:17-79
-323-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:105:25-76
+323-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:105:17-79
+323-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:105:25-76
 324            </intent-filter>
 325        </receiver>
 326        <receiver
-326-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:108:9-119:20
+326-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:108:9-119:20
 327            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
-327-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:109:13-88
+327-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:109:13-88
 328            android:directBootAware="false"
-328-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:110:13-44
+328-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:110:13-44
 329            android:enabled="false"
-329-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:111:13-36
+329-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:111:13-36
 330            android:exported="false" >
-330-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:112:13-37
+330-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:112:13-37
 331            <intent-filter>
-331-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:114:13-118:29
+331-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:114:13-118:29
 332                <action android:name="android.intent.action.BOOT_COMPLETED" />
-332-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:115:17-79
-332-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:115:25-76
+332-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:115:17-79
+332-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:115:25-76
 333                <action android:name="android.intent.action.TIME_SET" />
-333-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:116:17-73
-333-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:116:25-70
+333-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:116:17-73
+333-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:116:25-70
 334                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-334-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:117:17-81
-334-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:117:25-78
+334-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:117:17-81
+334-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:117:25-78
 335            </intent-filter>
 336        </receiver>
 337        <receiver
-337-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:120:9-129:20
+337-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:120:9-129:20
 338            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
-338-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:121:13-99
+338-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:121:13-99
 339            android:directBootAware="false"
-339-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:122:13-44
+339-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:122:13-44
 340            android:enabled="@bool/enable_system_alarm_service_default"
-340-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:123:13-72
+340-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:123:13-72
 341            android:exported="false" >
-341-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:124:13-37
+341-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:124:13-37
 342            <intent-filter>
-342-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:126:13-128:29
+342-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:126:13-128:29
 343                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
-343-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:127:17-98
-343-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:127:25-95
+343-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:127:17-98
+343-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:127:25-95
 344            </intent-filter>
 345        </receiver>
 346        <receiver
-346-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:130:9-140:20
+346-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:130:9-140:20
 347            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
-347-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:131:13-78
+347-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:131:13-78
 348            android:directBootAware="false"
-348-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:132:13-44
+348-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:132:13-44
 349            android:enabled="true"
-349-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:133:13-35
+349-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:133:13-35
 350            android:exported="true"
-350-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:134:13-36
+350-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:134:13-36
 351            android:permission="android.permission.DUMP" >
-351-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:135:13-57
+351-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:135:13-57
 352            <intent-filter>
-352-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:137:13-139:29
+352-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:137:13-139:29
 353                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
-353-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:138:17-88
-353-->[androidx.work:work-runtime:2.4.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:138:25-85
+353-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:138:17-88
+353-->[androidx.work:work-runtime:2.4.0] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\726890e3b214fac6af1bedf53f09527c\work-runtime-2.4.0\AndroidManifest.xml:138:25-85
 354            </intent-filter>
 355        </receiver>
 356
 357        <service
-357-->[androidx.room:room-runtime:2.2.5] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+357-->[androidx.room:room-runtime:2.2.5] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
 358            android:name="androidx.room.MultiInstanceInvalidationService"
-358-->[androidx.room:room-runtime:2.2.5] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+358-->[androidx.room:room-runtime:2.2.5] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
 359            android:directBootAware="true"
-359-->[androidx.room:room-runtime:2.2.5] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+359-->[androidx.room:room-runtime:2.2.5] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
 360            android:exported="false" />
-360-->[androidx.room:room-runtime:2.2.5] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+360-->[androidx.room:room-runtime:2.2.5] C:\Users\KHOI\.gradle\caches\transforms-2\files-2.1\17f395319f39bf85be06dab8548efc93\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
 361    </application>
 362
 363</manifest>

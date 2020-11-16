@@ -19,9 +19,13 @@ import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
 import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
 import { Notification } from '../../../models/notification';
+import { playlistlist } from '../playlist-list';
+import { Value } from 'react-native-reanimated';
 
 
-interface Props extends DispatchProps, StateProps {}
+interface Props extends DispatchProps, StateProps {
+    navigation: any,
+}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
@@ -88,6 +92,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         const notificationList = await fetchAllNotification();
         navigation.navigate('Notification', { notificationList });
     };
+    const handlePlaylistlist = () => {
+        navigation.navigate('Playlistlist');
+    }
 
     return (
         <>
@@ -152,7 +159,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
                 <View style={styles.latestPlaylist}>
                     <View style={styles.latestPlaylistTitle}>
-                        <SectionTitle title={I18n.translate('explore.latest-playlist')} onClick={() => {}} />
+                        <SectionTitle title={I18n.translate('explore.latest-playlist')} onClick={() => handlePlaylistlist()} />
                     </View>
                     <FlatList
                         horizontal={true}

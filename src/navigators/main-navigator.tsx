@@ -11,6 +11,7 @@ import ChangePassword from '../modules/home/setting/change-password'
 import Notification from './../modules/home/notification';
 import EditProfile from '../modules/home/setting/edit-profile';
 import Playlist from './../modules/home/playlist';
+import Playlistlist from './../modules/home/playlist-list';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,7 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         <Stack.Screen name="Notification" component={Notification}/>
                         <Stack.Screen name="EditProfile" component={EditProfile}/>
                         <Stack.Screen name="Playlist" component={Playlist}/>
+                        <Stack.Screen name="Playlistlist" component={Playlistlist}/>
                     </>
                 )}
                 {/* {props.refresh_token === null ? (
