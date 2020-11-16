@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, StyleSheet, Pressable } from 'react-native';
+import { Image, Text, StyleSheet, Pressable, View } from 'react-native';
 import { styleVars } from '../../constance/style-variables';
 
 interface Props {
@@ -13,13 +13,20 @@ interface Props {
 export const SquareItem: React.FunctionComponent<Props> = (props: Props) => {
     const {name, artist, onClick, image, size} = props;
     
+    const getStyleClass = () => {
+        if (size === 2)
+            return styles.flexContainer;
+        
+        if (size) return styles.smallContainer;
+    }
+    
     return (
         <>
             <Pressable
-                style={[styles.container, size ? styles.smallContainer : undefined]}
+                style={[styles.container, getStyleClass()]}
                 onPress={onClick}
             >
-                <Image style={[styles.image, size ? styles.smallImage : undefined]} source={{uri: image}}/>
+                <Image style={[styles.image]} source={{uri: image}}/>
                 <Text style={styles.name} numberOfLines = {1} >{name}</Text>
                 {artist && <Text style={styles.artist} numberOfLines = {1} >{artist}</Text>}
             </Pressable>
@@ -29,25 +36,26 @@ export const SquareItem: React.FunctionComponent<Props> = (props: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginRight: 20,
-        width: 120,
+        width: 130,
+        paddingHorizontal: 10
     },
     smallContainer: {
-        width: 100,
+        width: 110,
+    },
+    flexContainer: {
+        width: '47%',
+        paddingHorizontal: 0,
+        paddingVertical: 15
     },
     image: {
-        height: 120,
-        width: 120,
+        paddingTop: '100%',
+        width: '100%',
         borderRadius: 10,
-    },
-    smallImage: {
-        height: 100,
-        width: 100,
     },
     name: {
         fontSize: styleVars.baseFontSize,
         color: styleVars.white,
-        marginTop: 5,
+        marginTop: 8,
     },
     artist: {
         color: styleVars.greyColor,
