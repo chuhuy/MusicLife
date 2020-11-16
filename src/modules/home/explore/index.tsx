@@ -1,25 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, FlatList, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, Pressable, ScrollView, SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import I18n from './../../../i18n';
-import { MusicChartItem, SongItem, PlaylistItem, GenreItem } from './components';
+import { SongItem, GenreItem } from './components';
 import { SectionTitle } from '../../../shared/components';
 import Controller from '../controller';
 import { connect } from 'react-redux';
-import { playlist } from './../../../data/playlist';
-import { songs } from './../../../data/song';
-import { genre } from './../../../data/genre';
+import { songs, genre, playlist } from './../../../data';
 import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
 import { Song } from '../../../models/song';
 import { Playlist } from '../../../models/playlist';
 import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
-import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
-import { Notification } from '../../../models/notification';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import { AlbumList } from '../../../shared/components/flatlist';
-
+import { PlaylistList } from '../../../shared/components/flatlist';
 
 interface Props extends DispatchProps, StateProps {}
 
@@ -87,6 +82,18 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         navigation.navigate('Playlist', {newPlaylist});
     };
 
+    const renderSongItem = (item: Song) => {
+        return (
+            <SongItem 
+                key={item.id}
+                name={item.title} 
+                artist={item.artist} 
+                image={item.image_url} 
+                onClick={() => handlePlayMusic(item)}
+            />
+        )
+    }
+
     return (
         <>
             <SafeAreaView style={{flex: 1}}>
@@ -107,12 +114,12 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                 </Pressable>
                             </View>
                             {isTop100 ?
-                            <AlbumList 
+                            <PlaylistList 
                                 navigation={navigation}
                                 playlist={playlist}
                                 isHorizontal={true}
                             />
-                            : <AlbumList 
+                            : <PlaylistList 
                                 navigation={navigation}
                                 playlist={chartDummyData}
                                 isHorizontal={true}
@@ -124,17 +131,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                             {
                                 latestSong && 
                                 <ScrollView contentContainerStyle={styles.flatListContainer}>
-                                    {latestSong.map((item) => {
-                                        return (
-                                            <SongItem 
-                                                key={item.id}
-                                                name={item.title} 
-                                                artist={item.artist} 
-                                                image={item.image_url} 
-                                                onClick={() => handlePlayMusic(item)}
-                                            />
-                                        )
-                                    })}
+                                    {latestSong.map((item) => renderSongItem(item))}
                                 </ScrollView>
                             }
                         </View>
@@ -143,7 +140,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                 title={I18n.translate('explore.latest-playlist')} 
                                 onClick={() => {}}
                             />
-                            <AlbumList 
+                            <PlaylistList 
                                 navigation={navigation}
                                 playlist={playlist}
                                 isHorizontal={true}

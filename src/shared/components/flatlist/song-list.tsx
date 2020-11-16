@@ -5,11 +5,13 @@ import { Song } from '../../../models/song';
 import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
 import {Item} from './item'
 import { connect } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
     songs: Array<Song>,
-    disableScroll?: boolean
+    disableScroll?: boolean,
+    children?: any,
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -24,7 +26,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, songs, disableScroll, saveSongToStore, playMusic, pauseMusic} = props;
+    const {navigation, songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
 
     const handlePlayMusic = (song) => {
         console.log('play music')
@@ -81,14 +83,17 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         <>
             {
                 disableScroll ? 
-                    <View style={styles.flatListContainer}>
+                    <ScrollView style={styles.flatListContainer}>
                         {songs.map((item) => renderItem(item))}
-                    </View> 
+                        {children}
+                    </ScrollView> 
                     : <FlatList 
+                        showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.flatListContainer}
                         data={songs}
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
+                        ListFooterComponent={children}
                     />
             }
         </>
@@ -102,6 +107,6 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        marginVertical: -7.5
+        marginVertical: -10
     }
 })

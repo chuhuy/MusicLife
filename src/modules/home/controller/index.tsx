@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { styles } from './styles';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, Pressable } from 'react-native';
 import PreviousIcon from './../../../assets/icons/previous-active.svg';
 import NextIcon from './../../../assets/icons/next-active.svg';
 import PlayIcon from './../../../assets/icons/play.svg';
@@ -77,10 +77,10 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     return props.song.image_url ? (
-        <TouchableOpacity
+        <Pressable
             style={styles.view}
-            activeOpacity={1}
-            onPress={() => handleOnClick()}>
+            onPress={handleOnClick}
+        >
             <View style={styles.container}>
                 <View style={styles.section}>
                     <Image style={styles.image} source={{uri: props.song.image_url}}/>
@@ -91,17 +91,17 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
                 <View style={styles.section}>
                     <View style={styles.button}>
-                        <IconButton icon={PreviousIcon} onClick={() => handlePrevious()}/>
+                        <IconButton icon={PreviousIcon} onClick={handlePrevious}/>
                     </View>
                     <View style={styles.button}>
-                        <IconButton icon={props.song.isPlaying ? PauseIcon : PlayIcon} onClick={() => handlePlayPause()}/>
+                        <IconButton icon={props.song.isPlaying ? PauseIcon : PlayIcon} onClick={handlePlayPause}/>
                     </View>
                     <View style={styles.button}>
-                        <IconButton icon={NextIcon} onClick={() => handleNext()}/>
+                        <IconButton icon={NextIcon} onClick={handleNext}/>
                     </View>
                 </View>
             </View>
-        </TouchableOpacity>
+        </Pressable>
     ) : (<></>);
 };
 

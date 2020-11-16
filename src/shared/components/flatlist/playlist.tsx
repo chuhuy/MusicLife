@@ -1,24 +1,21 @@
 import React from 'react';
-import {FlatList} from 'react-native';
-import { styles } from '../../../modules/splash/styles';
+import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import { Playlist } from '../../../models/playlist';
 import {Item} from './item'
 import { SquareItem } from './square-item';
 
 interface Props {
     navigation: any,
     isHorizontal?: boolean,
-    playlist: Array<{
-        id: number,
-        artist?: string,
-        name: string,
-        image_url: string,
-    }>,
+    playlist: Array<Playlist>,
     size?: number,
     isAlbum?: boolean,
+    disableScroll?: boolean,
+    children?: any
 }
 
-const Playlist: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, isHorizontal = false, size, playlist, isAlbum = false} = props;
+const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
+    const {navigation, isHorizontal = false, disableScroll = false, size, playlist, isAlbum = false, children} = props;
 
     const handleAlbum = (album) => {
         navigation.navigate('Playlist', {newPlaylist: album, isAlbum});
@@ -28,36 +25,54 @@ const Playlist: React.FunctionComponent<Props> = (props: Props) => {
         console.log('Opened option');
     };
 
+    const renderItem = (item: Playlist) => {
+        return (
+            isHorizontal ? 
+                <SquareItem 
+                    key={item.id}
+                    name={item.name}
+                    image={item.image_url}
+                    artist={item.artist}
+                    onClick={() => handleAlbum(item)}
+                    size={size}
+                /> :
+                <Item 
+                    key={item.id}
+                    name={item.name}
+                    image={item.image_url}
+                    artist={item.artist}
+                    onClick={() => handleAlbum(item)}
+                    onOptionClick={handleOpenOption}
+                />
+        )
+    };
+
     return (
         <>
-            <FlatList 
-                contentContainerStyle={!isHorizontal && styles.flatListContainer}
-                showsVerticalScrollIndicator={false}
-                data={playlist}
-                horizontal={isHorizontal}
-                renderItem={({item}) => {
-                    return (
-                        isHorizontal ? 
-                            <SquareItem 
-                                name={item.name}
-                                image={item.image_url}
-                                artist={item.artist}
-                                onClick={() => handleAlbum(item)}
-                                size={size}
-                            /> :
-                            <Item 
-                                name={item.name}
-                                image={item.image_url}
-                                artist={item.artist}
-                                onClick={() => handleAlbum(item)}
-                                onOptionClick={handleOpenOption}
-                            />
-                    )
-                }}
-                keyExtractor={(item) => item.id.toString()}
-            />
+            {
+            disableScroll ? 
+                <ScrollView style={styles.flatListContainer}>
+                    {playlist.map((item) => renderItem(item))}
+                    {children}
+                </ScrollView> 
+                : <FlatList 
+                    contentContainerStyle={!isHorizontal && styles.flatListContainer}
+                    showsVerticalScrollIndicator={false}
+                    data={playlist}
+                    horizontal={isHorizontal}
+                    renderItem={({item}) => renderItem(item)}
+                    keyExtractor={(item) => item.id.toString()}
+                    ListFooterComponent={children}
+                />
+            }
         </>
     )
 }
 
-export default Playlist;
+export default PlaylistList;
+
+const styles = StyleSheet.create({
+    flatListContainer: {
+        marginVertical: -10
+    }
+})

@@ -14,9 +14,11 @@ import { Song } from '../../../models/song';
 import { Item } from '../../../shared/components/flatlist/item';
 import { AlbumList } from '../../../shared/components/flatlist';
 import { album } from '../../../data/album';
+import { Artist } from '../../../models/artist';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
+    route: any,
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
@@ -26,21 +28,41 @@ const mapStateToProps = (state: any) => ({
     refresh_token: state.auth.refresh_token,
 });
 const Singer: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation} = props;
-    let description = 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum';
-    const [name, setName] = useState<string>('Aille');
+    const {navigation, route} = props;
+    const {artist} = route.params;
+    const [currentArtist, setCurentArtist] = useState<Artist>(artist);
     const [shortSongs, setShortSongs] = useState<Array<Song>>(undefined);
-
+    
     useEffect(() => {
         setShortSongs(songs.slice(0, 3));
-    }, [])
+    }, []);
 
-    const handlePlayMusic = () => {
-        props.navigation.navigate('Player');
-    };
-    const handleOpenOption = () => {
-        console.log('Opened option');
-    };
+    useEffect(() => {
+        setCurentArtist(artist)
+    }, [artist])
+
+    const renderArtistInfo = () => {
+        return (
+            <>
+                <View style={styles.avatarView}>
+                    <Image 
+                        source={{uri:(currentArtist.image_url)}} 
+                        style={styles.avatar}
+                    />
+                </View>
+
+                <View style={styles.group}>
+                    <SectionTitle 
+                        title={I18n.translate('singer.info')}
+                        onClick={() => {}}
+                    />
+                    <Text numberOfLines={2} style={styles.description}>
+                        {currentArtist.description}
+                    </Text>
+                </View>
+            </>
+        )
+    }
 
     const renderSongList = () => {
         return (
@@ -55,27 +77,12 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <ImageBackground style={styles.imageBackground} source={require('../../../assets/images/singer.png')} >
+            <ImageBackground style={styles.imageBackground} source={{uri: artist.image_url}} >
                 <View style={styles.container}>
                     <HeaderBack navigation={navigation} />
 
                     <ScrollView nestedScrollEnabled={true} >
-                        <View style={styles.avatarView}>
-                            <Image 
-                                source={require('../../../assets/images/singer.png')} 
-                                style={styles.avatar}
-                            />
-                        </View>
-
-                        <View style={styles.group}>
-                            <SectionTitle 
-                                title={I18n.translate('singer.info')}
-                                onClick={() => {}}
-                            />
-                            <Text numberOfLines={2} style={styles.description}>
-                                {description}
-                            </Text>
-                        </View>
+                        {renderArtistInfo()}
 
                         <View style={styles.group}>
                             <SectionTitle 

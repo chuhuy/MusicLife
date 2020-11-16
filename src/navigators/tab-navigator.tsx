@@ -49,10 +49,6 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         return (
                             <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('setting.title')}</Text>
                         );
-                    } else if (route.name === 'Singer') {
-                        return (
-                            <Text style={{color: focused ? styleVars.secondaryColor : 'white', fontSize: 12}}>{I18n.translate('singer.title')}</Text>
-                        );
                     }
                 },
                 tabBarIcon: ({focused}) => {
@@ -65,9 +61,6 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     } else if (route.name === 'Setting') {
                         if (!focused) {return (<SettingIcon/>);}
                         else {return (<SettingActiveIcon/>);}
-                    } else if (route.name === 'Singer'){
-                        if (!focused) {return (<SingerIcon color={'white'} width={25} height={25}/>);}
-                        else {return (<SingerIcon color={styleVars.secondaryColor } width={25} height={25}/>);}
                     }
                 },
             })}
@@ -75,7 +68,6 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
             <Tab.Screen name="Explore"  component={Explore} options={{title: I18n.translate('explore.title')}}/>
             {props.refresh_token !== null && <Tab.Screen name="Personal"  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name="Setting"  component={Setting} options={{title: I18n.translate('setting.title')}}/>
-            <Tab.Screen name="Singer"  component={Singer} options={{title: I18n.translate('singer.title')}}/>
         </Tab.Navigator>
     );
 };

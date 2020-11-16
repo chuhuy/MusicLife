@@ -1,6 +1,7 @@
 import React from 'react';
 import {styles} from './styles';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
     options: Array<{
@@ -16,21 +17,19 @@ const UnderlineTabBar: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <View style={styles.underlineTabBar}>
+            <View style={styles.underlineTabBar} >
                 {
                     options.map(({title, type, active, onClick}, index) => {
                         return (
-                            <TouchableOpacity
+                            <Pressable
                                 key={index}
                                 style={styles.tabButton}
-                                activeOpacity={1}
-                                delayPressIn={0}
-                                onPressIn={() => onClick(type)}
+                                onPress={() => onClick(type)}
                             >
                                 <Text style={[styles.tabItem, active ? styles.tabActive : undefined]}>
                                     {title}
                                 </Text>
-                            </TouchableOpacity>
+                            </Pressable>
                         )
                     })
                 }
@@ -39,4 +38,4 @@ const UnderlineTabBar: React.FunctionComponent<Props> = (props: Props) => {
     )
 }
 
-export default UnderlineTabBar
+export default UnderlineTabBar;

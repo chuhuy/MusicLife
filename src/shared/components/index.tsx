@@ -15,7 +15,7 @@ import { styleVars } from '../constance/style-variables';
 // Section Title
 interface SectionTitleProps {
     title: string,
-    onClick: () => void
+    onClick?: () => void
 }
 
 export const SectionTitle: React.FunctionComponent<SectionTitleProps> = (props: SectionTitleProps) => {

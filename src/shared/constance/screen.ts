@@ -4,5 +4,6 @@ export const Screen = {
         'Login': "Login",
         'Register': "Register",
         'ForgotPassword': 'ForgotPassword'
-    }
+    },
+    'Search': 'Search'
 }

@@ -7,6 +7,8 @@ import { authentication } from './authentication';
 import { player } from './player';
 import { common } from './common';
 import {changeLanguage} from './changeLanguage';
+import {search} from './search';
+
 export default {
     'setting': setting,
     'personal': personal,
@@ -17,4 +19,5 @@ export default {
     'changePassword' : changePassword,
     'changeLanguage': changeLanguage,
     'singer': singer,
+    'search': search,
 };

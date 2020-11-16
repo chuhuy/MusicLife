@@ -24,8 +24,8 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
                     <View style={styles.metadata} >
                         <Image source={{uri: image}} style={styles.image} />
                         <View style={styles.titleGroup}>
-                            <Text style={styles.title}>{name}</Text>
-                            {artist && <Text style={styles.artist}>{artist}</Text>}
+                            <Text style={styles.title} numberOfLines={1}>{name}</Text>
+                            {artist && <Text style={styles.artist} numberOfLines={1}>{artist}</Text>}
                         </View>
                     </View>
                 </Pressable>
@@ -41,10 +41,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignContent: 'center',
-        paddingVertical: 7.5
+        paddingVertical: 10
     },
     metadata: {
-        flex: 1,
         flexDirection: 'row',
     },
     touchAreaOne: {
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
     },
     touchAreaTwo: {
         justifyContent: 'center',
-        marginRight: 10,
     },
     image: {
         height: 60,

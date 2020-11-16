@@ -1,6 +1,6 @@
-export interface Playlist {
+export interface Artist {
     id: number,
-    artist?:string,
     name: string,
+    description: string,
     image_url: string,
 }

@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         fontSize: styleVars.baseFontSize,
+        fontWeight: '700'
     },
     touchArea: {
         padding: 5
