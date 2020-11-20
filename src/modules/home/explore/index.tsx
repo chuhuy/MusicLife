@@ -84,7 +84,11 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleLatestPlaylist = () => {
         navigation.navigate('LatestPlaylist', {isAlbum: false, playlist})
-    }
+    };
+
+    const handleLastestSong = () => {
+        navigation.navigate('LastestSong',{songs})
+    };
 
     const renderSongItem = (item: Song) => {
         return (
@@ -130,7 +134,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                             />}
                         </View>
                         <View style={styles.group}>
-                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={() => {}} />
+                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={() => handleLastestSong()} />
                             
                             {
                                 latestSong && 
