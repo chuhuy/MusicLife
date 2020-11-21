@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { StyleSheet, Image, Text, Pressable } from 'react-native';
 
 interface Props {
     title: string,
@@ -10,13 +10,12 @@ interface Props {
 export const PlaylistItem: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.container}
-            onPressOut={props.onClick}>
+            <Pressable
+                style={styles.container}
+                onPressOut={props.onClick}>
                 <Image style={styles.image} source={{uri: props.image}}/>
                 <Text style={styles.title}>{props.title}</Text>
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

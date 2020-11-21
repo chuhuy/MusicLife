@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Pressable, TouchableOpacity, View} from 'react-native';
+import { Pressable, View} from 'react-native';
 import { styles } from './styles';
 import { SvgProps } from 'react-native-svg';
 

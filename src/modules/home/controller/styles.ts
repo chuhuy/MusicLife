@@ -1,12 +1,10 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
-const { width } = Dimensions.get('window');
-
 export const styles = StyleSheet.create({
     container: {
         backgroundColor: styleVars.lightPrimaryColor,
-        width: width,
+        width: '100%',
         height: 65,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,

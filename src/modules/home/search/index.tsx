@@ -5,12 +5,13 @@ import { LinkButton, SearchBar } from '../../../shared/components';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import { styleVars } from '../../../shared/constance/style-variables';
 import { styles } from './styles';
-import {AllTab, ArtistTab, PlaylistTab, SongTab} from './components';
+import { AllTab, ArtistList } from './components';
 import { ScrollView } from 'react-native-gesture-handler';
-import {artist, songs, playlist, album} from '../../../data';
+import { artist, songs, playlist, album } from '../../../data';
 import { Song } from '../../../models/song';
 import { Playlist } from '../../../models/playlist';
 import { Artist } from '../../../models/artist';
+import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 
 interface Props {
     navigation: any
@@ -82,12 +83,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             active: activeTab === TYPE.ALBUM,
             onClick: handleOpenTab
         },
-        {
-            title: I18n.translate('search.playlists'),
-            type: TYPE.PLAYLIST,
-            active: activeTab === TYPE.PLAYLIST,
-            onClick: handleOpenTab
-        },
     ]
 
     const handleBack = () => {
@@ -124,29 +119,30 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                 {
                     activeTab === TYPE.SONG && 
                     <View style={styles.body}>
-                        <SongTab 
+                        <SongList 
                             navigation={navigation} 
-                            song={resultSong}
+                            songs={resultSong}
                         />
                     </View>
                 }
                 {
-                    (activeTab === TYPE.PLAYLIST || activeTab === TYPE.ALBUM) && 
+                    (activeTab === TYPE.ALBUM) && 
                     <View style={styles.body}>
-                        <PlaylistTab 
-                            navigation={navigation} 
-                            playlist={activeTab === TYPE.PLAYLIST ? resultPlaylist : resultAlbum}
+                        <PlaylistList 
+                            navigation={navigation}
+                            playlist={resultAlbum}
                         />
                     </View>
                 }
                 {
                     activeTab === TYPE.ARTIST && 
                     <View style={styles.body}>
-                        <ArtistTab 
+                        <ArtistList 
                             navigation={navigation} 
                             artist={artist}
+                            isHorizontal={false}
                         />
-                        </View>
+                    </View>
                 }
             </SafeAreaView>
         </>

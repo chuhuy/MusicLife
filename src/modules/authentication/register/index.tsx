@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform, Image, TouchableOpacity } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { Screen } from '../../../shared/constance/screen';
 import { styles } from './styles';
 import I18n from '../../../i18n';

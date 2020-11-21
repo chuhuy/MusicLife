@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList, ScrollView, Image, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, Image, ImageBackground } from 'react-native';
 import { styles } from './styles';
 import { connect } from 'react-redux';
 import Controller from '../controller';
-import ArrowSvg from '../../../assets/icons/arrow.svg';
 import I18n from './../../../i18n';
-import { SongItem, MusicChartItem } from './components';
 import { HeaderBack, SectionTitle } from '../../../shared/components';
 import SongList from '../../../shared/components/flatlist/song-list';
 import {songs} from '../../../data/song';
 import { Song } from '../../../models/song';
-import { Item } from '../../../shared/components/flatlist/item';
 import { AlbumList } from '../../../shared/components/flatlist';
 import { album } from '../../../data/album';
 import { Artist } from '../../../models/artist';
@@ -105,6 +102,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </ScrollView>
                 </View>
+                
                 <Controller />
             </ImageBackground>
         </>

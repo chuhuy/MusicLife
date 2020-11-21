@@ -7,7 +7,7 @@ import { SongItem, GenreItem } from './components';
 import { SectionTitle } from '../../../shared/components';
 import Controller from '../controller';
 import { connect } from 'react-redux';
-import { songs, genre, playlist } from './../../../data';
+import { songs, genre, playlist, album } from './../../../data';
 import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
 import { Song } from '../../../models/song';
 import { Playlist } from '../../../models/playlist';
@@ -15,6 +15,7 @@ import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
 import HeaderMainPage from '../../../shared/components/header-main-page';
 import { PlaylistList } from '../../../shared/components/flatlist';
+import { Screen } from '../../../shared/constance/screen';
 
 interface Props extends DispatchProps, StateProps {}
 
@@ -70,43 +71,40 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
             .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
         })
         .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
-        navigation.navigate('Player');
-    };
-
-    const handleOpenPlaylist = (value: any) => {
-        const newPlaylist: Playlist = {
-            id: value.playlist_id,
-            name: value.name,
-            image_url: value.image_url,
-        };
-        navigation.navigate('Playlist', {newPlaylist});
-    };
-
-    const handleLatestPlaylist = () => {
-        navigation.navigate('LatestPlaylist', {isAlbum: false, playlist})
+        navigation.navigate(Screen.Common.Player);
     };
 
     const handleLastestSong = () => {
-        navigation.navigate('LastestSong',{songs})
+        navigation.navigate(Screen.Explore.LatestSong, {songs})
     };
 
-    const renderSongItem = (item: Song) => {
-        return (
-            <SongItem 
-                key={item.id}
-                name={item.title} 
-                artist={item.artist} 
-                image={item.image_url} 
-                onClick={() => handlePlayMusic(item)}
-            />
-        )
+    const handleLatestAlbum = () => {
+        console.log(1)
+        navigation.navigate(Screen.Explore.Playlist, {
+            isAlbum: true,
+            playlist: album
+        })
+    }
+
+    const renderLatestSong = () => {
+        return latestSong.map((item) => {
+            return (
+                <SongItem 
+                    key={ item.id }
+                    name={ item.title } 
+                    artist={ item.artist } 
+                    image={ item.image_url } 
+                    onClick={ () => handlePlayMusic(item) }
+                />
+            )
+        })
     }
 
     return (
         <>
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={styles.view}>
                 <View style={styles.container} >
-                    <HeaderMainPage navigation={navigation}/>
+                    <HeaderMainPage navigation={navigation} />
 
                     <ScrollView style={styles.contentContainer}>
                         <View style={styles.group}>
@@ -114,13 +112,18 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                 <Pressable
                                     style={styles.chartButton}
                                     onPressIn={() => {setTop100(false);}}>
-                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>{I18n.translate('explore.chart')}</Text>
+                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
+                                        {I18n.translate('explore.chart')}
+                                    </Text>
                                 </Pressable>
                                 <Pressable
                                     onPressIn={() => {setTop100(true);}}>
-                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>{I18n.translate('explore.top100')}</Text>
+                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
+                                        {I18n.translate('explore.top100')}
+                                    </Text>
                                 </Pressable>
                             </View>
+
                             {isTop100 ?
                             <PlaylistList 
                                 navigation={navigation}
@@ -133,34 +136,34 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                 isHorizontal={true}
                             />}
                         </View>
+                        
                         <View style={styles.group}>
-                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={() => handleLastestSong()} />
+                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={handleLastestSong} />
                             
-                            {
-                                latestSong && 
-                                <ScrollView contentContainerStyle={styles.flatListContainer}>
-                                    {latestSong.map((item) => renderSongItem(item))}
-                                </ScrollView>
-                            }
+                            {latestSong && (
+                                <View style={styles.flatListContainer}>
+                                    {renderLatestSong()}
+                                </View>
+                            )}
                         </View>
+                        
                         <View style={styles.group}>
-                            <SectionTitle 
-                                title={I18n.translate('explore.latest-playlist')} 
-                                onClick={handleLatestPlaylist}
-                            />
+                            <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
+
                             <PlaylistList 
                                 navigation={navigation}
-                                playlist={playlist}
+                                playlist={album}
                                 isHorizontal={true}
-                                size={1}
                             />
                         </View>
+
                         <View style={styles.group}>
                             <SectionTitle 
                                 title={I18n.translate('explore.genre')} 
                                 onClick={() => {}} 
                             />
-                            <ScrollView contentContainerStyle={styles.flatListContainer}>
+
+                            <View style={styles.flatListContainer}>
                                 {genre.map((item) => {
                                     return (
                                         <GenreItem 
@@ -171,7 +174,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                         />
                                     )
                                 })}
-                            </ScrollView>
+                            </View>
                         </View>
                     </ScrollView>
                 </View>

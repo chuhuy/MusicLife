@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
+import { StyleSheet, Pressable, Image, Text, View } from 'react-native';
 import { styleVars } from './../../../../shared/constance/style-variables';
 import { IconButton } from '../../../../shared/components';
 import OptionIcon from './../../../../assets/icons/option.svg';
@@ -14,7 +14,7 @@ export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <View style={styles.container}>
-                <TouchableOpacity
+                <Pressable
                     onPressOut={() => props.onClick()}
                     style={styles.song}
                 >
@@ -23,7 +23,7 @@ export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
                         <Text style={styles.name}>{props.name}</Text>
                         <Text style={styles.artist}>{props.artist}</Text>
                     </View>
-                </TouchableOpacity>
+                </Pressable>
                 <View style={styles.option}>
                     <IconButton onClick={() => props.onOptionClick()} icon={OptionIcon}/>
                 </View>

@@ -17,8 +17,8 @@ export const SearchBar: React.FunctionComponent<Props> = (props: Props) => {
     const route = useRoute();
     
     const handleSearch = (event) => {
-        if (route.name !== Screen.Search){
-            navigation.navigate(Screen.Search)
+        if (route.name !== Screen.Common.Search){
+            navigation.navigate(Screen.Common.Search)
         }
     }
     

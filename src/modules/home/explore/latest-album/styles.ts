@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 20
     },
     body: {
-        marginTop: 30,
+        paddingTop: 30,
         flex: 1
     }
 });

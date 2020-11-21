@@ -13,7 +13,7 @@ interface Props {
 const LatestPlaylist: React.FunctionComponent<Props> = (props: Props) => {
     const {navigation, route} = props;
     const {isAlbum, playlist} = route.params;
-
+    
     return (
         <>
             <SafeAreaView style={styles.container}>
@@ -27,8 +27,7 @@ const LatestPlaylist: React.FunctionComponent<Props> = (props: Props) => {
                         navigation={navigation}
                         isAlbum={isAlbum}
                         playlist={playlist}
-                        size={2}
-                        isHorizontal={false}
+                        numsColumn={2}
                     />
                 </View>
             </SafeAreaView>

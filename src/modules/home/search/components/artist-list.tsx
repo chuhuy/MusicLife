@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Pressable, FlatList } from 'react-native';
+import { StyleSheet, Text, Image, Pressable, FlatList } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Artist } from '../../../../models/artist';
+import { Screen } from '../../../../shared/constance/screen';
 import { styleVars } from '../../../../shared/constance/style-variables';
 
 interface ArtistProps {
@@ -46,7 +47,7 @@ export const ArtistList: React.FunctionComponent<ArtistListProps> = (props: Arti
     const {navigation, isHorizontal = true, artist} = props;
 
     const onChangeArtistScreen = (artist: Artist) => {
-        navigation.navigate('Singer', {artist});
+        navigation.navigate(Screen.Common.Singer, {artist});
     }
 
     const renderArtistItem = (item: Artist) => {

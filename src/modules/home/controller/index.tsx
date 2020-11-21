@@ -84,6 +84,7 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.container}>
                 <View style={styles.section}>
                     <Image style={styles.image} source={{uri: props.song.image_url}}/>
+                    
                     <View style={styles.titleGroup}>
                         <Text style={styles.song}>{props.song.title}</Text>
                         <Text style={styles.artist}>{props.song.artist}</Text>

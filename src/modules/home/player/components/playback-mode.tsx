@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { styleVars } from './../../../../shared/constance/style-variables';
 import Shuffle from './../../../../assets/icons/shuffle.svg';
 import Repeat from './../../../../assets/icons/repeat.svg';
@@ -12,11 +12,11 @@ interface Props {
 const PlaybackMode: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
+            <Pressable
             style={styles.container}
             onPressOut={props.onClick}>
                 {props.mode === 'shuffle' ? <Shuffle width={25} height={25}/> : <Repeat width={25} height={25}/>}
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import Play from './../../../../assets/icons/play.svg';
 import Pause from './../../../../assets/icons/pause.svg';
 import { styleVars } from './../../../../shared/constance/style-variables';
@@ -13,12 +13,11 @@ interface Props {
 const PlayPauseButton: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
+            <Pressable
             style={styles.container}
-            activeOpacity={0.8}
             onPressOut={props.onClick}>
                     {props.isPlaying ? <Pause height={30} width={30}/> : <Play height={30} width={30} marginLeft={5}/>}
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };
