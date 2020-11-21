@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
+
 export const styles = StyleSheet.create({
     imageBackground: {
         flex: 1,
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 20,
         flex: 1,
         backgroundColor: styleVars.primaryColor,
-        opacity: 0.9,
+        opacity: 0.8,
     },
     avatarView: {
         alignItems: 'center',

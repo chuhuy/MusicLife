@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import { Text, TouchableOpacity, View} from 'react-native';
+import { Text, Pressable, View} from 'react-native';
 import { styles } from './styles';
 
 interface Props {
@@ -11,15 +11,14 @@ interface Props {
 export const LinkButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
+            <Pressable
                 style={styles.container}
                 onPressIn={props.onClick}
-                delayPressIn={0}
             >
                 <View style={styles.touchArea}>
                     <Text style={[styles.title, {color: props.color}]}>{props.title}</Text>
                 </View>
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

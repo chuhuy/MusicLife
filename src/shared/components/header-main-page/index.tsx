@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import {View, Pressable} from 'react-native';
+import {View, Pressable } from 'react-native';
 import {styles} from './styles';
 import {SearchBar} from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
 import NotificationIcon from './../../../assets/icons/notification-active.svg';
 import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
+import { Screen } from '../../constance/screen';
 
 interface Props {
     navigation: any,
@@ -15,11 +16,11 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (props: Props) => 
     const {navigation} = props;
 
     const handleUserProfile = () => {
-        navigation.navigate('Setting');
+        navigation.navigate(Screen.Setting.Main);
     };
     const handleNotification = async () => {
         const notificationList = await fetchAllNotification();
-        navigation.navigate('Notification', { notificationList });
+        navigation.navigate(Screen.Common.Notification, { notificationList });
     };
 
     return (

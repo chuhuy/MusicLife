@@ -5,5 +5,22 @@ export const Screen = {
         'Register': "Register",
         'ForgotPassword': 'ForgotPassword'
     },
-    'Search': 'Search'
+    'Explore': {
+        'Main': 'Explore',
+        'LatestSong': 'LatestSong',
+        'Playlist': 'Playlist'
+    },
+    'Personal': 'Personal',
+    'Setting': {
+        'Main': 'Setting',
+        'EditProfile': 'EditProfile',
+        'ChangePassword': 'ChangePassword'
+    },
+    'Common': {
+        'Notification': 'Notification',
+        'Player': 'Player',
+        'Search': 'Search',
+        'Singer': 'Singer',
+        'PlaylistDetail': 'PlaylistDetail',
+    }
 }

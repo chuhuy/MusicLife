@@ -6,6 +6,7 @@ import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/
 import {Item} from './item'
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Screen } from '../../constance/screen';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -59,7 +60,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
             .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
         })
         .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
-        navigation.navigate('Player');
+        navigation.navigate(Screen.Common.Player);
     };
 
     const handleOpenOption = () => {
@@ -83,10 +84,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         <>
             {
                 disableScroll ? 
-                    <ScrollView style={styles.flatListContainer}>
+                    <View style={styles.flatListContainer}>
                         {songs.map((item) => renderItem(item))}
                         {children}
-                    </ScrollView> 
+                    </View> 
                     : <FlatList 
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.flatListContainer}

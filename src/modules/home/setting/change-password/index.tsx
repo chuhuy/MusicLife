@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Alert, Text, View , TextInput} from 'react-native';
+import { Alert, Text, View , TextInput, Pressable } from 'react-native';
 import {styles} from './styles';
 import I18n from '../../../../i18n';
 import ArrowBackSvg from '../../../../assets/icons/arrow-back.svg';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as Yup  from 'yup';
 import { Button } from '../../../../shared/components';
@@ -43,9 +42,9 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
+                    <Pressable onPressOut={() => props.navigation.goBack()}>
                         <ArrowBackSvg width={20} height={20}/>
-                    </TouchableOpacity>
+                    </Pressable>
                     <View style={styles.header__right}>
                         <Text style={styles.title}>{I18n.translate('setting.change-password')}</Text>
                     </View>

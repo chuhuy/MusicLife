@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, Image, Pressable } from 'react-native';
 import { styleVars } from '../../../../shared/constance/style-variables';
 
 interface Props {

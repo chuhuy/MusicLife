@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity} from 'react-native';
+import { Text, View, Image, Pressable } from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import Modal from 'react-native-modal';
 import CustomModal from '../../../shared/components/modal';
@@ -12,11 +12,11 @@ import LanguageSvg from '../../../assets/icons/language.svg';
 import LockSvg from '../../../assets/icons/lock.svg';
 import LogoutSvg from '../../../assets/icons/logout.svg';
 import EditProfileSvg from '../../../assets/icons/edit-profile.svg';
-import ArrowBackSvg from '../../../assets/icons/arrow-back.svg';
 import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
 import { changeLanguage, getLanguage } from '../../../i18n/utils';
 import { styleVars } from '../../../shared/constance/style-variables';
 import { Button, LinkButton } from '../../../shared/components';
+import { Screen } from '../../../shared/constance/screen';
 interface Props extends DispatchProps, StateProps {
     navigation: any,
 }
@@ -29,6 +29,7 @@ const mapStateToProps = (state: any) => ({
     refresh_token: state.auth.refresh_token,
 });
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
+    const { navigation, refresh_token, logout } = props;
     const name = 'Hoang Anh';
     const [isModalLanguageVisible, setModalLanguageVisible] = useState(false);
     const [isModalRestartVisible, setModalRestartVisible] = useState(false);
@@ -49,36 +50,33 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
         changeLanguage(language);
     };
     const toggleModalLanguage = () => {
-        console.log(2)
-        // Toggle modal
         setModalLanguageVisible(!isModalLanguageVisible);
-        console.log(isModalLanguageVisible)
         setIsLanguageChange(false);
     }
-    // const toggleModalLanguage = () => {
-    //     setModalLanguageVisible(!isModalLanguageVisible);
-    // };
     const toggleModalRestart = () => {
         setModalRestartVisible(!isModalRestartVisible);
     };
+
+    const handleEditProfile = () => {
+        navigation.navigate(Screen.Setting.EditProfile);
+    };
+
+    const handleChangePassword = () => {
+        navigation.navigate(Screen.Setting.ChangePassword);
+    };
+
     const handleLogout = () => {
         removeTokenFromLocalStorage();
-        props.logout();
+        logout();
     };
+
     const handleSignIn = () => {
-        props.navigation.navigate('Login');
+        navigation.navigate(Screen.Authentication.Login);
     };
+
     return (
         <>
             <View style={styles.container}>
-                {/* <View style={styles.header}>
-                    <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
-                        <ArrowBackSvg width={20} height={20}  />
-                    </TouchableOpacity>
-                    <View style={styles.header__right}>
-                        <Text style={styles.title}>{I18n.translate('setting.title')}</Text>
-                    </View>
-                </View> */}
                 <View style={styles.info}>
                     <View style={styles.info__left}>
                     {   
@@ -100,7 +98,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <View style={styles.main}>
                     {/* Edit Profile */}
                     {props.refresh_token !== null && 
-                        <TouchableOpacity onPressOut={() => props.navigation.navigate('EditProfile')}>
+                        <Pressable onPressOut={handleEditProfile}>
                             <View style={styles.main__item}>
                                 <View style={styles.main__left}>
                                     <View style={styles.main__left__svgView}>
@@ -112,10 +110,10 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                 </View>
                                 <ArrowSvg width={11} height={20}/>
                             </View>
-                        </TouchableOpacity>
+                        </Pressable>
                     }
                     {/* Change Language */}
-                    <TouchableOpacity onPressOut={toggleModalLanguage} >
+                    <Pressable onPressOut={toggleModalLanguage} >
                         <View style={styles.main__item} >
                             <View style={styles.main__left}>
                                 <View style={styles.main__left__svgView}>
@@ -127,10 +125,10 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
                             <ArrowSvg width={11} height={20}/>
                         </View>
-                    </TouchableOpacity>
+                    </Pressable>
                     {/* Change Password */}
                     {props.refresh_token !== null && 
-                        <TouchableOpacity onPressOut={() => props.navigation.navigate('ChangePassword')} >
+                        <Pressable onPressOut={handleChangePassword} >
                             <View style={styles.main__item}>
                                 <View style={styles.main__left}>
                                     <View style={styles.main__left__svgView}>
@@ -142,14 +140,14 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                 </View>
                                 <ArrowSvg width={11} height={20}/>
                             </View>
-                        </TouchableOpacity>
+                        </Pressable>
                     }
                     {/* Logout */}
                     {
                         props.refresh_token !== null && 
                             <>
                                 <View style={styles.main__rule} />
-                                <TouchableOpacity onPressOut={handleLogout}>
+                                <Pressable onPressOut={handleLogout}>
                                     <View style={[styles.main__item]}>
                                         <View style={styles.main__left__svgView}>
                                             <LogoutSvg width={22} height={22} />
@@ -158,7 +156,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                             {I18n.translate('setting.logout')}
                                         </Text>
                                     </View>
-                                </TouchableOpacity>
+                                </Pressable>
                             </>
                     }
                 </View>
@@ -199,11 +197,11 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                     
                     <Modal isVisible={isModalLanguageVisible} hasBackdrop={true}>
                         <View style={[styles.modal__language, {display: isModalRestartVisible ? 'none' : 'flex'}]}>
-                            <TouchableOpacity >
+                            <Pressable >
                                 <Text style={styles.modal__language__title}>
                                     {I18n.translate('changeLanguage.title')}
                                 </Text>
-                            </TouchableOpacity>
+                            </Pressable>
                             <View style={styles.modal__language__main}>
                                 <RadioForm
                                     radio_props={languageList}
@@ -221,7 +219,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                 />
                             </View>
                             <View style={styles.modal__language__footer}>
-                                <TouchableOpacity 
+                                <Pressable 
                                     onPressOut={() => {
                                         toggleModalLanguage();
                                         setIsLanguageChange(false);
@@ -229,8 +227,8 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                     style={styles.modal__language__group}
                                 >
                                     <Text style={styles.modal__language__footer__text}>{I18n.translate('changeLanguage.cancel')}</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity 
+                                </Pressable>
+                                <Pressable 
                                     onPressOut={() => {
                                         toggleModalRestart();
                                     }} 
@@ -240,7 +238,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                     <Text style={[styles.modal__language__footer__text, {color : isLanguageChange ? styleVars.crimsonColor : styleVars.greyColor}]}>
                                         {I18n.translate('changeLanguage.save')}
                                     </Text>
-                                </TouchableOpacity>
+                                </Pressable>
                             </View>
                         </View>
                     </Modal> */}
@@ -254,20 +252,20 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                                 <Text style={styles.modal__restart__main__text}>{I18n.translate('changeLanguage.restartContent')}</Text>
                             </View>
                             <View style={styles.modal__restart__footer}>
-                                <TouchableOpacity 
+                                <Pressable 
                                     onPressOut={() => {
                                         toggleModalRestart() ;
                                     }} 
                                     style={styles.modal__restart__group}
                                 >
                                     <Text style={styles.modal__restart__footer__text}>{I18n.translate('changeLanguage.cancel')}</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity 
+                                </Pressable>
+                                <Pressable 
                                     onPressOut={() => handleChangeLanguage(languageActive === 'en' ? 'vi' : 'en')} 
                                     style={styles.modal__restart__group}
                                 >
                                     <Text style={styles.modal__restart__footer__text}>{I18n.translate('changeLanguage.restart')}</Text>
-                                </TouchableOpacity>
+                                </Pressable>
                             </View>
                         </View>
                     </Modal>

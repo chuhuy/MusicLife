@@ -10,11 +10,12 @@ import Player from './../modules/home/player';
 import ChangePassword from '../modules/home/setting/change-password'
 import Notification from './../modules/home/notification';
 import EditProfile from '../modules/home/setting/edit-profile';
-import Playlist from './../modules/home/playlist';
+import PlaylistDetail from '../modules/home/playlist-detail';
 import Search from '../modules/home/search';
 import Singer from '../modules/home/singer';
-import LatestPlaylist from '../modules/home/explore/latest-playlist';
+import LatestPlaylist from '../modules/home/explore/latest-album';
 import LastestSong from '../modules/home/explore/lastest-song';
+import { Screen } from '../shared/constance/screen';
 
 const Stack = createStackNavigator();
 
@@ -49,20 +50,20 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
             >
                 {(
                     <>
-                        <Stack.Screen name="Splash" component={Splash}/>
-                        {props.refresh_token === null && <Stack.Screen name="Login" component={Login}/>}
-                        {props.refresh_token === null && <Stack.Screen name="Register" component={Register}/>}
-                        {props.refresh_token === null && <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>}
+                        <Stack.Screen name={Screen.Splash} component={Splash}/>
+                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
+                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
+                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-                        <Stack.Screen name="Player" component={Player}/>
-                        <Stack.Screen name="ChangePassword" component={ChangePassword}/>
-                        <Stack.Screen name="Notification" component={Notification}/>
-                        <Stack.Screen name="EditProfile" component={EditProfile}/>
-                        <Stack.Screen name="Playlist" component={Playlist}/>
-                        <Stack.Screen name="Search" component={Search}/>
-                        <Stack.Screen name="Singer" component={Singer}/>
-                        <Stack.Screen name="LatestPlaylist" component={LatestPlaylist}/>
-                        <Stack.Screen name="LastestSong" component={LastestSong}/>
+                        <Stack.Screen name={Screen.Setting.ChangePassword} component={ChangePassword}/>
+                        <Stack.Screen name={Screen.Setting.EditProfile} component={EditProfile}/>
+                        <Stack.Screen name={Screen.Common.Player} component={Player}/>
+                        <Stack.Screen name={Screen.Common.Notification} component={Notification}/>
+                        <Stack.Screen name={Screen.Common.PlaylistDetail} component={PlaylistDetail}/>
+                        <Stack.Screen name={Screen.Common.Search} component={Search}/>
+                        <Stack.Screen name={Screen.Common.Singer} component={Singer}/>
+                        <Stack.Screen name={Screen.Explore.Playlist} component={LatestPlaylist}/>
+                        <Stack.Screen name={Screen.Explore.LatestSong} component={LastestSong}/>
                     </>
                 )}
                 {/* {props.refresh_token === null ? (

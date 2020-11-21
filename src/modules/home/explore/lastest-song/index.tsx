@@ -1,4 +1,5 @@
 import React from 'react';
+import I18n from '../../../../i18n';
 import { SafeAreaView, View } from 'react-native';
 import { HeaderBack } from '../../../../shared/components';
 import { styles } from './styles';
@@ -18,7 +19,7 @@ export const LastestSong: React.FunctionComponent<Props> = (props: Props) => {
             <SafeAreaView style={styles.container}>
                 <HeaderBack 
                     navigation={navigation}
-                    title={'LastestSong'}
+                    title={I18n.translate('explore.latest-song')}
                 />
 
                 <View style={styles.body}>

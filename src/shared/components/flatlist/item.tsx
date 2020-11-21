@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { IconButton } from '../icon-button';
 import Option from '../../../assets/icons/option.svg';
 import { styleVars } from '../../constance/style-variables';
@@ -14,6 +14,7 @@ interface Props {
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
     const {onOptionClick, onClick, image, name, artist} = props;
+    
     return (
         <>
             <View style={styles.container} >
@@ -29,6 +30,7 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </View>
                 </Pressable>
+                
                 <View style={styles.touchAreaTwo}>
                     <IconButton icon={Option} onClick={onOptionClick} />
                 </View>

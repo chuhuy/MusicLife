@@ -1,5 +1,5 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import React, { FunctionComponent } from 'react';
+import { Pressable, View, Text } from 'react-native';
 import {styles} from './styles';
 
 interface Props {
@@ -15,10 +15,8 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <TouchableOpacity
+            <Pressable
                 disabled={disabled}
-                delayPressIn={0}
-                activeOpacity={0.75}
                 style={[styles.buttonLayout, {opacity: disabled ? 0.6 : 1}]}
                 onPressOut={onClick}
             >
@@ -26,7 +24,7 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
                     {icon}
                     <Text style={styles.text}>{title}</Text>
                 </View>
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

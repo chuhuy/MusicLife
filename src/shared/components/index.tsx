@@ -77,7 +77,7 @@ export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: Head
     }
 
     return (
-        <View style={title && styles.headerBackContainer}>
+        <View style={[title && styles.headerBackContainer]}>
             <IconButton 
                 icon={ArrowLeft} 
                 onClick={handleGoBack} 

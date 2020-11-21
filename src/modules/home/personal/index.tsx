@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { styles } from './styles';
 import I18n from './../../../i18n';
 import { Button } from './../../../shared/components/button';
@@ -145,17 +145,15 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
                     {
                         locations.map(({title, showAll}, index) => {
                             return (
-                                <TouchableOpacity
+                                <Pressable
                                     key={index}
                                     style={styles.locationButton}
-                                    activeOpacity={1}
-                                    delayPressIn={0}
                                     onPressIn={() => {setShowAll(showAll);}}>
                                     <Text style={
                                         isShowAll === showAll ? styles.locationTitleActive : styles.locationTitleInactive}>
                                         {title}
                                     </Text>
-                                </TouchableOpacity>
+                                </Pressable>
                             )
                         })
                     }

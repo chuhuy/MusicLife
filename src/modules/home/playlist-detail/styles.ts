@@ -1,22 +1,24 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: styleVars.primaryColor,
     },
-    header: {
-        paddingHorizontal: 20,
-        width: width,
-        marginTop: 20,
-    },
-    backgroundImage: {
+    blurLayer: {
         position: 'absolute',
-        width: width,
-        height: 100,
+        width: '100%',
+        height: 500,
+        top: 0,
+        left: 0,
+        backgroundColor: 'black',
+        opacity: 0.25
+    },
+    backContainer: {
+        paddingLeft: 15
     },
     image: {
         width: (height * 0.4) - 150,
@@ -25,39 +27,49 @@ export const styles = StyleSheet.create({
     },
     sectionOne: {
         flex: 2,
-        width: width,
-        opacity: 0.7,
+        width: '100%',
+        paddingTop: 20,
+        paddingBottom: 10
+    },
+    sectionOneContent: {
+        marginTop: 10,
+        flex: 1,
+        justifyContent: 'center',
     },
     sectionTwo: {
         flex: 3,
         backgroundColor: styleVars.primaryColor,
-        width: width,
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
+        paddingVertical: 20
     },
     control: {
         flexDirection: 'row',
-        width: width,
-        paddingHorizontal: 20,
+        width: '100%',
+        paddingHorizontal: 15,
         marginTop: 20,
         justifyContent: 'space-between',
+        alignItems: 'center'
     },
     titleGroup: {
+        flex: 1,
         flexDirection: 'column',
+        marginRight: 30
     },
     playlistName: {
-        fontSize: 18,
-        color: 'white',
-        fontWeight: 'bold',
+        fontSize: styleVars.bigFontSize,
+        color: styleVars.white,
+        fontWeight: '700',
     },
     artist: {
-        fontSize: 14,
+        fontSize: styleVars.baseFontSize,
         color: styleVars.greyColor,
     },
     buttonGroup: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginHorizontal: -15
     },
     button: {
-        marginHorizontal: 12,
+        paddingHorizontal: 15,
     },
 });

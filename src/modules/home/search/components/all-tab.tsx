@@ -10,19 +10,18 @@ import { SongList } from '../../../../shared/components/flatlist';
 import PlaylistList from '../../../../shared/components/flatlist/playlist';
 import { MoreButton } from './more-button';
 import { ArtistList } from './artist-list';
-import { styleVars } from '../../../../shared/constance/style-variables';
 
 interface Props {
     navigation: any,
     artist: Array<Artist>,
     song: Array<Song>,
     album: Array<Playlist>,
-    playlist: Array<Playlist>,
+    playlist?: Array<Playlist>,
     chooseType: (type: string) => void
 }
 
 export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, artist, song, album, playlist, chooseType} = props;
+    const {navigation, artist, song, album, chooseType} = props;
 
     return (
         <>
@@ -31,19 +30,23 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     title={I18n.translate('search.artists')}
                     onClick={() => chooseType(TYPE.ALL)}
                 />
+                
                 <ArtistList 
                     navigation={navigation}
                     artist={artist}
                 />
+
                 <View style={styles.buttonContainer}>
                     <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
                 </View>
             </View>
+
             <View style={styles.section}>
                 <SectionTitle 
                     title={I18n.translate('search.songs')} 
                     onClick={() => chooseType(TYPE.SONG)}
                 />
+
                 <SongList 
                     navigation={navigation}
                     disableScroll={true}
@@ -59,28 +62,14 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     title={I18n.translate('search.albums')}
                     onClick={() => chooseType(TYPE.ALBUM)}
                 />
-                <PlaylistList 
-                    isHorizontal={false}
+
+                <PlaylistList
                     navigation={navigation}
                     playlist={album}
+                    disableScroll={true}
                 >
                     <View style={styles.buttonContainer}>
                         <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
-                    </View>
-                </PlaylistList>
-            </View>
-            <View style={styles.section}>
-                <SectionTitle 
-                    title={I18n.translate('search.playlists')}
-                    onClick={() => chooseType(TYPE.PLAYLIST)}    
-                />
-                <PlaylistList 
-                    isHorizontal={false}
-                    navigation={navigation}
-                    playlist={playlist}
-                >
-                    <View style={styles.buttonContainer}>
-                        <MoreButton onClick={() => chooseType(TYPE.PLAYLIST)} />
                     </View>
                 </PlaylistList>
             </View>
