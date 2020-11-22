@@ -1,9 +1,7 @@
 import React from 'react';
 import I18n from '../../../../i18n';
-import { SafeAreaView, View } from 'react-native';
-import { HeaderBack } from '../../../../shared/components';
+import { HeaderScreen } from '../../../../shared/components';
 import { PlaylistList } from '../../../../shared/components/flatlist';
-import { styles } from './styles';
 
 interface Props {
     navigation: any,
@@ -16,21 +14,16 @@ const LatestPlaylist: React.FunctionComponent<Props> = (props: Props) => {
     
     return (
         <>
-            <SafeAreaView style={styles.container}>
-                <HeaderBack 
+            <HeaderScreen
+                navigation={navigation}
+                title={I18n.translate('explore.latest-album')}>
+                <PlaylistList 
                     navigation={navigation}
-                    title={I18n.translate('explore.latest-album')}
+                    isAlbum={isAlbum}
+                    playlist={playlist}
+                    numsColumn={2}
                 />
-
-                <View style={styles.body}>
-                    <PlaylistList 
-                        navigation={navigation}
-                        isAlbum={isAlbum}
-                        playlist={playlist}
-                        numsColumn={2}
-                    />
-                </View>
-            </SafeAreaView>
+            </HeaderScreen>
         </>
     )
 }

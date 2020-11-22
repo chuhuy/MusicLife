@@ -4,6 +4,7 @@ export { GoogleButton } from './google-button';
 export { LinkButton } from './link-button';
 export { IconButton } from './icon-button';
 export { SearchBar } from './search-bar';
+export * from './layout';
 
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -11,6 +12,7 @@ import { IconButton } from './icon-button';
 import ArrowLeft from '../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 import { styleVars } from '../constance/style-variables';
+import Controller from '../../modules/home/controller';
 
 // Section Title
 interface SectionTitleProps {

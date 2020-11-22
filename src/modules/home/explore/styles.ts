@@ -2,15 +2,6 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        backgroundColor: styleVars.primaryColor,
-    },
-    container: {
-        flex: 1,
-        paddingVertical: 20,
-        paddingHorizontal: 15
-    },
     contentContainer: {
         marginBottom: -30
     },

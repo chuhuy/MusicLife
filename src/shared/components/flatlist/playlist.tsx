@@ -66,7 +66,9 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                     {children}
                 </View>
             </View>
-        : <FlatList 
+        : (
+        <>
+        <FlatList 
             contentContainerStyle={[styles.flatlist, numsColumn && styles.flexFlatlist, isHorizontal && styles.horizontalList]}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
@@ -79,15 +81,15 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             horizontal={isHorizontal}
             renderItem={(({item}) => renderItem(item))}
             keyExtractor={(item) => item.id.toString()}
-            ListFooterComponent={isHorizontal &&children}
-            ListFooterComponentStyle={isHorizontal && {...styles.flatListFooter}}
-        >
+            ListFooterComponent={!isHorizontal && children}
+            ListFooterComponentStyle={!isHorizontal && {...styles.flatListFooter}}
+        />
             {isHorizontal && (
-                <View style={styles.flatListFooter}>
+                <View style={[styles.flatListFooter, styles.flatListHorizontalFooter]}>
                     {children}
                 </View>
             )}
-        </FlatList>
+        </>)
         }
         </>
     )
@@ -101,7 +103,8 @@ const styles = StyleSheet.create({
         marginVertical: -10
     },
     horizontalList: {
-        marginHorizontal: -10
+        marginHorizontal: -10,
+        marginVertical: 0
     },
     flexFlatlist: {
         marginVertical: -15,
@@ -111,8 +114,12 @@ const styles = StyleSheet.create({
         paddingVertical: 15
     },
     flatListFooter: {
+        flex: 1,
         marginTop: 5,
         justifyContent: 'center',
         alignSelf: 'center'
+    },
+    flatListHorizontalFooter: {
+        marginTop: 10
     }
 })

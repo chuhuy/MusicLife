@@ -1,8 +1,8 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { album, songs } from '../../../../data';
 import I18n from '../../../../i18n';
-import { HeaderBack, SectionTitle } from '../../../../shared/components';
+import { HeaderScreen, SectionTitle } from '../../../../shared/components';
 import { PlaylistList, SongList } from '../../../../shared/components/flatlist';
 import { Screen } from '../../../../shared/constance/screen';
 import { MoreButton } from '../../search/components/more-button';
@@ -30,43 +30,39 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <SafeAreaView style={styles.view}>
-                <HeaderBack 
-                    navigation={navigation}
-                    title={genre.name}
-                />
+            <HeaderScreen
+                isScroll={true}
+                navigation={navigation}
+                title={genre.name}>     
+                <View style={styles.section}>
+                    <SectionTitle 
+                        title={I18n.translate('search.songs')} 
+                        onClick={handleSongList}
+                    />
 
-                <ScrollView style={styles.body}>
-                    <View style={styles.section}>
-                        <SectionTitle 
-                            title={I18n.translate('search.songs')} 
-                            onClick={handleSongList}
-                        />
+                    <SongList 
+                        navigation={navigation}
+                        disableScroll={true}
+                        songs={songs}
+                    >
+                        <MoreButton onClick={handleSongList} />
+                    </SongList>
+                </View>
+                <View>
+                    <SectionTitle 
+                        title={I18n.translate('search.albums')}
+                        onClick={handleAlbumList}
+                    />
 
-                        <SongList 
-                            navigation={navigation}
-                            disableScroll={true}
-                            songs={songs}
-                        >
-                            <MoreButton onClick={handleSongList} />
-                        </SongList>
-                    </View>
-                    <View style={styles.section}>
-                        <SectionTitle 
-                            title={I18n.translate('search.albums')}
-                            onClick={handleAlbumList}
-                        />
-
-                        <PlaylistList
-                            navigation={navigation}
-                            playlist={album}
-                            isHorizontal={true}
-                        >
-                            <MoreButton onClick={handleAlbumList} isHorizontal={true} />
-                        </PlaylistList>
-                    </View>
-                </ScrollView>
-            </SafeAreaView>
+                    <PlaylistList
+                        navigation={navigation}
+                        playlist={album}
+                        isHorizontal={true}
+                    >
+                        <MoreButton onClick={handleAlbumList}/>
+                    </PlaylistList>
+                </View>
+            </HeaderScreen>
         </>
     )
 }
