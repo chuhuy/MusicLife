@@ -1,13 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: styleVars.primaryColor,
-        paddingVertical: 20,
-        paddingHorizontal: 15
-    },
     contentContainer: {
         marginVertical: 30,
     },

@@ -38,7 +38,6 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                     />
 
                     <SongList 
-                        navigation={navigation}
                         disableScroll={true}
                         songs={songs}
                     >
@@ -53,7 +52,6 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                     />
 
                     <PlaylistList
-                        navigation={navigation}
                         playlist={album}
                         isHorizontal={true}
                     >

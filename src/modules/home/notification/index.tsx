@@ -1,39 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { FlatList, Image, Text, View } from 'react-native';
+import { BaseScreen } from '../../../shared/components/index';
 import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
-import {HeaderBack} from '../../../shared/components/index';
-import ArrowLeft from './../../../assets/icons/arrow-left.svg';
-import { IconButton } from './../../../shared/components';
 
 interface Props {
     route: any
 }
 
 const NotificationScreen: React.FunctionComponent<Props> = (props: Props) => {
-
     const { notificationList } = props.route.params;
-    const navigation = useNavigation();
-    const handleBack = () => {
-        navigation.goBack();
-    };
 
     return (
         <>
-            <View style={styles.container}>
-                <HeaderBack 
-                    navigation={navigation}
-                    title='Notification'
-                />
-
+            <BaseScreen>
                 <FlatList
                     contentContainerStyle={styles.contentContainer}
                     data={notificationList}
                     renderItem={({item}) => (<NotificationItem title={item.title} image_url={item.image_url} body={item.body} created_at={item.created_at} />)}
                     keyExtractor={item => item.id.toString()}
                 />
-            </View>
+            </BaseScreen>
         </>
     );
 };

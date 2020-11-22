@@ -104,7 +104,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <BaseScreen isScroll={false}>
-                <HeaderMainPage navigation={navigation} />
+                <HeaderMainPage/>
 
                 <ScrollView style={styles.contentContainer}>
                     <View style={styles.group}>
@@ -125,16 +125,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
 
                         {isTop100 ?
-                        <PlaylistList 
-                            navigation={navigation}
-                            playlist={playlist}
-                            isHorizontal={true}
-                        />
-                        : <PlaylistList 
-                            navigation={navigation}
-                            playlist={chartDummyData}
-                            isHorizontal={true}
-                        />}
+                        <PlaylistList playlist={playlist} isHorizontal={true}/>
+                        : <PlaylistList playlist={chartDummyData} isHorizontal={true}/>
+                        }
                     </View>
                     
                     <View style={styles.group}>
@@ -150,11 +143,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                     <View style={styles.group}>
                         <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
 
-                        <PlaylistList 
-                            navigation={navigation}
-                            playlist={album}
-                            isHorizontal={true}
-                        />
+                        <PlaylistList playlist={album} isHorizontal={true}/>
                     </View>
 
                     <View>
