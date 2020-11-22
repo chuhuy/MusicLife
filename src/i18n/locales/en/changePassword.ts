@@ -1,6 +1,8 @@
 export const changePassword = {
     "oldPassword": "Old password",
+    "placeholderOldPassword": "Enter your old password",
     "newPassword": "New password",
+    "placeholderNewPassword": "Enter your new password",
     "re_newPassword": "Confirm new password",
     "confirm": "Confirm",
     "forgotPassword": "Forgot password ?",

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         color: styleVars.white,
         fontSize: styleVars.bigFontSize,
         marginRight: 10,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     headerBackContainer: {
         flexDirection: 'row',

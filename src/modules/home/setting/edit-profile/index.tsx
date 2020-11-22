@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import { Text, View, Image, TextInput, Alert, Pressable } from 'react-native';
-import {styles} from './styles';
+import React, { useState } from 'react';
+import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
 import I18n from '../../../../i18n';
-import ArrowBackSvg from '../../../../assets/icons/arrow-back.svg';
+import { BaseScreen } from '../../../../shared/components';
+import { styles } from './styles';
 
 interface Props {
     navigation: any,
@@ -13,29 +13,22 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
         Alert.alert(`Your name has been changed to ${name}`)
     } 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Pressable onPressOut={() => props.navigation.goBack()}>
-                    <ArrowBackSvg width={20} height={20} />
-                </Pressable>
-                <View style={styles.header__right}>
-                    <Text style={styles.title}>{I18n.translate('setting.editProfile')}</Text>
-                </View>
-            </View>
-            <View>
+        <BaseScreen isScroll={true}>
+            <View style={styles.content}>
                 <Image source={ require( '../../../../assets/img/avatar.png')} style={styles.avatar} />
                 <TextInput
                     style={styles.input}
                     defaultValue={name}
                     onChangeText={text => setName(text)}
                 />
-            </View>
-            <Pressable onPressOut={handleSaveName}>
+                <Pressable onPressOut={handleSaveName}>
                     <View style={styles.btn}>
                         <Text style={styles.btn__title}>{I18n.translate('setting.save')}</Text>
                     </View>
-            </Pressable>
-        </View>
+                </Pressable>
+            </View>
+        </BaseScreen>
     )
 }
+
 export default EditProfile;

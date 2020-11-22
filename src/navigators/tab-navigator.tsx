@@ -11,7 +11,7 @@ import PersonalIcon from './../assets/icons/personal.svg';
 import SettingActiveIcon from './../assets/icons/setting-active.svg';
 import SettingIcon from './../assets/icons/setting.svg';
 import I18n from './../i18n';
-import { Personal } from './../modules/home/personal';
+import PersonalStackScreen from './personal-navigator';
 import { styleVars } from './../shared/constance/style-variables';
 import ExploreStackScreen from './explore-navigator';
 import SettingStackScreen from './setting-navigator';
@@ -64,7 +64,7 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
             })}
         >
             <Tab.Screen name={Screen.Explore.Main}  component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>
-            {props.refresh_token !== null && <Tab.Screen name={Screen.Personal}  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
+            {props.refresh_token !== null && <Tab.Screen name={Screen.Personal}  component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name={Screen.Setting.Main}  component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
     );

@@ -14,7 +14,7 @@ interface Props {
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
     const {onOptionClick, onClick, image, name, artist} = props;
-    
+
     return (
         <>
             <View style={styles.container} >
@@ -42,7 +42,7 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignContent: 'center',
+        alignItems: 'center',
         paddingVertical: 10
     },
     metadata: {

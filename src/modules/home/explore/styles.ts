@@ -3,7 +3,7 @@ import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     contentContainer: {
-        marginBottom: -30
+        flex: 1,
     },
     chart: {
         flexDirection: 'row',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         marginRight: 20,
     },
     group: {
-        marginBottom: 30
+        paddingBottom: 30
     },
     flatListContainer: {
         flexWrap: 'wrap', 

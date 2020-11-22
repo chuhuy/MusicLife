@@ -1,6 +1,5 @@
 import React from 'react';
-import I18n from '../../../../i18n';
-import { HeaderScreen } from '../../../../shared/components';
+import { BaseScreen } from '../../../../shared/components';
 import { PlaylistList } from '../../../../shared/components/flatlist';
 
 interface Props {
@@ -14,16 +13,14 @@ const LatestPlaylist: React.FunctionComponent<Props> = (props: Props) => {
     
     return (
         <>
-            <HeaderScreen
-                navigation={navigation}
-                title={I18n.translate('explore.latest-album')}>
+            <BaseScreen>    
                 <PlaylistList 
                     navigation={navigation}
                     isAlbum={isAlbum}
                     playlist={playlist}
                     numsColumn={2}
-                />
-            </HeaderScreen>
+                />    
+            </BaseScreen>
         </>
     )
 }

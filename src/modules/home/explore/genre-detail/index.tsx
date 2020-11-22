@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { album, songs } from '../../../../data';
 import I18n from '../../../../i18n';
-import { HeaderScreen, SectionTitle } from '../../../../shared/components';
+import { BaseScreen, SectionTitle } from '../../../../shared/components';
 import { PlaylistList, SongList } from '../../../../shared/components/flatlist';
 import { Screen } from '../../../../shared/constance/screen';
 import { MoreButton } from '../../search/components/more-button';
@@ -30,10 +30,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <HeaderScreen
-                isScroll={true}
-                navigation={navigation}
-                title={genre.name}>     
+            <BaseScreen isScroll={true}>
                 <View style={styles.section}>
                     <SectionTitle 
                         title={I18n.translate('search.songs')} 
@@ -48,6 +45,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                         <MoreButton onClick={handleSongList} />
                     </SongList>
                 </View>
+                
                 <View>
                     <SectionTitle 
                         title={I18n.translate('search.albums')}
@@ -62,7 +60,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                         <MoreButton onClick={handleAlbumList}/>
                     </PlaylistList>
                 </View>
-            </HeaderScreen>
+            </BaseScreen>
         </>
     )
 }

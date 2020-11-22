@@ -60,7 +60,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     title={I18n.translate('search.albums')}
                     onClick={() => chooseType(TYPE.ALBUM)}
                 />
-
+                
                 <PlaylistList
                     navigation={navigation}
                     playlist={album}

@@ -1,9 +1,8 @@
 import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { Playlist } from '../../../models/playlist';
 import { Screen } from '../../constance/screen';
-import { styleVars } from '../../constance/style-variables';
-import { Item } from './item'
+import { Item } from './item';
 import { SquareItem } from './square-item';
 
 interface Props {
@@ -69,7 +68,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         : (
         <>
         <FlatList 
-            contentContainerStyle={[styles.flatlist, numsColumn && styles.flexFlatlist, isHorizontal && styles.horizontalList]}
+            contentContainerStyle={[styles.flatlist, ( numsColumn || isHorizontal ) && styles.horizontalList]}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             
@@ -99,19 +98,15 @@ export default PlaylistList;
 
 const styles = StyleSheet.create({
     flatlist: {
-        flex: 1,
-        marginVertical: -10
+        marginVertical: -10,
+        justifyContent: 'center',
     },
     horizontalList: {
         marginHorizontal: -10,
         marginVertical: 0
     },
-    flexFlatlist: {
-        marginVertical: -15,
-        marginHorizontal: -10
-    },
     columnWrapper: {
-        paddingVertical: 15
+        paddingVertical: 15,
     },
     flatListFooter: {
         flex: 1,

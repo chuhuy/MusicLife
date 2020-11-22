@@ -1,7 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import I18n from '../../../../i18n';
-import { HeaderScreen } from '../../../../shared/components';
+import { BaseScreen } from '../../../../shared/components';
 import { SquareItem } from '../../../../shared/components/flatlist/square-item';
 import { Screen } from '../../../../shared/constance/screen';
 import { styles } from './styles';
@@ -17,9 +16,7 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <HeaderScreen
-                navigation={navigation}
-                title={I18n.translate('explore.genre')}>
+            <BaseScreen>
                 <FlatList 
                     contentContainerStyle={styles.genreList}
                     showsVerticalScrollIndicator={false}
@@ -35,14 +32,17 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
                             <SquareItem 
                                 name={item.name}
                                 image={item.image_url}
-                                onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {genre: item})}
+                                onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {
+                                    genre: item,
+                                    name: item.name
+                                })}
                                 size={2}
                             />
                         )
                     })}
                     keyExtractor={(item) => item.genre_id.toString()}
                 />
-            </HeaderScreen>
+            </BaseScreen>
         </>
     )
 }

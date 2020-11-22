@@ -10,12 +10,15 @@ interface Props {
 
 export const BaseScreen: React.FunctionComponent<Props> = (props: Props) => {
     const { children, isScroll } = props;
-
+    
     return (
         <>
             <SafeAreaView style={styles.view}>
                 {isScroll ? (
-                    <ScrollView style={styles.container}>
+                    <ScrollView 
+                        contentContainerStyle={styles.container}
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}>
                         {children}
                     </ScrollView>
                 ): (
@@ -37,8 +40,9 @@ const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
     },
     container: {
-        flex: 1,
-        paddingVertical: 20,
-        paddingHorizontal: 15
+        minHeight: '100%',
+        paddingTop: 30,
+        paddingBottom: 20,
+        paddingHorizontal: 15,
     }
 })

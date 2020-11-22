@@ -92,12 +92,12 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                     </View> 
                     : <FlatList 
                         showsVerticalScrollIndicator={false}
-                        contentContainerStyle={styles.flatListContainer}
+                        style={styles.flatListContainer}
                         data={songs}
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
                         ListFooterComponent={children}
-                        ListFooterComponentStyle={{...styles.flatListFooter}}
+                        ListFooterComponentStyle={children && {...styles.flatListFooter}}
                     />
             }
         </>
@@ -111,7 +111,7 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        marginVertical: -10
+        marginVertical: -10,
     },
     flatListFooter: {
         marginTop: 5,

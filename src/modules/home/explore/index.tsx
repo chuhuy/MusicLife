@@ -157,7 +157,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         />
                     </View>
 
-                    <View style={styles.group}>
+                    <View>
                         <SectionTitle 
                             title={I18n.translate('explore.genre')} 
                             onClick={handleGenreList} 

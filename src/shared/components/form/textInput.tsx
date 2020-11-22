@@ -9,7 +9,7 @@ interface Props {
     inputRef?: (ref: HTMLElement) => void,
     label: string,
     value: string,
-    placeholder: string,
+    placeholder?: string,
     secureTextEntry?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
@@ -57,7 +57,7 @@ export default TextInputGroup;
 
 const styles = StyleSheet.create({
     inputGroup: {
-        marginBottom: 15
+        marginBottom: 20
     },
     inputContainer: {
         flexDirection: 'row',
