@@ -40,7 +40,7 @@ const ArtistItem: React.FunctionComponent<ArtistProps> = (props: ArtistProps) =>
 interface ArtistListProps {
     navigation: any,
     isHorizontal?: boolean,
-    artist: Array<Artist>
+    artist: Array<Artist>,
 }
 
 export const ArtistList: React.FunctionComponent<ArtistListProps> = (props: ArtistListProps) => {
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 15,
-        paddingBottom: 10
     },
     artistListHorizontal: {
         marginHorizontal: -15
