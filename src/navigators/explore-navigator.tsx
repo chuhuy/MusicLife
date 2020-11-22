@@ -6,6 +6,8 @@ import LatestPlaylist from '../modules/home/explore/latest-album';
 import LastestSong from '../modules/home/explore/lastest-song';
 import { Screen } from '../shared/constance/screen';
 import Explore from '../modules/home/explore';
+import GenreListScreen from '../modules/home/explore/genre-list';
+import GenreDetail from '../modules/home/explore/genre-detail';
 
 const ExploreStack = createStackNavigator();
 
@@ -28,6 +30,8 @@ const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     <ExploreStack.Screen name={Screen.Common.PlaylistDetail} component={PlaylistDetail}/>
                     <ExploreStack.Screen name={Screen.Explore.Playlist} component={LatestPlaylist}/>
                     <ExploreStack.Screen name={Screen.Explore.LatestSong} component={LastestSong}/>
+                    <ExploreStack.Screen name={Screen.Explore.GenreList} component={GenreListScreen}/>
+                    <ExploreStack.Screen name={Screen.Explore.GenreDetail} component={GenreDetail}/>
                 </>
             </ExploreStack.Navigator>
         </>
