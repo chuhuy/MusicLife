@@ -9,7 +9,8 @@ export const Screen = {
         'Main': 'Explore',
         'LatestSong': 'LatestSong',
         'Playlist': 'Playlist',
-        'GenreList': 'GenreList'
+        'GenreList': 'GenreList',
+        'GenreDetail': 'GenreDetail'
     },
     'Personal': 'Personal',
     'Setting': {

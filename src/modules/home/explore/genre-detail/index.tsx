@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import { album, songs } from '../../../../data';
 import I18n from '../../../../i18n';
 import { HeaderBack, SectionTitle } from '../../../../shared/components';
@@ -16,7 +16,7 @@ interface Props {
 const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
     const { navigation, route } = props;
     const { genre } = route.params;
-
+    
     const handleSongList = () => {
         navigation.navigate(Screen.Explore.LatestSong, {songs})
     }
@@ -36,7 +36,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                     title={genre.name}
                 />
 
-                <View style={styles.body}>
+                <ScrollView style={styles.body}>
                     <View style={styles.section}>
                         <SectionTitle 
                             title={I18n.translate('search.songs')} 
@@ -48,9 +48,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                             disableScroll={true}
                             songs={songs}
                         >
-                            {/* <View style={styles.buttonContainer}> */}
-                                <MoreButton onClick={handleSongList} />
-                            {/* </View> */}
+                            <MoreButton onClick={handleSongList} />
                         </SongList>
                     </View>
                     <View style={styles.section}>
@@ -62,14 +60,12 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                         <PlaylistList
                             navigation={navigation}
                             playlist={album}
-                            disableScroll={true}
+                            isHorizontal={true}
                         >
-                            <View style={styles.buttonContainer}>
-                                <MoreButton onClick={handleAlbumList} />
-                            </View>
+                            <MoreButton onClick={handleAlbumList} isHorizontal={true} />
                         </PlaylistList>
                     </View>
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </>
     )

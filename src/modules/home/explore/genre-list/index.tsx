@@ -4,6 +4,7 @@ import I18n from '../../../../i18n';
 import { FlatList, SafeAreaView, View } from 'react-native';
 import { HeaderBack } from '../../../../shared/components';
 import { SquareItem } from '../../../../shared/components/flatlist/square-item';
+import { Screen } from '../../../../shared/constance/screen';
 
 interface Props {
     navigation: any,
@@ -38,7 +39,7 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
                                 <SquareItem 
                                     name={item.name}
                                     image={item.image_url}
-                                    onClick={() => {}}
+                                    onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {genre: item})}
                                     size={2}
                                 />
                             )
