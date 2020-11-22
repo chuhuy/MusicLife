@@ -1,21 +1,16 @@
-import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 import { connect } from 'react-redux';
+import Search from '../modules/home/search';
+import Singer from '../modules/home/singer';
+import { Screen } from '../shared/constance/screen';
+// import Register from './../modules/authentication/register';
+import ForgotPassword from './../modules/authentication/forgot-password';
+import Notification from './../modules/home/notification';
+import Player from './../modules/home/player';
 import Splash from './../modules/splash';
 // import Login from './../modules/authentication/login';
 import TabNavigator from './tab-navigator';
-// import Register from './../modules/authentication/register';
-import ForgotPassword from './../modules/authentication/forgot-password';
-import Player from './../modules/home/player';
-import ChangePassword from '../modules/home/setting/change-password'
-import Notification from './../modules/home/notification';
-import EditProfile from '../modules/home/setting/edit-profile';
-import PlaylistDetail from '../modules/home/playlist-detail';
-import Search from '../modules/home/search';
-import Singer from '../modules/home/singer';
-import LatestPlaylist from '../modules/home/explore/latest-album';
-import LastestSong from '../modules/home/explore/lastest-song';
-import { Screen } from '../shared/constance/screen';
 
 const Stack = createStackNavigator();
 
@@ -55,37 +50,12 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
                         {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-                        <Stack.Screen name={Screen.Setting.ChangePassword} component={ChangePassword}/>
-                        <Stack.Screen name={Screen.Setting.EditProfile} component={EditProfile}/>
                         <Stack.Screen name={Screen.Common.Player} component={Player}/>
                         <Stack.Screen name={Screen.Common.Notification} component={Notification}/>
-                        <Stack.Screen name={Screen.Common.PlaylistDetail} component={PlaylistDetail}/>
                         <Stack.Screen name={Screen.Common.Search} component={Search}/>
                         <Stack.Screen name={Screen.Common.Singer} component={Singer}/>
-                        <Stack.Screen name={Screen.Explore.Playlist} component={LatestPlaylist}/>
-                        <Stack.Screen name={Screen.Explore.LatestSong} component={LastestSong}/>
                     </>
                 )}
-                {/* {props.refresh_token === null ? (
-                    <>
-                        <Stack.Screen name="Splash" component={Splash}/>
-                        <Stack.Screen name="Login" component={Login}/>
-                        <Stack.Screen name="Register" component={Register}/>
-                        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
-                    </>
-                ) :
-                (
-                    <>
-                        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-                        <Stack.Screen name="Player" component={Player}/>
-                        <Stack.Screen name="ChangePassword" component={ChangePassword}/>
-                        <Stack.Screen name="ChangeLanguage" component={ChangeLanguage}/>
-                        <Stack.Screen name="Notification" component={Notification}/>
-                        <Stack.Screen name="EditProfile" component={EditProfile}/>
-                        <Stack.Screen name="Playlist" component={Playlist}/>
-                    </>
-
-                )} */}
             </Stack.Navigator>
         </>
     );

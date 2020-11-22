@@ -1,21 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-//import screen here
-import Setting from './../modules/home/setting';
-import { Personal } from './../modules/home/personal';
-import Explore from './../modules/home/explore';
-import I18n from './../i18n';
+import React from 'react';
 import { Text } from 'react-native';
-import { styleVars } from './../shared/constance/style-variables';
-import ExploreIcon from './../assets/icons/explore.svg';
-import PersonalIcon from './../assets/icons/personal.svg';
-import SettingIcon from './../assets/icons/setting.svg';
-import ExploreActiveIcon from './../assets/icons/explore-active.svg';
-import PersonalActiveIcon from './../assets/icons/personal-active.svg';
-import SettingActiveIcon from './../assets/icons/setting-active.svg';
 import { connect } from 'react-redux';
 import { Screen } from '../shared/constance/screen';
+import ExploreActiveIcon from './../assets/icons/explore-active.svg';
+import ExploreIcon from './../assets/icons/explore.svg';
+import PersonalActiveIcon from './../assets/icons/personal-active.svg';
+import PersonalIcon from './../assets/icons/personal.svg';
+import SettingActiveIcon from './../assets/icons/setting-active.svg';
+import SettingIcon from './../assets/icons/setting.svg';
+import I18n from './../i18n';
+import { Personal } from './../modules/home/personal';
+import { styleVars } from './../shared/constance/style-variables';
+import ExploreStackScreen from './explore-navigator';
+import SettingStackScreen from './setting-navigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -64,9 +63,9 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                 },
             })}
         >
-            <Tab.Screen name={Screen.Explore.Main}  component={Explore} options={{title: I18n.translate('explore.title')}}/>
+            <Tab.Screen name={Screen.Explore.Main}  component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>
             {props.refresh_token !== null && <Tab.Screen name={Screen.Personal}  component={Personal} options={{title: I18n.translate('personal.title')}}/>}
-            <Tab.Screen name={Screen.Setting.Main}  component={Setting} options={{title: I18n.translate('setting.title')}}/>
+            <Tab.Screen name={Screen.Setting.Main}  component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
     );
 };
