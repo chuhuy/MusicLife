@@ -4,6 +4,7 @@ export { GoogleButton } from './google-button';
 export { LinkButton } from './link-button';
 export { IconButton } from './icon-button';
 export { SearchBar } from './search-bar';
+export * from './layout';
 
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -11,6 +12,7 @@ import { IconButton } from './icon-button';
 import ArrowLeft from '../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 import { styleVars } from '../constance/style-variables';
+import Controller from '../../modules/home/controller';
 
 // Section Title
 interface SectionTitleProps {
@@ -44,10 +46,11 @@ const styles = StyleSheet.create({
         color: styleVars.white,
         fontSize: styleVars.bigFontSize,
         marginRight: 10,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     headerBackContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
         borderBottomWidth: 1,
         borderColor: styleVars.greyColor,
         marginHorizontal: -15,
@@ -58,8 +61,9 @@ const styles = StyleSheet.create({
         flex: 1,
         color: styleVars.white,
         textAlign: 'center',
-        fontSize: styleVars.bigFontSize,
-        fontWeight: 'bold',
+        fontSize: styleVars.largeFontSize,
+        letterSpacing: 1,
+        fontWeight: '700',
     },
 });
 

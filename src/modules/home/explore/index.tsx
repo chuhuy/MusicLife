@@ -1,21 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView } from 'react-native';
-import { styles } from './styles';
-import I18n from './../../../i18n';
-import { SongItem, GenreItem } from './components';
-import { SectionTitle } from '../../../shared/components';
-import Controller from '../controller';
-import { connect } from 'react-redux';
-import { songs, genre, playlist, album } from './../../../data';
-import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
-import { Song } from '../../../models/song';
-import { Playlist } from '../../../models/playlist';
-import TrackPlayer from 'react-native-track-player';
 import { useNavigation } from '@react-navigation/native';
-import HeaderMainPage from '../../../shared/components/header-main-page';
+import React, { useEffect, useState } from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
+import { connect } from 'react-redux';
+import { Song } from '../../../models/song';
+import { BaseScreen, SectionTitle } from '../../../shared/components';
 import { PlaylistList } from '../../../shared/components/flatlist';
+import HeaderMainPage from '../../../shared/components/header-main-page';
 import { Screen } from '../../../shared/constance/screen';
+import { album, genre, playlist, songs } from './../../../data';
+import I18n from './../../../i18n';
+import { PAUSE, PLAY, SKIP } from './../../../redux/modules/player/actions';
+import { GenreItem, SongItem } from './components';
+import { styles } from './styles';
 
 interface Props extends DispatchProps, StateProps {}
 
@@ -79,11 +77,14 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleLatestAlbum = () => {
-        console.log(1)
         navigation.navigate(Screen.Explore.Playlist, {
             isAlbum: true,
             playlist: album
         })
+    };
+
+    const handleGenreList = () => {
+        navigation.navigate(Screen.Explore.GenreList, {genre})
     }
 
     const renderLatestSong = () => {
@@ -102,85 +103,70 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <SafeAreaView style={styles.view}>
-                <View style={styles.container} >
-                    <HeaderMainPage navigation={navigation} />
+            <BaseScreen isScroll={false}>
+                <HeaderMainPage/>
 
-                    <ScrollView style={styles.contentContainer}>
-                        <View style={styles.group}>
-                            <View style={styles.chart}>
-                                <Pressable
-                                    style={styles.chartButton}
-                                    onPressIn={() => {setTop100(false);}}>
-                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
-                                        {I18n.translate('explore.chart')}
-                                    </Text>
-                                </Pressable>
-                                <Pressable
-                                    onPressIn={() => {setTop100(true);}}>
-                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
-                                        {I18n.translate('explore.top100')}
-                                    </Text>
-                                </Pressable>
-                            </View>
-
-                            {isTop100 ?
-                            <PlaylistList 
-                                navigation={navigation}
-                                playlist={playlist}
-                                isHorizontal={true}
-                            />
-                            : <PlaylistList 
-                                navigation={navigation}
-                                playlist={chartDummyData}
-                                isHorizontal={true}
-                            />}
+                <ScrollView style={styles.contentContainer}>
+                    <View style={styles.group}>
+                        <View style={styles.chart}>
+                            <Pressable
+                                style={styles.chartButton}
+                                onPressIn={() => {setTop100(false);}}>
+                                <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
+                                    {I18n.translate('explore.chart')}
+                                </Text>
+                            </Pressable>
+                            <Pressable
+                                onPressIn={() => {setTop100(true);}}>
+                                <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
+                                    {I18n.translate('explore.top100')}
+                                </Text>
+                            </Pressable>
                         </View>
+
+                        {isTop100 ?
+                        <PlaylistList playlist={playlist} isHorizontal={true}/>
+                        : <PlaylistList playlist={chartDummyData} isHorizontal={true}/>
+                        }
+                    </View>
+                    
+                    <View style={styles.group}>
+                        <SectionTitle title={I18n.translate('explore.latest-song')} onClick={handleLastestSong} />
                         
-                        <View style={styles.group}>
-                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={handleLastestSong} />
-                            
-                            {latestSong && (
-                                <View style={styles.flatListContainer}>
-                                    {renderLatestSong()}
-                                </View>
-                            )}
-                        </View>
-                        
-                        <View style={styles.group}>
-                            <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
-
-                            <PlaylistList 
-                                navigation={navigation}
-                                playlist={album}
-                                isHorizontal={true}
-                            />
-                        </View>
-
-                        <View style={styles.group}>
-                            <SectionTitle 
-                                title={I18n.translate('explore.genre')} 
-                                onClick={() => {}} 
-                            />
-
+                        {latestSong && (
                             <View style={styles.flatListContainer}>
-                                {genre.map((item) => {
-                                    return (
-                                        <GenreItem 
-                                            key={item.genre_id}
-                                            title={item.name} 
-                                            image={item.image_url} 
-                                            onClick={() => {}}
-                                        />
-                                    )
-                                })}
+                                {renderLatestSong()}
                             </View>
-                        </View>
-                    </ScrollView>
-                </View>
+                        )}
+                    </View>
+                    
+                    <View style={styles.group}>
+                        <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
 
-                <Controller />
-            </SafeAreaView>
+                        <PlaylistList playlist={album} isHorizontal={true}/>
+                    </View>
+
+                    <View>
+                        <SectionTitle 
+                            title={I18n.translate('explore.genre')} 
+                            onClick={handleGenreList} 
+                        />
+
+                        <View style={styles.flatListContainer}>
+                            {genre.map((item) => {
+                                return (
+                                    <GenreItem 
+                                        key={item.genre_id}
+                                        title={item.name} 
+                                        image={item.image_url} 
+                                        onClick={() => {}}
+                                    />
+                                )
+                            })}
+                        </View>
+                    </View>
+                </ScrollView>
+            </BaseScreen>
         </>
     );
 };

@@ -94,10 +94,7 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
             );
         
         return (
-            <SongList
-                navigation={navigation}
-                songs={songs} 
-            />
+            <SongList songs={songs} />
         )
     };
 
@@ -112,10 +109,7 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
         }
 
         return (
-            <AlbumList 
-                navigation={navigation}
-                playlist={album}
-            />
+            <AlbumList playlist={album}/>
         );
     };
 
@@ -129,17 +123,14 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
             )
         }
         return (
-            <PlaylistList 
-                navigation={navigation}
-                playlist={playlists}
-            />
+            <PlaylistList playlist={playlists}/>
         );
     };
 
     return (
         <>
             <View style={styles.container}>
-                <HeaderMainPage navigation={navigation} />
+                <HeaderMainPage/>
 
                 <View style={styles.locationTitle}>
                     {

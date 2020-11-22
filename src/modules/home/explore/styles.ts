@@ -2,17 +2,8 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        backgroundColor: styleVars.primaryColor,
-    },
-    container: {
-        flex: 1,
-        paddingVertical: 20,
-        paddingHorizontal: 15
-    },
     contentContainer: {
-        marginBottom: -30
+        flex: 1,
     },
     chart: {
         flexDirection: 'row',
@@ -34,7 +25,7 @@ export const styles = StyleSheet.create({
         marginRight: 20,
     },
     group: {
-        marginBottom: 30
+        paddingBottom: 30
     },
     flatListContainer: {
         flexWrap: 'wrap', 

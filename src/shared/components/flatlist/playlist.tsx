@@ -1,8 +1,8 @@
 import React from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { Playlist } from '../../../models/playlist';
 import { Screen } from '../../constance/screen';
-import {Item} from './item'
+import { Item } from './item';
 import { SquareItem } from './square-item';
 
 interface Props {
@@ -61,10 +61,14 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         {disableScroll ? 
             <View style={styles.flatlist}> 
                 {playlist.map(item => renderItem(item))}
-                {children}
+                <View style={styles.flatListFooter}>
+                    {children}
+                </View>
             </View>
-        : <FlatList 
-            contentContainerStyle={[styles.flatlist, numsColumn && styles.flexFlatlist, isHorizontal && styles.horizontalList]}
+        : (
+        <>
+        <FlatList 
+            contentContainerStyle={[styles.flatlist, ( numsColumn || isHorizontal ) && styles.horizontalList]}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             
@@ -76,8 +80,15 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             horizontal={isHorizontal}
             renderItem={(({item}) => renderItem(item))}
             keyExtractor={(item) => item.id.toString()}
-            ListFooterComponent={children}
+            ListFooterComponent={!isHorizontal && children}
+            ListFooterComponentStyle={!isHorizontal && {...styles.flatListFooter}}
         />
+            {isHorizontal && (
+                <View style={[styles.flatListFooter, styles.flatListHorizontalFooter]}>
+                    {children}
+                </View>
+            )}
+        </>)
         }
         </>
     )
@@ -87,16 +98,23 @@ export default PlaylistList;
 
 const styles = StyleSheet.create({
     flatlist: {
-        flex: 1,
+        marginVertical: -10,
+        justifyContent: 'center',
     },
     horizontalList: {
-        marginHorizontal: -10
-    },
-    flexFlatlist: {
-        marginTop: -15,
-        marginHorizontal: -10
+        marginHorizontal: -10,
+        marginVertical: 0
     },
     columnWrapper: {
-        paddingVertical: 15
+        paddingVertical: 15,
+    },
+    flatListFooter: {
+        flex: 1,
+        marginTop: 5,
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+    flatListHorizontalFooter: {
+        marginTop: 10
     }
 })

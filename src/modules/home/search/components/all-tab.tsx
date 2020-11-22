@@ -35,7 +35,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     navigation={navigation}
                     artist={artist}
                 />
-
+                    
                 <View style={styles.buttonContainer}>
                     <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
                 </View>
@@ -52,9 +52,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     disableScroll={true}
                     songs={song}
                 >
-                    <View style={styles.buttonContainer}>
-                        <MoreButton onClick={() => chooseType(TYPE.SONG)} />
-                    </View>
+                    <MoreButton onClick={() => chooseType(TYPE.SONG)} />
                 </SongList>
             </View>
             <View style={styles.section}>
@@ -62,15 +60,13 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                     title={I18n.translate('search.albums')}
                     onClick={() => chooseType(TYPE.ALBUM)}
                 />
-
+                
                 <PlaylistList
                     navigation={navigation}
                     playlist={album}
                     disableScroll={true}
                 >
-                    <View style={styles.buttonContainer}>
-                        <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
-                    </View>
+                    <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
                 </PlaylistList>
             </View>
         </>

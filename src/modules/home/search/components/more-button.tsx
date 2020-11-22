@@ -2,14 +2,14 @@ import React from 'react';
 import I18n from '../../../../i18n';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { styleVars } from '../../../../shared/constance/style-variables';
+import ArrowRight from '../../../../assets/icons/arrow-right-red.svg';
 
 interface Props {
     onClick: () => void,
-    isHorizontal?: boolean
 }
 
 export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
-    const {onClick, isHorizontal = false} = props;
+    const { onClick } = props;
 
     return (
         <>
@@ -19,6 +19,7 @@ export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
             >
                 <View style={styles.touchArea}>
                     <Text style={styles.text}>{I18n.translate('search.more-button')}</Text> 
+                    <ArrowRight />
                 </View>
             </Pressable>
         </>
@@ -27,10 +28,13 @@ export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
 
 const styles = StyleSheet.create({
     buttonLayout: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     touchArea: {
+        flexDirection: 'row',
+        alignSelf: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 5,
         borderRadius: 30,
@@ -38,7 +42,9 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     text: {
+        alignSelf: 'center',
         color: styleVars.secondaryColor,
-        fontSize: styleVars.smallFontSize
-    }
+        fontSize: styleVars.smallFontSize,
+        paddingHorizontal: 8
+    },
 })
