@@ -95,6 +95,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
                         ListFooterComponent={children}
+                        ListFooterComponentStyle={{
+                            alignItems: 'center',
+                            marginTop: 10
+                        }}
                     />
             }
         </>

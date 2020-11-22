@@ -79,11 +79,14 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleLatestAlbum = () => {
-        console.log(1)
         navigation.navigate(Screen.Explore.Playlist, {
             isAlbum: true,
             playlist: album
         })
+    };
+
+    const handleGenreList = () => {
+        navigation.navigate(Screen.Explore.GenreList, {genre})
     }
 
     const renderLatestSong = () => {
@@ -160,7 +163,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         <View style={styles.group}>
                             <SectionTitle 
                                 title={I18n.translate('explore.genre')} 
-                                onClick={() => {}} 
+                                onClick={handleGenreList} 
                             />
 
                             <View style={styles.flatListContainer}>

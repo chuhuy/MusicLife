@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     },
     headerBackContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
         borderBottomWidth: 1,
         borderColor: styleVars.greyColor,
         marginHorizontal: -15,
@@ -58,8 +59,9 @@ const styles = StyleSheet.create({
         flex: 1,
         color: styleVars.white,
         textAlign: 'center',
-        fontSize: styleVars.bigFontSize,
-        fontWeight: 'bold',
+        fontSize: styleVars.largeFontSize,
+        letterSpacing: 1,
+        fontWeight: '700',
     },
 });
 

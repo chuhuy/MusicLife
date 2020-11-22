@@ -19,7 +19,7 @@ const LatestPlaylist: React.FunctionComponent<Props> = (props: Props) => {
             <SafeAreaView style={styles.container}>
                 <HeaderBack 
                     navigation={navigation}
-                    title={isAlbum ? I18n.translate('explore.latest-album') : I18n.translate('explore.latest-playlist')}
+                    title={I18n.translate('explore.latest-album')}
                 />
 
                 <View style={styles.body}>
