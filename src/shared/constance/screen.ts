@@ -7,8 +7,6 @@ export const Screen = {
     },
     'Explore': {
         'Main': 'Explore',
-        'LatestSong': 'LatestSong',
-        'Playlist': 'Playlist',
         'GenreList': 'GenreList',
         'GenreDetail': 'GenreDetail'
     },
@@ -20,9 +18,11 @@ export const Screen = {
     },
     'Common': {
         'Notification': 'Notification',
+        'Song': 'Song',
         'Player': 'Player',
         'Search': 'Search',
         'Singer': 'Singer',
+        'Playlist': 'Playlist',
         'PlaylistDetail': 'PlaylistDetail',
     }
 }

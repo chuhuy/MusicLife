@@ -7,13 +7,13 @@ import UserIcon from './../../../assets/icons/user.svg';
 import NotificationIcon from './../../../assets/icons/notification-active.svg';
 import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
 import { Screen } from '../../constance/screen';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
-    navigation: any,
 }
 
 export const HeaderMainPage: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation} = props;
+    const navigation = useNavigation();
 
     const handleUserProfile = () => {
         navigation.navigate(Screen.Setting.Main);

@@ -2,8 +2,8 @@ import React from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { connect } from 'react-redux';
 import PlaylistDetail from '../modules/home/playlist-detail';
-import LatestPlaylist from '../modules/home/explore/latest-album';
-import LastestSong from '../modules/home/explore/lastest-song';
+import Playlist from '../modules/home/playlist';
+import Song from '../modules/home/song';
 import { Screen } from '../shared/constance/screen';
 import Explore from '../modules/home/explore';
 import GenreListScreen from '../modules/home/explore/genre-list';
@@ -61,19 +61,19 @@ const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     />
 
                     <ExploreStack.Screen 
-                        name={Screen.Explore.Playlist} 
-                        component={LatestPlaylist}
-                        options={{
-                            title: I18n.translate('explore.latest-album')
-                        }}
+                        name={Screen.Common.Playlist} 
+                        component={Playlist}
+                        options={({ route }) => ({
+                            title: route.params.isLatest ? I18n.translate('explore.latest-album') : I18n.translate('common.album') 
+                        })}
                     />
 
                     <ExploreStack.Screen 
-                        name={Screen.Explore.LatestSong} 
-                        component={LastestSong}
-                        options={{
-                            title: I18n.translate('explore.latest-song')
-                        }}
+                        name={Screen.Common.Song} 
+                        component={Song}
+                        options={({ route }) => ({
+                            title: route.params.isLatest ? I18n.translate('explore.latest-song') : I18n.translate('common.song')
+                        })}
                     />
                     
                     <ExploreStack.Screen 

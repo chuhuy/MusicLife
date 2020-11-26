@@ -1,6 +1,5 @@
 import React from 'react';
-import { BaseScreen } from '../../../../shared/components';
-import { PlaylistList } from '../../../../shared/components/flatlist';
+import { BaseScreen, PlaylistList } from '../../../shared/components';
 
 interface Props {
     route: any
