@@ -18,13 +18,17 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
     const { genre } = route.params;
     
     const handleSongList = () => {
-        navigation.navigate(Screen.Explore.LatestSong, {songs})
+        navigation.navigate(Screen.Common.Song, {
+            songs,
+            isLatest: false
+        })
     }
 
     const handleAlbumList = () => {
-        navigation.navigate(Screen.Explore.Playlist, {
+        navigation.navigate(Screen.Common.Playlist, {
             isAlbum: true,
-            playlist: album
+            playlist: album,
+            isLatest: false
         })
     }
 
@@ -32,30 +36,20 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <BaseScreen isScroll={true}>
                 <View style={styles.section}>
-                    <SectionTitle 
-                        title={I18n.translate('search.songs')} 
-                        onClick={handleSongList}
-                    />
+                    <SectionTitle title={I18n.translate('search.songs')} onClick={handleSongList} />
 
-                    <SongList 
-                        disableScroll={true}
-                        songs={songs}
-                    >
+                    <SongList disableScroll={true} songs={songs}>
                         <MoreButton onClick={handleSongList} />
                     </SongList>
                 </View>
                 
                 <View>
-                    <SectionTitle 
-                        title={I18n.translate('search.albums')}
-                        onClick={handleAlbumList}
-                    />
+                    <SectionTitle title={I18n.translate('search.albums')} onClick={handleAlbumList} />
 
                     <PlaylistList
                         playlist={album}
-                        isHorizontal={true}
-                    >
-                        <MoreButton onClick={handleAlbumList}/>
+                        isHorizontal={true}>
+                        <MoreButton onClick={handleAlbumList} />
                     </PlaylistList>
                 </View>
             </BaseScreen>

@@ -4,6 +4,7 @@ export { GoogleButton } from './google-button';
 export { LinkButton } from './link-button';
 export { IconButton } from './icon-button';
 export { SearchBar } from './search-bar';
+export * from './flatlist';
 export * from './layout';
 
 import React from 'react';
@@ -12,7 +13,7 @@ import { IconButton } from './icon-button';
 import ArrowLeft from '../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 import { styleVars } from '../constance/style-variables';
-import Controller from '../../modules/home/controller';
+import { useNavigation } from '@react-navigation/native';
 
 // Section Title
 interface SectionTitleProps {
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
 
 // Go Back Header
 interface HeaderBackProps {
-    navigation: any,
     title?: string,
 }
 
 export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: HeaderBackProps) => {
-    const {navigation, title} = props;
+    const {title} = props;
+    const navigation = useNavigation();
 
     const handleGoBack = () => {
         navigation.goBack()

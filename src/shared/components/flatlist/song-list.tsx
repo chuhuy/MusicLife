@@ -1,15 +1,14 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import {FlatList, StyleSheet, View} from 'react-native';
+import { connect } from 'react-redux';
 import { Song } from '../../../models/song';
 import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
-import {Item} from './item'
-import { connect } from 'react-redux';
-import { ScrollView } from 'react-native-gesture-handler';
 import { Screen } from '../../constance/screen';
+import { Item } from './item';
 
 interface Props extends DispatchProps, StateProps {
-    navigation: any,
     songs: Array<Song>,
     disableScroll?: boolean,
     children?: any,
@@ -27,8 +26,9 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation, songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
-
+    const {songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
+    const navigation = useNavigation();
+    
     const handlePlayMusic = (song) => {
         console.log('play music')
         const formattedSong: Song = {

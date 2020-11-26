@@ -25,7 +25,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                     <View style={styles.blurLayer}/>
 
                     <View style={styles.backContainer}>
-                        <HeaderBack navigation={navigation}/>
+                        <HeaderBack/>
                     </View>
                     
                     <View style={styles.sectionOneContent}>
@@ -55,10 +55,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 </ImageBackground>
 
                 <View style={styles.sectionTwo}>
-                    <SongList 
-                        navigation={navigation}
-                        songs={songs}
-                    />
+                    <SongList songs={songs}/>
                 </View>
 
                 <Controller />

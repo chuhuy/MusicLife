@@ -59,26 +59,30 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         };
 
         TrackPlayer.reset()
-        .then(() => {
-            TrackPlayer.add(track)
             .then(() => {
-                TrackPlayer.play()
-                .then(() => props.playMusic())
-                .catch(() => props.pauseMusic());
+                TrackPlayer.add(track)
+                .then(() => {
+                    TrackPlayer.play()
+                    .then(() => props.playMusic())
+                    .catch(() => props.pauseMusic());
+                })
+                .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
             })
             .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
-        })
-        .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
         navigation.navigate(Screen.Common.Player);
     };
 
     const handleLastestSong = () => {
-        navigation.navigate(Screen.Explore.LatestSong, {songs})
+        navigation.navigate(Screen.Common.Song, {
+            songs,
+            isLatest: true
+        })
     };
 
     const handleLatestAlbum = () => {
-        navigation.navigate(Screen.Explore.Playlist, {
+        navigation.navigate(Screen.Common.Playlist, {
             isAlbum: true,
+            isLatest: true,
             playlist: album
         })
     };
@@ -159,7 +163,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                         key={item.genre_id}
                                         title={item.name} 
                                         image={item.image_url} 
-                                        onClick={() => {}}
+                                        onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {
+                                            genre: item
+                                        })}
                                     />
                                 )
                             })}

@@ -1,25 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { styles } from './styles';
-import I18n from './../../../i18n';
-import { Button } from './../../../shared/components/button';
-import Controller from '../controller';
-import AddPlaylistModal from './components/add-playlist-modal';
-import HeaderMainPage from '../../../shared/components/header-main-page';
-import Plus from '../../../assets/icons/plus.svg';
-import NotFoundSong from '../../../assets/icons/not-found-song.svg';
+import { Pressable, Text, View } from 'react-native';
 import NotFoundAlbum from '../../../assets/icons/not-found-album.svg';
 import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
-import NotFoundItem from './components/not-found-item';
-import {songs} from '../../../data/song';
-import {album} from '../../../data/album';
-import {playlist} from '../../../data/playlist';
-import {SongList, PlaylistList, AlbumList} from '../../../shared/components/flatlist';
+import NotFoundSong from '../../../assets/icons/not-found-song.svg';
+import Plus from '../../../assets/icons/plus.svg';
+import { album } from '../../../data/album';
+import { playlist } from '../../../data/playlist';
+import { songs } from '../../../data/song';
+import { BaseScreen } from '../../../shared/components';
+import { AlbumList, PlaylistList, SongList } from '../../../shared/components/flatlist';
+import HeaderMainPage from '../../../shared/components/header-main-page';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
+import I18n from './../../../i18n';
+import { Button } from './../../../shared/components/button';
+import AddPlaylistModal from './components/add-playlist-modal';
+import NotFoundItem from './components/not-found-item';
+import { styles } from './styles';
 
 interface Props {
-    navigation: any,
 }
 
 const TYPE = {
@@ -40,20 +39,10 @@ const locations = [
 ];
 
 export const Personal: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation} = props;
     const [addPlaylistModalVisibility, setAddPlaylistVisibility] = useState<boolean>(false);
     const [isShowAll, setShowAll] = useState(true);
     const [currentType, setType] = useState(TYPE.SONG);
 
-    const handlePlayMusic = () => {
-        navigation.navigate('Player');
-    };
-    const handleUserProfile = () => {
-        navigation.navigate('Setting');
-    };
-    const handleNotification = () => {
-
-    };
     const toggleAddPlaylistModal = () => {
         setAddPlaylistVisibility(!addPlaylistModalVisibility);
     }
@@ -129,29 +118,26 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            <View style={styles.container}>
+            <BaseScreen>
                 <HeaderMainPage/>
 
                 <View style={styles.locationTitle}>
-                    {
-                        locations.map(({title, showAll}, index) => {
-                            return (
-                                <Pressable
-                                    key={index}
-                                    style={styles.locationButton}
-                                    onPressIn={() => {setShowAll(showAll);}}>
-                                    <Text style={
-                                        isShowAll === showAll ? styles.locationTitleActive : styles.locationTitleInactive}>
-                                        {title}
-                                    </Text>
-                                </Pressable>
-                            )
-                        })
-                    }
+                    {locations.map(({title, showAll}, index) => {
+                        return (
+                            <Pressable
+                                key={index}
+                                style={styles.locationButton}
+                                onPressIn={() => {setShowAll(showAll);}}>
+                                <Text style={
+                                    isShowAll === showAll ? styles.locationTitleActive : styles.locationTitleInactive}>
+                                    {title}
+                                </Text>
+                            </Pressable>
+                        )
+                    })}
                 </View>
-                
-                {
-                    isShowAll ? 
+
+                {isShowAll ? 
                     <>
                         {/* Tab menu for type */}
                         <UnderlineTabBar options={typeMenu} />
@@ -174,14 +160,12 @@ export const Personal: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </> : <View style={styles.body}>{renderSongTab(songs)}</View>
                 }
-            </View>
-            
-            <AddPlaylistModal 
-                isShow={addPlaylistModalVisibility} 
-                onHide={() => setAddPlaylistVisibility(false)} 
-            />
 
-            <Controller />
+                <AddPlaylistModal 
+                    isShow={addPlaylistModalVisibility} 
+                    onHide={() => setAddPlaylistVisibility(false)} 
+                />
+            </BaseScreen>
         </>
     );
 };

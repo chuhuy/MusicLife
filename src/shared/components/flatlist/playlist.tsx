@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { Playlist } from '../../../models/playlist';
@@ -6,7 +7,6 @@ import { Item } from './item';
 import { SquareItem } from './square-item';
 
 interface Props {
-    navigation: any,
     playlist: Array<Playlist>,
     isAlbum?: boolean,
     children?: any,
@@ -17,7 +17,6 @@ interface Props {
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
     const {
-        navigation, 
         playlist,
         children, 
         numsColumn,
@@ -25,6 +24,8 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         isHorizontal = false, 
         isAlbum = false
     } = props;
+
+    const navigation = useNavigation();
 
     const handlePlaylist = (album) => {
         navigation.navigate(Screen.Common.PlaylistDetail, {newPlaylist: album, isAlbum});

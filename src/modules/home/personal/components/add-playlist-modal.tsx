@@ -46,14 +46,13 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
             onBackdropPress={onHide}
             backdropOpacity={0.5}
             avoidKeyboard={true}
-            isVisible={isShow}
-        >
+            isVisible={isShow}>
             <View style={styles.addPlaylistModal}>
                 <Text style={styles.modalTitle}>{I18n.translate('personal.add-playlist')}</Text>
+                
                 <Formik
                     initialValues={initialFormValue}
-                    onSubmit={(values) => {console.log(values.name)}}
-                >
+                    onSubmit={(values) => {console.log(values.name)}}>
                     {({values, handleChange}) =>
                     <React.Fragment>
                         <TextInput
@@ -61,17 +60,25 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
                             placeholderTextColor={styleVars.greyColor}
                             placeholder={I18n.translate('personal.add-playlist-placeholder')}
                             value={values.name}
-                            onChangeText={handleChange('name')}
+                            onChangeText={handleChange('name')} 
                         />
+
                         <View style={styles.buttonGroup}>
-                            <LinkButton
-                                color={styleVars.secondaryColor}
-                                title={I18n.translate('personal.cancel')}
-                                onClick={props.onHide}/>
-                            <LinkButton
-                                color={styleVars.secondaryColor}
-                                title={I18n.translate('personal.save')}
-                                onClick={() => handleAddPlaylist(values)}/>
+                            <View style={styles.touchArea}>
+                                <LinkButton
+                                    color={styleVars.greyColor}
+                                    title={I18n.translate('personal.cancel')}
+                                    onClick={props.onHide} 
+                                />
+                            </View>
+                                 
+                            <View style={styles.touchArea}>
+                                <LinkButton
+                                    color={styleVars.secondaryColor}
+                                    title={I18n.translate('personal.save')}
+                                    onClick={() => handleAddPlaylist(values)}
+                                />
+                            </View>
                         </View>
                     </React.Fragment>}
                 </Formik>
@@ -84,13 +91,12 @@ export default AddPlaylistModal;
 
 const styles = StyleSheet.create({
     addPlaylistModal: {
-        width: width / 1.5,
+        width: '80%',
         backgroundColor: styleVars.lightPrimaryColor,
         alignSelf: 'center',
         borderRadius: 20,
         padding: 15,
     },
-
     modalTitle: {
         marginBottom: 15,
         color: styleVars.white,
@@ -108,6 +114,10 @@ const styles = StyleSheet.create({
     buttonGroup: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginTop: 15
+        marginTop: 15,
+        marginRight: -10
     },
+    touchArea: {
+        paddingHorizontal: 5
+    }
 });

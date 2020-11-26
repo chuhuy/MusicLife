@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import I18n from './../../../i18n';
 import { SafeAreaView, View } from 'react-native';
-import { LinkButton, SearchBar } from '../../../shared/components';
+import { BaseScreen, LinkButton, SearchBar } from '../../../shared/components';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import { styleVars } from '../../../shared/constance/style-variables';
 import { styles } from './styles';
@@ -91,7 +91,7 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>  
-            <SafeAreaView style={styles.container}>
+            <BaseScreen>
                 <View style={styles.header}>
                     <SearchBar size='big' />
                     <LinkButton 
@@ -119,19 +119,13 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                 {
                     activeTab === TYPE.SONG && 
                     <View style={styles.body}>
-                        <SongList 
-                            navigation={navigation} 
-                            songs={resultSong}
-                        />
+                        <SongList songs={resultSong} />
                     </View>
                 }
                 {
                     (activeTab === TYPE.ALBUM) && 
                     <View style={styles.body}>
-                        <PlaylistList 
-                            navigation={navigation}
-                            playlist={resultAlbum}
-                        />
+                        <PlaylistList playlist={resultAlbum} />
                     </View>
                 }
                 {
@@ -144,7 +138,7 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                         />
                     </View>
                 }
-            </SafeAreaView>
+            </BaseScreen>
         </>
     )
 }

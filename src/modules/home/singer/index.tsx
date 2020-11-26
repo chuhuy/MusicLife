@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Image, ImageBackground } from 'react-native';
-import { styles } from './styles';
+import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import { playlist } from '../../../data';
+import { album } from '../../../data/album';
+import { songs } from '../../../data/song';
+import { Artist } from '../../../models/artist';
+import { Song } from '../../../models/song';
+import { HeaderBack, SectionTitle } from '../../../shared/components';
+import { AlbumList } from '../../../shared/components/flatlist';
+import SongList from '../../../shared/components/flatlist/song-list';
+import { Screen } from '../../../shared/constance/screen';
 import Controller from '../controller';
 import I18n from './../../../i18n';
-import { HeaderBack, SectionTitle } from '../../../shared/components';
-import SongList from '../../../shared/components/flatlist/song-list';
-import {songs} from '../../../data/song';
-import { Song } from '../../../models/song';
-import { AlbumList } from '../../../shared/components/flatlist';
-import { album } from '../../../data/album';
-import { Artist } from '../../../models/artist';
+import { styles } from './styles';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -36,7 +38,18 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
 
     useEffect(() => {
         setCurentArtist(artist)
-    }, [artist])
+    }, [artist]);
+
+    const handleSong = () => {
+        navigation.navigate(Screen.Common.Song, {songs})
+    }
+
+    const handleAlbum = () => {
+        navigation.navigate(Screen.Common.Playlist, {
+            playlist,
+            isAlbum: true
+        })
+    }
 
     const renderArtistInfo = () => {
         return (
@@ -63,12 +76,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
 
     const renderSongList = () => {
         return (
-            shortSongs && 
-            <SongList 
-                navigation={navigation} 
-                songs={shortSongs} 
-                disableScroll={true}
-            />
+            shortSongs && <SongList songs={shortSongs} disableScroll={true}/>
         )
     };
 
@@ -76,7 +84,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <ImageBackground style={styles.imageBackground} source={{uri: artist.image_url}} >
                 <View style={styles.container}>
-                    <HeaderBack navigation={navigation} />
+                    <HeaderBack/>
 
                     <ScrollView nestedScrollEnabled={true} >
                         {renderArtistInfo()}
@@ -84,21 +92,14 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                         <View style={styles.group}>
                             <SectionTitle 
                                 title={I18n.translate('singer.songs')}
-                                onClick={() => {}}
+                                onClick={handleSong}
                             />
                             {renderSongList()}
                         </View>
 
                         <View style={styles.group}>
-                            <SectionTitle 
-                                title={I18n.translate('singer.album')}
-                                onClick={() => {}}
-                            />
-                            <AlbumList 
-                                navigation={navigation}
-                                playlist={album}
-                                isHorizontal={true}
-                            />
+                            <SectionTitle title={I18n.translate('singer.album')} onClick={handleAlbum}/>
+                            <AlbumList playlist={album} isHorizontal={true}/>
                         </View>
                     </ScrollView>
                 </View>
