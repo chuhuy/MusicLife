@@ -8,6 +8,7 @@ import { player } from './player';
 import { common } from './common';
 import {changeLanguage} from './changeLanguage';
 import {search} from './search';
+import { optionModal } from './optionModal';
 
 export default {
     'setting': setting,
@@ -20,4 +21,5 @@ export default {
     'changeLanguage': changeLanguage,
     'singer': singer,
     'search': search,
+    'optionModal': optionModal,
 };

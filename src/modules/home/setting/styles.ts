@@ -89,6 +89,10 @@ export const styles = StyleSheet.create({
     main__icon__arrow: {
         flex: 2,
     },
+    modal__group: {
+        flexDirection: 'row',
+        marginBottom: 15,
+    },
     modal__language: {
         justifyContent: 'space-between',
         paddingHorizontal: '10%',
@@ -109,7 +113,7 @@ export const styles = StyleSheet.create({
     modal__language__label:{
         color: styleVars.greyColor,
         fontSize: styleVars.baseFontSize,
-        marginLeft: 5
+        marginLeft: 15,
     },
     modal_language_radio: {
         // padding: 20

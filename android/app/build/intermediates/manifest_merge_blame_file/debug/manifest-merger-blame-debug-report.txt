@@ -18,20 +18,20 @@
 13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5a3f6031a326963d66abb785e4933340\flipper-0.37.0\AndroidManifest.xml:16:22-73
 14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:5-68
-14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:11:22-65
+14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:11:5-68
+14-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:11:22-65
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:5-79
-15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:12:22-76
+15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:12:5-79
+15-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:12:22-76
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:5-81
-16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:13:22-78
+16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:13:5-81
+16-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:13:22-78
 17    <uses-permission android:name="android.permission.VIBRATE" />
-17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:5-66
-17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:14:22-63
+17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:14:5-66
+17-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:14:22-63
 18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:5-77
-18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:16:22-74
+18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:16:5-77
+18-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:16:22-74
 19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
 19-->[:react-native-fs] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-81
 19-->[:react-native-fs] E:\Monhocnam3\UI\Music\MusicLife\node_modules\react-native-fs\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-78
@@ -108,34 +108,34 @@
 56            android:initOrder="-100" /> <!-- Receiver Service -->
 56-->[:notifee_react-native] E:\Monhocnam3\UI\Music\MusicLife\node_modules\@notifee\react-native\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
 57        <service
-57-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:21:9-23:40
+57-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:21:9-23:40
 58            android:name="app.notifee.core.ReceiverService"
-58-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:22:13-60
+58-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:22:13-60
 59            android:exported="false" /> <!-- Foreground Service -->
-59-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:23:13-37
+59-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:23:13-37
 60        <service
-60-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:26:9-28:40
+60-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:26:9-28:40
 61            android:name="app.notifee.core.ForegroundService"
-61-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:27:13-62
+61-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:27:13-62
 62            android:exported="false" /> <!-- Broadcast Receiver -->
-62-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:28:13-37
+62-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:28:13-37
 63        <receiver
-63-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:31:9-39:20
+63-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:31:9-39:20
 64            android:name="app.notifee.core.BlockStateBroadcastReceiver"
-64-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:32:13-72
+64-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:32:13-72
 65            android:exported="false" >
-65-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:33:13-37
+65-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:33:13-37
 66            <intent-filter>
-66-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:34:13-38:29
+66-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:34:13-38:29
 67                <action android:name="android.app.action.APP_BLOCK_STATE_CHANGED" />
-67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:17-85
-67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:35:25-82
+67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:35:17-85
+67-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:35:25-82
 68                <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED" />
-68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:17-102
-68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:36:25-99
+68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:36:17-102
+68-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:36:25-99
 69                <action android:name="android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED" />
-69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:17-108
-69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\b0d828381d2ab481cd852930563f42ee\notifee_core_release\AndroidManifest.xml:37:25-105
+69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:37:17-108
+69-->[notifee_core_release.aar] C:\Users\nguye\.gradle\caches\transforms-2\files-2.1\5c1a7e97f526ef99b4e8f429731821fb\notifee_core_release\AndroidManifest.xml:37:25-105
 70            </intent-filter>
 71        </receiver>
 72
