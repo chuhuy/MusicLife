@@ -89,80 +89,29 @@ export const styles = StyleSheet.create({
     main__icon__arrow: {
         flex: 2,
     },
-    modal__language: {
-        justifyContent: 'space-between',
-        paddingHorizontal: '10%',
-        paddingVertical: '5%',
-        width: '100%',
-        height: 200,
-        borderRadius: 20,
-        backgroundColor: styleVars.lightPrimaryColor,
-    },
-    modal__language__title:{
-        color: styleVars.white,
-        fontSize: styleVars.bigFontSize,
-        fontWeight: '600',
-    },
-    modal__language__main:{
-        marginTop: 15,
+    modal__group: {
+        flexDirection: 'row',
+        marginBottom: 15,
     },
     modal__language__label:{
-        color: styleVars.greyColor,
+        color: styleVars.white,
         fontSize: styleVars.baseFontSize,
-        marginLeft: 5
+        marginLeft: 15,
     },
     modal_language_radio: {
         // padding: 20
     },
-    language__radio: {
-        marginBottom: 25,
-    },
-    modal__language__footer:{
+    modal__footer:{
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        marginTop: 10,
     },
     modal__language__group:{
         marginLeft: '5%',
         padding: 5
     },
-    modal__language__footer__text:{
-        color: styleVars.crimsonColor,
-        fontSize: styleVars.bigFontSize,
-        fontWeight: 'bold'
-    },
-    modal__restart: {
-        justifyContent: 'space-between',
-        paddingHorizontal: '10%',
-        paddingVertical: '5%',
-        width: '100%',
-        height: 200,
-        borderRadius: 20,
-        backgroundColor: styleVars.lightPrimaryColor,
-    },
-    modal__restart__title:{
-        color: styleVars.white,
-        fontSize: styleVars.bigFontSize,
-        fontWeight: '700',
-    },
     modal__restart__main__text:{
         color: styleVars.greyColor,
         fontSize: styleVars.baseFontSize
-    },
-    modal__restart__label:{
-        color: styleVars.greyColor,
-        fontSize: styleVars.baseFontSize
-    },
-    modal__restart__footer:{
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    modal__restart__group:{
-        marginLeft: '5%',
-        padding: 5
-    },
-    modal__restart__footer__text:{
-        color: styleVars.crimsonColor,
-        fontSize: styleVars.bigFontSize,
-        fontWeight: 'bold'
     },
 });

@@ -1,17 +1,23 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React, {Fragment} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import { connect } from 'react-redux';
-import { Song } from '../../../models/song';
-import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
-import { Screen } from '../../constance/screen';
-import { Item } from './item';
+import {connect} from 'react-redux';
+import {Song} from '../../../models/song';
+import {
+    pauseMusic,
+    playMusic,
+    skipMusic,
+} from '../../../redux/modules/player/actions';
+import {Screen} from '../../constance/screen';
+import ModalBottom from '../modal-bottom';
+import { SongOptions } from '../option-list/SongOptions';
+import {Item} from './item';
 
 interface Props extends DispatchProps, StateProps {
-    songs: Array<Song>,
-    disableScroll?: boolean,
-    children?: any,
+    songs: Array<Song>;
+    disableScroll?: boolean;
+    children?: any;
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -26,11 +32,20 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
+    const {
+        songs,
+        disableScroll,
+        saveSongToStore,
+        playMusic,
+        pauseMusic,
+        children,
+    } = props;
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+    const [songModal, setSongModal] = React.useState<any>(null);
     const navigation = useNavigation();
-    
+
     const handlePlayMusic = (song) => {
-        console.log('play music')
+        console.log('play music');
         const formattedSong: Song = {
             id: song.id,
             title: song.title,
@@ -50,59 +65,74 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
             artwork: song.image_url,
         };
         TrackPlayer.reset()
-        .then(() => {
-            TrackPlayer.add(track)
             .then(() => {
-                TrackPlayer.play()
-                .then(() => playMusic())
-                .catch(() => pauseMusic());
+                TrackPlayer.add(track)
+                    .then(() => {
+                        TrackPlayer.play()
+                            .then(() => playMusic())
+                            .catch(() => pauseMusic());
+                    })
+                    .catch(() => {
+                        TrackPlayer.pause().then(() => pauseMusic());
+                    });
             })
-            .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
-        })
-        .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
+            .catch(() => {
+                TrackPlayer.pause().then(() => pauseMusic());
+            });
         navigation.navigate(Screen.Common.Player);
     };
 
-    const handleOpenOption = () => {
-        console.log('Opened option');
+    const handleOpenOption = (song) => {
+        setSongModal(song);
+        setIsVisible(true);
+        console.log(song);
     };
 
     const renderItem = (item: Song) => {
         return (
-            <Item 
+            <Item
                 key={item.id}
                 name={item.title}
                 image={item.image_url}
                 artist={item.artist}
                 onClick={() => handlePlayMusic(item)}
-                onOptionClick={handleOpenOption}
+                onOptionClick={() => handleOpenOption(item)}
             />
-        )
-    }
+        );
+    };
 
     return (
         <>
-            {
-                disableScroll ? 
-                    <View style={styles.flatListContainer}>
-                        {songs.map((item) => renderItem(item))}
-                        <View style={styles.flatListFooter}>
-                            {children}
-                        </View>
-                    </View> 
-                    : <FlatList 
+            {disableScroll ? (
+                <View style={styles.flatListContainer}>
+                    {songs.map((item) => renderItem(item))}
+                    <View style={styles.flatListFooter}>{children}</View>
+                </View>
+            ) : (
+                <Fragment>
+                    <FlatList
                         showsVerticalScrollIndicator={false}
                         style={styles.flatListContainer}
                         data={songs}
                         renderItem={({item}) => renderItem(item)}
                         keyExtractor={(item) => item.id.toString()}
                         ListFooterComponent={children}
-                        ListFooterComponentStyle={children && {...styles.flatListFooter}}
+                        ListFooterComponentStyle={
+                            children && {...styles.flatListFooter}
+                        }
                     />
-            }
+                </Fragment>
+            )}
+            <ModalBottom
+                isVisible={isVisible}
+                onHide={() => setIsVisible(false)}
+                item={songModal}
+            >
+                <SongOptions/>
+            </ModalBottom>
         </>
-    )
-}
+    );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
 
@@ -116,6 +146,6 @@ const styles = StyleSheet.create({
     flatListFooter: {
         marginTop: 5,
         justifyContent: 'center',
-        alignSelf: 'center'
-    }
-})
+        alignSelf: 'center',
+    },
+});
