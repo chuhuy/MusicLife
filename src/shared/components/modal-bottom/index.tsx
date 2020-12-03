@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {styles} from './styles';
 import ArrowDownOrange from './../../../assets/icons/arrow-down-orange.svg';
@@ -34,17 +34,17 @@ const ModalBottom: React.FunctionComponent<Props> = (props: Props) => {
                                 <Text style={styles.title}>
                                     {item.title || item.name}
                                 </Text>
-                                {item.artist && (
+                                {item.artists && (
                                     <Text style={styles.artist}>
-                                        {item.artist}
+                                        {item.artists}
                                     </Text>
                                 )}
                             </View>
                         </View>
                     )}
-                    <TouchableOpacity onPressOut={onHide}>
+                    <Pressable onPressOut={onHide}>
                         <ArrowDownOrange />
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
                 <View style={styles.main}>
                     <View style={styles.options}>

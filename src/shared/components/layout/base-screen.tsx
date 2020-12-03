@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
     },
     container: {
-        minHeight: '100%',
+        flex: 1,
         paddingTop: 30,
         paddingBottom: 20,
         paddingHorizontal: 15,

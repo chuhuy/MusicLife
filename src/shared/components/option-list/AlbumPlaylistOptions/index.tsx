@@ -6,14 +6,27 @@ import PlaySvg from './../../../../assets/icons/play.svg';
 import DownloadSvg from './../../../../assets/icons/download.svg';
 import DeleteSvg from './../../../../assets/icons/delete.svg';
 import I18n from './../../../../i18n';
+import { Song } from '../../../../models/song';
+import { addSong } from '../../../../redux/modules/player/actions';
+import { connect } from 'react-redux';
 
-interface Props {}
+interface Props extends DispatchProps {
+    songs?: Array<Song>,
+    album_id?: number
+}
 
-export const AlbumPlayOptions: React.FunctionComponent<Props> = (
-    props: Props,
-) => {
-    const {} = props;
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addSong: (songs: Array<Song>) => dispatch(addSong(songs))
+    };
+};
+
+const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
+    const {addSong, songs, album_id} = props;
+
     const handleAddToNowPlayingPlaylist = () => {
+        addSong(songs);
+
         console.log('Add to now playing playlist');
     };
     const handlePlay = () => {
@@ -38,6 +51,7 @@ export const AlbumPlayOptions: React.FunctionComponent<Props> = (
                         {I18n.translate('optionModal.add-to-now-playlist')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handlePlay}>
@@ -48,6 +62,7 @@ export const AlbumPlayOptions: React.FunctionComponent<Props> = (
                         {I18n.translate('optionModal.play')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleDownloadSongs}>
@@ -58,6 +73,7 @@ export const AlbumPlayOptions: React.FunctionComponent<Props> = (
                         {I18n.translate('optionModal.download-songs')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleDelete}>
@@ -72,3 +88,6 @@ export const AlbumPlayOptions: React.FunctionComponent<Props> = (
         </>
     );
 };
+
+export default connect(null, mapDispatchToProps)(AlbumPlayOptions);
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;

@@ -1,18 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {Fragment} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import {connect} from 'react-redux';
-import {Song} from '../../../models/song';
+import { connect } from 'react-redux';
+import { Song } from '../../../models/song';
 import {
     pauseMusic,
-    playMusic,
-    skipMusic,
+    playMusic
 } from '../../../redux/modules/player/actions';
-import {Screen} from '../../constance/screen';
+import { Screen } from '../../constance/screen';
 import ModalBottom from '../modal-bottom';
-import { SongOptions } from '../option-list/SongOptions';
-import {Item} from './item';
+import SongOptions from '../option-list/SongOptions';
+import { Item } from './item';
 
 interface Props extends DispatchProps, StateProps {
     songs: Array<Song>,
@@ -23,8 +22,7 @@ interface Props extends DispatchProps, StateProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        saveSongToStore: (song: Song) => dispatch(skipMusic(song)),
-        playMusic: () => dispatch(playMusic()),
+        playMusic: (song: Song) => dispatch(playMusic([song])),
         pauseMusic: () => dispatch(pauseMusic()),
     };
 };
@@ -36,52 +34,28 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const {
         songs,
         disableScroll,
-        saveSongToStore,
         playMusic,
         pauseMusic,
         children,
         onEndReached
     } = props;
-    const [isVisible, setIsVisible] = React.useState<boolean>(false);
-    const [songModal, setSongModal] = React.useState<any>(null);
+
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [songModal, setSongModal] = useState<any>(null);
     const navigation = useNavigation();
 
     const handlePlayMusic = (song) => {
         console.log('play music');
-        const formattedSong: Song = {
-            music_id: song.music_id,
-            title: song.title,
-            image_url: song.image_url,
-            artists: song.artists,
-            url: song.url,
-        };
-        saveSongToStore(formattedSong);
-        const track = {
-            id: song.music_id,
-            url: song.url,
-            title: song.title,
-            artist: song.artists,
-            album: song.album || '',
-            genre: song.genre || '',
-            date: '2020-10-20T07:00:00+00:00',
-            artwork: song.image_url,
-        };
+        playMusic(song);
+        
         TrackPlayer.reset()
             .then(() => {
-                TrackPlayer.add(track)
-                    .then(() => {
-                        TrackPlayer.play()
-                            .then(() => playMusic())
-                            .catch(() => pauseMusic());
-                    })
-                    .catch(() => {
-                        TrackPlayer.pause().then(() => pauseMusic());
-                    });
+                navigation.navigate(Screen.Common.Player);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err)
                 TrackPlayer.pause().then(() => pauseMusic());
             });
-        navigation.navigate(Screen.Common.Player);
     };
 
     const handleOpenOption = (song) => {
@@ -89,7 +63,6 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         setIsVisible(true);
         console.log(song);
     };
-    console.log('song')
 
     const renderItem = (item: Song) => {
         return (
@@ -107,7 +80,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             {
-                songs.length ? (
+                songs?.length ? (
                     <>
                         {
                             disableScroll ? 
@@ -133,7 +106,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                             onHide={() => setIsVisible(false)}
                             item={songModal}
                         >
-                            <SongOptions/>
+                            <SongOptions song={songModal} closeModal={() => setIsVisible(false)}/>
                         </ModalBottom>
                     </>
                 ) : null

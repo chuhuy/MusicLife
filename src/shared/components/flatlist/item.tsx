@@ -9,11 +9,19 @@ interface Props {
     onClick: () => void
     image: string
     name: string
-    artist?: string
+    artist?: string,
+    isPlaylist?: boolean
 }
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
-    const {onOptionClick, onClick, image, name, artist} = props;
+    const {
+        onOptionClick, 
+        onClick, 
+        image, 
+        name, 
+        artist,
+        isPlaylist = false
+    } = props;
 
     return (
         <>
@@ -30,10 +38,11 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </View>
                 </Pressable>
-                
-                <View style={styles.touchAreaTwo}>
-                    <IconButton icon={Option} onClick={onOptionClick} />
-                </View>
+                {!isPlaylist && (
+                    <View style={styles.touchAreaTwo}>
+                        <IconButton icon={Option} onClick={onOptionClick} />
+                    </View>
+                )}
             </View>
         </>
     );
@@ -43,7 +52,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        marginVertical: -5,
+        marginRight: -5
     },
     metadata: {
         flexDirection: 'row',
@@ -53,6 +64,7 @@ const styles = StyleSheet.create({
     },
     touchAreaTwo: {
         justifyContent: 'center',
+        padding: 5
     },
     image: {
         height: 60,

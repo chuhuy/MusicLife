@@ -15,10 +15,11 @@ export const styles = StyleSheet.create({
         top: 0,
         left: 0,
         backgroundColor: styleVars.blackColor,
-        opacity: 0.25
+        opacity: 0.4
     },
     backContainer: {
-        paddingLeft: 15
+        paddingLeft: 15,
+        paddingBottom: 15
     },
     image: {
         width: (height * 0.4) - 150,
@@ -26,16 +27,15 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     sectionOne: {
-        flex: 2,
+        flex: 3,
         width: '100%',
-        paddingTop: 20,
-        paddingBottom: 10
+        paddingVertical: 20
     },
     sectionOneContent: {
-        marginTop: 10,
-        marginBottom: 20,
+        paddingTop: 15,
         flex: 1,
-        justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     sectionTwo: {
         flex: 3,
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         paddingHorizontal: 15,
-        marginTop: 30,
+        paddingTop: 20,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
@@ -64,14 +64,24 @@ export const styles = StyleSheet.create({
     },
     artist: {
         fontSize: styleVars.baseFontSize,
-        color: styleVars.greyColor,
+        fontWeight: '600',
+        color: '#E5E4E4'
     },
     buttonGroup: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal: -15
+        marginHorizontal: -8
     },
     button: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 8,
     },
+    playButton: {
+        marginRight: 8,
+        borderRadius: 50,
+        width: 55,
+        height: 55,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: styleVars.white
+    }
 });

@@ -1,21 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, ScrollView, Animated, Easing, Dimensions } from 'react-native';
-import { styles } from './styles';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Dimensions, Easing, ImageBackground, ScrollView, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import { PlayPauseButton, PreviousNextButton, PlaybackMode, Comment } from './components';
+import { connect, useDispatch } from 'react-redux';
 import { IconButton } from '../../../shared/components';
-import I18n from './../../../i18n';
-import { styleVars } from './../../../shared/constance/style-variables';
-import Plus from './../../../assets/icons/plus.svg';
+import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import Download from './../../../assets/icons/download.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
-import ArrowDown from './../../../assets/icons/arrow-down.svg';
-import { connect } from 'react-redux';
-import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
+import Plus from './../../../assets/icons/plus.svg';
 import { Song } from './../../../models/song';
+import { continueMusic, pauseMusic, repeat, SHUFFLE, shuffle, skipMusic } from './../../../redux/modules/player/actions';
+import { styleVars } from './../../../shared/constance/style-variables';
+import { Comment, PlaybackMode, PlayPauseButton, PreviousNextButton } from './components';
+import { styles } from './styles';
 
 interface Props extends DispatchProps, StateProps {
     navigation: any,
@@ -23,129 +22,185 @@ interface Props extends DispatchProps, StateProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
-        playMusic: () => dispatch({type: PLAY}),
-        pauseMusic: () => dispatch({type: PAUSE}),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
+        playMusic: () => dispatch(continueMusic()),
+        pauseMusic: () => dispatch(pauseMusic()),
+        repeatMusic: () => dispatch(repeat()),
+        shuffleMusic: () => dispatch(shuffle())
     };
 };
 const mapStateToProps = (state: any) => ({
-    song: state.player,
+    player: state.player,
 });
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
+    const {
+        navigation,
+        playMusic,
+        pauseMusic,
+        shuffleMusic,
+        repeatMusic,
+        player
+    } = props;
 
-    const [isNowPlaying, setNowPlaying] = useState<boolean>(false);
+    const {
+        songs, 
+        isPlaying, 
+        songIndex, 
+        isRepeat, 
+        isShuffle
+    } = player;
 
-    useEffect(() => {
-        TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-            await TrackPlayer.getTrack(data.nextTrack)
-            .then((value) => {
-                const song: Song = {
-                    id: parseInt(value.id),
-                    url: value.url,
-                    artist: value.artist,
-                    image_url: value.artwork,
-                    title: value.title,
-                };
-                props.saveSongToStore(song);
-            })
-            .catch((error) => {
-                diskAnimation.stop();
-            });
-        });
-    });
-
-    let spinValue = new Animated.Value(0);
-
+    let [spinValue, setSpinValue] = useState(new Animated.Value(0));
     let diskAnimation = Animated.loop(
         Animated.timing(
-          spinValue,
-          {
-           toValue: 1,
-           duration: 30000,
-           easing: Easing.linear,
-           useNativeDriver: true,
-          }
+            spinValue,
+            {
+                toValue: 1,
+                duration: 30000,
+                easing: Easing.linear,
+                useNativeDriver: true,
+            }
         )
     );
 
+    useEffect(() => {
+        if (isPlaying) {
+            diskAnimation = Animated.loop(
+                Animated.timing(
+                    spinValue,
+                    {
+                        toValue: 1,
+                        duration: 30000,
+                        easing: Easing.linear,
+                        useNativeDriver: true,
+                    }
+                )
+            );
+
+            diskAnimation.start();
+
+            TrackPlayer.addEventListener('playback-track-changed', async (data) => {
+                await TrackPlayer.getTrack(data.nextTrack)
+                    .then((value) => {
+                        const song: Song = {
+                            music_id: parseInt(value.id),
+                            url: value.url,
+                            artists: value.artist,
+                            image_url: value.artwork,
+                            title: value.title,
+                        };
+                        skipMusic(true)
+                    })
+                    .catch((error) => {
+                        if (diskAnimation) {
+                            diskAnimation.stop();
+                        }
+                    });
+            });
+        } else diskAnimation.stop();
+    }, [isPlaying]);
+
     const togglePlayPause = () => {
-        if (props.song.isPlaying) {
+        if (isPlaying) {
             TrackPlayer.pause()
-            .then(() => {props.pauseMusic()})
-            .catch((error) => console.log(error));
+                .then(() => {pauseMusic()})
+                .catch((error) => console.log(error));
         } else {
             TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
+                .then(() => {playMusic()})
+                .catch((error) => console.log(error));
         }
     };
+
     const handlePrevious = () => {
         TrackPlayer.skipToPrevious()
-        .then(() => {
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        })
-        .catch((e) => {
-            console.log(e);
-            TrackPlayer.seekTo(0);
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        });
+            .then(() => {
+                skipMusic(false);
+
+                TrackPlayer.play()
+                    .then(() => {playMusic()})
+                    .catch((error) => console.log(error));
+            })
+            .catch((e) => {
+                console.log(e);
+                handleRestart().then(() => {
+                    skipMusic(false);
+                })
+            });
     };
+
     const handleNext = () => {
         TrackPlayer.skipToNext()
-        .then(() => {
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        })
-        .catch((e) => {
-            console.log(e);
-            TrackPlayer.pause()
-            .then(() => {props.pauseMusic()})
-            .catch((error) => console.log(error));
-        });
+            .then(() => {
+                skipMusic(true);
+                
+                TrackPlayer.play()
+                    .then(() => {playMusic()})
+                    .catch((error) => console.log(error));
+            })
+            .catch((e) => {
+                console.log(e);
+                handleRestart().then(() => {
+                    skipMusic(true);
+                })
+            });
     };
+    
     const handleShuffle = () => {
-
+        shuffleMusic();
     };
+
     const handleRepeat = () => {
+        repeatMusic();
+    }
 
-    };
+    const handleRestart = async () => {
+        const currentTracks = await TrackPlayer.getQueue();
+        TrackPlayer.reset()
+            .then(() => {
+                TrackPlayer.add(currentTracks)
+                    .then(() => {
+                        TrackPlayer.play()
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        pauseMusic();
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+                pauseMusic();
+            })
+    }
+
     const handleBack = () => {
-        props.navigation.goBack();
+        navigation.goBack();
     };
     const handleScrollTab = (event: any) => {
-        if (Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1))) {setNowPlaying(true);}
-        else {setNowPlaying(false);}
+        if (Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1))) {playMusic()}
+        else {pauseMusic()}
     };
-
-    useEffect(() => {
-        if(props.song.isPlaying) diskAnimation.start();
-        else diskAnimation;
-    }, [props.song.isPlaying]);
 
     // Second interpolate beginning and end values (in this case 0 and 1)
     const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg'],
     });
 
     return (
         <>
-            <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: props.song.image_url}}>
+            <ImageBackground style={styles.imageBackground} blurRadius={5} source={{uri: songs[songIndex].image_url}}>
+                <View style={styles.layer}/>
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <IconButton icon={ArrowDown} onClick={handleBack}/>
-                        <Text style={styles.headerTitle}>{props.song.title}</Text>
+                        <Text style={styles.headerTitle}>{songs[songIndex].title}</Text>
                         <View style={{width: 20}}/>
                     </View>
                     <View style={styles.dotGroup}>
-                        <View style={[styles.dot, isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
-                        <View style={[styles.dot, !isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
+                        <View style={[styles.dot, isPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
+                        <View style={[styles.dot, !isPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
                     </View>
                     <ScrollView
                         horizontal={true}
@@ -155,19 +210,19 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                     >
                         <View style={styles.tab}>
                             <View style={styles.body}>
-                                <Animated.Image source={{uri: props.song.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
-                                <Text style={styles.song}>{props.song.title}</Text>
-                                <Text style={styles.artist}>{props.song.artist}</Text>
+                                <Animated.Image source={{uri: songs[songIndex].image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
+                                <Text style={styles.song}>{songs[songIndex].title}</Text>
+                                <Text style={styles.artist}>{songs[songIndex].artists}</Text>
                             </View>
                         </View>
                         <View style={styles.tab} />
                     </ScrollView>
                     <View style={styles.buttonGroup}>
-                        <PlaybackMode mode="shuffle" onClick={handleBack}/>
+                        <PlaybackMode mode="shuffle" isActive={isShuffle} onClick={handleShuffle}/>
                         <PreviousNextButton type="previous" onClick={handlePrevious}/>
-                        <PlayPauseButton isPlaying={props.song.isPlaying} onClick={togglePlayPause}/>
+                        <PlayPauseButton isPlaying={isPlaying} onClick={togglePlayPause}/>
                         <PreviousNextButton type="next" onClick={handleNext}/>
-                        <PlaybackMode mode="repeat" onClick={handleRepeat}/>
+                        <PlaybackMode mode="repeat" isActive={isRepeat} onClick={handleRepeat}/>
                     </View>
                     <View style={styles.buttonGroup2}>
                         <IconButton icon={Plus} onClick={() => {}}/>

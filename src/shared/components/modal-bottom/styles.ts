@@ -1,17 +1,22 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {styleVars} from '../../constance/style-variables';
+
+const {width} = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
     modalContainer: {
-        backgroundColor: styleVars.primaryColor,
+        backgroundColor: styleVars.bgModalColor,
         flex: 1,
-        width: '111%',
+        width: width,
         position: 'absolute',
-        left: -20,
-        bottom: -20,
+        bottom: 0,
+        left: 0,
+        marginHorizontal: -20,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     header: {
-        backgroundColor: styleVars.lightPrimaryColor,
+        backgroundColor: styleVars.bgTopModalColor,
         minHeight: 80,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,

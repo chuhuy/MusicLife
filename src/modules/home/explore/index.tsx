@@ -11,7 +11,7 @@ import HeaderMainPage from '../../../shared/components/header-main-page';
 import { Screen } from '../../../shared/constance/screen';
 import { album, genre, playlist, songs } from './../../../data';
 import I18n from './../../../i18n';
-import { PAUSE, PLAY, SKIP } from './../../../redux/modules/player/actions';
+import { addSong, continueMusic, PAUSE, pauseMusic, PLAY, playMusic, SKIP, skipMusic } from './../../../redux/modules/player/actions';
 import { GenreItem, SongItem } from './components';
 import { styles } from './styles';
 import { getLatestSongs } from '../../../api/explore';
@@ -23,9 +23,9 @@ interface Props extends DispatchProps, StateProps { }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        saveSongToStore: (song: Song) => dispatch({ type: SKIP, payload: song }),
-        playMusic: () => dispatch({ type: PLAY }),
-        pauseMusic: () => dispatch({ type: PAUSE }),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
+        playMusic: (song: Song) => dispatch(playMusic([song])),
+        pauseMusic: () => dispatch(pauseMusic()),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -34,6 +34,7 @@ const mapStateToProps = (state: any) => ({
 
 const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const navigation = useNavigation();
+    const {playMusic} = props;
 
     const [isTop100, setTop100] = useState<boolean>(false);
     const [latestSong, setLatestSong] = useState<Array<Song>>(null);
@@ -53,38 +54,18 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
             .catch((err) => console.log(err));
     }, [])
 
-    const handlePlayMusic = (song: any) => {
-        const formattedSong: Song = {
-            music_id: song.music_id,
-            title: song.title,
-            image_url: song.image_url,
-            artists: song.artists,
-            url: song.url,
-        };
-        props.saveSongToStore(formattedSong);
-        const track = {
-            id: song.music_id,
-            url: song.url,
-            title: song.title,
-            artist: song.artists,
-            album: song.album || '',
-            genre: song.genre || '',
-            date: '2020-10-20T07:00:00+00:00',
-            artwork: song.image_url,
-        };
-
+    const handlePlayMusic = (song: Song) => {
+        console.log('play music');
+        playMusic(song);
+        
         TrackPlayer.reset()
             .then(() => {
-                TrackPlayer.add(track)
-                    .then(() => {
-                        TrackPlayer.play()
-                            .then(() => props.playMusic())
-                            .catch(() => props.pauseMusic());
-                    })
-                    .catch(() => { TrackPlayer.pause().then(() => props.pauseMusic()); });
+                navigation.navigate(Screen.Common.Player);
             })
-            .catch(() => { TrackPlayer.pause().then(() => props.pauseMusic()); });
-        navigation.navigate(Screen.Common.Player);
+            .catch((err) => {
+                console.log(err)
+                TrackPlayer.pause().then(() => pauseMusic());
+            });
     };
 
     const handleLastestSong = () => {

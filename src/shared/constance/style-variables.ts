@@ -21,5 +21,7 @@ export const styleVars = {
     redColor: '#F70000',
     greenColor: '#388E3C',
     crimsonColor: '#DC143C',
-    blackColor: '#000'
+    blackColor: '#000',
+    bgModalColor: '#23262B',
+    bgTopModalColor: '#33363B',
 };

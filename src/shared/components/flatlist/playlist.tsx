@@ -4,7 +4,7 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import {Playlist} from '../../../models/playlist';
 import {Screen} from '../../constance/screen';
 import ModalBottom from '../modal-bottom';
-import {AlbumPlayOptions} from '../option-list/AlbumPlaylistOptions';
+import AlbumPlaylistOptions from '../option-list/AlbumPlaylistOptions';
 import {Item} from './item';
 import {SquareItem} from './square-item';
 
@@ -63,6 +63,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                 artist={item.artists}
                 onClick={() => handlePlaylist(item)}
                 onOptionClick={() => handleOpenOption(item)}
+                isPlaylist
             />
         );
     };
@@ -106,7 +107,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                 isVisible={isVisible}
                 item={itemModal}
                 onHide={() => setIsVisible(false)}>
-                <AlbumPlayOptions />
+                <AlbumPlaylistOptions />
             </ModalBottom>
         </>
     );
