@@ -28,7 +28,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     useEffect(() => {
         setIsLoading(true);
-
+        
         if (!isChart) {
             if (isAlbum) {
                 fetchAlbumDetail(album_id)

@@ -32,10 +32,10 @@ export const styles = StyleSheet.create({
         paddingVertical: 20
     },
     sectionOneContent: {
-        marginTop: 15,
+        paddingTop: 15,
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
     },
     sectionTwo: {
         flex: 3,
