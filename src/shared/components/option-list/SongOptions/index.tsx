@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
@@ -7,14 +7,54 @@ import PlusSvg from './../../../../assets/icons/plus.svg';
 import DownloadSvg from './../../../../assets/icons/download.svg';
 import SingerSvg from './../../../../assets/icons/singer.svg';
 import I18n from './../../../../i18n';
+import { connect } from 'react-redux';
+import { Song } from '../../../../models/song';
+import { addSong, removeSong } from '../../../../redux/modules/player/actions';
+import TrackPlayer from 'react-native-track-player';
+import TrashIcon from '../../../../assets/icons/delete.svg';
 
-interface Props {}
+interface Props extends DispatchProps {
+    song: Song,
+    closeModal: () => void,
+}
 
-export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
-    const {} = props;
-    const handleAddToNowPlayingPlaylist = () => {
-        console.log('Add to now playing playlist');
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addSong: (songs: Array<Song>) => dispatch(addSong(songs)),
+        removeSong: (song: Song) => dispatch(removeSong(song))
     };
+};
+
+const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
+    const {addSong, removeSong, song, closeModal} = props;
+    const [isAddPlaying, setIsAddPlaying] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleAddedToPlaying = async () => {
+            const currentTracks = await TrackPlayer.getQueue();
+            let isAdded = false;
+
+            if (currentTracks) {
+                for (let i = 0; i < currentTracks.length; i++) {
+                    if (song.music_id.toString() === currentTracks[i].id) {
+                        isAdded = true;
+                    }
+                }
+            }
+
+            if (isAdded) setIsAddPlaying(isAdded);
+        }
+
+        handleAddedToPlaying();
+    }, []);
+
+    const handleNowPlayingPlaylist = () => {
+        if (isAddPlaying) {
+            removeSong(song);
+        } else addSong([song]);
+        closeModal();
+    }
+
     const handleAddToFavorite = () => {
         console.log('Add to favorite');
     };
@@ -32,14 +72,19 @@ export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
             <Fragment>
                 <TouchableOpacity
                     style={styles.optionItem}
-                    onPressOut={handleAddToNowPlayingPlaylist}>
+                    onPressOut={handleNowPlayingPlaylist}>
                     <View style={styles.svg}>
-                        <PlayListAddSvg width={25} height={25} />
+                        {isAddPlaying ? (
+                            <TrashIcon width={25} height={25} />
+                        ) : (
+                            <PlayListAddSvg width={25} height={25} />
+                        )}
                     </View>
                     <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.add-to-now-playlist')}
+                        {isAddPlaying ? I18n.translate('optionModal.remove-to-now-playlist') : I18n.translate('optionModal.add-to-now-playlist')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleAddToFavorite}>
@@ -50,6 +95,7 @@ export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                         {I18n.translate('optionModal.add-to-favorite')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleAddToPlaylist}>
@@ -60,6 +106,7 @@ export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                         {I18n.translate('optionModal.add-to-playlist')}
                     </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleDownload}>
@@ -70,6 +117,7 @@ export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                         {I18n.translate('optionModal.download')}
                     </Text>
                 </TouchableOpacity>
+                
                 <TouchableOpacity
                     style={styles.optionItem}
                     onPressOut={handleSingerPressOut}>
@@ -84,3 +132,6 @@ export const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
         </>
     );
 };
+
+export default connect(null, mapDispatchToProps)(SongOptions);
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;

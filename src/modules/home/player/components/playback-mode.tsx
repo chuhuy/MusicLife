@@ -3,19 +3,42 @@ import { Pressable, StyleSheet } from 'react-native';
 import { styleVars } from './../../../../shared/constance/style-variables';
 import Shuffle from './../../../../assets/icons/shuffle.svg';
 import Repeat from './../../../../assets/icons/repeat.svg';
+import ShuffleDefault from '../../../../assets/icons/shuffle-default.svg';
+import RepeatDefault from '../../../../assets/icons/repeat-default.svg';
 
 interface Props {
     mode: 'shuffle' | 'repeat',
+    isActive?: boolean,
     onClick: () => void
 }
 
 const PlaybackMode: React.FunctionComponent<Props> = (props: Props) => {
+    
+    const {
+        mode,
+        isActive = false,
+        onClick
+    } = props;
+    console.log(isActive)
+    const renderShuffle = () => {
+        return (
+            isActive ? <Shuffle width={25} height={25}/> : <ShuffleDefault width={25} height={25}/>
+        )
+    };
+
+    const renderRepeat = () => {
+        return (
+            isActive ? <Repeat width={25} height={25}/> : <RepeatDefault width={25} height={25}/>
+        )
+    };
+
+
     return (
         <>
             <Pressable
-            style={styles.container}
-            onPressOut={props.onClick}>
-                {props.mode === 'shuffle' ? <Shuffle width={25} height={25}/> : <Repeat width={25} height={25}/>}
+                style={styles.container}
+                onPress={onClick}>
+                {mode === 'shuffle' ? renderShuffle() : renderRepeat()}
             </Pressable>
         </>
     );

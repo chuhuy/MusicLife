@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
@@ -26,12 +26,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     song: {
-        color: 'white',
-        fontSize: 16,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
     },
     artist: {
         color: styleVars.greyColor,
-        fontSize: 14,
+        fontSize: styleVars.smallFontSize,
     },
     view: {
         backgroundColor: 'transparent',

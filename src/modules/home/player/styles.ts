@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
+    layer: {
+        position: 'absolute',
+        backgroundColor: styleVars.blackColor,
+        width: '100%',
+        height: '100%',
+        opacity: 0.3
+    },
     imageBackground: {
         height: height,
         width: width,

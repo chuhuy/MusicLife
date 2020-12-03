@@ -4,13 +4,13 @@ import { HeaderBack, IconButton, LoadingLayer } from '../../../shared/components
 import { styles } from './styles';
 import Heart from './../../../assets/icons/heart.svg';
 import Option from './../../../assets/icons/option.svg';
-import {songs} from './../../../data/song';
+import Play from '../../../assets/icons/play-red.svg';
 import {SongList} from '../../../shared/components/flatlist';
 import Controller from '../controller';
 import { Song } from '../../../models/song';
 import { fetchAlbumDetail } from '../../../api/explore';
 import ModalBottom from '../../../shared/components/modal-bottom';
-import {AlbumPlayOptions} from '../../../shared/components/option-list/AlbumPlaylistOptions';
+import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
 
 interface Props {
     navigation: any;
@@ -56,7 +56,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
             <SafeAreaView style={styles.container}>
                 <ImageBackground
                     style={styles.sectionOne}
-                    blurRadius={10}
+                    blurRadius={5}
                     source={{uri: image_url || ''}}>
 
                     <View style={styles.blurLayer} />
@@ -73,17 +73,22 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                                 <Text style={styles.playlistName} numberOfLines={1}>
                                     {title || ''}
                                 </Text>
-                                {artists && <Text style={styles.artist} numberOfLines={1}>
-                                    {artists}
-                                </Text>}
+                                {artists && (
+                                    <Text style={styles.artist} numberOfLines={1}>
+                                        {artists}
+                                    </Text>
+                                )}
                             </View>
 
                             <View style={styles.buttonGroup}>
+                                <View style={[styles.button, styles.playButton]}>
+                                    <IconButton icon={Play} onClick={() => {}}/>
+                                </View>
                                 <View style={styles.button}>
                                     <IconButton icon={Heart} onClick={() => { }} />
                                 </View>
                                 <View style={styles.button}>
-                                    <IconButton icon={Option} onClick={() => { }} />
+                                    <IconButton icon={Option} onClick={handleOptionClick} />
                                 </View>
                             </View>
                         </View>
@@ -104,7 +109,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 isVisible={isVisible}
                 onHide={() => setIsVisible(false)}
                 item={{image_url, artists, title}}>
-                <AlbumPlayOptions />
+                <AlbumPlaylistOptions songs={songList}/>
             </ModalBottom>
         </>
     );
