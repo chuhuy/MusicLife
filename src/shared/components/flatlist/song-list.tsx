@@ -1,12 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React, {Fragment} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import { connect } from 'react-redux';
-import { Song } from '../../../models/song';
-import { pauseMusic, playMusic, skipMusic } from '../../../redux/modules/player/actions';
-import { Screen } from '../../constance/screen';
-import { Item } from './item';
+import {connect} from 'react-redux';
+import {Song} from '../../../models/song';
+import {
+    pauseMusic,
+    playMusic,
+    skipMusic,
+} from '../../../redux/modules/player/actions';
+import {Screen} from '../../constance/screen';
+import ModalBottom from '../modal-bottom';
+import { SongOptions } from '../option-list/SongOptions';
+import {Item} from './item';
 
 interface Props extends DispatchProps, StateProps {
     songs: Array<Song>,
@@ -27,11 +33,21 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children, onEndReached} = props;
+    const {
+        songs,
+        disableScroll,
+        saveSongToStore,
+        playMusic,
+        pauseMusic,
+        children,
+        onEndReached
+    } = props;
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+    const [songModal, setSongModal] = React.useState<any>(null);
     const navigation = useNavigation();
-    
+
     const handlePlayMusic = (song) => {
-        console.log('play music')
+        console.log('play music');
         const formattedSong: Song = {
             music_id: song.music_id,
             title: song.title,
@@ -51,21 +67,27 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
             artwork: song.image_url,
         };
         TrackPlayer.reset()
-        .then(() => {
-            TrackPlayer.add(track)
             .then(() => {
-                TrackPlayer.play()
-                .then(() => playMusic())
-                .catch(() => pauseMusic());
+                TrackPlayer.add(track)
+                    .then(() => {
+                        TrackPlayer.play()
+                            .then(() => playMusic())
+                            .catch(() => pauseMusic());
+                    })
+                    .catch(() => {
+                        TrackPlayer.pause().then(() => pauseMusic());
+                    });
             })
-            .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
-        })
-        .catch(() => {TrackPlayer.pause().then(() => pauseMusic());});
+            .catch(() => {
+                TrackPlayer.pause().then(() => pauseMusic());
+            });
         navigation.navigate(Screen.Common.Player);
     };
 
-    const handleOpenOption = () => {
-        console.log('Opened option');
+    const handleOpenOption = (song) => {
+        setSongModal(song);
+        setIsVisible(true);
+        console.log(song);
     };
     console.log('song')
 
@@ -77,10 +99,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                 image={item.image_url}
                 artist={item.artists}
                 onClick={() => handlePlayMusic(item)}
-                onOptionClick={handleOpenOption}
+                onOptionClick={() => handleOpenOption(item)}
             />
-        )
-    }
+        );
+    };
 
     return (
         <>
@@ -106,12 +128,19 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                                 onEndReached={onEndReached}
                             />
                         }
+                        <ModalBottom
+                            isVisible={isVisible}
+                            onHide={() => setIsVisible(false)}
+                            item={songModal}
+                        >
+                            <SongOptions/>
+                        </ModalBottom>
                     </>
                 ) : null
             }
         </>
-    )
-}
+    );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
 
@@ -125,6 +154,6 @@ const styles = StyleSheet.create({
     flatListFooter: {
         marginTop: 5,
         justifyContent: 'center',
-        alignSelf: 'center'
-    }
-})
+        alignSelf: 'center',
+    },
+});

@@ -4,15 +4,17 @@ import { HeaderBack, IconButton, LoadingLayer } from '../../../shared/components
 import { styles } from './styles';
 import Heart from './../../../assets/icons/heart.svg';
 import Option from './../../../assets/icons/option.svg';
-import { songs } from './../../../data/song';
-import { SongList } from '../../../shared/components/flatlist';
+import {songs} from './../../../data/song';
+import {SongList} from '../../../shared/components/flatlist';
 import Controller from '../controller';
 import { Song } from '../../../models/song';
 import { fetchAlbumDetail } from '../../../api/explore';
+import ModalBottom from '../../../shared/components/modal-bottom';
+import {AlbumPlayOptions} from '../../../shared/components/option-list/AlbumPlaylistOptions';
 
 interface Props {
-    navigation: any,
-    route: any,
+    navigation: any;
+    route: any;
 }
 
 const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
@@ -22,6 +24,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     const [songList, setSongList] = useState<Array<Song>>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -41,10 +44,21 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
         }
     }, [])
 
+    const handleOptionClick = () => {
+        setIsVisible(true);
+    };
+    const handleHeartClick = () => {
+        console.log('Heart Click');
+    };
+    
     return (
         <>
             <SafeAreaView style={styles.container}>
-                <ImageBackground style={styles.sectionOne} blurRadius={5} source={{ uri: image_url || '' }}>
+                <ImageBackground
+                    style={styles.sectionOne}
+                    blurRadius={10}
+                    source={{uri: image_url || ''}}>
+
                     <View style={styles.blurLayer} />
 
                     <View style={styles.backContainer}>
@@ -72,7 +86,6 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     <IconButton icon={Option} onClick={() => { }} />
                                 </View>
                             </View>
-
                         </View>
                     </View>
                 </ImageBackground>
@@ -87,6 +100,12 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
                 <Controller />
             </SafeAreaView>
+            <ModalBottom
+                isVisible={isVisible}
+                onHide={() => setIsVisible(false)}
+                item={{image_url, artists, title}}>
+                <AlbumPlayOptions />
+            </ModalBottom>
         </>
     );
 };
