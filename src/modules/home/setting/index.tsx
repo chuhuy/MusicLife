@@ -10,13 +10,13 @@ import LanguageSvg from '../../../assets/icons/language.svg';
 import LockSvg from '../../../assets/icons/lock.svg';
 import LogoutSvg from '../../../assets/icons/logout.svg';
 import EditProfileSvg from '../../../assets/icons/edit-profile.svg';
-import {removeTokenFromLocalStorage} from './../../../shared/helper/authentication';
-import {changeLanguage, getLanguage} from '../../../i18n/utils';
-import {styleVars} from '../../../shared/constance/style-variables';
-import {Button, LinkButton} from '../../../shared/components';
-import {Screen} from '../../../shared/constance/screen';
-import RadioButton from './../../../shared/components/radio-button';
-
+import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
+import { changeLanguage, getLanguage } from '../../../i18n/utils';
+import { styleVars } from '../../../shared/constance/style-variables';
+import { Button, LinkButton } from '../../../shared/components';
+import { Screen } from '../../../shared/constance/screen';
+import { getLatestSongs } from './../../../api/explore';
+import RadioButton from '../../../shared/components/radio-button';
 interface Props extends DispatchProps, StateProps {
     navigation: any;
 }
@@ -71,6 +71,11 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleSignIn = () => {
         navigation.navigate(Screen.Authentication.Login);
+    };
+
+    const testGraphQL = async () => {
+        let res = await getLatestSongs();
+        console.log(res);
     };
 
     return (

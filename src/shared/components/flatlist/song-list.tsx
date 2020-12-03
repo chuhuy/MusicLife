@@ -15,9 +15,10 @@ import { SongOptions } from '../option-list/SongOptions';
 import {Item} from './item';
 
 interface Props extends DispatchProps, StateProps {
-    songs: Array<Song>;
-    disableScroll?: boolean;
-    children?: any;
+    songs: Array<Song>,
+    disableScroll?: boolean,
+    children?: any,
+    onEndReached?: () => void
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -39,6 +40,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         playMusic,
         pauseMusic,
         children,
+        onEndReached
     } = props;
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
     const [songModal, setSongModal] = React.useState<any>(null);
@@ -47,18 +49,18 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const handlePlayMusic = (song) => {
         console.log('play music');
         const formattedSong: Song = {
-            id: song.id,
+            music_id: song.music_id,
             title: song.title,
             image_url: song.image_url,
-            artist: song.artist,
+            artists: song.artists,
             url: song.url,
         };
         saveSongToStore(formattedSong);
         const track = {
-            id: song.id,
+            id: song.music_id,
             url: song.url,
             title: song.title,
-            artist: song.artist,
+            artist: song.artists,
             album: song.album || '',
             genre: song.genre || '',
             date: '2020-10-20T07:00:00+00:00',
@@ -87,14 +89,15 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         setIsVisible(true);
         console.log(song);
     };
+    console.log('song')
 
     const renderItem = (item: Song) => {
         return (
-            <Item
-                key={item.id}
+            <Item 
+                key={item.music_id}
                 name={item.title}
                 image={item.image_url}
-                artist={item.artist}
+                artist={item.artists}
                 onClick={() => handlePlayMusic(item)}
                 onOptionClick={() => handleOpenOption(item)}
             />
@@ -103,33 +106,38 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            {disableScroll ? (
-                <View style={styles.flatListContainer}>
-                    {songs.map((item) => renderItem(item))}
-                    <View style={styles.flatListFooter}>{children}</View>
-                </View>
-            ) : (
-                <Fragment>
-                    <FlatList
-                        showsVerticalScrollIndicator={false}
-                        style={styles.flatListContainer}
-                        data={songs}
-                        renderItem={({item}) => renderItem(item)}
-                        keyExtractor={(item) => item.id.toString()}
-                        ListFooterComponent={children}
-                        ListFooterComponentStyle={
-                            children && {...styles.flatListFooter}
+            {
+                songs.length ? (
+                    <>
+                        {
+                            disableScroll ? 
+                            <View style={styles.flatListContainer}>
+                                {songs.map((item) => renderItem(item))}
+                                <View style={styles.flatListFooter}>
+                                    {children}
+                                </View>
+                            </View> 
+                            : <FlatList 
+                                showsVerticalScrollIndicator={false}
+                                style={styles.flatListContainer}
+                                data={songs}
+                                renderItem={({item}) => renderItem(item)}
+                                keyExtractor={(item) => item.music_id.toString()}
+                                ListFooterComponent={children}
+                                ListFooterComponentStyle={children && {...styles.flatListFooter}}
+                                onEndReached={onEndReached}
+                            />
                         }
-                    />
-                </Fragment>
-            )}
-            <ModalBottom
-                isVisible={isVisible}
-                onHide={() => setIsVisible(false)}
-                item={songModal}
-            >
-                <SongOptions/>
-            </ModalBottom>
+                        <ModalBottom
+                            isVisible={isVisible}
+                            onHide={() => setIsVisible(false)}
+                            item={songModal}
+                        >
+                            <SongOptions/>
+                        </ModalBottom>
+                    </>
+                ) : null
+            }
         </>
     );
 };

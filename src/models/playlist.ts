@@ -1,6 +1,6 @@
 export interface Playlist {
-    id: number,
-    artist?:string,
-    name: string,
+    album_id: number,
+    artists?:string,
+    title: string,
     image_url: string,
 }

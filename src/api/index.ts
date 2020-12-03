@@ -19,4 +19,12 @@ export const API = {
             console.log(error);
         }
     },
+    graphql: async (url: string, query: any) => {
+        try {
+            const response = await axios.post('https://' + url, {query: query});
+            return response.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 };

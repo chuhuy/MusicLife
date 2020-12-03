@@ -5,7 +5,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { Song } from '../../../models/song';
-import { BaseScreen, SectionTitle } from '../../../shared/components';
+import { BaseScreen, LoadingLayer, SectionTitle } from '../../../shared/components';
 import { PlaylistList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
 import { Screen } from '../../../shared/constance/screen';
@@ -14,14 +14,18 @@ import I18n from './../../../i18n';
 import { PAUSE, PLAY, SKIP } from './../../../redux/modules/player/actions';
 import { GenreItem, SongItem } from './components';
 import { styles } from './styles';
+import { getLatestSongs } from '../../../api/explore';
+import { Playlist } from '../../../models/playlist';
+import { Genre } from '../../../models/genre';
+import GenreSection from './components/genreSection';
 
-interface Props extends DispatchProps, StateProps {}
+interface Props extends DispatchProps, StateProps { }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
-        playMusic: () => dispatch({type: PLAY}),
-        pauseMusic: () => dispatch({type: PAUSE}),
+        saveSongToStore: (song: Song) => dispatch({ type: SKIP, payload: song }),
+        playMusic: () => dispatch({ type: PLAY }),
+        pauseMusic: () => dispatch({ type: PAUSE }),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -33,25 +37,36 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
     const [isTop100, setTop100] = useState<boolean>(false);
     const [latestSong, setLatestSong] = useState<Array<Song>>(null);
+    const [latestAlbum, setLatestAlbum] = useState<Array<Playlist>>(null);
+    const [genreList, setGenreList] = useState<Array<Genre>>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        setLatestSong(songs.slice(0,4));
+        setIsLoading(true);
+        getLatestSongs()
+            .then((data) => {
+                setLatestSong(data.latestSongs);
+                setLatestAlbum(data.latestAlbums);
+                setGenreList(data.genres);
+                setIsLoading(false);
+            })
+            .catch((err) => console.log(err));
     }, [])
 
     const handlePlayMusic = (song: any) => {
         const formattedSong: Song = {
-            id: song.id,
+            music_id: song.music_id,
             title: song.title,
             image_url: song.image_url,
-            artist: song.artist,
+            artists: song.artists,
             url: song.url,
         };
         props.saveSongToStore(formattedSong);
         const track = {
-            id: song.id,
+            id: song.music_id,
             url: song.url,
             title: song.title,
-            artist: song.artist,
+            artist: song.artists,
             album: song.album || '',
             genre: song.genre || '',
             date: '2020-10-20T07:00:00+00:00',
@@ -61,20 +76,20 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         TrackPlayer.reset()
             .then(() => {
                 TrackPlayer.add(track)
-                .then(() => {
-                    TrackPlayer.play()
-                    .then(() => props.playMusic())
-                    .catch(() => props.pauseMusic());
-                })
-                .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
+                    .then(() => {
+                        TrackPlayer.play()
+                            .then(() => props.playMusic())
+                            .catch(() => props.pauseMusic());
+                    })
+                    .catch(() => { TrackPlayer.pause().then(() => props.pauseMusic()); });
             })
-            .catch(() => {TrackPlayer.pause().then(() => props.pauseMusic());});
+            .catch(() => { TrackPlayer.pause().then(() => props.pauseMusic()); });
         navigation.navigate(Screen.Common.Player);
     };
 
     const handleLastestSong = () => {
         navigation.navigate(Screen.Common.Song, {
-            songs,
+            songs: latestSong,
             isLatest: true
         })
     };
@@ -88,18 +103,18 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handleGenreList = () => {
-        navigation.navigate(Screen.Explore.GenreList, {genre})
+        navigation.navigate(Screen.Explore.GenreList, { genre })
     }
 
     const renderLatestSong = () => {
         return latestSong.map((item) => {
             return (
-                <SongItem 
-                    key={ item.id }
-                    name={ item.title } 
-                    artist={ item.artist } 
-                    image={ item.image_url } 
-                    onClick={ () => handlePlayMusic(item) }
+                <SongItem
+                    key={item.music_id}
+                    name={item.title}
+                    artist={item.artists}
+                    image={item.image_url}
+                    onClick={() => handlePlayMusic(item)}
                 />
             )
         })
@@ -108,69 +123,67 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <BaseScreen isScroll={false}>
-                <HeaderMainPage/>
+                <HeaderMainPage />
 
                 <ScrollView style={styles.contentContainer}>
-                    <View style={styles.group}>
-                        <View style={styles.chart}>
-                            <Pressable
-                                style={styles.chartButton}
-                                onPressIn={() => {setTop100(false);}}>
-                                <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
-                                    {I18n.translate('explore.chart')}
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                onPressIn={() => {setTop100(true);}}>
-                                <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
-                                    {I18n.translate('explore.top100')}
-                                </Text>
-                            </Pressable>
-                        </View>
-
-                        {isTop100 ?
-                        <PlaylistList playlist={playlist} isHorizontal={true}/>
-                        : <PlaylistList playlist={chartDummyData} isHorizontal={true}/>
-                        }
-                    </View>
-                    
-                    <View style={styles.group}>
-                        <SectionTitle title={I18n.translate('explore.latest-song')} onClick={handleLastestSong} />
-                        
-                        {latestSong && (
-                            <View style={styles.flatListContainer}>
-                                {renderLatestSong()}
+                    {isLoading ? (
+                        <>
+                            <LoadingLayer />
+                        </>
+                    ) : (
+                        <>
+                        <View style={styles.group}>
+                            <View style={styles.chart}>
+                                <Pressable
+                                    style={styles.chartButton}
+                                    onPressIn={() => { setTop100(false); }}>
+                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
+                                        {I18n.translate('explore.chart')}
+                                    </Text>
+                                </Pressable>
+                                <Pressable
+                                    onPressIn={() => { setTop100(true); }}>
+                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
+                                        {I18n.translate('explore.top100')}
+                                    </Text>
+                                </Pressable>
                             </View>
-                        )}
-                    </View>
-                    
-                    <View style={styles.group}>
-                        <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
 
-                        <PlaylistList playlist={album} isHorizontal={true}/>
-                    </View>
-
-                    <View>
-                        <SectionTitle 
-                            title={I18n.translate('explore.genre')} 
-                            onClick={handleGenreList} 
-                        />
-
-                        <View style={styles.flatListContainer}>
-                            {genre.map((item) => {
-                                return (
-                                    <GenreItem 
-                                        key={item.genre_id}
-                                        title={item.name} 
-                                        image={item.image_url} 
-                                        onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {
-                                            genre: item
-                                        })}
-                                    />
-                                )
-                            })}
+                            {isTop100 ?
+                                <PlaylistList playlist={playlist} isHorizontal />
+                                : <PlaylistList playlist={chartDummyData} isChart isHorizontal />
+                            }
                         </View>
-                    </View>
+
+                        <View style={styles.group}>
+                            <SectionTitle title={I18n.translate('explore.latest-song')} onClick={handleLastestSong} />
+
+                            {latestSong && (
+                                <View style={styles.flatListContainer}>
+                                    {renderLatestSong()}
+                                </View>
+                            )}
+                        </View>
+
+                        <View style={styles.group}>
+                            <SectionTitle title={I18n.translate('explore.latest-album')} onClick={handleLatestAlbum} />
+
+                            <PlaylistList playlist={latestAlbum} isAlbum isHorizontal />
+                        </View>
+
+                        <View>
+                            <SectionTitle
+                                title={I18n.translate('explore.genre')}
+                                onClick={handleGenreList}
+                            />
+
+                            <View style={styles.flatListContainer}>
+                                <GenreSection genres={genreList} />
+                            </View>
+                        </View>
+                        </>
+                    )}  
+                    
                 </ScrollView>
             </BaseScreen>
         </>
@@ -184,18 +197,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(Explore);
 
 const chartDummyData = [
     {
-        id: 1,
+        album_id: 1,
         image_url: 'https://avatar-nct.nixcdn.com/topic/share/2017/12/06/9/4/b/b/1512556174027.jpg',
-        name: 'V-pop',
+        title: 'V-pop',
     },
     {
-        id: 2,
+        album_id: 2,
         image_url: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        name: 'K-pop',
+        title: 'K-pop',
     },
     {
-        id: 3,
+        album_id: 3,
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
-        name: 'US-UK',
+        title: 'US-UK',
     },
 ];
