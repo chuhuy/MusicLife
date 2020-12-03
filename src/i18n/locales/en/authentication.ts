@@ -35,6 +35,9 @@ export const authentication = {
         'error-repeat-password': 'The password and repeat password are not the same'
     },
     'reset-password': {
-
+        'error-required-email': 'You have to enter email',
+        'error-email': 'You entered an invalid email',
+        'email-placeholder': 'Enter email',
+        'confirm-email': 'Confirm',
     },
 };

@@ -35,6 +35,9 @@ export const authentication = {
         'error-repeat-password': 'Mật khẩu nhập lại không khớp'
     },
     'reset-password': {
-
+        'error-required-email': 'Bạn không được để trống email',
+        'error-email': 'Email không hợp lệ',
+        'email-placeholder': 'Hãy nhập email',
+        'confirm-email': 'Đồng ý',
     },
 };
