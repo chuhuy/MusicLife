@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Image, ImageBackground, Text, SafeAreaView } from 'react-native';
-import { HeaderBack, IconButton } from '../../../shared/components';
+import { HeaderBack, IconButton, LoadingLayer } from '../../../shared/components';
 import { styles } from './styles';
 import Heart from './../../../assets/icons/heart.svg';
 import Option from './../../../assets/icons/option.svg';
 import { songs } from './../../../data/song';
 import { SongList } from '../../../shared/components/flatlist';
 import Controller from '../controller';
+import { Song } from '../../../models/song';
+import { fetchAlbumDetail } from '../../../api/explore';
 
 interface Props {
     navigation: any,
@@ -15,38 +17,59 @@ interface Props {
 
 const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     const { navigation, route } = props;
-    const { newPlaylist } = route.params;
-    const { name, artist, image_url } = newPlaylist;
+    const { newPlaylist, isChart, isAlbum } = route.params;
+    const { album_id, title, artists, image_url } = newPlaylist;
+
+    const [songList, setSongList] = useState<Array<Song>>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        if (!isChart) {
+            if (isAlbum) {
+                fetchAlbumDetail(album_id)
+                    .then((data) => {
+                        setSongList(data.songsByAlbum);
+                        setIsLoading(false);
+                    }).catch((err) => console.log(err))
+            } else {
+                // Personal playlist
+            }
+        } else {
+
+        }
+    }, [])
 
     return (
         <>
             <SafeAreaView style={styles.container}>
-                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: image_url || ''}}>
-                    <View style={styles.blurLayer}/>
+                <ImageBackground style={styles.sectionOne} blurRadius={5} source={{ uri: image_url || '' }}>
+                    <View style={styles.blurLayer} />
 
                     <View style={styles.backContainer}>
-                        <HeaderBack/>
+                        <HeaderBack />
                     </View>
-                    
+
                     <View style={styles.sectionOneContent}>
-                        <Image source={{uri: image_url || ''}} style={styles.image}/>
+                        <Image source={{ uri: image_url || '' }} style={styles.image} />
 
                         <View style={styles.control}>
                             <View style={styles.titleGroup}>
                                 <Text style={styles.playlistName} numberOfLines={1}>
-                                    {name || ''}
+                                    {title || ''}
                                 </Text>
-                                {artist && <Text style={styles.artist} numberOfLines={1}>
-                                    {artist}
+                                {artists && <Text style={styles.artist} numberOfLines={1}>
+                                    {artists}
                                 </Text>}
                             </View>
 
                             <View style={styles.buttonGroup}>
                                 <View style={styles.button}>
-                                    <IconButton icon={Heart} onClick={() => {}}/>
+                                    <IconButton icon={Heart} onClick={() => { }} />
                                 </View>
                                 <View style={styles.button}>
-                                    <IconButton icon={Option} onClick={() => {}}/>
+                                    <IconButton icon={Option} onClick={() => { }} />
                                 </View>
                             </View>
 
@@ -55,7 +78,11 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 </ImageBackground>
 
                 <View style={styles.sectionTwo}>
-                    <SongList songs={songs}/>
+                    {isLoading ? (
+                        <LoadingLayer />
+                    ) : (
+                        <SongList songs={songList} />
+                    )}
                 </View>
 
                 <Controller />

@@ -12,7 +12,8 @@ interface Props {
     children?: any,
     isHorizontal?: boolean,
     numsColumn?: number,
-    disableScroll?: boolean
+    disableScroll?: boolean,
+    isChart?: boolean
 }
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
@@ -22,13 +23,18 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         numsColumn,
         disableScroll = false, 
         isHorizontal = false, 
-        isAlbum = false
+        isAlbum = false,
+        isChart = false
     } = props;
 
     const navigation = useNavigation();
 
     const handlePlaylist = (album) => {
-        navigation.navigate(Screen.Common.PlaylistDetail, {newPlaylist: album, isAlbum});
+        navigation.navigate(Screen.Common.PlaylistDetail, {
+            newPlaylist: album, 
+            isAlbum, 
+            isChart
+        });
     };
 
     const handleOpenOption = () => {
@@ -39,18 +45,18 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         return (
             isHorizontal || numsColumn ? 
                 <SquareItem 
-                    key={item.id}
-                    name={item.name}
+                    key={item.album_id}
+                    name={item.title}
                     image={item.image_url}
-                    artist={item.artist}
+                    artist={item.artists}
                     onClick={() => handlePlaylist(item)}
                     size={numsColumn}
                 /> :
                 <Item 
-                    key={item.id}
-                    name={item.name}
+                    key={item.album_id}
+                    name={item.title}
                     image={item.image_url}
-                    artist={item.artist}
+                    artist={item.artists}
                     onClick={() => handlePlaylist(item)}
                     onOptionClick={handleOpenOption}
                 />
@@ -80,7 +86,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             data={playlist}
             horizontal={isHorizontal}
             renderItem={(({item}) => renderItem(item))}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.album_id.toString()}
             ListFooterComponent={!isHorizontal && children}
             ListFooterComponentStyle={!isHorizontal && {...styles.flatListFooter}}
         />

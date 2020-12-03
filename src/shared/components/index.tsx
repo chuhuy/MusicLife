@@ -91,3 +91,9 @@ export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: Head
         </View>
     )
 }
+
+export const LoadingLayer: React.FC = () => {
+    return (
+        <View style={{backgroundColor: '#fff'}}><Text>Loading...</Text></View>
+    )
+}

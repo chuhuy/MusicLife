@@ -12,6 +12,7 @@ interface Props extends DispatchProps, StateProps {
     songs: Array<Song>,
     disableScroll?: boolean,
     children?: any,
+    onEndReached?: () => void
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -26,24 +27,24 @@ const mapStateToProps = (state: any) => ({
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
-    const {songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children} = props;
+    const {songs, disableScroll, saveSongToStore, playMusic, pauseMusic, children, onEndReached} = props;
     const navigation = useNavigation();
     
     const handlePlayMusic = (song) => {
         console.log('play music')
         const formattedSong: Song = {
-            id: song.id,
+            music_id: song.music_id,
             title: song.title,
             image_url: song.image_url,
-            artist: song.artist,
+            artists: song.artists,
             url: song.url,
         };
         saveSongToStore(formattedSong);
         const track = {
-            id: song.id,
+            id: song.music_id,
             url: song.url,
             title: song.title,
-            artist: song.artist,
+            artist: song.artists,
             album: song.album || '',
             genre: song.genre || '',
             date: '2020-10-20T07:00:00+00:00',
@@ -66,14 +67,15 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const handleOpenOption = () => {
         console.log('Opened option');
     };
+    console.log('song')
 
     const renderItem = (item: Song) => {
         return (
             <Item 
-                key={item.id}
+                key={item.music_id}
                 name={item.title}
                 image={item.image_url}
-                artist={item.artist}
+                artist={item.artists}
                 onClick={() => handlePlayMusic(item)}
                 onOptionClick={handleOpenOption}
             />
@@ -83,22 +85,29 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             {
-                disableScroll ? 
-                    <View style={styles.flatListContainer}>
-                        {songs.map((item) => renderItem(item))}
-                        <View style={styles.flatListFooter}>
-                            {children}
-                        </View>
-                    </View> 
-                    : <FlatList 
-                        showsVerticalScrollIndicator={false}
-                        style={styles.flatListContainer}
-                        data={songs}
-                        renderItem={({item}) => renderItem(item)}
-                        keyExtractor={(item) => item.id.toString()}
-                        ListFooterComponent={children}
-                        ListFooterComponentStyle={children && {...styles.flatListFooter}}
-                    />
+                songs.length ? (
+                    <>
+                        {
+                            disableScroll ? 
+                            <View style={styles.flatListContainer}>
+                                {songs.map((item) => renderItem(item))}
+                                <View style={styles.flatListFooter}>
+                                    {children}
+                                </View>
+                            </View> 
+                            : <FlatList 
+                                showsVerticalScrollIndicator={false}
+                                style={styles.flatListContainer}
+                                data={songs}
+                                renderItem={({item}) => renderItem(item)}
+                                keyExtractor={(item) => item.music_id.toString()}
+                                ListFooterComponent={children}
+                                ListFooterComponentStyle={children && {...styles.flatListFooter}}
+                                onEndReached={onEndReached}
+                            />
+                        }
+                    </>
+                ) : null
             }
         </>
     )

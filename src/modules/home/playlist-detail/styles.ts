@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         height: 500,
         top: 0,
         left: 0,
-        backgroundColor: 'black',
+        backgroundColor: styleVars.blackColor,
         opacity: 0.25
     },
     backContainer: {
@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     },
     sectionOneContent: {
         marginTop: 10,
+        marginBottom: 20,
         flex: 1,
         justifyContent: 'center',
     },
@@ -40,13 +41,13 @@ export const styles = StyleSheet.create({
         flex: 3,
         backgroundColor: styleVars.primaryColor,
         paddingHorizontal: 15,
-        paddingVertical: 20
+        paddingVertical: 30
     },
     control: {
         flexDirection: 'row',
         width: '100%',
         paddingHorizontal: 15,
-        marginTop: 20,
+        marginTop: 30,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
@@ -59,6 +60,7 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.bigFontSize,
         color: styleVars.white,
         fontWeight: '700',
+        marginBottom: 4
     },
     artist: {
         fontSize: styleVars.baseFontSize,

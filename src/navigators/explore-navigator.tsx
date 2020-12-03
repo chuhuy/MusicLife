@@ -88,7 +88,7 @@ const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         name={Screen.Explore.GenreDetail} 
                         component={GenreDetail}
                         options={({ route }) => ({
-                            title: route.params.name
+                            title: route.params.genre.name
                         })}
                     />
 
