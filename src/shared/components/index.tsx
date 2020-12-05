@@ -69,6 +69,16 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         fontWeight: '700',
     },
+    notFoundContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    notFoundText: {
+        color: styleVars.greyColor,
+        fontSize: styleVars.baseFontSize,
+        paddingTop: 15
+    }
 });
 
 // Go Back Header
@@ -98,5 +108,23 @@ export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: Head
 export const LoadingLayer: React.FC = () => {
     return (
         <View style={{backgroundColor: '#fff'}}><Text>Loading...</Text></View>
+    )
+}
+
+interface NotFoundItemProps {
+    icon: SVGElement,
+    text: string
+}
+
+export const NotFoundItem: React.FunctionComponent<NotFoundItemProps> = (props: NotFoundItemProps) => {
+    const {icon, text} = props;
+
+    return (
+        <>
+            <View style={styles.notFoundContainer}>
+                {icon}
+                <Text style={styles.notFoundText}>{text}</Text>
+            </View>
+        </>
     )
 }

@@ -80,10 +80,10 @@ export const fetchMusicChart = (area: string) => {
     return API.graphql(RESOURCE_URL + EXPLORE, query);
 }
 
-export const fetchLatestSong = (first: number, offset: number) => {
+export const fetchLatestSong = () => {
     const query = `
         query {
-            latestSongs(first: ${first} offset: ${offset}) {
+            latestSongs(first: 10 offset: 0) {
                 music_id
                 title
                 url
@@ -137,10 +137,9 @@ export const fetchSongByGenre = (genre_id: number, first?: number, offset?: numb
 }
 
 export const fetchGenreDetail = (genre_id: number) => {
-    // console.log(SONG_GENRE_ITEM)
     const query = `
         query {
-            songsByGenre (first: ${SONG_GENRE_ITEM} offset: 0 genre_id: ${genre_id}) {
+            songsByGenre (first: 3 offset: 0 genre_id: ${genre_id}) {
                 music_id
                 title
                 url
@@ -148,7 +147,7 @@ export const fetchGenreDetail = (genre_id: number) => {
                 artists
                 lyric
             }
-            albumsByGenre(first: ${ALBUM_GENRE_ITEM} offset: 0 genre_id: ${genre_id}) {
+            albumsByGenre(first: 5 offset: 0 genre_id: ${genre_id}) {
                 album_id
                 title
                 release_date
@@ -170,4 +169,50 @@ export const postSongCounter = (music_id: number) => {
     `
     
     return API.graphql(RESOURCE_URL + EXPLORE, mutation);
+}
+
+export const fetchGenres = () => {
+    const query = `
+        query {
+            genres {
+                genre_id
+                name
+                image_url
+            }
+        }  
+    `;
+
+    return API.graphql(RESOURCE_URL + EXPLORE, query);
+}
+
+
+export const fetchSearchResult = (keyword: string) => {
+    console.log(keyword)
+    const query = `
+        query {
+            songs: searchBySong(keyword: "${keyword}") {
+                music_id
+                title
+                url
+                image_url
+                artists
+                lyric
+            }
+            artists: searchByArtist(keyword: "${keyword}") {
+                artist_id
+                name
+                description
+                image_url
+            }
+            albums: searchByAlbum(keyword: "${keyword}") {
+                album_id
+                title
+                release_date
+                image_url
+                artists
+            }
+        }  
+    `;
+
+    return API.graphql(RESOURCE_URL + EXPLORE, query);
 }

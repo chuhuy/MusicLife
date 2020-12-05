@@ -29,13 +29,14 @@ export const MoreButton: React.FunctionComponent<Props> = (props: Props) => {
 const styles = StyleSheet.create({
     buttonLayout: {
         backgroundColor: 'transparent',
+        paddingVertical: 5,
     },
     touchArea: {
         flexDirection: 'row',
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 30,
         borderColor: styleVars.secondaryColor,

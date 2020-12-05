@@ -1,17 +1,20 @@
+import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import I18n from './../../../i18n';
-import { SafeAreaView, View } from 'react-native';
-import { BaseScreen, LinkButton, SearchBar } from '../../../shared/components';
+import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { fetchSearchResult } from '../../../api/explore';
+import { Artist } from '../../../models/artist';
+import { Playlist } from '../../../models/playlist';
+import { Song } from '../../../models/song';
+import { BaseScreen, LinkButton, LoadingLayer, SearchBar } from '../../../shared/components';
+import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import { styleVars } from '../../../shared/constance/style-variables';
-import { styles } from './styles';
+import I18n from './../../../i18n';
 import { AllTab, ArtistList } from './components';
-import { ScrollView } from 'react-native-gesture-handler';
-import { artist, songs, playlist, album } from '../../../data';
-import { Song } from '../../../models/song';
-import { Playlist } from '../../../models/playlist';
-import { Artist } from '../../../models/artist';
-import { PlaylistList, SongList } from '../../../shared/components/flatlist';
+import { styles } from './styles';
+import { NotFoundItem } from '../../../shared/components';
+import NotFound from '../../../assets/icons/not-found-song.svg';
 
 interface Props {
     navigation: any
@@ -27,63 +30,100 @@ export const TYPE = {
 
 const Search: React.FunctionComponent<Props> = (props: Props) => {
     const {navigation} = props;
+    const route = useRoute();
+    const {keyword} = route.params;
+
     const [activeTab, setActiveTab] = useState<string>(TYPE.ALL);
 
-    const [resultSong, setResultSong] = useState<Array<Song>>(songs);
-    const [topSong, setTopSong] = useState<Array<Song>>(songs.slice(0, 2));
-    const [resultPlaylist, setResultPlaylist] = useState<Array<Playlist>>(playlist);
-    const [topPlaylist, setTopPlaylist] = useState<Array<Playlist>>(playlist.slice(0, 2));
-    const [resultAlbum, setResultAlbum] = useState<Array<Playlist>>(album);
-    const [topAlbum, setTopAlbum] = useState<Array<Playlist>>(album.slice(0, 2));
-    const [resultArtist, setResultArtist] = useState<Array<Artist>>(artist);
-    const [topArtist, setTopArtist] = useState<Array<Artist>>(artist.slice(0, 2));
+    const [resultSong, setResultSong] = useState<Array<Song>>([]);
+    const [topSong, setTopSong] = useState<Array<Song>>([]);
+
+    const [resultAlbum, setResultAlbum] = useState<Array<Playlist>>([]);
+    const [topAlbum, setTopAlbum] = useState<Array<Playlist>>([]);
+
+    const [resultArtist, setResultArtist] = useState<Array<Artist>>([]);
+    const [topArtist, setTopArtist] = useState<Array<Artist>>([]);
+
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const [tabMenu, setTabMenu] = useState<Array<{
+        title: string,
+        type: string,
+        active: boolean,
+        onClick: (type: string) => void
+    }>>([]);
 
     useEffect(() => {
-        setTopSong(resultSong.slice(0, 2));
-    }, [resultSong])
+        if (!isLoading) {
+            setIsLoading(true);
+        }
 
-    useEffect(() => {
-        setTopPlaylist(resultPlaylist.slice(0, 2));
-    }, [resultPlaylist])
+        fetchSearchResult(keyword)
+            .then((data) => {
+                let menu = [];
 
-    useEffect(() => {
-        setTopAlbum(resultAlbum.slice(0, 2));
-    }, [resultAlbum])
+                if (data) {
+                    const {artists, songs, albums} = data;
+                    
+                    menu.push({
+                        title: I18n.translate('search.all'),
+                        type: TYPE.ALL,
+                        active: activeTab === TYPE.ALL,
+                        onClick: handleOpenTab
+                    })
 
-    useEffect(() => {
-        setTopArtist(resultArtist.slice(0, 2));
-    }, [resultArtist])
+                    if (artists.length) {
+                        setResultArtist(artists);
+                        setTopArtist(artists.slice(0, 2));
+    
+                        menu.push({
+                            title: I18n.translate('search.artists'),
+                            type: TYPE.ARTIST,
+                            active: activeTab === TYPE.ARTIST,
+                            onClick: handleOpenTab
+                        })
+                    }
+                   
+                    if (songs.length) {
+                        setResultSong(songs);
+                        setTopSong(songs.slice(0, 2));
+
+                        menu.push({
+                            title: I18n.translate('search.songs'),
+                            type: TYPE.SONG,
+                            active: activeTab === TYPE.SONG,
+                            onClick: handleOpenTab
+                        })
+                    }
+                    
+                    if (albums.length) {
+                        setResultAlbum(albums);
+                        setTopAlbum(albums.slice(0, 2));
+
+                        menu.push({
+                            title: I18n.translate('search.albums'),
+                            type: TYPE.ALBUM,
+                            active: activeTab === TYPE.ALBUM,
+                            onClick: handleOpenTab
+                        })
+                    }
+                    
+                    setIsLoading(false);
+
+                    if (menu !== tabMenu) {
+                        setTabMenu(menu);
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                setIsLoading(false);
+            })
+    }, [keyword]);
 
     const handleOpenTab = (type: string) => {
         setActiveTab(type);
     }
-    
-    const types = [
-        {
-            title: I18n.translate('search.all'),
-            type: TYPE.ALL,
-            active: activeTab === TYPE.ALL,
-            onClick: handleOpenTab
-        },
-        {
-            title: I18n.translate('search.artists'),
-            type: TYPE.ARTIST,
-            active: activeTab === TYPE.ARTIST,
-            onClick: handleOpenTab
-        },
-        {
-            title: I18n.translate('search.songs'),
-            type: TYPE.SONG,
-            active: activeTab === TYPE.SONG,
-            onClick: handleOpenTab
-        },
-        {
-            title: I18n.translate('search.albums'),
-            type: TYPE.ALBUM,
-            active: activeTab === TYPE.ALBUM,
-            onClick: handleOpenTab
-        },
-    ]
 
     const handleBack = () => {
         navigation.goBack();
@@ -101,43 +141,55 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                     />
                 </View>
                 
-                <UnderlineTabBar options={types} />
-                    
-                {
-                    activeTab === TYPE.ALL && 
-                    <ScrollView style={styles.body}>
-                        <AllTab 
-                            navigation={navigation} 
-                            playlist={topPlaylist}
-                            song={topSong}
-                            album={topAlbum}
-                            artist={topArtist}
-                            chooseType={handleOpenTab} 
-                        />
-                    </ScrollView>
-                }
-                {
-                    activeTab === TYPE.SONG && 
-                    <View style={styles.body}>
-                        <SongList songs={resultSong} />
-                    </View>
-                }
-                {
-                    (activeTab === TYPE.ALBUM) && 
-                    <View style={styles.body}>
-                        <PlaylistList playlist={resultAlbum} />
-                    </View>
-                }
-                {
-                    activeTab === TYPE.ARTIST && 
-                    <View style={styles.body}>
-                        <ArtistList 
-                            navigation={navigation} 
-                            artist={artist}
-                            isHorizontal={false}
-                        />
-                    </View>
-                }
+                {isLoading ? (
+                    <LoadingLayer />
+                ) : (
+                    <>{tabMenu.length ? (
+                        <>
+                            <UnderlineTabBar options={tabMenu} />
+                        
+                            {activeTab === TYPE.ALL && (
+                                <ScrollView style={styles.body}>
+                                    <AllTab 
+                                        song={topSong}
+                                        album={topAlbum}
+                                        artist={topArtist}
+                                        chooseType={handleOpenTab} 
+                                    />
+                                </ScrollView>
+                            )}
+
+                            {activeTab === TYPE.SONG && (
+                                <View style={styles.body}>
+                                    <SongList songs={resultSong} />
+                                </View>
+                            )}
+
+                            {activeTab === TYPE.ALBUM && (
+                                <View style={styles.body}>
+                                    <PlaylistList playlist={resultAlbum} />
+                                </View>
+                            )}
+
+                            {activeTab === TYPE.ARTIST && (
+                                <View style={styles.body}>
+                                    <ArtistList 
+                                        artist={resultArtist}
+                                        isHorizontal={false}
+                                    />
+                                </View>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <NotFoundItem 
+                                icon={<NotFound />}
+                                text={I18n.translate('search.not-found')}
+                            />
+                        </>
+                    )
+                    }</>
+                )}
             </BaseScreen>
         </>
     )
