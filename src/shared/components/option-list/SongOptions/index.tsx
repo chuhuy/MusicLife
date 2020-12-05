@@ -12,6 +12,7 @@ import { Song } from '../../../../models/song';
 import { addSong, removeSong } from '../../../../redux/modules/player/actions';
 import TrackPlayer from 'react-native-track-player';
 import TrashIcon from '../../../../assets/icons/delete.svg';
+import { getNotExistSongs, removeSongs } from '../../../helper/player';
 
 interface Props extends DispatchProps {
     song: Song,
@@ -32,26 +33,46 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     useEffect(() => {
         const handleAddedToPlaying = async () => {
             const currentTracks = await TrackPlayer.getQueue();
-            let isAdded = false;
 
-            if (currentTracks) {
-                for (let i = 0; i < currentTracks.length; i++) {
-                    if (song.music_id.toString() === currentTracks[i].id) {
-                        isAdded = true;
-                    }
-                }
+            let songsNotExist = getNotExistSongs(currentTracks, [song]);
+        
+            if (!songsNotExist.length) {
+                setIsAddPlaying(true);
             }
-
-            if (isAdded) setIsAddPlaying(isAdded);
         }
 
         handleAddedToPlaying();
     }, []);
 
-    const handleNowPlayingPlaylist = () => {
+    const handleNowPlayingPlaylist = async () => {
         if (isAddPlaying) {
-            removeSong(song);
-        } else addSong([song]);
+            TrackPlayer.remove(song.music_id.toString())
+                .then(() => {
+                    removeSong(song);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        } else {
+            let track = {
+                id: song.music_id.toString(),
+                url: song.url,
+                title: song.title,
+                artist: song.artists,
+                album: song.album || '',
+                genre: song.genre || '',
+                date: '2020-10-20T07:00:00+00:00',
+                artwork: song.image_url,
+            }
+
+            TrackPlayer.add(track)
+                .then(() => {
+                    addSong([song]);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
         closeModal();
     }
 

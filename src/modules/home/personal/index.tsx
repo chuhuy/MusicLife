@@ -6,7 +6,7 @@ import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
 import Plus from '../../../assets/icons/plus.svg';
 import { album } from '../../../data/album';
-import { playlist } from '../../../data/playlist';
+import { playlist } from '../../../data/top100';
 import { songs } from '../../../data/song';
 import { BaseScreen } from '../../../shared/components';
 import { AlbumList, PlaylistList, SongList } from '../../../shared/components/flatlist';

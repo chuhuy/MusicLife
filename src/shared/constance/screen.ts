@@ -11,6 +11,7 @@ export const Screen = {
         'GenreDetail': 'GenreDetail'
     },
     'Personal': 'Personal',
+    'Device': 'Device',
     'Setting': {
         'Main': 'Setting',
         'EditProfile': 'EditProfile',

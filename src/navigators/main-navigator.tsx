@@ -52,8 +52,8 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name={Screen.Common.Player} component={Player}/>
                         <Stack.Screen name={Screen.Common.Notification} component={Notification}/>
-                        <Stack.Screen name={Screen.Common.Search} component={Search}/>
-                        <Stack.Screen name={Screen.Common.Singer} component={Singer}/>
+                        {/* <Stack.Screen name={Screen.Common.Search} component={Search}/> */}
+                        {/* <Stack.Screen name={Screen.Common.Singer} component={Singer}/> */}
                     </>
                 )}
             </Stack.Navigator>

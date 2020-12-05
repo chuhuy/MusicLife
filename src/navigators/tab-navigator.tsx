@@ -10,11 +10,14 @@ import PersonalActiveIcon from './../assets/icons/personal-active.svg';
 import PersonalIcon from './../assets/icons/personal.svg';
 import SettingActiveIcon from './../assets/icons/setting-active.svg';
 import SettingIcon from './../assets/icons/setting.svg';
+import DeviceIcon from '../assets/icons/device.svg';
+import DeviceActiveIcon from '../assets/icons/device-active.svg';
 import I18n from './../i18n';
 import PersonalStackScreen from './personal-navigator';
 import { styleVars } from './../shared/constance/style-variables';
 import ExploreStackScreen from './explore-navigator';
 import SettingStackScreen from './setting-navigator';
+import Device from '../modules/home/device';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,6 +50,10 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         return (
                             <Text style={{color: focused ? styleVars.secondaryColor : styleVars.white, fontSize: 12}}>{I18n.translate('setting.title')}</Text>
                         );
+                    } else if (route.name === Screen.Device) {
+                        return (
+                            <Text style={{color: focused ? styleVars.secondaryColor : styleVars.white, fontSize: 12}}>{I18n.translate('device.title')}</Text>
+                        );
                     }
                 },
                 tabBarIcon: ({focused}) => {
@@ -59,13 +66,17 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     } else if (route.name === Screen.Setting.Main) {
                         if (!focused) {return (<SettingIcon/>);}
                         else {return (<SettingActiveIcon/>);}
+                    } else if (route.name === Screen.Device) {
+                        if (!focused) {return (<DeviceIcon/>);}
+                        else {return (<DeviceActiveIcon/>);}
                     }
                 },
             })}
         >
-            <Tab.Screen name={Screen.Explore.Main}  component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>
+            <Tab.Screen name={Screen.Device} component={Device} options={{title: I18n.translate('explore.title')}}/>
+            <Tab.Screen name={Screen.Explore.Main} component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>
             {props.refresh_token !== null && <Tab.Screen name={Screen.Personal}  component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
-            <Tab.Screen name={Screen.Setting.Main}  component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
+            <Tab.Screen name={Screen.Setting.Main} component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
     );
 };

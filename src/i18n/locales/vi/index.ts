@@ -9,6 +9,7 @@ import { common } from './common';
 import {changeLanguage} from './changeLanguage';
 import {search} from './search';
 import { optionModal } from './optionModal';
+import { device } from './device';
 
 export default {
     'setting': setting,
@@ -22,4 +23,5 @@ export default {
     'singer': singer,
     'search': search,
     'optionModal': optionModal,
+    'device': device
 }
