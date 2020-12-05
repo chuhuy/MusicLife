@@ -5,8 +5,6 @@ export const search = {
     'albums': 'Albums',
     'playlists': 'Playlists',
     'cancel': 'Cancel',
-    'song-not-found': 'No song has been added',
-    'album-not-found': 'No album has been added',
-    'playlist-not-found': 'No playlist has been added',
+    'not-found': 'No result was found',
     'more-button': 'More'
 };

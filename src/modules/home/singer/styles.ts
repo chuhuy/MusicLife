@@ -2,6 +2,13 @@ import { StyleSheet } from 'react-native';
 import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
+    layer: {
+        position: 'absolute',
+        backgroundColor: styleVars.blackColor,
+        width: '100%',
+        height: '100%',
+        opacity: 0.4
+    },
     imageBackground: {
         flex: 1,
         resizeMode: "center",
@@ -34,7 +41,8 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
     },
     group:{
-        marginBottom: 30,
+        paddingBottom: 30,
+        marginTop: -5
     },
     title: {
         color: styleVars.white,

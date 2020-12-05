@@ -38,6 +38,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
     const handleSongList = () => {
         navigation.navigate(Screen.Common.Song, {
             songs,
+            genre_id: genre.genre_id,
             isLatest: false
         })
     }
@@ -45,7 +46,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
     const handleAlbumList = () => {
         navigation.navigate(Screen.Common.Playlist, {
             isAlbum: true,
-            playlist: album,
+            genre_id: genre.genre_id,
             isLatest: false
         })
     }
@@ -65,7 +66,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                             </SongList>
                         </View>
                         
-                        <View>
+                        <View style={styles.section}>
                             <SectionTitle title={I18n.translate('search.albums')} onClick={handleAlbumList} />
 
                             <PlaylistList

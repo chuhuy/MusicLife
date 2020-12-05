@@ -1,38 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import { fetchLatestSong } from '../../../api/explore';
+import React, { useEffect, useState } from 'react';
+import { fetchAlbumDetail, fetchLatestSong, fetchSongByGenre } from '../../../api/explore';
 import { Song } from '../../../models/song';
 import { BaseScreen, LoadingLayer, SongList } from '../../../shared/components';
-import { LATEST_SONG_ITEM, MAX_PAGE_LATEST_SONG } from '../../../shared/constance/pagination';
-import { calculatePagination } from '../../../shared/helper/pagination';
 
 interface Props {
     route: any
 }
 
-export const LastestSong: React.FunctionComponent<Props> = (props: Props) => {
+export const SongScreen: React.FunctionComponent<Props> = (props: Props) => {
+    const {route} = props;
     const [songList, setSongList] = useState<Array<Song>>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [currentPage, setCurrentPage] = useState<number>(0);
 
-    const fetchSong = async () => {
-        const {first, offset} = calculatePagination(MAX_PAGE_LATEST_SONG, LATEST_SONG_ITEM, currentPage); 
+    const fetchData = () => {
+        const {isLatest, genre_id, album_id} = route.params;
         
-        if (first) {
-            setIsLoading(true);
-            fetchLatestSong(first, offset)
-                .then(data => {
-                    setSongList([...songList, ...data.latestSongs]);
-                    setCurrentPage(prevState => ++prevState);
-                    setIsLoading(false);
-                }).catch(err => {
-                    console.log(err);
-                    setIsLoading(false);
-                })
+        if (isLatest) {
+            return fetchLatestSong();
+        } else if (genre_id) {
+            return fetchSongByGenre(genre_id);
+        } else {
+            return fetchAlbumDetail(album_id);
         }
     }
 
     useEffect(() => {
-        fetchSong();
+        fetchData()
+            .then(data => {
+                setSongList([...songList, ...data.songsByGenre]);
+                setIsLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setIsLoading(false);
+            })
     }, []);
 
     return (
@@ -52,4 +54,4 @@ export const LastestSong: React.FunctionComponent<Props> = (props: Props) => {
     )
 }
 
-export default LastestSong;
+export default SongScreen;

@@ -22,7 +22,7 @@ export const BaseScreen: React.FunctionComponent<Props> = (props: Props) => {
                         {children}
                     </ScrollView>
                 ): (
-                    <View style={styles.container}>
+                    <View style={[styles.container, styles.viewContainer]}>
                         {children}
                     </View>
                 )}
@@ -40,9 +40,11 @@ const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
     },
     container: {
-        flex: 1,
         paddingTop: 30,
         paddingBottom: 20,
         paddingHorizontal: 15,
+    },
+    viewContainer: {
+        flex: 1
     }
 })

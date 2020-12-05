@@ -5,8 +5,6 @@ export const search = {
     'albums': 'Albums',
     'playlists': 'Playlists',
     'cancel': 'Hủy',
-    'song-not-found': 'Không tìm được bài hát',
-    'album-not-found': 'Không tìm được album',
-    'playlist-not-found': 'Không tìm được playlist',
+    'not-found': 'Không tìm thấy kết quả',
     'more-button': 'Xem thêm'
 };

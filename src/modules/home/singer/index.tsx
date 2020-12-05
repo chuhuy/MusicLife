@@ -83,6 +83,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <ImageBackground style={styles.imageBackground} source={{uri: artist.image_url}} >
+                <View style={styles.layer} />
                 <View style={styles.container}>
                     <HeaderBack/>
 
