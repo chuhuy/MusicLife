@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
+import { useTrackPlayerProgress } from 'react-native-track-player/lib/hooks';
 import { connect } from 'react-redux';
-import { Song } from '../../../models/song';
-import { continueMusic, pauseMusic, skipMusic } from '../../../redux/modules/player/actions';
+import { continueMusic, counter, pauseMusic, repeat, restart, skipMusic } from '../../../redux/modules/player/actions';
 import { IconButton } from '../../../shared/components';
 import NextIcon from './../../../assets/icons/next-active.svg';
 import PauseIcon from './../../../assets/icons/pause-active.svg';
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch: any) => {
         skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
         playMusic: () => dispatch(continueMusic()),
         pauseMusic: () => dispatch(pauseMusic()),
+        counter: (music_id: number) => dispatch(counter(music_id)),
+        repeat: () => dispatch(repeat()),
+        restart: () => dispatch(restart())
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -28,110 +31,22 @@ const mapStateToProps = (state: any) => ({
 
 const Controller: React.FunctionComponent<Props> = (props: Props) => {
     const navigation = useNavigation();
+    
     const {
         skipMusic, 
         playMusic, 
         pauseMusic, 
+        restart,
         player
     } = props;
 
-    const {isPlaying, songs, songIndex} = player;
-    const oldSongs = useRef<Array<Song>>([]);
-    
-    useEffect(() => {
-        if (songs.length) {
-            let prevLastSong = oldSongs.current.length;
-            let newLastSong = songs.length;
-            let newSongs = [];
-            let isPlayNew = !prevLastSong || prevLastSong === newLastSong;
-
-            if (prevLastSong > newLastSong) {
-                for (let i = 0; i < prevLastSong; i++) {
-                    let isExist = false;
-
-                    for (let j = 0; j < songs.length; j++) {
-                        if (songs[j].music_id === oldSongs.current[i].music_id) {
-                            isExist = true;
-                        }
-                    }
-
-                    if (!isExist){
-                        newSongs.push(oldSongs.current[i]);
-                    }
-                }
-
-                let removeIds = newSongs.map((song) => song.music_id.toString());
-                TrackPlayer.remove(removeIds)
-                    .catch((err) => {
-                        console.log(err);
-
-                        TrackPlayer.pause().then(() => pauseMusic());
-                    });
-            } else {
-                newSongs = !prevLastSong || prevLastSong === newLastSong ? songs : songs.slice(prevLastSong);
-
-                if (newSongs?.length) {
-                    for (let i = 0; i < newSongs.length; i++) {
-                        let track = {
-                            id: newSongs[i].music_id.toString(),
-                            url: newSongs[i].url,
-                            title: newSongs[i].title,
-                            artist: newSongs[i].artists,
-                            album: newSongs[i].album || '',
-                            genre: newSongs[i].genre || '',
-                            date: '2020-10-20T07:00:00+00:00',
-                            artwork: newSongs[i].artwork,
-                        };
-
-                        console.log(track)
-
-                        TrackPlayer.add(track)
-                            .catch(err => {
-                                console.log(err);
-                            })
-                    }
-                }
-            }
-            
-            if (isPlayNew) {
-                TrackPlayer.play()
-                    .catch((e) => {
-                        console.log(e);
-                        pauseMusic()
-                    })
-            }
-
-            oldSongs.current = songs;
-        } else {
-            const resetTrack = async () => {
-                let currentTracks = await TrackPlayer.getCurrentTrack();
-                
-                if (currentTracks) {
-                    TrackPlayer.pause()
-                        .then(() => {
-                            pauseMusic();
-
-                            TrackPlayer.reset()
-                                .catch(err => {
-                                    console.log(err);
-                                })
-                        })
-                }
-            }
-
-            resetTrack();
-        }
-        
-    }, [songs])
+    const {isPlaying, songs, songIndex, isRepeat} = player;
+    const {position, duration} = useTrackPlayerProgress(500);
 
     const handlePrevious = () => {
         TrackPlayer.skipToPrevious()
             .then(() => {
                 skipMusic(false);
-
-                TrackPlayer.play()
-                    .then(() => {playMusic()})
-                    .catch((error) => console.log(error));
             })
             .catch((e) => {
                 console.log(e);
@@ -143,24 +58,16 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
 
     const handlePlayPause = () => {
         if (isPlaying) {
-            TrackPlayer.pause()
-                .then(() => {pauseMusic()})
-                .catch((error) => console.log(error));
+            pauseMusic();
         } else {
-            TrackPlayer.play()
-                .then(() => {playMusic()})
-                .catch((error) => console.log(error));
+            playMusic();
         }
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
         TrackPlayer.skipToNext()
             .then(() => {
                 skipMusic(true);
-                
-                TrackPlayer.play()
-                    .then(() => {playMusic()})
-                    .catch((error) => console.log(error));
             })
             .catch((e) => {
                 console.log(e);
@@ -170,8 +77,12 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
             });
     };
     
-    const handleOnClick = () => {
-        if (songs.length) navigation.navigate('Player');
+    const handleOnClick = async () => {
+        if (songs.length) {
+            navigation.navigate('Player', {
+                currentTime: position && duration ? position/duration : 0
+            });
+        }
     };
 
     const handleRestart = async () => {
@@ -207,13 +118,16 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
                         <Text style={styles.artist}>{songs[songIndex].artists}</Text>
                     </View>
                 </View>
+
                 <View style={styles.section}>
                     <View style={styles.button}>
                         <IconButton icon={PreviousIcon} onClick={handlePrevious}/>
                     </View>
+
                     <View style={styles.button}>
                         <IconButton icon={isPlaying ? PauseIcon : PlayIcon} onClick={handlePlayPause}/>
                     </View>
+
                     <View style={styles.button}>
                         <IconButton icon={NextIcon} onClick={handleNext}/>
                     </View>

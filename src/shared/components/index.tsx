@@ -27,11 +27,13 @@ export const SectionTitle: React.FunctionComponent<SectionTitleProps> = (props: 
     return (
         <>
             <Pressable
-                style={styles.container}
+                
                 onPress={onClick}
             >
-                <Text style={styles.title}>{title}</Text>
-                <ArrowRight />
+                <View style={styles.container}>
+                    <Text style={styles.title}>{title}</Text>
+                    <ArrowRight />
+                </View>
             </Pressable>
         </>
     );
@@ -41,7 +43,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 15,
+        paddingTop: 5,
+        paddingBottom: 15,
     },
     title: {
         color: styleVars.white,

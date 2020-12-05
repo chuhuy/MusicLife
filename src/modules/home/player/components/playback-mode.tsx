@@ -19,7 +19,7 @@ const PlaybackMode: React.FunctionComponent<Props> = (props: Props) => {
         isActive = false,
         onClick
     } = props;
-    console.log(isActive)
+    
     const renderShuffle = () => {
         return (
             isActive ? <Shuffle width={25} height={25}/> : <ShuffleDefault width={25} height={25}/>

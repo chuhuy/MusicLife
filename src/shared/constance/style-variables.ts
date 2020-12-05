@@ -18,6 +18,7 @@ export const styleVars = {
     secondaryColor: '#D63346',
     greyColor: '#868686',
     white: '#fff',
+    lightWhite: '#E5E4E4',
     redColor: '#F70000',
     greenColor: '#388E3C',
     crimsonColor: '#DC143C',

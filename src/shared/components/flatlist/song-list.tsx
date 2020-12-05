@@ -9,6 +9,7 @@ import {
     playMusic
 } from '../../../redux/modules/player/actions';
 import { Screen } from '../../constance/screen';
+import { playSong } from '../../helper/player';
 import ModalBottom from '../modal-bottom';
 import SongOptions from '../option-list/SongOptions';
 import { Item } from './item';
@@ -44,18 +45,16 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const [songModal, setSongModal] = useState<any>(null);
     const navigation = useNavigation();
 
-    const handlePlayMusic = (song) => {
+    const handlePlayMusic = async (song) => {
         console.log('play music');
-        playMusic(song);
-        
-        TrackPlayer.reset()
-            .then(() => {
-                navigation.navigate(Screen.Common.Player);
-            })
-            .catch((err) => {
-                console.log(err)
-                TrackPlayer.pause().then(() => pauseMusic());
-            });
+        try {
+            playSong(song);
+            playMusic(song);
+            navigation.navigate(Screen.Common.Player);
+        } catch (err) {
+            console.log(err)
+            TrackPlayer.pause().then(() => pauseMusic());
+        }
     };
 
     const handleOpenOption = (song) => {

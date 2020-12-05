@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     artist: {
         fontSize: styleVars.baseFontSize,
         fontWeight: '600',
-        color: '#E5E4E4'
+        color: styleVars.lightWhite
     },
     buttonGroup: {
         flexDirection: 'row',

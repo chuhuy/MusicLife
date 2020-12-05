@@ -8,7 +8,7 @@ import Play from '../../../assets/icons/play-red.svg';
 import {SongList} from '../../../shared/components/flatlist';
 import Controller from '../controller';
 import { Song } from '../../../models/song';
-import { fetchAlbumDetail } from '../../../api/explore';
+import { fetchAlbumDetail, fetchMusicChart } from '../../../api/explore';
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
 
@@ -40,7 +40,12 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 // Personal playlist
             }
         } else {
-
+            fetchMusicChart(album_id)
+                .then((data) => {
+                    setSongList(data.chart);
+                    setIsLoading(false);
+                })
+                .catch((err) => console.log(err))
         }
     }, [])
 

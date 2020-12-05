@@ -1,6 +1,5 @@
 import { API } from './index';
 import { RESOURCE_URL, EXPLORE } from '../shared/constance/api';
-import { genre } from '../data';
 import { ALBUM_GENRE_ITEM, SONG_GENRE_ITEM } from '../shared/constance/pagination';
 
 export const getLatestSongs = () => {
@@ -65,7 +64,20 @@ export const fetchTop100 = (genre_id: number) => {
 }
 
 export const fetchMusicChart = (area: string) => {
+    const query = `
+        query {
+            chart(area: ${area}) {
+                music_id
+                title
+                url
+                image_url
+                artists
+                lyric
+            }
+        }
+    `;
 
+    return API.graphql(RESOURCE_URL + EXPLORE, query);
 }
 
 export const fetchLatestSong = (first: number, offset: number) => {
@@ -147,4 +159,15 @@ export const fetchGenreDetail = (genre_id: number) => {
     `;
 
     return API.graphql(RESOURCE_URL + EXPLORE, query);
+}
+
+export const postSongCounter = (music_id: number) => {
+    console.log(music_id)
+    const mutation = `
+        mutation {
+            code: songCounter(music_id: ${music_id})
+        }
+    `
+    
+    return API.graphql(RESOURCE_URL + EXPLORE, mutation);
 }

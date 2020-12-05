@@ -18,6 +18,8 @@ import { getLatestSongs } from '../../../api/explore';
 import { Playlist } from '../../../models/playlist';
 import { Genre } from '../../../models/genre';
 import GenreSection from './components/genreSection';
+import { playSong } from '../../../shared/helper/player';
+import { chartDummyData } from '../../../data/chart';
 
 interface Props extends DispatchProps, StateProps { }
 
@@ -56,16 +58,14 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
     const handlePlayMusic = (song: Song) => {
         console.log('play music');
-        playMusic(song);
-        
-        TrackPlayer.reset()
-            .then(() => {
-                navigation.navigate(Screen.Common.Player);
-            })
-            .catch((err) => {
-                console.log(err)
-                TrackPlayer.pause().then(() => pauseMusic());
-            });
+        try {
+            playSong(song);
+            playMusic(song);
+            navigation.navigate(Screen.Common.Player);
+        } catch (err) {
+            console.log(err)
+            TrackPlayer.pause().then(() => pauseMusic());
+        }
     };
 
     const handleLastestSong = () => {
@@ -115,18 +115,20 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         <>
                         <View style={styles.group}>
                             <View style={styles.chart}>
-                                <Pressable
-                                    style={styles.chartButton}
-                                    onPressIn={() => { setTop100(false); }}>
-                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
-                                        {I18n.translate('explore.chart')}
-                                    </Text>
+                                <Pressable onPress={() => { setTop100(false); }}>
+                                    <View style={styles.touchArea}>
+                                        <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
+                                            {I18n.translate('explore.chart')}
+                                        </Text>
+                                    </View>
                                 </Pressable>
-                                <Pressable
-                                    onPressIn={() => { setTop100(true); }}>
-                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
-                                        {I18n.translate('explore.top100')}
-                                    </Text>
+
+                                <Pressable onPress={() => { setTop100(true); }}>
+                                        <View style={styles.touchArea}>
+                                            <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
+                                                {I18n.translate('explore.top100')}
+                                            </Text>
+                                        </View>
                                 </Pressable>
                             </View>
 
@@ -175,21 +177,3 @@ type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 type StateProps = ReturnType<typeof mapStateToProps>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore);
-
-const chartDummyData = [
-    {
-        album_id: 1,
-        image_url: 'https://avatar-nct.nixcdn.com/topic/share/2017/12/06/9/4/b/b/1512556174027.jpg',
-        title: 'V-pop',
-    },
-    {
-        album_id: 2,
-        image_url: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        title: 'K-pop',
-    },
-    {
-        album_id: 3,
-        image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
-        title: 'US-UK',
-    },
-];

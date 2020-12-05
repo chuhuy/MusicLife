@@ -13,18 +13,17 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.blackColor,
         width: '100%',
         height: '100%',
-        opacity: 0.3
+        opacity: 0.4
     },
     imageBackground: {
         height: height,
-        width: width,
+        width: '100%',
     },
     buttonGroup: {
-        display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: width,
+        width: '100%',
         marginBottom: 35,
     },
     buttonGroup2: {
@@ -69,22 +68,20 @@ export const styles = StyleSheet.create({
     },
     song: {
         color: 'white',
-        fontSize: 18,
+        fontSize: styleVars.bigFontSize,
         alignSelf: 'center',
         marginVertical: 10,
         fontWeight: 'bold',
     },
     artist: {
-        color: styleVars.greyColor,
-        fontSize: 14,
+        color: styleVars.lightWhite,
+        fontSize: styleVars.baseFontSize,
         alignSelf: 'center',
     },
     disk: {
         width: 250,
         height: 250,
         borderRadius: 125,
-        borderWidth: 1,
-        borderColor: 'white',
         marginVertical: 20,
     },
     comment: {
@@ -99,12 +96,20 @@ export const styles = StyleSheet.create({
         width: width,
         flexDirection: 'row',
         justifyContent: 'center',
+        marginVertical: -5
     },
     dot: {
-        height: 10,
-        width: 10,
-        borderRadius: 5,
+        height: 12,
+        width: 12,
+        borderRadius: 50,
         borderWidth: 1,
         marginHorizontal: 5,
     },
+    dotDefault: {
+        borderColor: styleVars.white
+    },
+    dotActive: {
+        borderColor: styleVars.secondaryColor, 
+        backgroundColor: styleVars.secondaryColor
+    }
 });

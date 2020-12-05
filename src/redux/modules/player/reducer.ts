@@ -1,4 +1,4 @@
-import { PLAY, PAUSE, SKIP, ADD_SONG, CONTINUE, REMOVE_SONG, REPEAT, SHUFFLE } from './actions';
+import { PLAY, PAUSE, SKIP, ADD_SONG, CONTINUE, REMOVE_SONG, REPEAT, SHUFFLE, RESTART, STOP } from './actions';
 import { Action } from './../../../models/redux/Action';
 
 const initialState = {
@@ -24,21 +24,29 @@ export const playerReducer = (state: any = initialState, action: Action) => {
                 isPlaying: false
             };
         case SKIP:
-            const {songIndex, songs} = state;
-            const isNext = action.payload;
+            const {songIndex, songs, isRepeat, isPlaying} = state;
+            const {isNext} = action.payload;
+            let isPlay = true;
             let newIndex;
+            console.log('skip reducer')
 
             if (isNext) {
                 newIndex = songIndex === songs.length - 1 ? 0 : songIndex + 1;
+                
+                if (newIndex === 0 && !isRepeat) {
+                    isPlay = false;
+                } else isPlay = true;
             } else {
                 newIndex = songIndex <= 0 ? songs.length - 1 : 0;
+                isPlay = true;
             }
 
-            return {
+            let newState = {
                 ...state,
                 songIndex: newIndex,
-                isPlaying: true
-            };
+            }
+
+            return isPlay !== isPlaying ? {...newState, isPlaying: isPlay} : newState;
         case CONTINUE: 
             return {
                 ...state,
@@ -84,7 +92,6 @@ export const playerReducer = (state: any = initialState, action: Action) => {
                 isRepeat: !state.isRepeat
             }   
         case SHUFFLE:{
-            console.log(state)
             let {isShuffle, songs} = state;
             if (songs.length === 1) {
                 return {
@@ -113,8 +120,19 @@ export const playerReducer = (state: any = initialState, action: Action) => {
                 songs: [...songs]
             }  
         } 
+        case RESTART: 
+            return {
+                ...state,
+                songIndex: 0
+            }
+        case STOP: 
+            return {
+                ...state,
+                songs: [],
+                songIndex: null,
+                isPlaying: false
+            }
         default:
-            console.log(action)
             return state;
     }
 };
