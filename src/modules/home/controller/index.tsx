@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
-import TrackPlayer, { pause } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
+import { useTrackPlayerProgress } from 'react-native-track-player/lib/hooks';
 import { connect } from 'react-redux';
-import { Song } from '../../../models/song';
 import { continueMusic, counter, pauseMusic, repeat, restart, skipMusic } from '../../../redux/modules/player/actions';
 import { IconButton } from '../../../shared/components';
 import NextIcon from './../../../assets/icons/next-active.svg';
@@ -12,15 +12,12 @@ import PauseIcon from './../../../assets/icons/pause-active.svg';
 import PlayIcon from './../../../assets/icons/play-active.svg';
 import PreviousIcon from './../../../assets/icons/previous-active.svg';
 import { styles } from './styles';
-import { useTrackPlayerProgress, usePlaybackState } from 'react-native-track-player/lib/hooks';
-import { getNotExistSongs } from '../../../shared/helper/player';
-import { postSongCounter } from '../../../api/explore';
 
 interface Props extends DispatchProps, StateProps {}
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        skipMusic: (isNext: boolean, isEnd: boolean) => dispatch(skipMusic(isNext, isEnd)),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
         playMusic: () => dispatch(continueMusic()),
         pauseMusic: () => dispatch(pauseMusic()),
         counter: (music_id: number) => dispatch(counter(music_id)),
@@ -46,83 +43,15 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
     const {isPlaying, songs, songIndex, isRepeat} = player;
     const {position, duration} = useTrackPlayerProgress(500);
 
-    useEffect(() => {
-        TrackPlayer.addEventListener('playback-queue-ended', async (data) => {
-            console.log('end queue');
-            console.log(data);
-            let {position, track} = data;
-
-            if (position > 0) {
-                postSongCounter(parseInt(track))
-                    .then((data) => {
-                        console.log(data);
-                        console.log('post end counter')
-                    });
-
-                if (isRepeat) {
-                    console.log('restart song');
-                    const currentTracks = await TrackPlayer.getQueue();
-        
-                    TrackPlayer.reset()
-                        .then(() => {
-                            TrackPlayer.add(currentTracks)
-                                .then(() => {
-                                    restart();
-                                    TrackPlayer.play()
-                                })
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            TrackPlayer.stop()
-                            pauseMusic()
-                        })
-                } else {
-                    pauseMusic();
-                }
-            }
-        })
-
-        TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-            let {nextTrack, track, position} = data;  
-            console.log('playback track')
-            console.log(data)
-
-            if (track && position >= 0) {
-                if (nextTrack) {
-                    TrackPlayer.pause();
-
-                    postSongCounter(parseInt(track))
-                        .then((data) => {
-                            console.log(data);
-                            console.log('play next song');
-                            skipMusic(true, false);
-                            TrackPlayer.play()
-                        })
-                        .catch(() => {
-                            console.log('post failed');
-                        })
-                } 
-            }
-        })
-    }, []);
-
     const handlePrevious = () => {
         TrackPlayer.skipToPrevious()
             .then(() => {
-                skipMusic(false, false);
-
-                TrackPlayer.play()
-                    .then(() => {
-                        if (!isPlaying) {
-                            playMusic()
-                        }
-                    })
-                    .catch((error) => console.log(error));
+                skipMusic(false);
             })
             .catch((e) => {
                 console.log(e);
                 handleRestart().then(() => {
-                    skipMusic(false, false);
+                    skipMusic(false);
                 })
             });
     };
@@ -138,20 +67,12 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
     const handleNext = async () => {
         TrackPlayer.skipToNext()
             .then(() => {
-                skipMusic(true, false);
-
-                TrackPlayer.play()
-                    .then(() => {
-                        if (!isPlaying) {
-                            playMusic();
-                        }
-                    })
-                    .catch((error) => console.log(error));
+                skipMusic(true);
             })
             .catch((e) => {
                 console.log(e);
                 handleRestart().then(() => {
-                    skipMusic(true, false);
+                    skipMusic(true);
                 })
             });
     };

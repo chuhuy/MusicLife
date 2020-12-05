@@ -10,6 +10,7 @@ export const REPEAT = 'REPEAT';
 export const SHUFFLE = 'SHUFFLE';
 export const COUNTER = 'COUNTER';
 export const RESTART = 'RESTART';
+export const STOP = 'STOP';
 
 export const playMusic = (songs: Array<Song>) => {
     return {
@@ -24,12 +25,11 @@ export const pauseMusic = () => {
     };
 };
 
-export const skipMusic = (isNext: boolean, isEnd: boolean) => {
+export const skipMusic = (isNext: boolean) => {
     return {
         type: SKIP,
         payload: {
             isNext,
-            isEnd
         }
     };
 };
@@ -76,5 +76,11 @@ export const counter = (music_id: number) => {
 export const restart = () => {
     return {
         type: RESTART
+    }
+}
+
+export const stop = () => {
+    return {
+        type: STOP
     }
 }

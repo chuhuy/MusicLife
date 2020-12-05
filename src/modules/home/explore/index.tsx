@@ -25,7 +25,7 @@ interface Props extends DispatchProps, StateProps { }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext, false)),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
         playMusic: (song: Song) => dispatch(playMusic([song])),
         pauseMusic: () => dispatch(pauseMusic()),
     };
@@ -115,18 +115,20 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         <>
                         <View style={styles.group}>
                             <View style={styles.chart}>
-                                <Pressable
-                                    style={styles.chartButton}
-                                    onPressIn={() => { setTop100(false); }}>
-                                    <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
-                                        {I18n.translate('explore.chart')}
-                                    </Text>
+                                <Pressable onPress={() => { setTop100(false); }}>
+                                    <View style={styles.touchArea}>
+                                        <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
+                                            {I18n.translate('explore.chart')}
+                                        </Text>
+                                    </View>
                                 </Pressable>
-                                <Pressable
-                                    onPressIn={() => { setTop100(true); }}>
-                                    <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
-                                        {I18n.translate('explore.top100')}
-                                    </Text>
+
+                                <Pressable onPress={() => { setTop100(true); }}>
+                                        <View style={styles.touchArea}>
+                                            <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
+                                                {I18n.translate('explore.top100')}
+                                            </Text>
+                                        </View>
                                 </Pressable>
                             </View>
 

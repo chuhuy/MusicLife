@@ -22,7 +22,7 @@ interface Props extends DispatchProps, StateProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        skipMusic: (isNext: boolean, isEnd: boolean) => dispatch(skipMusic(isNext, isEnd)),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
         playMusic: () => dispatch(continueMusic()),
         pauseMusic: () => dispatch(pauseMusic()),
         repeatMusic: () => dispatch(repeat()),
@@ -115,20 +115,12 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     const handlePrevious = () => {
         TrackPlayer.skipToPrevious()
             .then(() => {
-                skipMusic(false, false);
-
-                TrackPlayer.play()
-                    .then(() => {
-                        if (!isPlaying) {
-                            playMusic()
-                        }
-                    })
-                    .catch((error) => console.log(error));
+                skipMusic(false);
             })
             .catch((e) => {
                 console.log(e);
                 handleRestart().then(() => {
-                    skipMusic(false, false);
+                    skipMusic(false);
                 })
             });
     };
@@ -136,21 +128,13 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     const handleNext = async () => {
         TrackPlayer.skipToNext()
             .then(() => {
-                skipMusic(true, false);
+                skipMusic(true);
                 console.log('player')
-                
-                TrackPlayer.play()
-                    .then(() => {
-                        if (!isPlaying) {
-                            playMusic();
-                        }
-                    })
-                    .catch((error) => console.log(error));
             })
             .catch((e) => {
                 console.log(e);
                 handleRestart().then(() => {
-                    skipMusic(true, false);
+                    skipMusic(true);
                 })
             });
     };

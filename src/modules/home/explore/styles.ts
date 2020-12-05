@@ -5,13 +5,14 @@ export const styles = StyleSheet.create({
     contentContainer: {
         flex: 1,
     },
+    touchArea: {
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    },
     chart: {
         flexDirection: 'row',
-        marginBottom: 15
-    },
-    chartTitle: {
-        flexDirection: 'row',
-        marginVertical: 10,
+        paddingBottom: 5,
+        marginLeft: -10
     },
     chartTitleActive: {
         color: styleVars.white,
@@ -21,15 +22,14 @@ export const styles = StyleSheet.create({
         color: styleVars.greyColor,
         fontSize: styleVars.bigFontSize,
     },
-    chartButton: {
-        marginRight: 20,
-    },
     group: {
-        paddingBottom: 30
+        paddingBottom: 30,
+        marginTop: -5
     },
     flatListContainer: {
         flexWrap: 'wrap', 
         flexDirection: 'row',
         margin: -7.5,
+        marginBottom: 0
     },
 });

@@ -1,6 +1,5 @@
-import { PLAY, PAUSE, SKIP, ADD_SONG, CONTINUE, REMOVE_SONG, REPEAT, SHUFFLE, RESTART } from './actions';
+import { PLAY, PAUSE, SKIP, ADD_SONG, CONTINUE, REMOVE_SONG, REPEAT, SHUFFLE, RESTART, STOP } from './actions';
 import { Action } from './../../../models/redux/Action';
-import { stat } from 'react-native-fs';
 
 const initialState = {
     isPlaying: false,
@@ -26,7 +25,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
             };
         case SKIP:
             const {songIndex, songs, isRepeat, isPlaying} = state;
-            const {isNext, isEnd} = action.payload;
+            const {isNext} = action.payload;
             let isPlay = true;
             let newIndex;
             console.log('skip reducer')
@@ -34,7 +33,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
             if (isNext) {
                 newIndex = songIndex === songs.length - 1 ? 0 : songIndex + 1;
                 
-                if (newIndex === 0 && isEnd && !isRepeat) {
+                if (newIndex === 0 && !isRepeat) {
                     isPlay = false;
                 } else isPlay = true;
             } else {
@@ -125,6 +124,13 @@ export const playerReducer = (state: any = initialState, action: Action) => {
             return {
                 ...state,
                 songIndex: 0
+            }
+        case STOP: 
+            return {
+                ...state,
+                songs: [],
+                songIndex: null,
+                isPlaying: false
             }
         default:
             return state;
