@@ -13,6 +13,8 @@ export const TOKEN = '/api/v1/user/token';
 export const SIGNOUT = '/api/v1/user/signout';
 export const FORGOT = '/api/v1/user/forgot';
 export const SIGNINFB = '/api/v1/user/signin-fb';
+export const ME = '/api/v1/user/me';
+export const CHANGE_PASSWORD = '/api/v1/user/change-password';
 
 //  Resource API endpoints
 export const EXPLORE = '/api/explore';
