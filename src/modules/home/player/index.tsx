@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, Easing, ImageBackground, Pressable, ScrollView, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
@@ -33,10 +33,7 @@ const mapStateToProps = (state: any) => ({
     player: state.player,
 });
 
-const Tab = {
-    playing: 'playing',
-    playlist: 'playlist'
-}
+const Tab = ['playing', 'playlist'];
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
     const {
@@ -58,7 +55,8 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         isShuffle
     } = player;
 
-    const [tab, setTab] = useState<string>(Tab.playing);
+    const [tab, setTab] = useState<string>(Tab[0]);
+    const scrollViewRef = useRef(null);
     let [spinValue, setSpinValue] = useState(new Animated.Value(0));
     let diskAnimation = Animated.loop(
         Animated.timing(
@@ -88,9 +86,16 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         }
     }, [songIndex])
 
-    const toggleTab = (requestTab: string) => {
-        if (requestTab !== tab) {
-            setTab(requestTab)
+    const toggleTab = (index: number) => {
+        console.log(index)
+        if (Tab[index] !== tab) {
+            setTab(Tab[index]);
+
+            scrollViewRef.current.scrollTo({
+                x: Dimensions.get('window').width * (index),
+                y: 0,
+                animated: true,
+            })
         }
     }
 
@@ -172,11 +177,6 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         navigation.goBack();
     };
 
-    const handleScrollTab = (event: any) => {
-        if (Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1))) {playMusic()}
-        else {pauseMusic()}
-    };
-
     // Second interpolate beginning and end values (in this case 0 and 1)
     const spin = spinValue.interpolate({
         inputRange: [0, 1],
@@ -198,25 +198,24 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                     <View style={styles.dotGroup}>
                         <Pressable 
                             style={{padding: 5}}
-                            onPress={() => toggleTab(Tab.playing)}
+                            onPress={() => toggleTab(0)}
                         >
-                            <View style={[styles.dot, tab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
+                            <View style={[styles.dot, tab === Tab[0] ? styles.dotActive : styles.dotDefault]} />
                         </Pressable>
 
                         <Pressable 
                             style={{padding: 5}}
-                            onPress={() => toggleTab(Tab.playlist)}
+                            onPress={() => toggleTab(1)}
                         >
-                            <View style={[styles.dot, tab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
+                            <View style={[styles.dot, tab === Tab[1] ? styles.dotActive : styles.dotDefault]} />
                         </Pressable>
                     </View>
 
                     <ScrollView
+                        ref={scrollViewRef}
                         horizontal={true}
                         pagingEnabled={true}
                         showsHorizontalScrollIndicator={false}
-                        onMomentumScrollEnd={handleScrollTab}
-                        
                     >
                         <View style={styles.tab}>
                             <View style={styles.body}>
@@ -230,19 +229,23 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
                     <SeekBar currentTime={route.params?.currentTime} />
 
-                    <View style={styles.buttonGroup}>
-                        <PlaybackMode mode="shuffle" isActive={isShuffle} onClick={handleShuffle}/>
-                        <PreviousNextButton type="previous" onClick={handlePrevious}/>
-                        <PlayPauseButton isPlaying={isPlaying} onClick={togglePlayPause}/>
-                        <PreviousNextButton type="next" onClick={handleNext}/>
-                        <PlaybackMode mode="repeat" isActive={isRepeat} onClick={handleRepeat}/>
+                    <View style={styles.control}>
+                        <View style={styles.buttonGroup}>
+                            <PlaybackMode mode="shuffle" isActive={isShuffle} onClick={handleShuffle}/>
+                            <PreviousNextButton type="previous" onClick={handlePrevious}/>
+                            <PlayPauseButton isPlaying={isPlaying} onClick={togglePlayPause}/>
+                            <PreviousNextButton type="next" onClick={handleNext}/>
+                            <PlaybackMode mode="repeat" isActive={isRepeat} onClick={handleRepeat}/>
+                        </View>
+
+                        <View style={styles.buttonGroup2}>
+                            <IconButton icon={Plus} onClick={() => {}}/>
+                            <IconButton icon={Download} onClick={() => {}}/>
+                            <IconButton icon={Heart} onClick={() => {}}/>
+                            <IconButton icon={List} onClick={() => {}}/>
+                        </View>
                     </View>
-                    <View style={styles.buttonGroup2}>
-                        <IconButton icon={Plus} onClick={() => {}}/>
-                        <IconButton icon={Download} onClick={() => {}}/>
-                        <IconButton icon={Heart} onClick={() => {}}/>
-                        <IconButton icon={List} onClick={() => {}}/>
-                    </View>
+
                     <View style={styles.comment}>
                         <CommentBox music_id={songs[songIndex].music_id}/>
                     </View>

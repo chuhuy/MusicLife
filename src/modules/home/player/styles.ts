@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
@@ -19,55 +19,44 @@ export const styles = StyleSheet.create({
         height: height,
         width: '100%',
     },
+    control: {
+        paddingBottom: 20,
+        width: '100%',
+        paddingHorizontal: 20
+    },
     buttonGroup: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         width: '100%',
         marginBottom: 35,
     },
     buttonGroup2: {
-        width: width,
-        height: 50,
+        width: '100%',
+        height: 50, 
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
         marginBottom: 70,
     },
     header: {
-        width: width,
+        width: '100%',
         flexDirection: 'row',
         paddingVertical: 20,
         paddingHorizontal: 20,
         justifyContent: 'space-between',
     },
     headerTitle: {
-        color: 'white',
-        fontSize: 16,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
         fontWeight: 'bold',
-    },
-    commentHeader: {
-        width: width,
-        height: 85,
-        backgroundColor: styleVars.secondaryColor,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: 20,
-        paddingHorizontal: 20,
-    },
-    commentText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
+        letterSpacing: 2
     },
     body: {
         flex: 1,
         alignItems: 'center',
     },
     song: {
-        color: 'white',
+        color: styleVars.white,
         fontSize: styleVars.bigFontSize,
         alignSelf: 'center',
         marginVertical: 10,
@@ -91,11 +80,11 @@ export const styles = StyleSheet.create({
         right: 0
     },
     tab: {
-        width: width,
+        width: '100%',
         flex: 1,
     },
     dotGroup: {
-        width: width,
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
         marginVertical: -5
