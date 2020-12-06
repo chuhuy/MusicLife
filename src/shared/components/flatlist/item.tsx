@@ -50,9 +50,10 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
+        paddingVertical: 15,
         marginVertical: -5,
         marginRight: -5
     },
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     },
     touchAreaOne: {
         flex: 1,
+        paddingRight: 10
     },
     touchAreaTwo: {
         justifyContent: 'center',
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
         width: 60,
     },
     titleGroup: {
+        flex: 1,
         justifyContent: 'center',
         paddingLeft: 10
     },

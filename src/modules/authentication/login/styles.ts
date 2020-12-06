@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         flex: 4,
     },
     signInButton: {
+        marginTop: 5,
         marginBottom: 10
     },
     separator: {

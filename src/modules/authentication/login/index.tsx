@@ -248,8 +248,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
 
                             <View style={styles.buttonGroup}>
-                                <FacebookButton onClick={() => handleSignInWithFacebook()} />
-                                <GoogleButton onClick={() => handleSignInWithGoogle()}/>
+                                <FacebookButton onClick={handleSignInWithFacebook} />
+                                <GoogleButton onClick={handleSignInWithGoogle}/>
                             </View>
                         </View>
 

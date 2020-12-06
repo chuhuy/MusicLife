@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import ArrowBack from '../../../assets/icons/arrow-back.svg';
+import { IconButton } from '../../../shared/components';
 
 interface Props{
     goBack: () => void
@@ -9,11 +10,10 @@ interface Props{
 const Header: React.FunctionComponent<Props> = ({ goBack }) => {
     return (
         <View style={styles.headerContainer}>
-            <Pressable
-                onPressOut={ goBack }
-            >
-                <ArrowBack width={15} height={26} />
-            </Pressable>
+            <IconButton 
+                icon={ArrowBack}
+                onClick={goBack}
+            />
             <Image source={require("../../../assets/images/logo.png")} style={styles.logo}/>        
         </View>
     )
@@ -23,12 +23,12 @@ export default Header;
 
 const styles = StyleSheet.create({
     headerContainer: {
-        marginBottom: 30
+        marginBottom: 40
     },
     logo:{
         alignSelf: 'center',
-        width: 40,  
-        height: 48,
+        width: 60,  
+        height: 70,
         marginTop: 15
     }
 })

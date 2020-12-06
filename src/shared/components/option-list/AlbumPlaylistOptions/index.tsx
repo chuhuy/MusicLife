@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {Fragment, useEffect, useState} from 'react';
+import {Text, Pressable, View} from 'react-native';
 import {styles} from './styles';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
 import PlaySvg from './../../../../assets/icons/play.svg';
@@ -9,8 +9,10 @@ import I18n from './../../../../i18n';
 import { Song } from '../../../../models/song';
 import { addSong } from '../../../../redux/modules/player/actions';
 import { connect } from 'react-redux';
+import TrackPlayer from 'react-native-track-player';
+import { addSongs, getNotExistSongs } from '../../../helper/player';
 
-interface Props extends DispatchProps {
+interface Props {
     songs?: Array<Song>,
     album_id?: number
 }
@@ -22,10 +24,23 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
-    const {addSong, songs, album_id} = props;
+    const {songs, album_id} = props;
+    const [songsNotAdd, setSongsNotAdd] = useState<Array<Song>>([]);
+
+    useEffect(() => {
+        const handleAddedToPlaying = async () => {
+            const currentTracks = await TrackPlayer.getQueue();
+
+            let songsNotExist = getNotExistSongs(currentTracks, songs);
+        
+            setSongsNotAdd(songsNotExist);
+        }
+
+        handleAddedToPlaying();
+    }, []);
 
     const handleAddToNowPlayingPlaylist = () => {
-        addSong(songs);
+        addSongs(songsNotAdd);
 
         console.log('Add to now playing playlist');
     };
@@ -41,53 +56,58 @@ const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <Fragment>
-                <TouchableOpacity
-                    style={styles.optionItem}
-                    onPressOut={handleAddToNowPlayingPlaylist}>
-                    <View style={styles.svg}>
-                        <PlayListAddSvg width={25} height={25}/>
-                    </View>
-                    <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.add-to-now-playlist')}
-                    </Text>
-                </TouchableOpacity>
+                {songsNotAdd.length && (
+                    <Pressable
+                        style={styles.optionItem}
+                        onPress={handleAddToNowPlayingPlaylist}>
+                        <View style={styles.svg}>
+                            <PlayListAddSvg width={25} height={25}/>
+                        </View>
 
-                <TouchableOpacity
+                        <Text style={styles.optionText}>
+                            {I18n.translate('optionModal.add-to-now-playlist')}
+                        </Text>
+                    </Pressable>
+                )}
+
+                <Pressable
                     style={styles.optionItem}
-                    onPressOut={handlePlay}>
+                    onPress={handlePlay}>
                     <View style={styles.svg}>
                         <PlaySvg width={25} height={25}/>
                     </View>
+
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.play')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleDownloadSongs}>
+                    onPress={handleDownloadSongs}>
                     <View style={styles.svg}>
                         <DownloadSvg width={25} height={25}/>
                     </View>
+
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.download-songs')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleDelete}>
+                    onPress={handleDelete}>
                     <View style={styles.svg}>
                         <DeleteSvg width={25} height={25}/>
                     </View>
+
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.delete-from-library')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
             </Fragment>
         </>
     );
 };
 
-export default connect(null, mapDispatchToProps)(AlbumPlayOptions);
-type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+export default AlbumPlayOptions;

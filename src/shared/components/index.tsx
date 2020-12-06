@@ -3,7 +3,6 @@ export { FacebookButton } from './facebook-button';
 export { GoogleButton } from './google-button';
 export { LinkButton } from './link-button';
 export { IconButton } from './icon-button';
-export { SearchBar } from './search-bar';
 export * from './flatlist';
 export * from './layout';
 
@@ -14,6 +13,7 @@ import ArrowLeft from '../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 import { styleVars } from '../constance/style-variables';
 import { useNavigation } from '@react-navigation/native';
+
 
 // Section Title
 interface SectionTitleProps {

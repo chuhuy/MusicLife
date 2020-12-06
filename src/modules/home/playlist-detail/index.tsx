@@ -8,7 +8,7 @@ import Play from '../../../assets/icons/play-red.svg';
 import {SongList} from '../../../shared/components/flatlist';
 import Controller from '../controller';
 import { Song } from '../../../models/song';
-import { fetchAlbumDetail, fetchMusicChart } from '../../../api/explore';
+import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/explore';
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
 
@@ -18,9 +18,9 @@ interface Props {
 }
 
 const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
-    const { navigation, route } = props;
-    const { newPlaylist, isChart, isAlbum } = route.params;
-    const { album_id, title, artists, image_url } = newPlaylist;
+    const { route } = props;
+    const { playlist, isChart, isAlbum, isTop100 } = route.params;
+    const { album_id, title, artists, image_url } = playlist;
 
     const [songList, setSongList] = useState<Array<Song>>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -34,6 +34,12 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 fetchAlbumDetail(album_id)
                     .then((data) => {
                         setSongList(data.songsByAlbum);
+                        setIsLoading(false);
+                    }).catch((err) => console.log(err))
+            } else if (isTop100) {
+                fetchTop100(album_id) 
+                    .then((data) => {
+                        setSongList(data.top100);
                         setIsLoading(false);
                     }).catch((err) => console.log(err))
             } else {
@@ -55,6 +61,10 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     const handleHeartClick = () => {
         console.log('Heart Click');
     };
+
+    const handlePlay = () => {
+        console.log('play album')
+    }
     
     return (
         <>
@@ -87,10 +97,11 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
                             <View style={styles.buttonGroup}>
                                 <View style={[styles.button, styles.playButton]}>
-                                    <IconButton icon={Play} onClick={() => {}}/>
+                                    <IconButton icon={Play} onClick={handlePlay}/>
                                 </View>
+
                                 <View style={styles.button}>
-                                    <IconButton icon={Heart} onClick={() => { }} />
+                                    <IconButton icon={Heart} onClick={handleHeartClick} />
                                 </View>
                                 <View style={styles.button}>
                                     <IconButton icon={Option} onClick={handleOptionClick} />

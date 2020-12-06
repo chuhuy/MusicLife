@@ -1,37 +1,38 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { styleVars } from '../../../../../shared/constance/style-variables';
 
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
-        width: width,
+        flex: 1,
     },
     header: {
-        height: 70,
-        width: width,
-        backgroundColor: '#1B1B1B',
+        backgroundColor: styleVars.lightPrimaryColor,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 20,
+        padding: 20,
     },
     commentTitle: {
-        color: 'white',
-        fontSize: 18,
+        color: styleVars.white,
+        fontSize: styleVars.bigFontSize,
     },
     body: {
-        width: width,
+        flex: 1,
         backgroundColor: '#020403',
         height: height * 0.6 - 70,
     },
     commentInput: {
         width: width - 40,
-        height: 65,
-        backgroundColor: '#1B1B1B',
+        height: 60,
+        backgroundColor: styleVars.lightPrimaryColor,
         borderRadius: 43,
         paddingHorizontal: 20,
+        paddingBottom: 20,
         alignSelf: 'center',
         marginBottom: 20,
         flexDirection: 'row',
@@ -40,8 +41,14 @@ export const styles = StyleSheet.create({
     },
     commentList: {
         flex: 1,
+        paddingVertical: 25,
+        paddingHorizontal: 20,
+        marginVertical: -10,
     },
     input: {
-        color: 'white',
+        color: styleVars.white,
     },
+    loginButton: {
+        marginBottom: 20
+    }
 });

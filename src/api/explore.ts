@@ -5,6 +5,11 @@ import { ALBUM_GENRE_ITEM, SONG_GENRE_ITEM } from '../shared/constance/paginatio
 export const getLatestSongs = () => {
     const query = `
         query {
+            top100: top100List {
+                album_id: genre_id
+                title: name
+                image_url
+            }
             latestSongs(first: 4 offset: 0) {
                 music_id
                 title
@@ -20,11 +25,6 @@ export const getLatestSongs = () => {
                 image_url
                 artists
             }
-            genres(first: 4 offset: 0) {
-                genre_id
-                name
-                image_url
-            }   
         }
     `;
     return API.graphql(RESOURCE_URL + EXPLORE, query);
@@ -161,7 +161,6 @@ export const fetchGenreDetail = (genre_id: number) => {
 }
 
 export const postSongCounter = (music_id: number) => {
-    console.log(music_id)
     const mutation = `
         mutation {
             code: songCounter(music_id: ${music_id})
@@ -171,10 +170,12 @@ export const postSongCounter = (music_id: number) => {
     return API.graphql(RESOURCE_URL + EXPLORE, mutation);
 }
 
-export const fetchGenres = () => {
+export const fetchGenres = (first?: number, offset?: number) => {
+    const limit = first ? `(first: ${first} offset: ${offset})` : '';
+
     const query = `
         query {
-            genres {
+            genres ${limit}{
                 genre_id
                 name
                 image_url
@@ -187,7 +188,6 @@ export const fetchGenres = () => {
 
 
 export const fetchSearchResult = (keyword: string) => {
-    console.log(keyword)
     const query = `
         query {
             songs: searchBySong(keyword: "${keyword}") {
@@ -210,6 +210,23 @@ export const fetchSearchResult = (keyword: string) => {
                 release_date
                 image_url
                 artists
+            }
+        }  
+    `;
+
+    return API.graphql(RESOURCE_URL + EXPLORE, query);
+}
+
+export const fetchComment = (music_id: number) => {
+    const query = `
+        query {
+            comments: getComments(music_id: ${music_id}) {
+                comment_id
+                content
+                created_at
+                display_name
+                image_url
+                default_avatar
             }
         }  
     `;

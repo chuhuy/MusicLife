@@ -58,23 +58,27 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
                     <LoadingLayer />
                 ) : (
                     <>
-                        <View style={styles.section}>
-                            <SectionTitle title={I18n.translate('search.songs')} onClick={handleSongList} />
+                        {songList.length && (
+                            <View style={styles.section}>
+                                <SectionTitle title={I18n.translate('search.songs')} onClick={handleSongList} />
 
-                            <SongList disableScroll={true} songs={songList}>
-                                <MoreButton onClick={handleSongList} />
-                            </SongList>
-                        </View>
+                                <SongList disableScroll={true} songs={songList}>
+                                    <MoreButton onClick={handleSongList} />
+                                </SongList>
+                            </View>
+                        )}
                         
-                        <View style={styles.section}>
-                            <SectionTitle title={I18n.translate('search.albums')} onClick={handleAlbumList} />
+                        {albumList.length && (
+                            <View style={{marginTop: -5}}>
+                                <SectionTitle title={I18n.translate('search.albums')} onClick={handleAlbumList} />
 
-                            <PlaylistList
-                                playlist={albumList}
-                                isHorizontal={true}>
-                                <MoreButton onClick={handleAlbumList} />
-                            </PlaylistList>
-                        </View>
+                                <PlaylistList
+                                    playlist={albumList}
+                                    isHorizontal={true}>
+                                    <MoreButton onClick={handleAlbumList} />
+                                </PlaylistList>
+                            </View>
+                        )}
                     </>
                 )}
             </BaseScreen>

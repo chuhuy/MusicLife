@@ -119,7 +119,7 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
                 </View>
 
-                <View style={styles.section}>
+                <View style={[styles.section, styles.buttonGroup]}>
                     <View style={styles.button}>
                         <IconButton icon={PreviousIcon} onClick={handlePrevious}/>
                     </View>

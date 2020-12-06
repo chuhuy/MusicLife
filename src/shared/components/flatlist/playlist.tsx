@@ -15,7 +15,8 @@ interface Props {
     isHorizontal?: boolean,
     numsColumn?: number,
     disableScroll?: boolean,
-    isChart?: boolean
+    isChart?: boolean,
+    isTop100?: boolean,
 }
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
@@ -26,7 +27,8 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         disableScroll = false, 
         isHorizontal = false, 
         isAlbum = false,
-        isChart = false
+        isChart = false,
+        isTop100 = false
     } = props;
 
     const navigation = useNavigation();
@@ -34,9 +36,10 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
     const [itemModal, setItemModal] = React.useState<any>(null);
     const handlePlaylist = (album) => {
         navigation.navigate(Screen.Common.PlaylistDetail, {
-            newPlaylist: album, 
+            playlist: album, 
             isAlbum, 
-            isChart
+            isChart,
+            isTop100
         });
     };
 
@@ -117,7 +120,7 @@ export default PlaylistList;
 
 const styles = StyleSheet.create({
     flatlist: {
-        marginVertical: -10,
+        marginVertical: -15,
         justifyContent: 'center',
     },
     horizontalList: {
