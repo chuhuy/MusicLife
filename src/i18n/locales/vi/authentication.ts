@@ -19,7 +19,7 @@ export const authentication = {
         'email-placeholder': 'Hãy nhập email',
         'password': 'Mật khẩu',
         'password-placeholder': 'Nhập mật khẩu',
-        'repeatPassword': 'Repeat Password',
+        'repeatPassword': 'Nhập lại mật khẩu',
         'repeatPassword-placeholder': 'Nhập lại mật khẩu',
         'signup': 'Đăng ký',
         'or': 'Hoặc',
@@ -32,7 +32,10 @@ export const authentication = {
         'error-length-password': 'Mật khẩu cần ít nhất 8 ký tự',
         'error-password': 'Mật khẩu cần có ít nhất 1 ký tự số, 1 chữ in hoa và 1 chữ thường',
         'error-required-repeat-password': 'Bạn không được để trống mật khẩu nhập lại',
-        'error-repeat-password': 'Mật khẩu nhập lại không khớp'
+        'error-repeat-password': 'Mật khẩu nhập lại không khớp',
+        'display-name': 'Tên hiển thị',
+        'display-name-placeholder': 'Hãy nhập tên hiển thị',
+        'fail-to-register': 'Đăng ký thất bại',
     },
     'reset-password': {
         'error-required-email': 'Bạn không được để trống email',
