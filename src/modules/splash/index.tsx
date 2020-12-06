@@ -12,7 +12,6 @@ import {
 import {getTokenFromLocalStorage} from './../../shared/helper/authentication';
 import Logo from './../../assets/images/logo-vector.svg';
 import AppName from './../../assets/images/app-name.svg';
-import {store} from './../../redux/store';
 
 interface Props extends DispatchProps {
   navigation: any;

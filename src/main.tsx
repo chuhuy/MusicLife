@@ -14,6 +14,7 @@ import { GoogleSignin } from '@react-native-community/google-signin';
 import QuickActions from 'react-native-quick-actions';
 import { Notification } from './models/notification';
 import { insertNotification } from './shared/helper/sqlite';
+import LoadingComponent from './shared/components/loading';
 
 //  Set up quick action
 QuickActions.setShortcutItems([
@@ -157,6 +158,7 @@ export const Main: React.FunctionComponent<Props> = (prop: Props) => {
                 <NavigationContainer>
                     <React.Suspense fallback={null}>
                         <MainNavigator />
+                        <LoadingComponent />
                     </React.Suspense>
                 </NavigationContainer>
             </Provider>

@@ -30,20 +30,21 @@ const DefaultAvatar9 = React.lazy(
 
 interface Props {
   type: number;
+  mini?: boolean;
 }
 
 const DefaultAvatar: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
-      {props.type === 1 && <DefaultAvatar1 height={85} width={85} />}
-      {props.type === 2 && <DefaultAvatar2 height={85} width={85} />}
-      {props.type === 3 && <DefaultAvatar3 height={85} width={85} />}
-      {props.type === 4 && <DefaultAvatar4 height={85} width={85} />}
-      {props.type === 5 && <DefaultAvatar5 height={85} width={85} />}
-      {props.type === 6 && <DefaultAvatar6 height={85} width={85} />}
-      {props.type === 7 && <DefaultAvatar7 height={85} width={85} />}
-      {props.type === 8 && <DefaultAvatar8 height={85} width={85} />}
-      {props.type === 9 && <DefaultAvatar9 height={85} width={85} />}
+      {props.type === 1 && <DefaultAvatar1 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 2 && <DefaultAvatar2 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 3 && <DefaultAvatar3 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 4 && <DefaultAvatar4 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 5 && <DefaultAvatar5 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 6 && <DefaultAvatar6 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 7 && <DefaultAvatar7 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 8 && <DefaultAvatar8 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
+      {props.type === 9 && <DefaultAvatar9 height={props.mini ? 40 : 85} width={props.mini ? 40 : 85} />}
     </>
   );
 };
