@@ -4,8 +4,7 @@ import { styleVars } from "../../constance/style-variables";
 export const styles = StyleSheet.create({
     underlineTabBar: {
         flexDirection: 'row',
-        marginBottom: 30,
-        // ma
+        marginBottom: 20,
         marginLeft: -5,
         marginRight: -15
     },

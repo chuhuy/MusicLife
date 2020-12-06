@@ -3,11 +3,13 @@ import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     container: {
+        left: 0,
+        right: 0,
+        bottom: 0,
         backgroundColor: styleVars.lightPrimaryColor,
-        width: '100%',
-        height: 65,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        paddingVertical: 10,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
         paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems: 'center',
@@ -36,7 +38,10 @@ export const styles = StyleSheet.create({
     view: {
         backgroundColor: 'transparent',
     },
+    buttonGroup: {
+        marginHorizontal: -8
+    },
     button: {
-        marginHorizontal: 5,
+        paddingHorizontal: 8,
     },
 });

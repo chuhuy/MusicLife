@@ -1,18 +1,25 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { styleVars } from './../../constance/style-variables';
-
-const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
-        width: width * 0.7,
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        marginHorizontal: 15,
+        borderRadius: 20,
         height: 40,
         backgroundColor: styleVars.lightPrimaryColor,
-        borderRadius: 20,
-        paddingHorizontal: 20,
-        color: styleVars.greyColor,
     },
     bigContainer: {
-        width: width * 0.75
+        paddingHorizontal: 0,
+        paddingRight: 20
+    },
+    input: {
+        flex: 1,
+        paddingRight: 15,
+        overflow: "hidden",
+        color: styleVars.greyColor,
     }
 });

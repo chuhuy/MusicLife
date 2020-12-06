@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
     },
     container: {
-        paddingTop: 30,
-        paddingBottom: 20,
+        paddingVertical: 20,
         paddingHorizontal: 15,
     },
     viewContainer: {

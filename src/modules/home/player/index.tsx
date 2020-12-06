@@ -11,7 +11,7 @@ import Download from './../../../assets/icons/download.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
 import Plus from './../../../assets/icons/plus.svg';
-import { Comment, PlaybackMode, PlayPauseButton, PreviousNextButton } from './components';
+import { CommentBox, PlaybackMode, PlayPauseButton, PreviousNextButton } from './components';
 import SeekBar from './components/seek-bar';
 import { styles } from './styles';
 
@@ -244,7 +244,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                         <IconButton icon={List} onClick={() => {}}/>
                     </View>
                     <View style={styles.comment}>
-                        <Comment />
+                        <CommentBox music_id={songs[songIndex].music_id}/>
                     </View>
                 </View>
             </ImageBackground>

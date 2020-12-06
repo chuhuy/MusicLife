@@ -4,22 +4,22 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
+import { fetchGenres, getLatestSongs } from '../../../api/explore';
+import { chartDummyData } from '../../../data/chart';
+import { Genre } from '../../../models/genre';
+import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
 import { BaseScreen, LoadingLayer, SectionTitle } from '../../../shared/components';
 import { PlaylistList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
 import { Screen } from '../../../shared/constance/screen';
-import { album, genre, playlist, songs } from './../../../data';
-import I18n from './../../../i18n';
-import { addSong, continueMusic, PAUSE, pauseMusic, PLAY, playMusic, SKIP, skipMusic } from './../../../redux/modules/player/actions';
-import { GenreItem, SongItem } from './components';
-import { styles } from './styles';
-import { getLatestSongs } from '../../../api/explore';
-import { Playlist } from '../../../models/playlist';
-import { Genre } from '../../../models/genre';
-import GenreSection from './components/genreSection';
 import { playSong } from '../../../shared/helper/player';
-import { chartDummyData } from '../../../data/chart';
+import { album, genre } from './../../../data';
+import I18n from './../../../i18n';
+import { pauseMusic, playMusic, skipMusic } from './../../../redux/modules/player/actions';
+import { SongItem } from './components';
+import GenreSection from './components/genreSection';
+import { styles } from './styles';
 
 interface Props extends DispatchProps, StateProps { }
 
@@ -38,8 +38,9 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const navigation = useNavigation();
     const {playMusic} = props;
 
-    const [isTop100, setTop100] = useState<boolean>(false);
+    const [isTop100, setIsTop100] = useState<boolean>(false);
     const [latestSong, setLatestSong] = useState<Array<Song>>(null);
+    const [top100, setTop100] = useState<Array<Playlist>>(null);
     const [latestAlbum, setLatestAlbum] = useState<Array<Playlist>>(null);
     const [genreList, setGenreList] = useState<Array<Genre>>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -48,9 +49,26 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         setIsLoading(true);
         getLatestSongs()
             .then((data) => {
+                console.log(data);
+                let top100List = data.top100.map(playlist => {
+                    return {
+                        ...playlist,
+                        title: `Top 100 ${playlist.title}`
+                    }
+                })
+                setTop100(top100List);
+
                 setLatestSong(data.latestSongs);
                 setLatestAlbum(data.latestAlbums);
-                setGenreList(data.genres);
+
+                fetchGenres(4, 0) 
+                    .then((data) => {
+                        setGenreList(data.genres);
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
                 setIsLoading(false);
             })
             .catch((err) => console.log(err));
@@ -59,7 +77,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     const handlePlayMusic = (song: Song) => {
         console.log('play music');
         try {
-            playSong(song);
+            playSong([song]);
             playMusic(song);
             navigation.navigate(Screen.Common.Player);
         } catch (err) {
@@ -115,7 +133,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                         <>
                         <View style={styles.group}>
                             <View style={styles.chart}>
-                                <Pressable onPress={() => { setTop100(false); }}>
+                                <Pressable onPress={() => { setIsTop100(false); }}>
                                     <View style={styles.touchArea}>
                                         <Text style={isTop100 ? styles.chartTitleInactive : styles.chartTitleActive}>
                                             {I18n.translate('explore.chart')}
@@ -123,7 +141,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                                     </View>
                                 </Pressable>
 
-                                <Pressable onPress={() => { setTop100(true); }}>
+                                <Pressable onPress={() => { setIsTop100(true); }}>
                                         <View style={styles.touchArea}>
                                             <Text style={isTop100 ? styles.chartTitleActive : styles.chartTitleInactive}>
                                                 {I18n.translate('explore.top100')}
@@ -133,7 +151,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
 
                             {isTop100 ?
-                                <PlaylistList playlist={playlist} isHorizontal />
+                                <PlaylistList playlist={top100} isTop100 isHorizontal />
                                 : <PlaylistList playlist={chartDummyData} isChart isHorizontal />
                             }
                         </View>

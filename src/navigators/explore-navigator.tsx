@@ -13,6 +13,7 @@ import Singer from '../modules/home/singer';
 import { styleVars } from '../shared/constance/style-variables';
 import ArrowLeft from '../assets/icons/arrow-left.svg';
 import I18n from '../i18n';
+import NotificationScreen from '../modules/home/notification';
 
 const ExploreStack = createStackNavigator();
 
@@ -102,6 +103,11 @@ const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
                         name={Screen.Common.Singer} 
                         component={Singer}
                         options={hideHeader}
+                    />
+
+                    <ExploreStack.Screen 
+                        name={Screen.Common.Notification} 
+                        component={NotificationScreen}
                     />
                 </>
             </ExploreStack.Navigator>

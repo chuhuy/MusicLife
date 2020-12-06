@@ -6,7 +6,7 @@ import { fetchSearchResult } from '../../../api/explore';
 import { Artist } from '../../../models/artist';
 import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
-import { BaseScreen, LinkButton, LoadingLayer, SearchBar } from '../../../shared/components';
+import { BaseScreen, LinkButton, LoadingLayer } from '../../../shared/components';
 import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import { styleVars } from '../../../shared/constance/style-variables';
@@ -15,10 +15,17 @@ import { AllTab, ArtistList } from './components';
 import { styles } from './styles';
 import { NotFoundItem } from '../../../shared/components';
 import NotFound from '../../../assets/icons/not-found-song.svg';
+import { connect } from 'react-redux';
+import SearchBar from '../../../shared/components/search-bar';
 
-interface Props {
+interface Props extends StateProps {
     navigation: any
 }
+
+const mapStateToProps = (state: any) => ({
+    keyword: state.search.keyword,
+});
+
 
 export const TYPE = {
     ALL: 'ALL',
@@ -29,9 +36,7 @@ export const TYPE = {
 };
 
 const Search: React.FunctionComponent<Props> = (props: Props) => {
-    const {navigation} = props;
-    const route = useRoute();
-    const {keyword} = route.params;
+    const {navigation, keyword} = props;
 
     const [activeTab, setActiveTab] = useState<string>(TYPE.ALL);
 
@@ -68,7 +73,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                     menu.push({
                         title: I18n.translate('search.all'),
                         type: TYPE.ALL,
-                        active: activeTab === TYPE.ALL,
                         onClick: handleOpenTab
                     })
 
@@ -79,7 +83,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                         menu.push({
                             title: I18n.translate('search.artists'),
                             type: TYPE.ARTIST,
-                            active: activeTab === TYPE.ARTIST,
                             onClick: handleOpenTab
                         })
                     }
@@ -91,7 +94,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                         menu.push({
                             title: I18n.translate('search.songs'),
                             type: TYPE.SONG,
-                            active: activeTab === TYPE.SONG,
                             onClick: handleOpenTab
                         })
                     }
@@ -103,7 +105,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                         menu.push({
                             title: I18n.translate('search.albums'),
                             type: TYPE.ALBUM,
-                            active: activeTab === TYPE.ALBUM,
                             onClick: handleOpenTab
                         })
                     }
@@ -146,7 +147,7 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                 ) : (
                     <>{tabMenu.length ? (
                         <>
-                            <UnderlineTabBar options={tabMenu} />
+                            <UnderlineTabBar options={tabMenu} activeTab={activeTab}/>
                         
                             {activeTab === TYPE.ALL && (
                                 <ScrollView style={styles.body}>
@@ -195,4 +196,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
     )
 }
 
-export default Search;
+export default connect(mapStateToProps, null)(Search);
+
+type StateProps = ReturnType<typeof mapStateToProps>

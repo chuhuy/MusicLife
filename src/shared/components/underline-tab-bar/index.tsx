@@ -1,32 +1,31 @@
 import React from 'react';
-import {styles} from './styles';
 import { Pressable, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { styles } from './styles';
 
 interface Props {
     options: Array<{
         title: string,
         type: string,
-        active: boolean,
         onClick: (type: string) => void
-    }>
+    }>,
+    activeTab: string
 }
 
 const UnderlineTabBar: React.FunctionComponent<Props> = (props: Props) => {
-    const {options} = props;
+    const {options, activeTab} = props;
 
     return (
         <>
             <View style={styles.underlineTabBar} >
                 {
-                    options.map(({title, type, active, onClick}, index) => {
+                    options.map(({title, type, onClick}, index) => {
                         return (
                             <Pressable
                                 key={index}
                                 style={styles.tabButton}
                                 onPress={() => onClick(type)}
                             >
-                                <Text style={[styles.tabItem, active ? styles.tabActive : undefined]}>
+                                <Text style={[styles.tabItem, activeTab === type ? styles.tabActive : undefined]}>
                                     {title}
                                 </Text>
                             </Pressable>

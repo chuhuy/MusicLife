@@ -8,8 +8,8 @@ export const styleVars = {
     // Font size
     largeFontSize: 25,
     bigFontSize: 20,
-    baseFontSize: 16,
-    smallFontSize: 14,
+    baseFontSize: 18,
+    smallFontSize: 16,
 
     // Colors
     bgToastColor: '#E5E5E5',

@@ -1,21 +1,25 @@
 import TrackPlayer from 'react-native-track-player';
 import { Song } from '../../models/song';
+import { store } from '../../redux/store';
+import { addSong } from '../../redux/modules/player/actions';
 
-export const playSong = (song: Song) => {
-    const track = {
-        id: song.music_id.toString(),
-        url: song.url,
-        title: song.title,
-        artist: song.artists,
-        album: song.album || '',
-        genre: song.genre || '',
-        date: '2020-10-20T07:00:00+00:00',
-        artwork: song.image_url,
-    };
+export const playSong = (songs: Array<Song>) => {
+    let tracks = songs.map(song => {
+        return ({
+            id: song.music_id.toString(),
+            url: song.url,
+            title: song.title,
+            artist: song.artists,
+            album: song.album || '',
+            genre: song.genre || '',
+            date: '2020-10-20T07:00:00+00:00',
+            artwork: song.image_url,
+        })
+    })
 
     TrackPlayer.reset()
         .then(() => {
-            TrackPlayer.add(track).then(() => {
+            TrackPlayer.add(tracks).then(() => {
                 TrackPlayer.play()
                     .then(() => {
                         console.log('play')
@@ -50,28 +54,27 @@ export const getNotExistSongs = (oldSongs: any, newSongs: Array<Song>) => {
     return newList;
 }
 
-export const addSongs = async (oldSongs: any, newSongs: Array<Song>) => {
-    let addList = getNotExistSongs(oldSongs, newSongs);
-
-    if (addList.length) {
-        let tracks = addList.map(song => {
-            return {
-                id: song.music_id ? song.music_id.toString() : song.id,
-                url: song.url,
-                title: song.title,
-                artist: song.artist || song.artists,
-                album: song.album || '',
-                genre: song.genre || '',
-                date: '2020-10-20T07:00:00+00:00',
-                artwork: song.image_url,
-            }
+export const addSongs = async (songs: Array<Song>) => {
+    let tracks = songs.map(song => {
+        return {
+            id: song.music_id.toString(),
+            url: song.url,
+            title: song.title,
+            artist: song.artists,
+            album: song.album || '',
+            genre: song.genre || '',
+            date: '2020-10-20T07:00:00+00:00',
+            artwork: song.image_url,
+        }
+    })
+    
+    TrackPlayer.add(tracks)
+        .then(() => {
+            store.dispatch(addSong(songs))
         })
-
-        TrackPlayer.add(tracks)
-            .catch(err => {
-                throw err;
-            })
-    }
+        .catch(err => {
+            throw err;
+        })
 }
 
 export const removeSongs = async (oldSongs: any, newSongs: Array<Song>) => {

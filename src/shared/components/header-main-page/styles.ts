@@ -7,14 +7,14 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: styleVars.primaryColor,
-        marginBottom: 30
+        marginBottom: 20
     },
     userButton: {
         borderWidth: 1,
         borderColor: styleVars.secondaryColor,
-        width: 30,
-        height: 30,
-        borderRadius: 15,
+        width: 40,
+        height: 40,
+        borderRadius: 40,
         justifyContent: 'center',
         alignItems: 'center',
     },

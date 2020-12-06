@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
+import { Image, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
-import {styles} from './styles';
-import ArrowDownOrange from './../../../assets/icons/arrow-down-orange.svg';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { IconButton } from '../icon-button';
+import ArrowDown from './../../../assets/icons/arrow-down.svg';
+import { styles } from './styles';
 
 interface Props {
     isVisible: boolean;
@@ -30,22 +30,30 @@ const ModalBottom: React.FunctionComponent<Props> = (props: Props) => {
                                 source={{uri: item.image_url}}
                                 style={styles.image}
                             />
-                            <View style={{marginLeft: 10}}>
-                                <Text style={styles.title}>
+                            <View style={{
+                                flex: 1,
+                                marginLeft: 15,
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                <Text style={styles.title} numberOfLines={1}>
                                     {item.title || item.name}
                                 </Text>
                                 {item.artists && (
-                                    <Text style={styles.artist}>
+                                    <Text style={styles.artist} numberOfLines={1}>
                                         {item.artists}
                                     </Text>
                                 )}
                             </View>
                         </View>
                     )}
-                    <Pressable onPressOut={onHide}>
-                        <ArrowDownOrange />
-                    </Pressable>
+
+                    <IconButton 
+                        onClick={onHide}
+                        icon={ArrowDown}
+                    />
                 </View>
+
                 <View style={styles.main}>
                     <View style={styles.options}>
                         {children}

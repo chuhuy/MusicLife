@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, Image, Dimensions, Text, View, Pressable } from 'react-native';
 import { styleVars } from '../../../../shared/constance/style-variables';
 
-const { width } = Dimensions.get('window');
-
 interface Props {
     title: string,
     onClick: () => void,
@@ -48,12 +46,13 @@ const styles = StyleSheet.create({
         color: styleVars.white,
         position: 'absolute',
         bottom: 5,
+        letterSpacing: 2
     },
     mask: {
         position: 'absolute',
         height: 100,
         width: '100%',
         backgroundColor: '#000',
-        opacity: 0.6,
+        opacity: 0.3,
     },
 });

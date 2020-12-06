@@ -19,7 +19,7 @@ interface Props extends DispatchProps, StateProps { }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext, false)),
+        skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
         playMusic: (song: Song) => dispatch(playMusic([song])),
         pauseMusic: () => dispatch(pauseMusic()),
     };
@@ -53,7 +53,7 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
     const handlePlayMusic = (song: Song) => {
         console.log('play music');
         try {
-            playSong(song);
+            playSong([song]);
             playMusic(song);
             navigation.navigate(Screen.Common.Player);
         } catch (err) {

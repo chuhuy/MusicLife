@@ -2,12 +2,13 @@
 import React from 'react';
 import {View, Pressable } from 'react-native';
 import {styles} from './styles';
-import {SearchBar} from './../../../shared/components';
 import UserIcon from './../../../assets/icons/user.svg';
 import NotificationIcon from './../../../assets/icons/notification-active.svg';
 import { fetchAllNotification, insertNotification } from '../../../shared/helper/sqlite';
 import { Screen } from '../../constance/screen';
 import { useNavigation } from '@react-navigation/native';
+import SearchBar from '../search-bar';
+import { IconButton } from '../icon-button';
 
 interface Props {
 }
@@ -26,16 +27,19 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (props: Props) => 
     return (
         <>
             <View style={styles.header}>
-                <Pressable onPress={handleNotification} >
-                    <NotificationIcon />
-                </Pressable>
+                <IconButton 
+                    onClick={handleNotification}
+                    icon={NotificationIcon}
+                />
                 
-                <SearchBar navigation={navigation} />
+                <SearchBar />
 
                 <Pressable
                     style={styles.userButton}
                     onPress={handleUserProfile}>
-                    <UserIcon />
+                        <View>
+                            <UserIcon />
+                        </View>
                 </Pressable>
             </View>
         </>

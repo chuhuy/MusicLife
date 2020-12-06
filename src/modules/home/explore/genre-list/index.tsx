@@ -8,12 +8,11 @@ import { Screen } from '../../../../shared/constance/screen';
 import { styles } from './styles';
 
 interface Props {
-    navigation: any,
-    route: any
+    navigation: any
 }
 
 const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
-    const { navigation, route } = props;
+    const { navigation } = props;
 
     const [genres, setGenres] = useState<Array<Genre>>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -52,7 +51,7 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     name={item.name}
                                     image={item.image_url}
                                     onClick={() => navigation.navigate(Screen.Explore.GenreDetail, {
-                                        genre_id: item.genre_id
+                                        genre: item
                                     })}
                                     size={2}
                                 />

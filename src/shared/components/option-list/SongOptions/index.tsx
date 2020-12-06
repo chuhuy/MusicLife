@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, Pressable, View} from 'react-native';
 import {styles} from './styles';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
 import HeartSvg from './../../../../assets/icons/heart.svg';
@@ -9,10 +9,10 @@ import SingerSvg from './../../../../assets/icons/singer.svg';
 import I18n from './../../../../i18n';
 import { connect } from 'react-redux';
 import { Song } from '../../../../models/song';
-import { addSong, removeSong } from '../../../../redux/modules/player/actions';
+import { removeSong } from '../../../../redux/modules/player/actions';
 import TrackPlayer from 'react-native-track-player';
 import TrashIcon from '../../../../assets/icons/delete.svg';
-import { getNotExistSongs, removeSongs } from '../../../helper/player';
+import { addSongs, getNotExistSongs, removeSongs } from '../../../helper/player';
 
 interface Props extends DispatchProps {
     song: Song,
@@ -21,13 +21,12 @@ interface Props extends DispatchProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        addSong: (songs: Array<Song>) => dispatch(addSong(songs)),
         removeSong: (song: Song) => dispatch(removeSong(song))
     };
 };
 
 const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
-    const {addSong, removeSong, song, closeModal} = props;
+    const {removeSong, song, closeModal} = props;
     const [isAddPlaying, setIsAddPlaying] = useState<boolean>(false);
 
     useEffect(() => {
@@ -54,24 +53,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     console.log(err);
                 })
         } else {
-            let track = {
-                id: song.music_id.toString(),
-                url: song.url,
-                title: song.title,
-                artist: song.artists,
-                album: song.album || '',
-                genre: song.genre || '',
-                date: '2020-10-20T07:00:00+00:00',
-                artwork: song.image_url,
-            }
-
-            TrackPlayer.add(track)
-                .then(() => {
-                    addSong([song]);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            addSongs([song]);
         }
         closeModal();
     }
@@ -88,10 +70,11 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     const handleSingerPressOut = () => {
         console.log('Singer');
     };
+    
     return (
         <>
             <Fragment>
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
                     onPressOut={handleNowPlayingPlaylist}>
                     <View style={styles.svg}>
@@ -104,9 +87,9 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     <Text style={styles.optionText}>
                         {isAddPlaying ? I18n.translate('optionModal.remove-to-now-playlist') : I18n.translate('optionModal.add-to-now-playlist')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
                     onPressOut={handleAddToFavorite}>
                     <View style={styles.svg}>
@@ -115,9 +98,9 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.add-to-favorite')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
                     onPressOut={handleAddToPlaylist}>
                     <View style={styles.svg}>
@@ -126,9 +109,9 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.add-to-playlist')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
                     onPressOut={handleDownload}>
                     <View style={styles.svg}>
@@ -137,9 +120,9 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.download')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
                 
-                <TouchableOpacity
+                <Pressable
                     style={styles.optionItem}
                     onPressOut={handleSingerPressOut}>
                     <View style={styles.svg}>
@@ -148,7 +131,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.singers')}
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
             </Fragment>
         </>
     );

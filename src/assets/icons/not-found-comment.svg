@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="77" viewBox="0 0 77 77">
+  <g id="Group_88" data-name="Group 88" transform="translate(-168.106 -421.999)">
+    <path id="Icon_feather-message-circle" data-name="Icon feather-message-circle" d="M77.5,37.917A34.917,34.917,0,0,1,73.75,53.75,35.417,35.417,0,0,1,42.083,73.333a34.917,34.917,0,0,1-15.833-3.75L2.5,77.5l7.917-23.75a34.917,34.917,0,0,1-3.75-15.833A35.417,35.417,0,0,1,26.25,6.25,34.917,34.917,0,0,1,42.083,2.5h2.083A35.333,35.333,0,0,1,77.5,35.833Z" transform="translate(166.606 420.499)" fill="none" stroke="#868686" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M32.648,30l7.992-7.992a1.873,1.873,0,0,0-2.648-2.648L30,27.352l-7.992-7.992a1.873,1.873,0,1,0-2.648,2.648L27.352,30l-7.992,7.992a1.873,1.873,0,0,0,2.648,2.648L30,32.648l7.992,7.992a1.873,1.873,0,0,0,2.648-2.648Z" transform="translate(178.829 429.5)" fill="#868686"/>
+  </g>
+</svg>

@@ -4,8 +4,9 @@ import { styles } from './styles';
 import { SvgProps } from 'react-native-svg';
 
 interface Props {
-    onClick: () => void
-    icon: React.FC<SvgProps>
+    onClick: () => void,
+    icon: React.FC<SvgProps>,
+    border?: boolean
 }
 
 export const IconButton: FunctionComponent<Props> = (props: Props) => {
@@ -15,7 +16,7 @@ export const IconButton: FunctionComponent<Props> = (props: Props) => {
         <>
             <Pressable
                 style={styles.container}
-                onPressOut={onClick}
+                onPress={onClick}
             >
                 <View style={styles.touchArea}>
                     {<props.icon />}

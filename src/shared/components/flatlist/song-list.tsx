@@ -48,7 +48,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const handlePlayMusic = async (song) => {
         console.log('play music');
         try {
-            playSong(song);
+            playSong([song]);
             playMusic(song);
             navigation.navigate(Screen.Common.Player);
         } catch (err) {
@@ -121,7 +121,7 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        marginVertical: -10,
+        marginVertical: -15,
     },
     flatListFooter: {
         marginTop: 5,

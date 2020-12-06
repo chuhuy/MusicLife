@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: -8
     },
     button: {
-        paddingHorizontal: 8,
+        marginHorizontal: 8
     },
     playButton: {
         marginRight: 8,
