@@ -63,7 +63,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
     props.enableLoading();
     getLatestSongs()
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         let top100List = data.top100.map((playlist) => {
           return {
             ...playlist,

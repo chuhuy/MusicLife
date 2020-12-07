@@ -49,7 +49,7 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (
             {props.refresh_token !== null ? (
               props.image_url === null ? (
                 <>
-                  <DefaultAvatar mini type={props.default_avatar} />
+                  <DefaultAvatar size={40} type={props.default_avatar} />
                 </>
               ) : (
                 <>

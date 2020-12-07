@@ -4,6 +4,7 @@ import {
   signInUsernameWatcher,
   signInFacebookWatcher,
   fetchUserWatcher,
+  refreshTokenWatcher,
 } from './modules/auth/saga';
 import {getLanguageWatcher} from './modules/i18n/saga';
 import {counterWatcher} from './modules/player/saga';
@@ -19,6 +20,9 @@ export function* rootSaga() {
 
     // Fetch user
     fetchUserWatcher(),
+
+    // Refresh token
+    refreshTokenWatcher(),
 
     counterWatcher(),
   ]);

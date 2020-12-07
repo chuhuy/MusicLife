@@ -38,7 +38,7 @@ export const API = {
     try {
       const response = await axios.post('https://' + url, body, {
         headers: {
-          Authorization: 'Bearer ' + access_token || auth.access_token,
+          Authorization: 'Bearer ' + (access_token ? access_token : auth.access_token),
         },
       });
       return response.data;
@@ -51,7 +51,7 @@ export const API = {
     try {
       const response = await axios.post('https://' + url, body, {
         headers: {
-          Authorization: 'Bearer ' + refresh_token || auth.refresh_token,
+          Authorization: 'Bearer ' + (refresh_token ? refresh_token : auth.refresh_token),
         },
       });
       return response.data;

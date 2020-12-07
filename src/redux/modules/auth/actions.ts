@@ -13,6 +13,7 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const FETCH_CURRENT_USER = 'FETCH_CURRENT_USER';
 export const FETCH_CURRENT_USER_SUCCESS = 'FETCH_CURRENT_USER_SUCCESS';
 export const FETCH_CURRENT_USER_FAILED = 'FETCH_CURRENT_USER_FAILED';
+export const SET_DISPLAY_NAME = 'SET_DISPLAY_NAME';
 
 //Refresh token
 export const REFRESH_TOKEN = 'REFRESH_TOKEN';
@@ -95,6 +96,22 @@ export const fetchUserSuccess = ({display_name, image_url, default_avatar}) => {
 };
 
 export const fetchUserFailed = (error) => {
+  return {
+    type: FETCH_CURRENT_USER_FAILED,
+    payload: {error},
+  };
+};
+
+export const refreshTokenSuccess = ({access_token}) => {
+  return {
+    type: REFRESH_TOKEN_SUCCESS,
+    payload: {
+      access_token,
+    },
+  };
+};
+
+export const refreshTokenFailed = (error) => {
   return {
     type: FETCH_CURRENT_USER_FAILED,
     payload: {error},

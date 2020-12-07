@@ -10,6 +10,7 @@ import {
   LOGIN_FACEBOOK,
   FETCH_CURRENT_USER,
   TOKEN_FROM_STORAGE,
+  SET_DISPLAY_NAME,
 } from './actions';
 import {Action} from './../../../models/redux/Action';
 
@@ -78,6 +79,11 @@ export const authReducer = (state: any = initState, action: Action) => {
       return {
         ...state,
         refresh_token: action.payload.refresh_token,
+      };
+    case SET_DISPLAY_NAME:
+      return {
+        ...state,
+        display_name: action.payload.display_name,
       };
     default:
       return state;

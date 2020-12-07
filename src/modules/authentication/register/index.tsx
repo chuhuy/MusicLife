@@ -38,7 +38,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
   // Focus next input
   const onSubmitEditing = (index) => {
     if (index < inputs.length - 1) {
-      console.log(inputs[index]);
+      // console.log(inputs[index]);
       inputs[index + 1].focus();
     }
   };
@@ -132,10 +132,9 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
 
   // Signup
   const handleSignUp = (values: SignUpForm) => {
-      console.log(values);
+      // console.log(values);
       register(values.username, values.password, values.displayName, values.email)
       .then((response) => {
-        console.log(response);
         if (response.status) {
             navigation.navigate(Screen.Authentication.Login);
         } else {
