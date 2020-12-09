@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Song } from '../../../../../models/song';
-import { styles } from './styles';
 import { Item } from '../../../../../shared/components/flatlist/item';
 import ModalBottom from '../../../../../shared/components/modal-bottom';
 import SongOptions from '../../../../../shared/components/option-list/SongOptions';
+import { styles } from './styles';
 
 interface Props extends StateProps {}
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state: any) => ({
 
 const NowPlaying: React.FunctionComponent<Props> = (props: Props) => {
     const {songs, songIndex} = props;
-    const [chooseSong, setChooseSong] = useState<Song>(null);
+    const [chooseSong, setChooseSong] = useState<Song>();
 
     const onClickSong = (song: Song) => {
         console.log('click song');
@@ -29,31 +29,33 @@ const NowPlaying: React.FunctionComponent<Props> = (props: Props) => {
     const closeModal = () => {
         setChooseSong(null);
     };
-
-    const renderCurrentPlaying = songs.map((song: Song, index: number) => {
-        return (
-            <View
-                key={song.music_id}
-                style={[styles.songRow, songIndex === index && styles.songRowActive]}>
-                <Item
-                    name={song.title}
-                    image={song.image_url}
-                    artist={song.artists}
-                    onClick={() => onClickSong(song)}
-                    onOptionClick={() => onOptionClick(song)}
-                />
-            </View>
-        );
-    });
     
     return (
         <>
-            <ScrollView
+            <FlatList 
+                contentContainerStyle={styles.nowPlaying}
                 showsVerticalScrollIndicator={false}
-                style={styles.nowPlaying}>
-                {renderCurrentPlaying()}
-            </ScrollView>
-            <ModalBottom
+                data={songs}
+                renderItem={({item, index}) => {
+                    return (
+                        <View
+                            key={item.music_id}
+                            style={[styles.songRow, songIndex === index && styles.songRowActive]}>
+                            <Item
+                                name={item.title}
+                                image={item.image_url}
+                                artist={item.artists}
+                                onClick={() => onClickSong(item)}
+                                onOptionClick={() => onOptionClick(item)}
+                            />
+                        </View>
+                    );
+                }}
+                keyExtractor={(item) => item.music_id.toString()}
+            />
+            
+            {chooseSong ? (
+                <ModalBottom
                 isVisible={chooseSong !== null}
                 onHide={closeModal}
                 item={{
@@ -63,6 +65,7 @@ const NowPlaying: React.FunctionComponent<Props> = (props: Props) => {
                 }}>
                 <SongOptions song={chooseSong} closeModal={closeModal}/>
             </ModalBottom>
+            ) : null}
         </>
     );
 };

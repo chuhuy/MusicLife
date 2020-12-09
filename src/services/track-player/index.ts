@@ -44,7 +44,10 @@ const trackService = async () => {
     let {position, track} = data;
 
     if (position > 0) {
-      postSongCounter(parseInt(track));
+      postSongCounter(parseInt(track))
+        .then(() => {
+          console.log('post counter');
+        });
       let {player} = store.getState();
 
       if (player.isRepeat) {
@@ -75,22 +78,46 @@ const trackService = async () => {
 
     if (track && position >= 0) {
       if (nextTrack) {
-        const duration = await TrackPlayer.getDuration();
+        let {player} = store.getState();
+        let {songs, songIndex} = player;
 
-        if (duration === position) {
-          TrackPlayer.pause();
-          console.log('next');
-          postSongCounter(parseInt(track))
-            .then(() => {
-              store.dispatch(skipMusic(true));
-              TrackPlayer.play();
-            })
-            .catch(() => {
-              console.log('post failed');
-            });
-        } else {
-          console.log('play');
+        let tracks = await TrackPlayer.getQueue();
+        let songId = songs[songIndex].music_id.toString();
+        console.log(songId);
+        // console.log(songs[songIndex].music_id);
+        // console.log(tracks[songIndex].id)
+        if (songId !== tracks[songIndex].id
+        || songId === track) {
+          const duration = Math.floor(await TrackPlayer.getDuration());
+          console.log(duration);
+  
+          if (Math.floor(position) >= duration * 0.9) {
+            postSongCounter(parseInt(track))
+                .then(() => {
+                  store.dispatch(skipMusic(true));
+                  TrackPlayer.play();
+                  console.log('post counter');
+                });
+          }
         }
+        
+
+        
+        // if (Math.floor(duration) === Math.floor(position)) {
+        //   TrackPlayer.pause();
+        //   console.log('next');
+        //   postSongCounter(parseInt(track))
+        //     .then(() => {
+        //       console.log('post counter');
+        //       store.dispatch(skipMusic(true));
+        //       TrackPlayer.play();
+        //     })
+        //     .catch(() => {
+        //       console.log('post failed');
+        //     });
+        // } else {
+        //   console.log('play');
+        // }
       }
     }
   });

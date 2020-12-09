@@ -5,7 +5,10 @@ const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 20,
     },
     header: {
         backgroundColor: styleVars.lightPrimaryColor,
@@ -32,23 +35,22 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.lightPrimaryColor,
         borderRadius: 43,
         paddingHorizontal: 20,
-        paddingBottom: 20,
         alignSelf: 'center',
-        marginBottom: 20,
+        marginVertical: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     commentList: {
         flex: 1,
-        paddingVertical: 25,
         paddingHorizontal: 20,
-        marginVertical: -10,
     },
     input: {
         color: styleVars.white,
+        height: 60,
+        fontSize: styleVars.baseFontSize,
     },
     loginButton: {
-        marginBottom: 20
-    }
+        marginBottom: 20,
+    },
 });

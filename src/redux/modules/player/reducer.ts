@@ -21,6 +21,7 @@ const initialState = {
 };
 
 export const playerReducer = (state: any = initialState, action: Action) => {
+  let {songs} = state;
   switch (action.type) {
     case PLAY:
       return {
@@ -35,8 +36,8 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         isPlaying: false,
       };
     case SKIP:
-      const {songIndex, songs} = state;
-      const {isNext} = action.payload;
+      let {songIndex} = state;
+      let {isNext} = action.payload;
       let newIndex;
 
       if (isNext) {
@@ -55,7 +56,6 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         isPlaying: true,
       };
     case ADD_SONG: {
-      const {songs} = state;
       const newSongs = action.payload;
       let isAdd = false;
 
@@ -80,7 +80,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
       break;
     case REMOVE_SONG: {
       let removeSong = action.payload;
-      let {songs, isPlaying} = state;
+      let {isPlaying} = state;
 
       songs = songs.filter((song) => removeSong.music_id !== song.music_id);
       if (!songs.length) {
@@ -99,7 +99,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         isRepeat: !state.isRepeat,
       };
     case SHUFFLE: {
-      let {isShuffle, songs} = state;
+      let {isShuffle} = state;
       if (songs.length === 1) {
         return {
           ...state,

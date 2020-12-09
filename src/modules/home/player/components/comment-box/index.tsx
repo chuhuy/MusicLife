@@ -128,10 +128,12 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
                         )}
                       />
 
-                      <IconButton
-                        icon={SendSvg}
-                        onClick={() => handleSendComment(commentField)}
-                      />
+                      <View>
+                        <IconButton
+                          icon={SendSvg}
+                          onClick={() => handleSendComment(commentField)}
+                        />
+                      </View>
                     </View>
                   ) : (
                     <View style={styles.loginButton}>
@@ -152,6 +154,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
 
   const toggleShowComment = () => {
     setShow(!isShow);
+    console.log(isShow)
   };
 
   const handleChangeComment = (value) => {
@@ -185,21 +188,19 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <KeyboardAvoidingView behavior="position">
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.commentTitle}>
-              {I18n.translate('player.comment')}
-            </Text>
+      <KeyboardAvoidingView behavior="position" style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.commentTitle}>
+            {I18n.translate('player.comment')}
+          </Text>
 
-            <IconButton
-              icon={isShow ? ArrowDown : ArrowUp}
-              onClick={toggleShowComment}
-            />
-          </View>
-
-          {isShow && renderContentBox()}
+          <IconButton
+            icon={isShow ? ArrowDown : ArrowUp}
+            onClick={toggleShowComment}
+          />
         </View>
+
+        {isShow && renderContentBox()}
       </KeyboardAvoidingView>
     </>
   );

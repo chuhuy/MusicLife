@@ -4,5 +4,6 @@ export const player = {
     'comment-placeholder': 'Type your comment here',
     'comment-error': 'Internet is not connected',
     'not-found-comment': 'No comment has been posted',
-    'not-found-lyric': "This song hasn't had lyric",
+    'not-found-lyric': "Lyric hasn't been updated",
+    'nowPlaying': 'Now playing list',
 };

@@ -13,11 +13,10 @@ interface Props {
 }
 
 const PlaybackMode: React.FunctionComponent<Props> = (props: Props) => {
-    
     const {
         mode,
         isActive = false,
-        onClick
+        onClick,
     } = props;
     
     const renderShuffle = () => {
@@ -29,7 +28,7 @@ const PlaybackMode: React.FunctionComponent<Props> = (props: Props) => {
     const renderRepeat = () => {
         return (
             isActive ? <Repeat width={25} height={25}/> : <RepeatDefault width={25} height={25}/>
-        )
+        );
     };
 
 

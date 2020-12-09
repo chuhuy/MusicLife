@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         marginBottom: 35,
-        paddingHorizontal: 20,
     },
     buttonGroup2: {
         width: '100%',
@@ -78,12 +77,6 @@ export const styles = StyleSheet.create({
         height: 250,
         borderRadius: 125,
         marginVertical: 20,
-    },
-    comment: {
-        position: 'absolute',
-        bottom: 20,
-        left: 0,
-        right: 0,
     },
     tab: {
         width: width,

@@ -4,5 +4,6 @@ export const player = {
     'comment-placeholder': 'Nhập bình luận',
     'comment-error': 'Mất kết nối mạng',
     'not-found-comment': 'Chưa có bình luận',
-    'not-found-lyric': 'Bài hát chưa có lời',
+    'not-found-lyric': 'Chưa cập nhật lời bài hát',
+    'nowPlaying': 'Danh sách đang phát',
 };

@@ -12,16 +12,16 @@ const CommentList: React.FC<Props> = (props: Props) => {
     const {comments} = props;
 
     return (
-        <FlatList 
+        <FlatList
             data={comments}
             renderItem={({item}) => {
                 return (
                     <View style={styles.commentWrapper}>
                         <Image source={{uri: item.image_url}} style={styles.avatar} />
 
-                        <View style={{flex: 1}}>
+                        <View style={styles.contentWrapper}>
                             <View style={styles.contentTop}>
-                                <Text style={styles.name}>
+                                <Text style={styles.name} numberOfLines={1}>
                                     {item.display_name}
                                 </Text>
 
@@ -35,11 +35,11 @@ const CommentList: React.FC<Props> = (props: Props) => {
                             </Text>
                         </View>
                     </View>
-                )
+                );
             }}
             keyExtractor={(item, index) => index.toString()}
         />
-    )
-}
+    );
+};
 
 export default CommentList;
