@@ -23,22 +23,41 @@ export const API = {
     }
   },
 
-  graphql: async (url: string, query: any) => {
+  graphql: async (url: string, query: any, access_token?: string) => {
     try {
-      const response = await axios.post('https://' + url, {query: query});
-      return response.data.data;
+      if (access_token) {
+        const response = await axios.post(
+          'https://' + url,
+          {query: query},
+          {
+            headers: {
+              Authorization:
+                'Bearer ' + access_token,
+            },
+          },
+        );
+        return response.data.data;
+      } else {
+        const response = await axios.post('https://' + url, {query: query});
+        return response.data.data;
+      }
     } catch (error) {
       console.log(error);
     }
   },
 
-  postWithAccessToken: async (url: string, body: any, access_token?: string) => {
+  postWithAccessToken: async (
+    url: string,
+    body: any,
+    access_token?: string,
+  ) => {
     const {auth} = store.getState();
     console.log(auth.access_token);
     try {
       const response = await axios.post('https://' + url, body, {
         headers: {
-          Authorization: 'Bearer ' + (access_token ? access_token : auth.access_token),
+          Authorization:
+            'Bearer ' + (access_token ? access_token : auth.access_token),
         },
       });
       return response.data;
@@ -46,12 +65,17 @@ export const API = {
       console.log(error);
     }
   },
-  postWithRefreshToken: async (url: string, body: any, refresh_token?: string) => {
+  postWithRefreshToken: async (
+    url: string,
+    body: any,
+    refresh_token?: string,
+  ) => {
     const {auth} = store.getState();
     try {
       const response = await axios.post('https://' + url, body, {
         headers: {
-          Authorization: 'Bearer ' + (refresh_token ? refresh_token : auth.refresh_token),
+          Authorization:
+            'Bearer ' + (refresh_token ? refresh_token : auth.refresh_token),
         },
       });
       return response.data;

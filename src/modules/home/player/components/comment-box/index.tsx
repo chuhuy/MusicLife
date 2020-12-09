@@ -30,8 +30,12 @@ import {
 } from './../../../../../services/socket';
 import {formatYYYYMMDD} from './../../../../../shared/helper/dateTime';
 import {commentSong} from './../../../../../api/personal';
+import {
+  DISABLE_LOADING,
+  ENABLE_LOADING,
+} from '../../../../../redux/modules/loading/actions';
 
-interface Props extends StateProps {
+interface Props extends StateProps, DispatchProps {
   music_id: number;
 }
 
@@ -41,6 +45,12 @@ const mapStateToProps = (state: any) => ({
   image_url: state.auth.image_url,
   default_avatar: state.auth.default_avatar,
 });
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    enableLoading: () => dispatch({type: ENABLE_LOADING}),
+    disableLoading: () => dispatch({type: DISABLE_LOADING}),
+  };
+};
 
 const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
   const {music_id, access_token} = props;
@@ -58,16 +68,25 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
   });
   useEffect(() => {
     connectSocket(music_id);
-    // fetchComment(music_id)
-    //   .then((data) => {
-    //     setComments(data.comments);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setError(I18n.translate('player.comment-error'));
-    //     setIsLoading(false);
-    //   });
+    props.enableLoading();
+    fetchComment(music_id)
+      .then((data) => {
+        const formattedComments = data.comments.map((e) => ({
+          content: e.content,
+          display_name: e.display_name,
+          created_at: formatYYYYMMDD(new Date(parseInt(e.created_at))),
+          default_avatar: e.default_avatar,
+          image_url: e.image_url,
+        }));
+        console.log(formattedComments);
+        setComments(formattedComments);
+        props.disableLoading();
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(I18n.translate('player.comment-error'));
+        props.disableLoading();
+      });
   }, []);
 
   const handleSignIn = () => {
@@ -152,14 +171,15 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
       };
       commentSong(comment.content, props.music_id, props.access_token)
         .then((response) => {
-          console.log(response);
+          if (response.commentSong) {
+            setComments([...comments, comment]);
+            postComment(props.music_id, comment);
+            setCommentField('');
+          }
         })
         .catch((err) => {
           console.log(err);
         });
-      setComments([...comments, comment]);
-      postComment(props.music_id, comment);
-      setCommentField('');
     }
   };
 
@@ -185,6 +205,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-export default connect(mapStateToProps, null)(CommentBox);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBox);
 
 type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;

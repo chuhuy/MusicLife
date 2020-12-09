@@ -1,9 +1,12 @@
-import { API } from './index';
-import { RESOURCE_URL, EXPLORE } from '../shared/constance/api';
-import { ALBUM_GENRE_ITEM, SONG_GENRE_ITEM } from '../shared/constance/pagination';
+import {API} from './index';
+import {RESOURCE_URL, EXPLORE} from '../shared/constance/api';
+import {
+  ALBUM_GENRE_ITEM,
+  SONG_GENRE_ITEM,
+} from '../shared/constance/pagination';
 
 export const getLatestSongs = () => {
-    const query = `
+  const query = `
         query {
             top100: top100List {
                 album_id: genre_id
@@ -27,11 +30,11 @@ export const getLatestSongs = () => {
             }
         }
     `;
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
 };
 
 export const fetchAlbumDetail = (album_id: number) => {
-    const query = `
+  const query = `
         query {
             songsByAlbum (album_id: ${album_id}) {
                 music_id
@@ -43,11 +46,11 @@ export const fetchAlbumDetail = (album_id: number) => {
             }
         }
     `;
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchTop100 = (genre_id: number) => {
-    const query = `
+  const query = `
         query {
             top100(genre_id: ${genre_id}) {
                 music_id
@@ -60,11 +63,11 @@ export const fetchTop100 = (genre_id: number) => {
         }
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchMusicChart = (area: string) => {
-    const query = `
+  const query = `
         query {
             chart(area: ${area}) {
                 music_id
@@ -77,11 +80,11 @@ export const fetchMusicChart = (area: string) => {
         }
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchLatestSong = () => {
-    const query = `
+  const query = `
         query {
             latestSongs(first: 10 offset: 0) {
                 music_id
@@ -93,15 +96,19 @@ export const fetchLatestSong = () => {
             }
         }
     `;
-    
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
 
-export const fetchAblumByGenre = (genre_id: number, first?: number, offset?: number) => {
-    if (!first) first = ALBUM_GENRE_ITEM;
-    if (!offset) offset = 0;
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
-    const query = `
+export const fetchAblumByGenre = (
+  genre_id: number,
+  first?: number,
+  offset?: number,
+) => {
+  if (!first) first = ALBUM_GENRE_ITEM;
+  if (!offset) offset = 0;
+
+  const query = `
         query {
             albumsByGenre(first: ${first} offset: ${offset} genre_id: ${genre_id}) {
                 album_id
@@ -113,14 +120,18 @@ export const fetchAblumByGenre = (genre_id: number, first?: number, offset?: num
         }
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
-export const fetchSongByGenre = (genre_id: number, first?: number, offset?: number) => {
-    if (!first) first = SONG_GENRE_ITEM;
-    if (!offset) offset = 0;
+export const fetchSongByGenre = (
+  genre_id: number,
+  first?: number,
+  offset?: number,
+) => {
+  if (!first) first = SONG_GENRE_ITEM;
+  if (!offset) offset = 0;
 
-    const query = `
+  const query = `
         query {
             songsByGenre (first: ${first} offset: ${offset} genre_id: ${genre_id}) {
                 music_id
@@ -133,11 +144,11 @@ export const fetchSongByGenre = (genre_id: number, first?: number, offset?: numb
         }
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchGenreDetail = (genre_id: number) => {
-    const query = `
+  const query = `
         query {
             songsByGenre (first: 3 offset: 0 genre_id: ${genre_id}) {
                 music_id
@@ -157,23 +168,23 @@ export const fetchGenreDetail = (genre_id: number) => {
         }
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const postSongCounter = (music_id: number) => {
-    const mutation = `
+  const mutation = `
         mutation {
             code: songCounter(music_id: ${music_id})
         }
-    `
-    
-    return API.graphql(RESOURCE_URL + EXPLORE, mutation);
-}
+    `;
+
+  return API.graphql(RESOURCE_URL + EXPLORE, mutation);
+};
 
 export const fetchGenres = (first?: number, offset?: number) => {
-    const limit = first ? `(first: ${first} offset: ${offset})` : '';
+  const limit = first ? `(first: ${first} offset: ${offset})` : '';
 
-    const query = `
+  const query = `
         query {
             genres ${limit}{
                 genre_id
@@ -183,12 +194,11 @@ export const fetchGenres = (first?: number, offset?: number) => {
         }  
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
-
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchSearchResult = (keyword: string) => {
-    const query = `
+  const query = `
         query {
             songs: searchBySong(keyword: "${keyword}") {
                 music_id
@@ -214,11 +224,11 @@ export const fetchSearchResult = (keyword: string) => {
         }  
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
 
 export const fetchComment = (music_id: number) => {
-    const query = `
+  const query = `
         query {
             comments: getComments(music_id: ${music_id}) {
                 comment_id
@@ -231,5 +241,5 @@ export const fetchComment = (music_id: number) => {
         }  
     `;
 
-    return API.graphql(RESOURCE_URL + EXPLORE, query);
-}
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
