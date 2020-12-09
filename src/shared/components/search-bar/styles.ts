@@ -13,8 +13,7 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.lightPrimaryColor,
     },
     bigContainer: {
-        paddingHorizontal: 0,
-        paddingRight: 20
+        marginLeft: 0
     },
     input: {
         flex: 1,

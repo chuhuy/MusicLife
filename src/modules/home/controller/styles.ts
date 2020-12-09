@@ -1,29 +1,34 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
+
+const {width} = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
     container: {
+        width: width,
         left: 0,
         right: 0,
         bottom: 0,
         backgroundColor: styleVars.lightPrimaryColor,
-        paddingVertical: 10,
+        padding: 15,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     section: {
         flexDirection: 'row',
+        flex: 1,
+        marginRight: 20
     },
     image: {
-        height: 45,
-        width: 45,
+        height: 50,
+        width: 50,
         marginRight: 10,
     },
     titleGroup: {
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
     },
@@ -39,7 +44,9 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     buttonGroup: {
-        marginHorizontal: -8
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginRight: -8,
     },
     button: {
         paddingHorizontal: 8,

@@ -7,67 +7,61 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        paddingTop: 15,
     },
     layer: {
         position: 'absolute',
         backgroundColor: styleVars.blackColor,
         width: '100%',
         height: '100%',
-        opacity: 0.4
+        opacity: 0.4,
     },
     imageBackground: {
         height: height,
         width: '100%',
     },
+    control: {
+        paddingBottom: 20,
+        paddingHorizontal: 20,
+        width: '100%',
+    },
     buttonGroup: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         width: '100%',
         marginBottom: 35,
     },
     buttonGroup2: {
-        width: width,
+        width: '100%',
         height: 50,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
         marginBottom: 70,
     },
     header: {
-        width: width,
+        width: '100%',
         flexDirection: 'row',
-        paddingVertical: 20,
+        paddingBottom: 20,
         paddingHorizontal: 20,
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     headerTitle: {
-        color: 'white',
-        fontSize: 16,
+        flex: 1,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
         fontWeight: 'bold',
-    },
-    commentHeader: {
-        width: width,
-        height: 85,
-        backgroundColor: styleVars.secondaryColor,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: 20,
+        letterSpacing: 2,
+        textAlign: 'center',
         paddingHorizontal: 20,
-    },
-    commentText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
     },
     body: {
         flex: 1,
         alignItems: 'center',
     },
     song: {
-        color: 'white',
+        color: styleVars.white,
         fontSize: styleVars.bigFontSize,
         alignSelf: 'center',
         marginVertical: 10,
@@ -84,21 +78,15 @@ export const styles = StyleSheet.create({
         borderRadius: 125,
         marginVertical: 20,
     },
-    comment: {
-        position: 'absolute',
-        bottom: 20,
-        left: 0,
-        right: 0
-    },
     tab: {
         width: width,
-        flex: 1,
+        paddingHorizontal: 20,
     },
     dotGroup: {
-        width: width,
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        marginVertical: -5
+        marginVertical: -5,
     },
     dot: {
         height: 12,
@@ -108,10 +96,20 @@ export const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     dotDefault: {
-        borderColor: styleVars.white
+        borderColor: styleVars.white,
     },
     dotActive: {
-        borderColor: styleVars.secondaryColor, 
-        backgroundColor: styleVars.secondaryColor
+        borderColor: styleVars.secondaryColor,
+        backgroundColor: styleVars.secondaryColor,
+    },
+    lyricContainer: {
+        marginVertical: 15,
+    },
+    lyricRow: {
+        width: '100%',
+        color: styleVars.lightWhite,
+        textAlign: 'center',
+        fontSize: styleVars.baseFontSize,
+        marginVertical: 10,
     }
 });
