@@ -15,12 +15,12 @@ interface Props {
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
     const {
-        onOptionClick, 
-        onClick, 
-        image, 
-        name, 
+        onOptionClick,
+        onClick,
+        image,
+        name,
         artist,
-        isPlaylist = false
+        isPlaylist = false,
     } = props;
 
     return (
@@ -55,27 +55,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 15,
         marginVertical: -5,
-        marginRight: -5
+        marginRight: -5,
     },
     metadata: {
         flexDirection: 'row',
     },
     touchAreaOne: {
         flex: 1,
-        paddingRight: 10
+        paddingRight: 10,
     },
     touchAreaTwo: {
         justifyContent: 'center',
-        padding: 5
+        padding: 5,
     },
     image: {
-        height: 60,
-        width: 60,
+        height: 55,
+        width: 55,
     },
     titleGroup: {
         flex: 1,
         justifyContent: 'center',
-        paddingLeft: 10
+        paddingLeft: 15,
     },
     title: {
         color: styleVars.white,

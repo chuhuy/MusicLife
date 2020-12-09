@@ -1,62 +1,76 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Text, Pressable, View} from 'react-native';
-import {styles} from './styles';
-import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
-import PlaySvg from './../../../../assets/icons/play.svg';
-import DownloadSvg from './../../../../assets/icons/download.svg';
-import DeleteSvg from './../../../../assets/icons/delete.svg';
-import I18n from './../../../../i18n';
-import { Song } from '../../../../models/song';
-import { addSong } from '../../../../redux/modules/player/actions';
-import { connect } from 'react-redux';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import { addSongs, getNotExistSongs } from '../../../helper/player';
+import { Song } from '../../../../models/song';
+import { addSongs, playSong } from '../../../helper/player';
+import DeleteSvg from './../../../../assets/icons/delete.svg';
+import DownloadSvg from './../../../../assets/icons/download.svg';
+import PlaySvg from './../../../../assets/icons/play.svg';
+import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
+import I18n from './../../../../i18n';
+import { styles } from './styles';
 
 interface Props {
     songs?: Array<Song>,
-    album_id?: number
+    album_id?: number,
+    closeModal: () => void,
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        addSong: (songs: Array<Song>) => dispatch(addSong(songs))
-    };
-};
-
 const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
-    const {songs, album_id} = props;
+    const {
+        songs,
+        album_id,
+        closeModal,
+    } = props;
     const [songsNotAdd, setSongsNotAdd] = useState<Array<Song>>([]);
 
     useEffect(() => {
         const handleAddedToPlaying = async () => {
             const currentTracks = await TrackPlayer.getQueue();
 
-            let songsNotExist = getNotExistSongs(currentTracks, songs);
-        
-            setSongsNotAdd(songsNotExist);
-        }
+            let notAddedSongs = songs.filter(song => {
+                let isExist = false;
+                for (let i = 0; i < currentTracks.length; i++) {
+                    if (song.music_id.toString() === currentTracks[i].id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+
+                return !isExist;
+            });
+
+            if (notAddedSongs.length) {
+                setSongsNotAdd(notAddedSongs);
+            }
+        };
 
         handleAddedToPlaying();
     }, []);
 
     const handleAddToNowPlayingPlaylist = () => {
         addSongs(songsNotAdd);
+        closeModal();
 
         console.log('Add to now playing playlist');
     };
     const handlePlay = () => {
-        console.log('Play');
+        playSong(songs);
+        closeModal();
     };
     const handleDownloadSongs = () => {
         console.log('Download songs');
+        closeModal();
     };
     const handleDelete = () => {
         console.log('Delete');
+        closeModal();
     };
+
     return (
         <>
             <Fragment>
-                {songsNotAdd.length && (
+                {songsNotAdd.length ? (
                     <Pressable
                         style={styles.optionItem}
                         onPress={handleAddToNowPlayingPlaylist}>
@@ -68,7 +82,7 @@ const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
                             {I18n.translate('optionModal.add-to-now-playlist')}
                         </Text>
                     </Pressable>
-                )}
+                ) : null}
 
                 <Pressable
                     style={styles.optionItem}

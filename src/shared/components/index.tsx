@@ -26,10 +26,7 @@ export const SectionTitle: React.FunctionComponent<SectionTitleProps> = (props: 
 
     return (
         <>
-            <Pressable
-                
-                onPress={onClick}
-            >
+            <Pressable onPress={onClick}>
                 <View style={styles.container}>
                     <Text style={styles.title}>{title}</Text>
                     <ArrowRight />
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: 5,
-        paddingBottom: 15,
+        paddingBottom: 20,
     },
     title: {
         color: styleVars.white,
@@ -72,13 +69,13 @@ const styles = StyleSheet.create({
     notFoundContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     notFoundText: {
         color: styleVars.greyColor,
         fontSize: styleVars.baseFontSize,
-        paddingTop: 15
-    }
+        paddingTop: 15,
+    },
 });
 
 // Go Back Header
@@ -96,9 +93,9 @@ export const HeaderBack: React.FunctionComponent<HeaderBackProps> = (props: Head
 
     return (
         <View style={[title && styles.headerBackContainer]}>
-            <IconButton 
-                icon={ArrowLeft} 
-                onClick={handleGoBack} 
+            <IconButton
+                icon={ArrowLeft}
+                onClick={handleGoBack}
             />
             {title && <Text style={styles.headerTitle}>{title}</Text>}
         </View>
@@ -126,5 +123,5 @@ export const NotFoundItem: React.FunctionComponent<NotFoundItemProps> = (props: 
                 <Text style={styles.notFoundText}>{text}</Text>
             </View>
         </>
-    )
-}
+    );
+};

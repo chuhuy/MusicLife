@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         paddingLeft: 20,
-        marginBottom: 20,
+        paddingVertical: 15,
     },
     optionText: {
         color: styleVars.white,

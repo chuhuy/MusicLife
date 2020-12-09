@@ -54,7 +54,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
     const [tabMenu, setTabMenu] = useState<Array<{
         title: string,
         type: string,
-        active: boolean,
         onClick: (type: string) => void
     }>>([]);
 

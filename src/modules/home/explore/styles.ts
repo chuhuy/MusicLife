@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     },
     chart: {
         flexDirection: 'row',
-        paddingBottom: 5,
+        paddingBottom: 10,
         marginLeft: -10
     },
     chartTitleActive: {

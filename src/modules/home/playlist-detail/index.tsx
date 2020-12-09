@@ -11,6 +11,7 @@ import { Song } from '../../../models/song';
 import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/explore';
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
+import { playSong } from '../../../shared/helper/player';
 
 interface Props {
     navigation: any;
@@ -22,7 +23,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     const { playlist, isChart, isAlbum, isTop100 } = route.params;
     const { album_id, title, artists, image_url } = playlist;
 
-    const [songList, setSongList] = useState<Array<Song>>(null);
+    const [songList, setSongList] = useState<Array<Song>>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -35,13 +36,13 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                     .then((data) => {
                         setSongList(data.songsByAlbum);
                         setIsLoading(false);
-                    }).catch((err) => console.log(err))
+                    }).catch((err) => console.log(err));
             } else if (isTop100) {
-                fetchTop100(album_id) 
+                fetchTop100(album_id)
                     .then((data) => {
                         setSongList(data.top100);
                         setIsLoading(false);
-                    }).catch((err) => console.log(err))
+                    }).catch((err) => console.log(err));
             } else {
                 // Personal playlist
             }
@@ -51,9 +52,9 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                     setSongList(data.chart);
                     setIsLoading(false);
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => console.log(err));
         }
-    }, [])
+    }, []);
 
     const handleOptionClick = () => {
         setIsVisible(true);
@@ -63,7 +64,12 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const handlePlay = () => {
-        console.log('play album')
+        playSong(songList);
+        console.log('play album');
+    };
+
+    const closeModal = () => {
+        setIsVisible(!isVisible);
     }
     
     return (
@@ -96,9 +102,11 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
 
                             <View style={styles.buttonGroup}>
-                                <View style={[styles.button, styles.playButton]}>
-                                    <IconButton icon={Play} onClick={handlePlay}/>
-                                </View>
+                                {songList.length ? (
+                                    <View style={[styles.button, styles.playButton]}>
+                                        <IconButton icon={Play} onClick={handlePlay}/>
+                                    </View>
+                                ) : null}
 
                                 <View style={styles.button}>
                                     <IconButton icon={Heart} onClick={handleHeartClick} />
@@ -119,14 +127,15 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                     )}
                 </View>
 
+                <ModalBottom
+                    isVisible={isVisible}
+                    onHide={() => setIsVisible(false)}
+                    item={{image_url, artists, title}}>
+                    <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
+                </ModalBottom>
+                
                 <Controller />
             </SafeAreaView>
-            <ModalBottom
-                isVisible={isVisible}
-                onHide={() => setIsVisible(false)}
-                item={{image_url, artists, title}}>
-                <AlbumPlaylistOptions songs={songList}/>
-            </ModalBottom>
         </>
     );
 };

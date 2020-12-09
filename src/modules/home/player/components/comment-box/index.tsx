@@ -44,12 +44,12 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
                 console.log(err);
                 setError(I18n.translate('player.comment-error'));
                 setIsLoading(false);
-            })
+            });
     }, []);
 
     const handleSignIn = () => {
         navigation.navigate(Screen.Authentication.Login);
-    }
+    };
 
     const renderContentBox = () => {
         return (
@@ -86,16 +86,14 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
                                             />
                                         </View>
                                     )}
-
-                                    
                                 </>
                             }
                         </View>
                     </>
                 )}
             </>
-        )
-    }
+        );
+    };
 
     const toggleShowComment = () => {
         setShow(!isShow);
@@ -103,7 +101,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleChangeComment = (value) => {
         setCommentField(value);
-    }
+    };
 
     const handleSendComment = () => {};
 

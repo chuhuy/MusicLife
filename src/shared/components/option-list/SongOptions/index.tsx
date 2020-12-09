@@ -1,18 +1,17 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Text, Pressable, View} from 'react-native';
-import {styles} from './styles';
-import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
-import HeartSvg from './../../../../assets/icons/heart.svg';
-import PlusSvg from './../../../../assets/icons/plus.svg';
-import DownloadSvg from './../../../../assets/icons/download.svg';
-import SingerSvg from './../../../../assets/icons/singer.svg';
-import I18n from './../../../../i18n';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
+import TrashIcon from '../../../../assets/icons/delete.svg';
 import { Song } from '../../../../models/song';
 import { removeSong } from '../../../../redux/modules/player/actions';
-import TrackPlayer from 'react-native-track-player';
-import TrashIcon from '../../../../assets/icons/delete.svg';
 import { addSongs, getNotExistSongs, removeSongs } from '../../../helper/player';
+import DownloadSvg from './../../../../assets/icons/download.svg';
+import HeartSvg from './../../../../assets/icons/heart.svg';
+import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
+import PlusSvg from './../../../../assets/icons/plus.svg';
+import I18n from './../../../../i18n';
+import { styles } from './styles';
 
 interface Props extends DispatchProps {
     song: Song,
@@ -32,10 +31,9 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     useEffect(() => {
         const handleAddedToPlaying = async () => {
             const currentTracks = await TrackPlayer.getQueue();
+            let songIndex = currentTracks.findIndex(track => track.id === song.music_id.toString());
 
-            let songsNotExist = getNotExistSongs(currentTracks, [song]);
-        
-            if (!songsNotExist.length) {
+            if (songIndex !== -1) {
                 setIsAddPlaying(true);
             }
         }
@@ -45,13 +43,8 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleNowPlayingPlaylist = async () => {
         if (isAddPlaying) {
-            TrackPlayer.remove(song.music_id.toString())
-                .then(() => {
-                    removeSong(song);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            removeSongs(song);
+            console.log(await TrackPlayer.getQueue())
         } else {
             addSongs([song]);
         }
@@ -66,9 +59,6 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     };
     const handleDownload = () => {
         console.log('Download');
-    };
-    const handleSingerPressOut = () => {
-        console.log('Singer');
     };
     
     return (
@@ -119,17 +109,6 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.download')}
-                    </Text>
-                </Pressable>
-                
-                <Pressable
-                    style={styles.optionItem}
-                    onPressOut={handleSingerPressOut}>
-                    <View style={styles.svg}>
-                        <SingerSvg width={25} height={25} />
-                    </View>
-                    <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.singers')}
                     </Text>
                 </Pressable>
             </Fragment>

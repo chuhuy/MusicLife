@@ -21,22 +21,22 @@ export const ArtistList: React.FunctionComponent<ArtistListProps> = (props: Arti
 
     const renderArtistItem = (item: Artist) => {
         return (
-            <ArtistItem 
+            <ArtistItem
                 key={item.artist_id}
                 id={item.artist_id}
                 name={item.name}
                 image_url={item.image_url}
                 onClick={() => onChangeArtistScreen(item)}
                 isHorizontal={isHorizontal}
-            /> 
-        )
-    }
+            />
+        );
+    };
     
     return (
         <>
             {
-                isHorizontal ? 
-                    <FlatList 
+                isHorizontal ?
+                    <FlatList
                         contentContainerStyle={styles.artistListHorizontal}
                         horizontal={isHorizontal}
                         data={artist}
@@ -47,16 +47,15 @@ export const ArtistList: React.FunctionComponent<ArtistListProps> = (props: Arti
                         {artist.map((item) => renderArtistItem(item))}
                     </ScrollView>
             }
-            
         </>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     artistListHorizontal: {
-        marginHorizontal: -10
+        marginHorizontal: -15,
     },
     artistListVertical: {
-        marginVertical: -10,
-    }
+        marginVertical: -15,
+    },
 })

@@ -3,5 +3,6 @@ export const player = {
     'now-playing': 'ĐANG PHÁT',
     'comment-placeholder': 'Nhập bình luận',
     'comment-error': 'Mất kết nối mạng',
-    'not-found-comment': 'Chưa có bình luận'
+    'not-found-comment': 'Chưa có bình luận',
+    'not-found-lyric': 'Bài hát chưa có lời',
 };

@@ -24,63 +24,67 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <>
-            {artist.length && (
-                <View style={styles.section}>
-                    <SectionTitle 
-                        title={I18n.translate('search.artists')}
-                        onClick={() => chooseType(TYPE.ALL)}
-                    />
+            {artist.length || song.length || album.length ? (
+                <>
+                    {artist.length ? (
+                        <View style={styles.section}>
+                            <SectionTitle
+                                title={I18n.translate('search.artists')}
+                                onClick={() => chooseType(TYPE.ALL)}
+                            />
 
-                    <ArtistList artist={artist}/>
-                    
-                    <View style={styles.buttonContainer}>
-                        <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
-                    </View>
-                </View>
-            )}
+                            <ArtistList artist={artist}/>
+                            
+                            <View style={styles.buttonContainer}>
+                                <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
+                            </View>
+                        </View>
+                    ) : null}
 
-            {songs.length && (
-                <View style={styles.section}>
-                    <SectionTitle 
-                        title={I18n.translate('search.songs')} 
-                        onClick={() => chooseType(TYPE.SONG)}
-                    />
+                    {songs.length ? (
+                        <View style={styles.section}>
+                            <SectionTitle
+                                title={I18n.translate('search.songs')}
+                                onClick={() => chooseType(TYPE.SONG)}
+                            />
 
-                    <SongList 
-                        disableScroll={true}
-                        songs={song}
-                    >
-                        <MoreButton onClick={() => chooseType(TYPE.SONG)} />
-                    </SongList>
-                </View>
-            )}
+                            <SongList
+                                disableScroll={true}
+                                songs={song}
+                            >
+                                <MoreButton onClick={() => chooseType(TYPE.SONG)} />
+                            </SongList>
+                        </View>
+                    ) : null}
 
-            {album.length && (
-                <View style={styles.section}>
-                    <SectionTitle 
-                        title={I18n.translate('search.albums')}
-                        onClick={() => chooseType(TYPE.ALBUM)}
-                    />
-                    
-                    <PlaylistList
-                        playlist={album}
-                        disableScroll={true}
-                    >
-                        <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
-                    </PlaylistList>
-                </View>
-            )}
+                    {album.length ? (
+                        <View style={styles.section}>
+                            <SectionTitle
+                                title={I18n.translate('search.albums')}
+                                onClick={() => chooseType(TYPE.ALBUM)}
+                            />
+                            
+                            <PlaylistList
+                                playlist={album}
+                                disableScroll={true}
+                            >
+                                <MoreButton onClick={() => chooseType(TYPE.ALBUM)} />
+                            </PlaylistList>
+                        </View>
+                    ) : null}
+                </>
+            ) : null}
         </>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     section: {
         paddingBottom: 30,
-        marginTop: -5
+        marginTop: -5,
     },
     buttonContainer: {
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 10,
     }
 })

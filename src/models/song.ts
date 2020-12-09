@@ -7,4 +7,5 @@ export interface Song {
     url: string,
     album?: string,
     genre?: any,
+    lyric?: string
 }

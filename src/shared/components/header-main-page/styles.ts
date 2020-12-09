@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { styleVars } from "../../constance/style-variables";
+import { StyleSheet } from 'react-native';
+import { styleVars } from '../../constance/style-variables';
 
 export const styles = StyleSheet.create({
     header: {
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: styleVars.primaryColor,
-        marginBottom: 20
+        marginBottom: 30,
     },
     userButton: {
         borderWidth: 1,
@@ -18,4 +18,4 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-})
+});
