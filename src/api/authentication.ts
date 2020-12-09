@@ -6,6 +6,8 @@ import {
   SIGNINFB,
   ME,
   TOKEN,
+  CHANGE_PASSWORD,
+  CHANGE_DISPLAY_NAME,
 } from './../shared/constance/api';
 
 export const signinWithEmail = (email: string, password: string) => {
@@ -47,10 +49,30 @@ export const register = async (
   return API.post(AUTH_URL + REGISTER, body);
 };
 
-export const me = async (refresh_token: string) => {
-  return API.postWithRefreshToken(AUTH_URL + ME, {}, refresh_token);
+export const me = async (refresh_token?: string) => {
+  if (refresh_token)
+    {return API.postWithRefreshToken(AUTH_URL + ME, {}, refresh_token);}
+  else {return API.postWithRefreshToken(AUTH_URL + ME, {});}
 };
 
 export const token = async (refresh_token: string) => {
   return API.postWithRefreshToken(AUTH_URL + TOKEN, {}, refresh_token);
+};
+
+export const changePassword = async (
+  old_password: string,
+  new_password: string,
+) => {
+  const body = {
+    old_password,
+    new_password,
+  };
+  return API.postWithAccessToken(AUTH_URL + CHANGE_PASSWORD, body);
+};
+
+export const changeDisplayName = async (display_name: string) => {
+  const body = {
+    display_name,
+  };
+  return API.postWithAccessToken(AUTH_URL + CHANGE_DISPLAY_NAME, body);
 };

@@ -7,10 +7,18 @@ import {BaseScreen, Button} from '../../../../shared/components';
 import TextInputGroup from '../../../../shared/components/form/textInput';
 import {styles} from './styles';
 import {ChangePasswordForm} from '../../../../models/form/change-password';
-interface Props {
+import {connect} from 'react-redux';
+import {changePassword} from './../../../../api/authentication';
+import {useNavigation} from '@react-navigation/native';
+import { Screen } from '../../../../shared/constance/screen';
+interface Props extends StateProps {
   navigation: any;
 }
+const mapStateToProps = (state: any) => ({
+  access_token: state.auth.access_token,
+});
 const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
+  const navigation = useNavigation();
   const {} = props;
   const [isPasswordShown, setPasswordShown] = useState<Array<boolean>>([
     false,
@@ -31,8 +39,17 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
     });
   };
   const handleChangePassword = (values: ChangePasswordForm) => {
-    console.log(values);
-    Alert.alert('handle submit');
+    changePassword(values.oldPassword, values.newPassword)
+      .then((response) => {
+        if (response.status) {
+          navigation.navigate(Screen.Setting.Main);
+        } else {
+          Alert.alert(response.errorMessage);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const validationSchema = Yup.object().shape({
     oldPassword: Yup.string()
@@ -130,4 +147,6 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
     </>
   );
 };
-export default ChangePassword;
+export default connect(mapStateToProps, null)(ChangePassword);
+
+type StateProps = ReturnType<typeof mapStateToProps>;

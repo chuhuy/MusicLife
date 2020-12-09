@@ -8,11 +8,11 @@ import {GET_CURRENT_LANGUAGE} from './../../redux/modules/i18n/actions';
 import {
   TOKEN_FROM_STORAGE,
   FETCH_CURRENT_USER,
+  REFRESH_TOKEN,
 } from './../../redux/modules/auth/actions';
 import {getTokenFromLocalStorage} from './../../shared/helper/authentication';
 import Logo from './../../assets/images/logo-vector.svg';
 import AppName from './../../assets/images/app-name.svg';
-import {store} from './../../redux/store';
 
 interface Props extends DispatchProps {
   navigation: any;
@@ -23,7 +23,10 @@ const mapDispatchToProps = (dispatch: any) => {
     getCurrentLanguage: () => dispatch({type: GET_CURRENT_LANGUAGE}),
     setRefreshToken: (token: string) =>
       dispatch({type: TOKEN_FROM_STORAGE, payload: token}),
-    fetchUser: (refresh_token: string) => dispatch({type: FETCH_CURRENT_USER, payload: {refresh_token}}),
+    fetchUser: (refresh_token: string) =>
+      dispatch({type: FETCH_CURRENT_USER, payload: {refresh_token}}),
+    refreshToken: (refresh_token: string) =>
+      dispatch({type: REFRESH_TOKEN, payload: {refresh_token}}),
   };
 };
 
@@ -37,6 +40,8 @@ const SplashScreen: React.FunctionComponent<Props> = (props: Props) => {
       if (refresh_token !== null) {
         props.setRefreshToken(refresh_token);
         props.fetchUser(refresh_token);
+        props.refreshToken(refresh_token);
+        console.log(refresh_token);
       }
       props.navigation.dispatch(StackActions.replace('TabNavigator'));
     }, 3000);

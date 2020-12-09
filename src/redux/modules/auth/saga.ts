@@ -9,12 +9,16 @@ import {
   FETCH_CURRENT_USER,
   fetchUserSuccess,
   fetchUserFailed,
+  refreshTokenSuccess,
+  refreshTokenFailed,
+  REFRESH_TOKEN,
 } from './actions';
 import {
   signinWithEmail,
   signinWithUsername,
   signinWithFacebook,
   me,
+  token,
 } from './../../../api/authentication';
 import {saveTokenToLocalStorage} from './../../../shared/helper/authentication';
 
@@ -122,8 +126,6 @@ export function* signInFacebookWatcher() {
 function* fetchUserWorker(action: any) {
   try {
     const response = yield call(me, action.payload.refresh_token);
-    console.log(action.payload.refresh_token)
-    console.log(response);
     if (response.status) {
       const payload = {
         display_name: response.data.display_name,
@@ -133,7 +135,7 @@ function* fetchUserWorker(action: any) {
       yield put(fetchUserSuccess(payload));
     } else {
       const {errorMessage} = response;
-    //   yield call(action.payload.callbacks.onFailed, errorMessage);
+      //   yield call(action.payload.callbacks.onFailed, errorMessage);
       yield put(fetchUserFailed(errorMessage));
     }
   } catch (error) {
@@ -146,4 +148,25 @@ export function* fetchUserWatcher() {
   yield takeLatest(FETCH_CURRENT_USER, fetchUserWorker);
 }
 
-// 
+// Refresh token
+function* refreshTokenWorker(action: any) {
+  try {
+    const response = yield call(token, action.payload.refresh_token);
+    console.log(response);
+    if (response.status) {
+      const payload = {
+        access_token: response.data.access_token,
+      };
+      yield put(refreshTokenSuccess(payload));
+    } else {
+      const {errorMessage} = response;
+      yield put(fetchUserFailed(errorMessage));
+    }
+  } catch (error) {
+    yield put(refreshTokenFailed(error));
+  }
+}
+
+export function* refreshTokenWatcher() {
+  yield takeLatest(REFRESH_TOKEN, refreshTokenWorker);
+}

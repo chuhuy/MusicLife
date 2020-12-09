@@ -88,7 +88,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 {
                     props.image_url === null ?
                     (<>
-                        <DefaultAvatar type={props.default_avatar} />
+                        <DefaultAvatar size={85} type={props.default_avatar} />
                     </>)
                     : (<>
                         <Image

@@ -15,10 +15,10 @@ export const FORGOT = '/api/v1/user/forgot';
 export const SIGNINFB = '/api/v1/user/signin-fb';
 export const ME = '/api/v1/user/me';
 export const CHANGE_PASSWORD = '/api/v1/user/change-password';
+export const CHANGE_DISPLAY_NAME = '/api/v1/user/update-info';
 
 //  Resource API endpoints
 export const EXPLORE = '/api/explore';
 export const PERSONAL = '/api/personal';
 
 //  Chat API endpoints
-

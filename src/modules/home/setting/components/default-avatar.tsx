@@ -30,20 +30,23 @@ const DefaultAvatar9 = React.lazy(
 
 interface Props {
   type: number;
+  size: number;
 }
 
 const DefaultAvatar: React.FunctionComponent<Props> = (props: Props) => {
+  const {size} = props;
+
   return (
     <>
-      {props.type === 1 && <DefaultAvatar1 height={85} width={85} />}
-      {props.type === 2 && <DefaultAvatar2 height={85} width={85} />}
-      {props.type === 3 && <DefaultAvatar3 height={85} width={85} />}
-      {props.type === 4 && <DefaultAvatar4 height={85} width={85} />}
-      {props.type === 5 && <DefaultAvatar5 height={85} width={85} />}
-      {props.type === 6 && <DefaultAvatar6 height={85} width={85} />}
-      {props.type === 7 && <DefaultAvatar7 height={85} width={85} />}
-      {props.type === 8 && <DefaultAvatar8 height={85} width={85} />}
-      {props.type === 9 && <DefaultAvatar9 height={85} width={85} />}
+      {props.type === 1 && <DefaultAvatar1 height={size} width={size} />}
+      {props.type === 2 && <DefaultAvatar2 height={size} width={size} />}
+      {props.type === 3 && <DefaultAvatar3 height={size} width={size} />}
+      {props.type === 4 && <DefaultAvatar4 height={size} width={size} />}
+      {props.type === 5 && <DefaultAvatar5 height={size} width={size} />}
+      {props.type === 6 && <DefaultAvatar6 height={size} width={size} />}
+      {props.type === 7 && <DefaultAvatar7 height={size} width={size} />}
+      {props.type === 8 && <DefaultAvatar8 height={size} width={size} />}
+      {props.type === 9 && <DefaultAvatar9 height={size} width={size} />}
     </>
   );
 };
