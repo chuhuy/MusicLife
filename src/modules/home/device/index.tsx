@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {useNavigation} from '@react-navigation/native';
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {Alert, PermissionsAndroid} from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import {Alert, PermissionsAndroid, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Genre} from '../../../models/genre';
-import {Playlist} from '../../../models/playlist';
 import {Song} from '../../../models/song';
-import {BaseScreen, Button} from '../../../shared/components';
+import {BaseScreen, Button, SongList} from '../../../shared/components';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import { Screen } from '../../../shared/constance/screen';
-import { playSong } from '../../../shared/helper/player';
-import { pauseMusic, playMusic, skipMusic } from './../../../redux/modules/player/actions';
+import {
+  pauseMusic,
+  playMusic,
+  skipMusic,
+} from './../../../redux/modules/player/actions';
 import I18n from './../../../i18n';
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -29,14 +28,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const Device: React.FunctionComponent<Props> = (props: Props) => {
-  const navigation = useNavigation();
-  const {playMusic} = props;
-
-  const [isTop100, setTop100] = useState<boolean>(false);
-  const [latestSong, setLatestSong] = useState<Array<Song>>(null);
-  const [latestAlbum, setLatestAlbum] = useState<Array<Playlist>>(null);
-  const [genreList, setGenreList] = useState<Array<Genre>>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [songList, setSongList] = useState<Array<Song>>([]);
 
   useEffect(() => {
     fetchDownloadedSong();
@@ -55,14 +47,27 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        //   await downloadFile(title, url);
         RNFetchBlob.fs
           .ls(RNFetchBlob.fs.dirs.DownloadDir)
           .then((files) => {
-              files = files.filter((value) => value.slice(-3) === 'mp3')
-            console.log(files);
+            files = files.filter((value) => value.slice(-3) === 'mp3');
+            const songsList = files.map((value, index) => {
+              const song: Song = {
+                music_id: index,
+                title: value.split('-')[0].trim(),
+                image_url: `file://${
+                  RNFetchBlob.fs.dirs.DownloadDir
+                }/${value.replace('mp3', 'jpg')}`,
+                artists: value.split('-')[1].trim().replace('.mp3', ''),
+                url: `${RNFetchBlob.fs.dirs.DownloadDir}/${value}`,
+              };
+              return song;
+            });
+            setSongList(songsList);
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         Alert.alert(I18n.translate('player.do-not-have-permission'));
       }
@@ -71,25 +76,14 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const handlePlayMusic = (song: Song) => {
-    console.log('play music');
-    try {
-      playSong([song]);
-      playMusic(song);
-      navigation.navigate(Screen.Common.Player);
-    } catch (err) {
-      console.log(err);
-      TrackPlayer.pause().then(() => pauseMusic());
-    }
-  };
-
-    return (
-        <>
-          <BaseScreen isScroll={false}>
-              <HeaderMainPage />
-
-          {/* <Text style={{color: 'white'}}>Device screen</Text> */}
-          <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
+  return (
+    <>
+      <BaseScreen isScroll={false}>
+        <HeaderMainPage />
+        <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
+        <View style={{marginTop: 30}}>
+          <SongList songs={songList} />
+        </View>
       </BaseScreen>
     </>
   );
