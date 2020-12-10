@@ -7,8 +7,8 @@ import en from './locales/en';
 I18n.fallbacks = true;
 
 I18n.translations = {
-    en,
-    vi,
+  en,
+  vi,
 };
 
 export default I18n;

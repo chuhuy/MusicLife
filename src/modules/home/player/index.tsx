@@ -1,28 +1,51 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, Easing, ImageBackground, Pressable, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux';
-import { repeat, shuffle } from '../../../redux/modules/player/actions';
-import { IconButton, NotFoundItem } from '../../../shared/components';
-import { handleNext, handlePrevious, togglePlay } from '../../../shared/helper/player';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  Alert,
+  Animated,
+  Dimensions,
+  Easing,
+  ImageBackground,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import {connect} from 'react-redux';
+import {repeat, shuffle} from '../../../redux/modules/player/actions';
+import {IconButton, NotFoundItem} from '../../../shared/components';
+import {
+  handleNext,
+  handlePrevious,
+  togglePlay,
+} from '../../../shared/helper/player';
 import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import Download from './../../../assets/icons/download.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import HeartActive from './../../../assets/icons/heart-active.svg';
 import List from './../../../assets/icons/list.svg';
 import Plus from './../../../assets/icons/plus.svg';
-import { CommentBox, PlaybackMode, PlayPauseButton, PreviousNextButton } from './components';
+import {
+  CommentBox,
+  PlaybackMode,
+  PlayPauseButton,
+  PreviousNextButton,
+} from './components';
 import SeekBar from './components/seek-bar';
-import { styles } from './styles';
+import {styles} from './styles';
 import NotFoundLyric from '../../../assets/icons/not-found-lyric.svg';
 import I18n from '../../../i18n';
 import TrackPlayer from 'react-native-track-player';
 import NowPlaying from './components/now-playing';
+import {
+  downloadFile,
+} from './../../../services/file-system';
+import {PermissionsAndroid} from 'react-native';
 
 interface Props extends DispatchProps, StateProps {
-  route: any
+  route: any;
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -43,21 +66,9 @@ const Tab = {
 };
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
-  const {
-    route,
-    shuffleMusic,
-    repeatMusic,
-    player,
-    access_token,
-  } = props;
+  const {route, shuffleMusic, repeatMusic, player, access_token} = props;
 
-  const {
-    songs,
-    isPlaying,
-    songIndex,
-    isRepeat,
-    isShuffle,
-  } = player;
+  const {songs, isPlaying, songIndex, isRepeat, isShuffle} = player;
 
   const navigation = useNavigation();
 
@@ -101,7 +112,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
       setActiveTab(index);
       console.log(Dimensions.get('window').width * (index));
       scrollViewRef.current.scrollTo({
-        x: Dimensions.get('window').width * (index),
+        x: Dimensions.get('window').width * index,
         y: 0,
         animated: true,
       });
@@ -109,37 +120,37 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   };
 
   const handleScrollTab = (event: any) => {
-    let index = Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1));
+    let index = Math.floor(
+      event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1),
+    );
     setActiveTab(index);
   };
-    
+
   const handleShuffle = () => {
     shuffleMusic();
-    
+
     if (songs.length > 1) {
       try {
-        TrackPlayer.reset()
-          .then(() => {
-            let tracks = songs.map((song) => {
-              return {
-                id: song.music_id.toString(),
-                url: song.url,
-                title: song.title,
-                artist: song.artists,
-                album: song.album || '',
-                genre: song.genre || '',
-                date: '2020-10-20T07:00:00+00:00',
-                artwork: song.image_url,
-              };
-            });
-            
-            TrackPlayer.add(tracks)
-              .then(() => {
-                if (isPlaying) {
-                  TrackPlayer.play();
-                }
-              });
+        TrackPlayer.reset().then(() => {
+          let tracks = songs.map((song) => {
+            return {
+              id: song.music_id.toString(),
+              url: song.url,
+              title: song.title,
+              artist: song.artists,
+              album: song.album || '',
+              genre: song.genre || '',
+              date: '2020-10-20T07:00:00+00:00',
+              artwork: song.image_url,
+            };
           });
+
+          TrackPlayer.add(tracks).then(() => {
+            if (isPlaying) {
+              TrackPlayer.play();
+            }
+          });
+        });
       } catch (err) {
         console.log(err);
         TrackPlayer.pause();
@@ -156,9 +167,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     navigation.goBack();
   };
 
-  const handleLove = () => {
-
-  };
+  const handleLove = () => {};
 
   const renderLyric = () => {
     let song = songs[songIndex];
@@ -189,6 +198,28 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
           text={I18n.translate('player.not-found-lyric')}
         />
       );
+    }
+  };
+
+  const handleDownload = async (url: string, title: string, artists: string) => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Music Life',
+          message: I18n.translate('player.ask-for-permission'),
+          buttonNeutral: I18n.translate('player.ask-me-later'),
+          buttonNegative: I18n.translate('player.cancel'),
+          buttonPositive: I18n.translate('player.agree'),
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        await downloadFile(title, url, artists);
+      } else {
+        Alert.alert(I18n.translate('player.do-not-have-permission'));
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -268,7 +299,9 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               <View style={styles.buttonGroup2}>
                 {access_token ? <IconButton icon={Plus} onClick={() => {}}/> : null}
 
-                <IconButton icon={Download} onClick={() => {}}/>
+                <IconButton icon={Download} onClick={() =>
+                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists)
+                }/>
 
                 {access_token ? (
                   <IconButton

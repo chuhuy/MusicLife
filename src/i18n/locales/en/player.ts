@@ -6,4 +6,9 @@ export const player = {
     'not-found-comment': 'No comment has been posted',
     'not-found-lyric': "Lyric hasn't been updated",
     'nowPlaying': 'Now playing list',
+    'ask-for-permission': 'Music Life needs access to your Files',
+    'ask-me-later': 'Ask me later',
+    'cancel': 'Cancel',
+    'agree': 'Agree',
+    'do-not-have-permission': 'We do not have permission to download song',
 };

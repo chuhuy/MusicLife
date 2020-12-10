@@ -18,6 +18,8 @@ target 'MusicLife' do
 
   pod 'RNQuickAction', :path => '../node_modules/react-native-quick-actions'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
   target 'MusicLifeTests' do
     inherit! :complete
     # Pods for testing
