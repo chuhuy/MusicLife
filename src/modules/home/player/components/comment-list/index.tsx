@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import { Image, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Comment } from '../../../../../models/comment';
+import DefaultAvatar from '../../../setting/components/default-avatar';
 import { styles } from './styles';
 
 interface Props {
@@ -24,7 +25,15 @@ const CommentList: React.FC<Props> = (props: Props) => {
             renderItem={({item}) => {
                 return (
                     <View style={styles.commentWrapper}>
-                        <Image source={{uri: item.image_url}} style={styles.avatar} />
+                        {item.image_url === null ? (
+                            <>
+                                <DefaultAvatar size={45} type={item.default_avatar} />
+                            </>
+                            ) : (
+                            <>
+                                <Image source={{uri: item.image_url}} style={styles.avatar} />
+                            </>
+                        )}
 
                         <View style={styles.contentWrapper}>
                             <View style={styles.contentTop}>
@@ -44,7 +53,7 @@ const CommentList: React.FC<Props> = (props: Props) => {
                     </View>
                 );
             }}
-            keyExtractor={(item) => item.comment_id.toString()}
+            keyExtractor={(item, index) => index.toString()}
         />
     );
 };

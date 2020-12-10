@@ -92,7 +92,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                     </>)
                     : (<>
                         <Image
-                            source={props.image_url}
+                            source={{uri: props.image_url}}
                             style={styles.avatar}
                         />
                     </>)

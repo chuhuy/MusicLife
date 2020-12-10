@@ -140,7 +140,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
   };
 
   const handleSignInWithFacebook = async () => {
-    LoginManager.logInWithPermissions(['email']).then(
+    LoginManager.logInWithPermissions(['email', 'public_profile']).then(
       async function (result) {
         if (result.isCancelled) {
           renderToast({cancelLogin: 'Cancel login'});

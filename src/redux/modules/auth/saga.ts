@@ -101,9 +101,14 @@ function* signInFacebookWorker(action: any) {
 
     console.log(action);
     if (response.status) {
+      console.log(response);
       const payload = {
+        username: response.data.username,
         access_token: response.data.access_token,
         refresh_token: response.data.refresh_token,
+        display_name: response.data.display_name,
+        image_url: response.data.image_url,
+        default_avatar: response.data.default_avatar,
       };
 
       yield put(loginSuccess(payload));

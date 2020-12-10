@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   avatar: {
     width: 250,
     height: 250,
+    borderRadius: 125,
   },
   input: {
     color: styleVars.white,
