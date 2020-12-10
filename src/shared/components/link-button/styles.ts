@@ -3,15 +3,24 @@ import { styleVars } from '../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     container: {
+        width: '100%',
         backgroundColor: 'transparent',
-        margin: -10
     },
     title: {
         fontSize: styleVars.smallFontSize,
         fontWeight: '600',
-        letterSpacing: 2
+        letterSpacing: 2,
+        textAlign: 'center',
+    },
+    center: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     touchArea: {
-        padding: 10
+        padding: 10,
     },
+    border: {
+        borderRightColor: styleVars.greyColor,
+        borderRightWidth: 1,
+    }
 });

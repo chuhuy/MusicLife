@@ -88,12 +88,28 @@ export const fetchLatestSong = () => {
   const query = `
     query {
       songs: latestSongs(first: 10 offset: 0) {
-          music_id
-          title
-          url
-          image_url
-          artists
-          lyric
+        music_id
+        title
+        url
+        image_url
+        artists
+        lyric
+      }
+    }
+  `;
+
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
+
+export const fetchLatestAlbum = () => {
+  const query = `
+    query {
+      albums: latestAlbums(first: 10 offset: 0) {
+        album_id
+        title
+        release_date
+        image_url
+        artists
       }
     }
   `;
@@ -240,6 +256,30 @@ export const fetchComment = (music_id: number) => {
         default_avatar
       }
     }  
+  `;
+
+  return API.graphql(RESOURCE_URL + EXPLORE, query);
+};
+
+export const fetchArtistDetail = (artist_id: number) => {
+  const query = `
+    query {
+      artistSongs: songsByArtist(artist_id: ${artist_id}) {
+        music_id
+        title
+        url
+        image_url
+        artists
+        lyric
+      } 
+      artistAlbums: albumsByArtist(artist_id: ${artist_id}) {
+        album_id
+        title
+        release_date
+        image_url
+        artists
+      }
+    }
   `;
 
   return API.graphql(RESOURCE_URL + EXPLORE, query);

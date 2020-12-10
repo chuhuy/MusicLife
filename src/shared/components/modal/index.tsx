@@ -13,16 +13,16 @@ interface Props {
 
 const Modal: React.FunctionComponent<Props> = (props: Props) => {
     const { isVisible, title, children, avoidKeyBoard, onHide } = props;
-    
+
     return (
         <>
-            <DefaultModal 
+            <DefaultModal
                 useNativeDriver={true}
                 // style={styles.modalLayout}
                 avoidKeyboard={avoidKeyBoard}
                 onBackButtonPress={onHide}
                 onBackdropPress={onHide}
-                isVisible={isVisible} 
+                isVisible={isVisible}
                 backdropOpacity={0.5}
             >
                 <View style={[styles.modalContainer]}>
@@ -33,7 +33,7 @@ const Modal: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
             </DefaultModal>
         </>
-    )
-}
+    );
+};
 
 export default Modal;

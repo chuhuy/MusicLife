@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchArtistDetail } from '../../../api/explore';
 import { playlist } from '../../../data';
 import { album } from '../../../data/album';
-import { songs } from '../../../data/song';
 import { Artist } from '../../../models/artist';
+import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
 import { HeaderBack, SectionTitle } from '../../../shared/components';
 import { AlbumList } from '../../../shared/components/flatlist';
 import SongList from '../../../shared/components/flatlist/song-list';
@@ -21,6 +23,8 @@ interface Props extends DispatchProps, StateProps {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
+        enableLoading: () => dispatch(enableLoading()),
+        disableLoading: () => dispatch(disableLoading()),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -30,39 +34,56 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
     const {navigation, route} = props;
     const {artist} = route.params;
     const [currentArtist, setCurentArtist] = useState<Artist>(artist);
-    const [shortSongs, setShortSongs] = useState<Array<Song>>(undefined);
-    
+    const [shortSongs, setShortSongs] = useState<Array<Song>>([]);
+    const [songs, setSongs] = useState<Array<Song>>([]);
+    const [albums, setAlbums] = useState<Array<Playlist>>([]);
+
     useEffect(() => {
-        setShortSongs(songs.slice(0, 3));
+        enableLoading();
+
+        fetchArtistDetail(artist.artist_id)
+            .then(data => {
+                let {artistSongs, artistAlbums} = data;
+                setSongs(artistSongs);
+                setAlbums(artistAlbums);
+                setShortSongs(artistSongs.slice(0, 3));
+                disableLoading();
+            })
+            .catch(err => {
+                console.log(err);
+                disableLoading();
+            });
     }, []);
 
     useEffect(() => {
-        setCurentArtist(artist)
+        setCurentArtist(artist);
     }, [artist]);
 
     const handleSong = () => {
-        navigation.navigate(Screen.Common.Song, {songs})
-    }
+        navigation.navigate(Screen.Common.Song, {
+            artistSongs: songs,
+        });
+    };
 
     const handleAlbum = () => {
         navigation.navigate(Screen.Common.Playlist, {
-            playlist,
-            isAlbum: true
-        })
-    }
+            artistAlbums: albums,
+            isAlbum: true,
+        });
+    };
 
     const renderArtistInfo = () => {
         return (
             <>
                 <View style={styles.avatarView}>
-                    <Image 
-                        source={{uri:(currentArtist.image_url)}} 
+                    <Image
+                        source={{uri:(currentArtist.image_url)}}
                         style={styles.avatar}
                     />
                 </View>
 
                 <View style={styles.group}>
-                    <SectionTitle 
+                    <SectionTitle
                         title={I18n.translate('singer.info')}
                         onClick={() => {}}
                     />
@@ -71,27 +92,28 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                     </Text>
                 </View>
             </>
-        )
-    }
+        );
+    };
 
     const renderSongList = () => {
         return (
             shortSongs && <SongList songs={shortSongs} disableScroll={true}/>
-        )
+        );
     };
 
     return (
         <>
             <ImageBackground style={styles.imageBackground} source={{uri: artist.image_url}} >
                 <View style={styles.layer} />
+
                 <View style={styles.container}>
                     <HeaderBack/>
 
-                    <ScrollView nestedScrollEnabled={true} >
+                    <ScrollView style={styles.body} nestedScrollEnabled={true}>
                         {renderArtistInfo()}
 
                         <View style={styles.group}>
-                            <SectionTitle 
+                            <SectionTitle
                                 title={I18n.translate('singer.songs')}
                                 onClick={handleSong}
                             />
@@ -104,51 +126,13 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                         </View>
                     </ScrollView>
                 </View>
-                
+
                 <Controller />
             </ImageBackground>
         </>
     );
 };
+
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
-type StateProps = ReturnType<typeof mapStateToProps>
+type StateProps = ReturnType<typeof mapStateToProps>;
 export default connect(mapStateToProps, mapDispatchToProps)(Singer);
-const songDummyData = [
-    {
-        id: 1,
-        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        name: 'Song1',
-    },
-    {
-        id: 2,
-        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        name: 'Song2',
-    },
-    {
-        id: 3,
-        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        name: 'Song3',
-    },
-    {
-        id: 4,
-        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        name: 'Song4',
-    },
-];
-const chartDummyData = [
-    {
-        id: 1,
-        image: 'https://avatar-nct.nixcdn.com/topic/share/2017/12/06/9/4/b/b/1512556174027.jpg',
-        title: 'Album 1',
-    },
-    {
-        id: 2,
-        image: 'https://i1.sndcdn.com/avatars-000296280782-1a82nz-t500x500.jpg',
-        title: 'Album 2',
-    },
-    {
-        id: 3,
-        image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
-        title: 'Album 3',
-    },
-];

@@ -324,19 +324,24 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
               </View>
 
               <View style={styles.linkButtonGroup}>
-                <LinkButton
-                  title={I18n.translate('authentication.login.signup')}
-                  color={styleVars.white}
-                  onClick={() => {
-                    handleReset();
-                    handleChangeScreen('Register');
-                  }}
-                />
-                <LinkButton
-                  title={I18n.translate('authentication.login.forgot-password')}
-                  color={styleVars.white}
-                  onClick={handleForgotPassword}
-                />
+                <View>
+                  <LinkButton
+                    title={I18n.translate('authentication.login.signup')}
+                    color={styleVars.white}
+                    onClick={() => {
+                      handleReset();
+                      handleChangeScreen('Register');
+                    }}
+                  />
+                </View>
+
+                <View>
+                  <LinkButton
+                    title={I18n.translate('authentication.login.forgot-password')}
+                    color={styleVars.white}
+                    onClick={handleForgotPassword}
+                  />
+                </View>
               </View>
             </React.Fragment>
           )}

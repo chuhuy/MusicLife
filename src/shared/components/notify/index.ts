@@ -10,15 +10,15 @@ const mergeOptions = (options?: ToastOptions) =>
             containerStyle:{
                 width: width - 40,
             },
-            backgroundColor: styleVars.bgToastColor,
+            backgroundColor: styleVars.lightPrimaryColor,
             hideOnPress: true,
             opacity: 1,
             shadow: false,
             position: DefaultToast.positions.CENTER,
             visible: true,
             textStyle: {
-                fontSize: styleVars.baseFontSize
-            }
+                fontSize: styleVars.baseFontSize,
+            },
 		},
 		options
 	);
@@ -38,5 +38,5 @@ export const notifyError = (
     options?: ToastOptions | undefined
 ) => DefaultToast.show(message, mergeOptions({
     ...options,
-    textColor: styleVars.redColor,
+    textColor: styleVars.secondaryColor,
 }));

@@ -1,21 +1,27 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TextInput } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Modal from 'react-native-modal';
+import * as Yup from 'yup';
+import { createPlaylist } from '../../../../api/personal';
+import { LinkButton } from '../../../../shared/components';
 import I18n from './../../../../i18n';
 import { styleVars } from './../../../../shared/constance/style-variables';
-import * as Yup from 'yup';
-import { LinkButton } from '../../../../shared/components';
-
-const { width } = Dimensions.get('window');
 
 interface Props {
+    access_token: string,
     isShow: boolean,
-    onHide: () => void
+    onHide: () => void,
+    getResult: (isError: boolean) => void,
 }
 
 const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
-    const {isShow, onHide} = props;
+    const {
+        isShow,
+        onHide,
+        access_token,
+        getResult,
+    } = props;
 
     const initialFormValue = {
         name: '',
@@ -29,14 +35,21 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleAddPlaylist = (values: any) => {
         validationSchema.validate(values, {abortEarly: false})
-        .then(() => {
-            // Save playlist
-            console.log(values);
-            props.onHide();
-        })
-        .catch((errors) => {
-            console.log(errors);
-        });
+            .then(() => {
+                // Save playlist
+                createPlaylist(access_token, values.name)
+                    .then(() => {
+                        getResult(true);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        getResult(false);
+                    })
+                onHide();
+            })
+            .catch((errors) => {
+                console.log(errors);
+            });
     };
 
     return (
@@ -49,7 +62,7 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
             isVisible={isShow}>
             <View style={styles.addPlaylistModal}>
                 <Text style={styles.modalTitle}>{I18n.translate('personal.add-playlist')}</Text>
-                
+
                 <Formik
                     initialValues={initialFormValue}
                     onSubmit={(values) => {console.log(values.name)}}>
@@ -60,7 +73,7 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
                             placeholderTextColor={styleVars.greyColor}
                             placeholder={I18n.translate('personal.add-playlist-placeholder')}
                             value={values.name}
-                            onChangeText={handleChange('name')} 
+                            onChangeText={handleChange('name')}
                         />
 
                         <View style={styles.buttonGroup}>
@@ -68,15 +81,17 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
                                 <LinkButton
                                     color={styleVars.greyColor}
                                     title={I18n.translate('personal.cancel')}
-                                    onClick={props.onHide} 
+                                    onClick={onHide}
+                                    border
                                 />
                             </View>
-                                 
+
                             <View style={styles.touchArea}>
                                 <LinkButton
                                     color={styleVars.secondaryColor}
                                     title={I18n.translate('personal.save')}
                                     onClick={() => handleAddPlaylist(values)}
+                                    position={true}
                                 />
                             </View>
                         </View>
@@ -101,7 +116,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         color: styleVars.white,
         fontWeight: '600',
-        fontSize: styleVars.bigFontSize,
+        fontSize: styleVars.baseFontSize,
     },
     textInput: {
         color: styleVars.white,
@@ -113,11 +128,9 @@ const styles = StyleSheet.create({
     },
     buttonGroup: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        marginTop: 15,
-        marginRight: -10
+        paddingTop: 20,
     },
     touchArea: {
-        paddingHorizontal: 5
-    }
+        flex: 1,
+    },
 });

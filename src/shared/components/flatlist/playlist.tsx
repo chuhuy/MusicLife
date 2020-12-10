@@ -70,7 +70,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             />
         );
     };
-    
+
     return (
         <>
             {disableScroll ?

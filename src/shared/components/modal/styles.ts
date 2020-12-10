@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { styleVars } from "../../constance/style-variables";
+import { StyleSheet } from 'react-native';
+import { styleVars } from '../../constance/style-variables';
 
 export const styles = StyleSheet.create({
     modalContainer: {
@@ -10,14 +10,13 @@ export const styles = StyleSheet.create({
     },
     modalLayout: {
         // alignSelf: 'center',
-        
     },
     modalHeader: {
         marginBottom: 15,
     },
     modalTitle: {
         color: styleVars.white,
-        fontSize: styleVars.bigFontSize,
+        fontSize: styleVars.baseFontSize,
         fontWeight: '600',
     }
 })

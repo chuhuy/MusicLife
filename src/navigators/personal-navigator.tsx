@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { connect } from 'react-redux';
 import NotificationScreen from '../modules/home/notification';
-import { Personal } from '../modules/home/personal';
+import Personal from '../modules/home/personal';
 import Search from '../modules/home/search';
 import Singer from '../modules/home/singer';
 import { Screen } from '../shared/constance/screen';

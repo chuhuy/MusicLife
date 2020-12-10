@@ -120,9 +120,12 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     </View>
                                 ) : null}
 
-                                <View style={styles.button}>
-                                    <IconButton icon={Heart} onClick={handleHeartClick} />
-                                </View>
+                                {isAlbum && (
+                                    <View style={styles.button}>
+                                        <IconButton icon={Heart} onClick={handleHeartClick} />
+                                    </View>
+                                )}
+
                                 <View style={styles.button}>
                                     <IconButton icon={Option} onClick={handleOptionClick} />
                                 </View>

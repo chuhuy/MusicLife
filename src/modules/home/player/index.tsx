@@ -105,7 +105,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     if (scrollViewRef.current) {
       toggleTab(Tab.playing);
     }
-  }, [scrollViewRef]);
+  }, [scrollViewRef.current]);
 
   const toggleTab = (index: number) => {
     if (index !== activeTab) {

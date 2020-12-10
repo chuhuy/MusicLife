@@ -21,7 +21,7 @@ interface Props {
 
 export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
     const {artist, song, album, chooseType} = props;
-
+    console.log(song)
     return (
         <>
             {artist.length || song.length || album.length ? (
@@ -34,7 +34,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                             />
 
                             <ArtistList artist={artist}/>
-                            
+
                             <View style={styles.buttonContainer}>
                                 <MoreButton onClick={() => chooseType(TYPE.ARTIST)} />
                             </View>
@@ -63,7 +63,7 @@ export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
                                 title={I18n.translate('search.albums')}
                                 onClick={() => chooseType(TYPE.ALBUM)}
                             />
-                            
+
                             <PlaylistList
                                 playlist={album}
                                 disableScroll={true}

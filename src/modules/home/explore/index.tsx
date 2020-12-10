@@ -8,6 +8,7 @@ import { chartDummyData } from '../../../data/chart';
 import { Genre } from '../../../models/genre';
 import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
+import { search } from '../../../redux/modules/search/actions';
 import { BaseScreen, SectionTitle } from '../../../shared/components';
 import { PlaylistList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
@@ -28,10 +29,12 @@ const mapDispatchToProps = (dispatch: any) => {
     skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
     enableLoading: () => dispatch(enableLoading()),
     disableLoading: () => dispatch(disableLoading()),
+    deleteKeyWord: () => dispatch(search('')),
   };
 };
 const mapStateToProps = (state: any) => ({
   refresh_token: state.auth.refresh_token,
+  keyword: state.search.keyword,
 });
 
 const Explore: React.FunctionComponent<Props> = (props: Props) => {
@@ -39,6 +42,8 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
   const {
     enableLoading,
     disableLoading,
+    keyword,
+    deleteKeyWord,
   } = props;
 
   const [isTop100, setIsTop100] = useState<boolean>(false);
@@ -49,6 +54,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
   useEffect(() => {
     enableLoading();
+
     fetchExplore()
       .then((data) => {
         let top100List = data.top100.map((playlist) => {
@@ -65,14 +71,17 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
         fetchGenres(4, 0)
           .then((res) => {
             setGenreList(res.genres);
+            disableLoading();
           })
           .catch((err) => {
             console.log(err);
+            disableLoading();
           });
-
-        disableLoading();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        disableLoading();
+      });
   }, []);
 
   const handlePlayMusic = (song: Song) => {
@@ -92,9 +101,8 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
   const handleLatestAlbum = () => {
     navigation.navigate(Screen.Common.Playlist, {
-      isAlbum: true,
       isLatest: true,
-      playlist: album,
+      isAlbum: true,
     });
   };
 

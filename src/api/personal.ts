@@ -12,3 +12,55 @@ export const commentSong = async (
   }`;
   return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
 };
+
+export const fetchPersonalDetail = async (access_token: string) => {
+  const query = `
+    query {
+      personalPlaylist: getPlaylist {
+        album_id: playlist_id
+        title: name
+        image_url
+      }
+      personalSong: getFavoriteSong {
+        music_id
+        title
+        url
+        image_url
+        artists
+        lyric
+      }
+      personalAlbum: getFavoriteAlbum {
+        album_id
+        title
+        artists
+        image_url
+      }
+    }
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};
+
+export const fetchPersonalPlaylist = (access_token: string) => {
+  const query = `
+    query {
+      personalPlaylist: getPlaylist {
+        album_id: playlist_id
+        title: name
+        image_url
+      }
+    }
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+} ;
+
+export const createPlaylist = (access_token: string, playlist_name: string) => {
+  const query = `
+    mutation {
+      createPlaylist(playlist_name: "${playlist_name}")
+    }
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};
