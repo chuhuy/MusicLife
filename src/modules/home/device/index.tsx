@@ -12,7 +12,6 @@ import { BaseScreen } from '../../../shared/components';
 import HeaderMainPage from '../../../shared/components/header-main-page';
 import { Screen } from '../../../shared/constance/screen';
 import { playSong } from '../../../shared/helper/player';
-import { album, genre } from './../../../data';
 import { pauseMusic, playMusic, skipMusic } from './../../../redux/modules/player/actions';
 
 interface Props extends DispatchProps, StateProps { }
@@ -61,25 +60,6 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
             TrackPlayer.pause().then(() => pauseMusic());
         }
     };
-
-    const handleLastestSong = () => {
-        navigation.navigate(Screen.Common.Song, {
-            songs: latestSong,
-            isLatest: true
-        })
-    };
-
-    const handleLatestAlbum = () => {
-        navigation.navigate(Screen.Common.Playlist, {
-            isAlbum: true,
-            isLatest: true,
-            playlist: album
-        })
-    };
-
-    const handleGenreList = () => {
-        // navigation.navigate(Screen.Device.GenreList, { genre })
-    }
 
     return (
         <>

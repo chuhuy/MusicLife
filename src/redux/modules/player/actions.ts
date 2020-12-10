@@ -1,9 +1,8 @@
-import { Song } from "../../../models/song";
+import { Song } from '../../../models/song';
 
 export const PLAY = 'PLAY';
 export const PAUSE = 'PAUSE';
 export const SKIP = 'SKIP';
-export const CONTINUE = 'CONTINUE';
 export const ADD_SONG = 'ADD_SONG';
 export const REMOVE_SONG = 'REMOVE_SONG';
 export const REPEAT = 'REPEAT';
@@ -11,76 +10,83 @@ export const SHUFFLE = 'SHUFFLE';
 export const COUNTER = 'COUNTER';
 export const RESTART = 'RESTART';
 export const STOP = 'STOP';
+export const TOGGLE_PLAY = 'TOGGLE_PLAY';
+export const PLAY_CHOSEN_SONG = 'PLAY_CHOSEN_SONG';
 
 export const playMusic = (songs: Array<Song>) => {
     return {
         type: PLAY,
-        payload: songs
+        payload: songs,
     };
 };
 
 export const pauseMusic = () => {
     return {
-        type: PAUSE
+        type: PAUSE,
     };
 };
 
 export const skipMusic = (isNext: boolean) => {
     return {
         type: SKIP,
-        payload: {
-            isNext,
-        }
+        payload: isNext,
     };
 };
-
-export const continueMusic = () => {
-    return {
-        type: CONTINUE
-    }
-}
 
 export const addSong = (songs: Array<Song>) => {
     return {
         type: ADD_SONG,
-        payload: songs
-    }
-}
+        payload: songs,
+    };
+};
 
 export const removeSong = (song: Song) => {
     return {
         type: REMOVE_SONG,
-        payload: song
-    }
-}
+        payload: song,
+    };
+};
 
 export const repeat = () => {
     return {
-        type: REPEAT
-    }
-}
+        type: REPEAT,
+    };
+};
 
 export const shuffle = () => {
     return {
-        type: SHUFFLE
-    }
-}
+        type: SHUFFLE,
+    };
+};
 
 export const counter = (music_id: number) => {
     return {
         type: COUNTER,
-        payload: music_id
-    }
-}
+        payload: music_id,
+    };
+};
 
 export const restart = () => {
     return {
-        type: RESTART
-    }
-}
+        type: RESTART,
+    };
+};
 
-export const stop = () => {
+export const stopMusic = () => {
     return {
-        type: STOP
-    }
-}
+        type: STOP,
+    };
+};
+
+export const togglePlayMusic = () => {
+    return {
+        type: TOGGLE_PLAY,
+    };
+};
+
+export const playChosenSong = (index: number) => {
+    return {
+        type: PLAY_CHOSEN_SONG,
+        payload: index,
+    };
+};

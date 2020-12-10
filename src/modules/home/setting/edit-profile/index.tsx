@@ -61,7 +61,7 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
           defaultValue={name}
           onChangeText={(text) => setName(text)}
         />
-        <Pressable onPressOut={handleSaveName}>
+        <Pressable onPress={handleSaveName}>
           <View style={styles.btn}>
             <Text style={styles.btn__title}>
               {I18n.translate('setting.save')}

@@ -9,6 +9,8 @@ import {
   SHUFFLE,
   RESTART,
   STOP,
+  TOGGLE_PLAY,
+  PLAY_CHOSEN_SONG,
 } from './actions';
 import {Action} from './../../../models/redux/Action';
 
@@ -30,6 +32,11 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         songIndex: 0,
         songs: action.payload,
       };
+    case TOGGLE_PLAY:
+    return {
+      ...state,
+      isPlaying: !state.isPlaying,
+    };
     case PAUSE:
       return {
         ...state,
@@ -37,10 +44,9 @@ export const playerReducer = (state: any = initialState, action: Action) => {
       };
     case SKIP:
       let {songIndex} = state;
-      let {isNext} = action.payload;
       let newIndex;
 
-      if (isNext) {
+      if (action.payload) {
         newIndex = songIndex === songs.length - 1 ? 0 : songIndex + 1;
       } else {
         newIndex = songIndex <= 0 ? songs.length - 1 : 0;
@@ -139,6 +145,20 @@ export const playerReducer = (state: any = initialState, action: Action) => {
         songIndex: null,
         isPlaying: false,
       };
+    case PLAY_CHOSEN_SONG:
+      let newState = {
+        ...state,
+        songIndex: action.payload,
+      };
+      
+      if (!state.isPlaying) {
+        return {
+          ...newState,
+          isPlaying: true,
+        };
+      }
+
+      return {...newState};
     default:
       return state;
   }

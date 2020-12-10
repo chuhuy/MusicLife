@@ -2,15 +2,17 @@ import {Action} from './../../../models/redux/Action';
 import { SEARCH } from './actions';
 
 const initState = {
-    keyword: ''
+    keyword: '',
 };
 
 export const searchReducer = (state: any = initState, action: Action) => {
     switch (action.type) {
-        case SEARCH: 
+        case SEARCH:
+            console.log(action.payload);
+
             return {
-                keyword: action.payload
-            }
+                keyword: action.payload,
+            };
         default:
             return state;
     }

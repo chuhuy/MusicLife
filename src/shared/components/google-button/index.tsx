@@ -12,7 +12,7 @@ export const GoogleButton: FunctionComponent<Props> = (props: Props) => {
         <>
             <Pressable
                 style={styles.container}
-                onPressOut={props.onClick}
+                onPress={props.onClick}
             >
                 <GoogleIcon width={50} height={50} />
             </Pressable>

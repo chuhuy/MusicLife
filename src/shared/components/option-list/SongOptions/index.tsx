@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import TrashIcon from '../../../../assets/icons/delete.svg';
 import { Song } from '../../../../models/song';
 import { removeSong } from '../../../../redux/modules/player/actions';
-import { addSongs, getNotExistSongs, removeSongs } from '../../../helper/player';
+import { addSongs, removeSongs } from '../../../helper/player';
 import DownloadSvg from './../../../../assets/icons/download.svg';
 import HeartSvg from './../../../../assets/icons/heart.svg';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
@@ -66,7 +66,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
             <Fragment>
                 <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleNowPlayingPlaylist}>
+                    onPress={handleNowPlayingPlaylist}>
                     <View style={styles.svg}>
                         {isAddPlaying ? (
                             <TrashIcon width={25} height={25} />
@@ -81,7 +81,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
 
                 <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleAddToFavorite}>
+                    onPress={handleAddToFavorite}>
                     <View style={styles.svg}>
                         <HeartSvg width={25} height={25} />
                     </View>
@@ -92,7 +92,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
 
                 <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleAddToPlaylist}>
+                    onPress={handleAddToPlaylist}>
                     <View style={styles.svg}>
                         <PlusSvg width={25} height={25}/>
                     </View>
@@ -103,7 +103,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
 
                 <Pressable
                     style={styles.optionItem}
-                    onPressOut={handleDownload}>
+                    onPress={handleDownload}>
                     <View style={styles.svg}>
                         <DownloadSvg width={25} height={25}/>
                     </View>

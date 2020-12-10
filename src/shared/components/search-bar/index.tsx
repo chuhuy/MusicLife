@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-import { TextInput, View } from 'react-native';
-import { styles } from './styles';
-import I18n from './../../../i18n';
-import { styleVars } from './../../constance/style-variables';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Screen } from '../../constance/screen';
-import { search } from '../../../redux/modules/search/actions';
+import React, { useEffect, useState } from 'react';
+import { TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
 import CloseSearch from '../../../assets/icons/close-search.svg';
-import { Value } from 'react-native-reanimated';
+import { search } from '../../../redux/modules/search/actions';
+import { Screen } from '../../constance/screen';
 import { IconButton } from '../icon-button';
+import I18n from './../../../i18n';
+import { styleVars } from './../../constance/style-variables';
+import { styles } from './styles';
 
 interface Props extends StateProps, DispatchProps {
     size?: string
@@ -18,7 +17,7 @@ interface Props extends StateProps, DispatchProps {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        search: (keyword: string) => dispatch(search(keyword))
+        searchWord: (keyword: string) => dispatch(search(keyword)),
     };
 };
 const mapStateToProps = (state: any) => ({
@@ -27,34 +26,39 @@ const mapStateToProps = (state: any) => ({
 
 const SearchBar: React.FunctionComponent<Props> = (props: Props) => {
     const navigation = useNavigation();
-    const {size, keyword, search} = props;
+    const {
+        size,
+        keyword,
+        searchWord,
+    } = props;
     const route = useRoute();
 
     const [currentKeyword, setCurrentKeyword] = useState<string>(keyword);
-    
+
+    useEffect(() => {
+        setCurrentKeyword(keyword);
+    }, [keyword]);
+
     const handleSearch = () => {
-        search(currentKeyword);
+        if (currentKeyword !== '') {
+            searchWord(currentKeyword);
 
-        if (route.name !== Screen.Common.Search && currentKeyword){
-            navigation.navigate(Screen.Common.Search)
+            if (route.name !== Screen.Common.Search) {
+                navigation.navigate(Screen.Common.Search);
+            }
         }
-    }
+    };
 
-    const handleCloseSearch = () => {
-        if (keyword !== '') {
-            search('');
+    const deleteKeyWord = () => {
+        if (currentKeyword !== '') {
+            setCurrentKeyword('');
         }
-        setCurrentKeyword('');
-
-        if (route.name === Screen.Common.Search) {
-            navigation.goBack();
-        }
-    }
+    };
 
     const handleChange = (value) => {
         setCurrentKeyword(value);
-    }
-    
+    };
+
     return (
         <>
             <View style={[styles.container, size && styles.bigContainer]}>
@@ -69,11 +73,10 @@ const SearchBar: React.FunctionComponent<Props> = (props: Props) => {
                 />
                 {currentKeyword.length ? (
                     <View style={{paddingRight: 5}}>
-                        <IconButton icon={CloseSearch} onClick={handleCloseSearch}/>
+                        <IconButton icon={CloseSearch} onClick={deleteKeyWord}/>
                     </View>
                 ) : null}
             </View>
-            
         </>
     );
 };

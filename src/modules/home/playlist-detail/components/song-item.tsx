@@ -20,7 +20,7 @@ export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.container}>
                 <Pressable
                     style={styles.touchAreaOne}
-                    onPressOut={() => props.onClick()}>
+                    onPress={() => props.onClick()}>
                     <View style={styles.metadata}>
                         <Image source={{uri: props.image}} style={styles.image}/>
                         <View style={styles.titleGroup}>

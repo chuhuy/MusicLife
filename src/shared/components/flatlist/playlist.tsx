@@ -24,11 +24,11 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         playlist,
         children,
         numsColumn,
-        disableScroll = false, 
-        isHorizontal = false, 
+        disableScroll = false,
+        isHorizontal = false,
         isAlbum = false,
         isChart = false,
-        isTop100 = false
+        isTop100 = false,
     } = props;
 
     const navigation = useNavigation();
@@ -36,10 +36,10 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
     const [itemModal, setItemModal] = React.useState<any>(null);
     const handlePlaylist = (album) => {
         navigation.navigate(Screen.Common.PlaylistDetail, {
-            playlist: album, 
-            isAlbum, 
+            playlist: album,
+            isAlbum,
             isChart,
-            isTop100
+            isTop100,
         });
     };
 
@@ -73,8 +73,8 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
     
     return (
         <>
-            {disableScroll ? 
-                <View style={styles.flatlist}> 
+            {disableScroll ?
+                <View style={styles.flatlist}>
                     {playlist.map(item => renderItem(item))}
                     <View style={styles.flatListFooter}>
                         {children}
@@ -82,7 +82,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
             : (
                 <>
-                    <FlatList 
+                    <FlatList
                         contentContainerStyle={[styles.flatlist, ( numsColumn || isHorizontal ) && styles.horizontalList]}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
@@ -110,7 +110,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                 isVisible={isVisible}
                 item={itemModal}
                 onHide={() => setIsVisible(false)}>
-                <AlbumPlaylistOptions />
+                <AlbumPlaylistOptions closeModal={() => setIsVisible(false)}/>
             </ModalBottom>
         </>
     );

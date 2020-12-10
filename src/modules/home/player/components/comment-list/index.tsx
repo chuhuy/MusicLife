@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Image, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Comment } from '../../../../../models/comment';
@@ -10,9 +10,16 @@ interface Props {
 
 const CommentList: React.FC<Props> = (props: Props) => {
     const {comments} = props;
+    const commentList = useRef();
+
+    useEffect(() => {
+        // commentList.current.scrollToEnd();
+    }, []);
 
     return (
         <FlatList
+            inverted
+            ref={commentList}
             data={comments}
             renderItem={({item}) => {
                 return (
@@ -37,7 +44,7 @@ const CommentList: React.FC<Props> = (props: Props) => {
                     </View>
                 );
             }}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item) => item.comment_id.toString()}
         />
     );
 };
