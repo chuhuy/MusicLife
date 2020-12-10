@@ -1,41 +1,33 @@
 import TrackPlayer from 'react-native-track-player';
-import {postSongCounter} from '../../api/explore';
-import {
-  continueMusic,
-  pauseMusic,
-  restart,
-  skipMusic,
-} from '../../redux/modules/player/actions';
-import {store} from '../../redux/store';
+import { postSongCounter } from '../../api/explore';
+import { stopMusic, restart, skipMusic, togglePlayMusic } from '../../redux/modules/player/actions';
+import { store } from '../../redux/store';
+import { handleNext, handlePrevious, togglePlay } from '../../shared/helper/player';
 
 const trackService = async () => {
   TrackPlayer.addEventListener('remote-previous', () => {
-    TrackPlayer.skipToPrevious().then(() => {
-      store.dispatch(skipMusic(false));
-    });
+    handlePrevious();
+    console.log('remote previous');
   });
 
   TrackPlayer.addEventListener('remote-play', () => {
-    TrackPlayer.play().then(() => {
-      store.dispatch(continueMusic());
-    });
+    togglePlay();
+    console.log('remote play');
   });
 
   TrackPlayer.addEventListener('remote-pause', () => {
-    TrackPlayer.pause().then(() => {
-      store.dispatch(pauseMusic());
-    });
+    togglePlay();
+    console.log('remote pause');
   });
 
   TrackPlayer.addEventListener('remote-stop', () => {
     TrackPlayer.destroy();
-    store.dispatch(continueMusic());
+    store.dispatch(stopMusic());
+    console.log('remote stop');
   });
 
   TrackPlayer.addEventListener('remote-next', () => {
-    TrackPlayer.skipToNext().then(() => {
-      store.dispatch(skipMusic(true));
-    });
+    handleNext();
   });
 
   TrackPlayer.addEventListener('playback-queue-ended', async (data) => {
@@ -55,18 +47,19 @@ const trackService = async () => {
 
         TrackPlayer.reset()
           .then(() => {
-            TrackPlayer.add(currentTracks).then(() => {
-              store.dispatch(restart());
-              TrackPlayer.play();
-            });
+            TrackPlayer.add(currentTracks)
+              .then(() => {
+                store.dispatch(restart());
+                TrackPlayer.play();
+              });
           })
           .catch((err) => {
             console.log(err);
             TrackPlayer.stop();
-            store.dispatch(pauseMusic());
+            store.dispatch(togglePlayMusic());
           });
       } else {
-        store.dispatch(pauseMusic());
+        store.dispatch(togglePlayMusic());
       }
     }
   });
@@ -83,13 +76,10 @@ const trackService = async () => {
 
         let tracks = await TrackPlayer.getQueue();
         let songId = songs[songIndex].music_id.toString();
-        console.log(songId);
-        // console.log(songs[songIndex].music_id);
-        // console.log(tracks[songIndex].id)
+
         if (songId !== tracks[songIndex].id
         || songId === track) {
           const duration = Math.floor(await TrackPlayer.getDuration());
-          console.log(duration);
   
           if (Math.floor(position) >= duration * 0.9) {
             postSongCounter(parseInt(track))
@@ -100,24 +90,6 @@ const trackService = async () => {
                 });
           }
         }
-        
-
-        
-        // if (Math.floor(duration) === Math.floor(position)) {
-        //   TrackPlayer.pause();
-        //   console.log('next');
-        //   postSongCounter(parseInt(track))
-        //     .then(() => {
-        //       console.log('post counter');
-        //       store.dispatch(skipMusic(true));
-        //       TrackPlayer.play();
-        //     })
-        //     .catch(() => {
-        //       console.log('post failed');
-        //     });
-        // } else {
-        //   console.log('play');
-        // }
       }
     }
   });

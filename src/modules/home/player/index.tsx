@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useNavigation} from '@react-navigation/native';
@@ -76,14 +77,17 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   const scrollViewRef = useRef(null);
 
   let spinAnim = useRef(new Animated.Value(0));
-  let diskAnimation = Animated.loop(
-    Animated.timing(spinAnim.current, {
-      toValue: 1,
-      duration: 25000,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }),
-  );
+  let diskAnimation = useRef(Animated.loop(
+    Animated.timing(
+      spinAnim.current,
+      {
+        toValue: 1,
+        duration: 25000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }
+    )
+  ));
   // Second interpolate beginning and end values (in this case 0 and 1)
   let spin = spinAnim.current.interpolate({
     inputRange: [0, 1],
@@ -92,29 +96,22 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   useEffect(() => {
     if (isPlaying) {
-      diskAnimation.start();
+      diskAnimation.current.start();
     } else {
-      diskAnimation.stop();
+      diskAnimation.current.stop();
     }
   }, [isPlaying]);
 
   useEffect(() => {
-    toggleTab(Tab.playing);
-  }, []);
-
-  useEffect(() => {
-    if (isPlaying) {
-      // setSpinValue(new Animated.Value(0));
+    if (scrollViewRef.current) {
+      toggleTab(Tab.playing);
     }
-
-    // Fetch isLoved
-    // if (songs[songIndex].is)
-  }, [songIndex]);
+  }, [scrollViewRef]);
 
   const toggleTab = (index: number) => {
     if (index !== activeTab) {
       setActiveTab(index);
-
+      console.log(Dimensions.get('window').width * (index));
       scrollViewRef.current.scrollTo({
         x: Dimensions.get('window').width * index,
         y: 0,
@@ -174,14 +171,16 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   const handleLove = () => {};
 
   const renderLyric = () => {
-    let {lyric} = songs[songIndex];
+    let song = songs[songIndex];
 
-    if (lyric) {
-      let lyricRows = songs[songIndex].lyric.split('{"\\n"}');
-      let rows = lyricRows.map((lyric, index) => {
+    if (song && song.lyric) {
+      let lyricRows = song.lyric.split('{\"\\n\"}');
+      let rows = lyricRows.map((text, index) => {
         return (
-          <Text key={index} style={styles.lyricRow}>
-            {lyric}
+          <Text
+            key={index}
+            style={styles.lyricRow}>
+            {text}
           </Text>
         );
       });
@@ -227,132 +226,97 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <ImageBackground
-        style={styles.imageBackground}
-        blurRadius={3}
-        source={{uri: songs[songIndex].image_url}}>
-        <View style={styles.layer} />
+      <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: songs[songIndex]?.image_url}}>
+          <View style={styles.layer}/>
 
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <IconButton icon={ArrowDown} onClick={handleBack} />
-            <Text style={styles.headerTitle} numberOfLines={1}>
-              {activeTab === Tab.playlist
-                ? I18n.translate('player.nowPlaying')
-                : songs[songIndex].title}
-            </Text>
-          </View>
-
-          <View style={styles.dotGroup}>
-            <Pressable
-              style={{padding: 5}}
-              onPress={() => toggleTab(Tab.playlist)}>
-              <View
-                style={[
-                  styles.dot,
-                  activeTab === Tab.playlist
-                    ? styles.dotActive
-                    : styles.dotDefault,
-                ]}
-              />
-            </Pressable>
-
-            <Pressable
-              style={{padding: 5}}
-              onPress={() => toggleTab(Tab.playing)}>
-              <View
-                style={[
-                  styles.dot,
-                  activeTab === Tab.playing
-                    ? styles.dotActive
-                    : styles.dotDefault,
-                ]}
-              />
-            </Pressable>
-
-            <Pressable
-              style={{padding: 5}}
-              onPress={() => toggleTab(Tab.lyric)}>
-              <View
-                style={[
-                  styles.dot,
-                  activeTab === Tab.lyric
-                    ? styles.dotActive
-                    : styles.dotDefault,
-                ]}
-              />
-            </Pressable>
-          </View>
-
-          <ScrollView
-            ref={scrollViewRef}
-            horizontal={true}
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            onMomentumScrollEnd={handleScrollTab}>
-            <View style={styles.tab}>
-              <NowPlaying />
+          <View style={styles.container}>
+            <View style={styles.header}>
+              <IconButton icon={ArrowDown} onClick={handleBack}/>
+              <Text
+                style={styles.headerTitle}
+                numberOfLines={1}>
+                {activeTab === Tab.playlist ? I18n.translate('player.nowPlaying') : songs[songIndex]?.title}
+              </Text>
             </View>
 
-            <View style={styles.tab}>
-              <View style={styles.body}>
-                <Animated.Image
-                  source={{uri: songs[songIndex].image_url}}
-                  style={[styles.disk, {transform: [{rotate: spin}]}]}
-                />
-                <Text style={styles.song}>{songs[songIndex].title}</Text>
-                <Text style={styles.artist}>{songs[songIndex].artists}</Text>
+            <View style={styles.dotGroup}>
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.playlist)}
+              >
+                <View style={[styles.dot, activeTab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.playing)}
+              >
+                <View style={[styles.dot, activeTab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.lyric)}
+              >
+                <View style={[styles.dot, activeTab === Tab.lyric ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+            </View>
+
+            <ScrollView
+              ref={scrollViewRef}
+              horizontal={true}
+              pagingEnabled={true}
+              showsHorizontalScrollIndicator={false}
+              onMomentumScrollEnd={handleScrollTab}
+            >
+              <View style={styles.tab}>
+                <NowPlaying />
+              </View>
+
+              <View style={styles.tab}>
+                <View style={styles.body}>
+                  <Animated.Image source={{uri: songs[songIndex]?.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
+                  <Text style={styles.song}>{songs[songIndex]?.title}</Text>
+                  <Text style={styles.artist}>{songs[songIndex]?.artists}</Text>
+                </View>
+              </View>
+
+              <View style={styles.tab}>
+                {renderLyric()}
+              </View>
+            </ScrollView>
+
+            <SeekBar currentTime={route.params?.currentTime} />
+
+            <View style={styles.control}>
+              <View style={styles.buttonGroup}>
+                <PlaybackMode mode="shuffle" isActive={isShuffle} onClick={handleShuffle}/>
+                <PreviousNextButton type="previous" onClick={handlePrevious}/>
+                <PlayPauseButton isPlaying={isPlaying} onClick={togglePlay}/>
+                <PreviousNextButton type="next" onClick={handleNext}/>
+                <PlaybackMode mode="repeat" isActive={isRepeat} onClick={handleRepeat}/>
+              </View>
+
+              <View style={styles.buttonGroup2}>
+                {access_token ? <IconButton icon={Plus} onClick={() => {}}/> : null}
+
+                <IconButton icon={Download} onClick={() =>
+                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
+                }/>
+
+                {access_token ? (
+                  <IconButton
+                    icon={songs[songIndex]?.isLove ? HeartActive : Heart}
+                    onClick={handleLove}/>
+                ) : null}
+
+                <IconButton icon={List} onClick={() => toggleTab(Tab.playlist)}/>
               </View>
             </View>
 
-            <View style={styles.tab}>{renderLyric()}</View>
-          </ScrollView>
-
-          <SeekBar currentTime={route.params?.currentTime} />
-
-          <View style={styles.control}>
-            <View style={styles.buttonGroup}>
-              <PlaybackMode
-                mode="shuffle"
-                isActive={isShuffle}
-                onClick={handleShuffle}
-              />
-              <PreviousNextButton type="previous" onClick={handlePrevious} />
-              <PlayPauseButton isPlaying={isPlaying} onClick={togglePlay} />
-              <PreviousNextButton type="next" onClick={handleNext} />
-              <PlaybackMode
-                mode="repeat"
-                isActive={isRepeat}
-                onClick={handleRepeat}
-              />
-            </View>
-
-            <View style={styles.buttonGroup2}>
-              {access_token ? (
-                <IconButton icon={Plus} onClick={() => {}} />
-              ) : null}
-
-              <IconButton
-                icon={Download}
-                onClick={() =>
-                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
-                }
-              />
-
-              {access_token ? (
-                <IconButton
-                  icon={songs[songIndex].isLove ? HeartActive : Heart}
-                  onClick={handleLove}
-                />
-              ) : null}
-
-              <IconButton icon={List} onClick={() => toggleTab(Tab.playlist)} />
-            </View>
+            <CommentBox music_id={songs[songIndex]?.music_id}/>
           </View>
-
-          <CommentBox music_id={songs[songIndex].music_id} />
-        </View>
-      </ImageBackground>
+        </ImageBackground>
     </>
   );
 };

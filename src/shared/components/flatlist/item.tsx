@@ -5,12 +5,14 @@ import Option from '../../../assets/icons/option.svg';
 import {styleVars} from '../../constance/style-variables';
 
 interface Props {
-  onOptionClick: () => void;
+  onOptionClick?: () => void;
   onClick: () => void;
   image: string;
   name: string;
   artist?: string;
   isPlaylist?: boolean;
+  theme?: string;
+  hideOption?: boolean;
 }
 
 export const Item: React.FunctionComponent<Props> = (props: Props) => {
@@ -21,22 +23,40 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
     name,
     artist,
     isPlaylist = false,
+    theme,
+    hideOption = false,
   } = props;
 
   return (
     <>
-      <View style={styles.container}>
-        <Pressable style={styles.touchAreaOne} onPress={onClick}>
-          <View style={styles.metadata}>
-            <Image source={{uri: image}} style={styles.image} />
-            <View style={styles.titleGroup}>
-              <Text style={styles.title} numberOfLines={1}>
-                {name}
-              </Text>
-              {artist && (
-                <Text style={styles.artist} numberOfLines={1}>
-                  {artist}
-                </Text>
+      <View>
+        <Pressable>
+          <View>
+            <View style={styles.container}>
+              <Pressable style={styles.touchAreaOne} onPress={onClick}>
+                <View style={styles.metadata}>
+                  <Image source={{uri: image}} style={styles.image} />
+                  <View style={styles.titleGroup}>
+                    <Text style={styles.title} numberOfLines={1}>
+                      {name}
+                    </Text>
+                    {artist && (
+                      <Text
+                        style={[
+                          styles.artist,
+                          theme === 'light' && styles.artistLight,
+                        ]}
+                        numberOfLines={1}>
+                        {artist}
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              </Pressable>
+              {!isPlaylist && !hideOption && (
+                <View style={styles.touchAreaTwo}>
+                  <IconButton icon={Option} onClick={onOptionClick} />
+                </View>
               )}
             </View>
           </View>
@@ -65,11 +85,11 @@ const styles = StyleSheet.create({
   },
   touchAreaOne: {
     flex: 1,
-    paddingRight: 10,
   },
   touchAreaTwo: {
     justifyContent: 'center',
     padding: 5,
+    marginLeft: 10,
   },
   image: {
     height: 55,
@@ -87,5 +107,8 @@ const styles = StyleSheet.create({
   artist: {
     color: styleVars.greyColor,
     fontSize: styleVars.smallFontSize,
+  },
+  artistLight: {
+    color: styleVars.lightWhite,
   },
 });

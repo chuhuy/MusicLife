@@ -18,7 +18,7 @@ export const Button: FunctionComponent<Props> = (props: Props) => {
             <Pressable
                 disabled={disabled}
                 style={[styles.buttonLayout, {opacity: disabled ? 0.6 : 1}]}
-                onPressOut={onClick}
+                onPress={onClick}
             >
                 <View style={[styles.button, size ? styles.bigButton : undefined]}>
                     {icon}

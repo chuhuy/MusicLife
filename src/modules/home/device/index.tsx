@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {useNavigation} from '@react-navigation/native';
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {Alert, PermissionsAndroid, View} from 'react-native';
 import {connect} from 'react-redux';
@@ -29,7 +28,6 @@ const mapStateToProps = (state: any) => ({
 });
 
 const Device: React.FunctionComponent<Props> = (props: Props) => {
-  const navigation = useNavigation();
   const [songList, setSongList] = useState<Array<Song>>([]);
 
   useEffect(() => {
@@ -57,7 +55,9 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
               const song: Song = {
                 music_id: index,
                 title: value.split('-')[0].trim(),
-                image_url: `file://${RNFetchBlob.fs.dirs.DownloadDir}/${value.replace('mp3', 'jpg')}`,
+                image_url: `file://${
+                  RNFetchBlob.fs.dirs.DownloadDir
+                }/${value.replace('mp3', 'jpg')}`,
                 artists: value.split('-')[1].trim().replace('.mp3', ''),
                 url: `${RNFetchBlob.fs.dirs.DownloadDir}/${value}`,
               };

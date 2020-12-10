@@ -3,75 +3,78 @@ import {Song} from '../../models/song';
 import {store} from '../../redux/store';
 import {
   addSong,
-  continueMusic,
-  pauseMusic,
+  playChosenSong,
   playMusic,
   removeSong,
 	restart,
   skipMusic,
+  togglePlayMusic,
 } from '../../redux/modules/player/actions';
 
 // Handle controller
 export const togglePlay = async () => {
   const {player} = store.getState();
-	
+	console.log('toggle Play');
   if (player.isPlaying) {
     TrackPlayer.pause()
       .then(() => {
-        store.dispatch(pauseMusic());
+        store.dispatch(togglePlayMusic());
       })
       .catch((error) => console.log(error));
   } else {
-    const getBufferedPostion = TrackPlayer.getBufferedPosition();
+    const getPosition = TrackPlayer.getPosition();
     const getDuration = TrackPlayer.getDuration();
     
     try {
-			Promise.all([getBufferedPostion, getDuration])
+			Promise.all([getPosition, getDuration])
 				.then((value) => {
-					if (value[0] === value[1]) {
+					if (Math.floor(value[0]) >= Math.floor(value[1])) {
             resetQueue();
 					} else {
             TrackPlayer.play()
               .then(() => {
-                store.dispatch(continueMusic());
+                store.dispatch(togglePlayMusic());
               });
           }
 				});
     } catch (err) {
       console.log(err);
       TrackPlayer.pause();
-      store.dispatch(pauseMusic());
     }
   }
 };
 
 export const handlePrevious = () => {
   TrackPlayer.skipToPrevious()
-      .then(() => {
-          store.dispatch(skipMusic(false));
-          console.log('play');
-          TrackPlayer.play();
-      })
-      .catch((e) => {
-          console.log(e);
-          TrackPlayer.seekTo(0)
-            .then(() => {
-              TrackPlayer.play()
-                .catch((err) => {
-                  console.log(err);
-                  TrackPlayer.pause()
-                    .then(() => {
-                      store.dispatch(pauseMusic());
-                    });
+    .then(() => {
+      store.dispatch(skipMusic(false));
+      console.log('play');
+      TrackPlayer.play();
+    })
+    .catch((e) => {
+      console.log(e);
+      TrackPlayer.seekTo(0)
+        .then(() => {
+          TrackPlayer.play()
+            .catch((err) => {
+              console.log(err);
+              TrackPlayer.pause()
+                .then(() => {
+                  let {player} = store.getState();
+
+                  if (player.isPlaying) {
+                    store.dispatch(togglePlayMusic());
+                  }
                 });
-              });
-      });
+            });
+          });
+    });
 };
 
 export const handleNext = async () => {
   TrackPlayer.skipToNext()
     .then(() => {
-      console.log('next')
+      console.log('next');
       TrackPlayer.play()
         .then(() => {
           store.dispatch(skipMusic(true));
@@ -80,13 +83,16 @@ export const handleNext = async () => {
           console.log(err);
           TrackPlayer.pause()
             .then(() => {
-              store.dispatch(pauseMusic())
-            })
+              let {player} = store.getState();
+
+              if (player.isPlaying) {
+                store.dispatch(togglePlayMusic());
+              }
+            });
         });
     })
     .catch((e) => {
         console.log(e);
-        
         resetQueue();
     });
 };
@@ -109,14 +115,17 @@ const resetQueue = async () => {
         .then(() => {
           TrackPlayer.play()
             .then(() => {
-              store.dispatch(continueMusic());
+              let {player} = store.getState();
+              if (!player.isPlaying) {
+                store.dispatch(togglePlayMusic());
+              }
             });
         });
     }
   });
 };
 
-export const playSong = (songs: Array<Song>) => {
+export const playSong = async (songs: Array<Song>) => {
   let tracks = songs.map((song) => {
     return {
       id: song.music_id.toString(),
@@ -142,33 +151,17 @@ export const playSong = (songs: Array<Song>) => {
             store.dispatch(playMusic(songs));
           });
       });
-
-    
   } catch (err) {
     console.log(err);
+    TrackPlayer.pause()
+      .then(() => {
+        let {player} = store.getState();
+
+        if (player.isPlaying) {
+          store.dispatch(togglePlayMusic());
+        }
+      });
   }
-};
-
-export const getNotExistSongs = (oldSongs: any, newSongs: Array<Song>) => {
-  let bigList = oldSongs.length >= newSongs.length ? oldSongs : newSongs;
-  let smallLsit = oldSongs.length >= newSongs.length ? newSongs : oldSongs;
-
-  let newList = bigList.filter((song) => {
-    let isExist = false;
-    for (let i = 0; i < smallLsit.length; i++) {
-      let id = smallLsit[i].music_id || smallLsit[i].id;
-      let newId = song.id || song.music_id;
-      
-      if ( newId == id) {
-        isExist = true;
-        break;
-      }
-    }
-  
-    return !isExist;
-  });
-
-  return newList;
 };
 
 export const addSongs = async (songs: Array<Song>) => {
@@ -205,7 +198,9 @@ export const removeSongs = async (song: Song) => {
       if (songs.length === 1) {
         TrackPlayer.pause()
           .then(() => {
-            store.dispatch(pauseMusic());
+            if (player.isPlaying) {
+              store.dispatch(togglePlayMusic());
+            }
           });
       } else {
         TrackPlayer.skipToNext()
@@ -219,4 +214,28 @@ export const removeSongs = async (song: Song) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const playSongNowPlaying = (index: number) => {
+  let {player} = store.getState();
+  let {songIndex} = player;
+  let remainSongs = index - songIndex;
+
+  if (remainSongs > 0) {
+    while (remainSongs--) {
+      TrackPlayer.skipToNext();
+    }
+  } else {
+    while (remainSongs++) {
+      TrackPlayer.skipToPrevious();
+    }
+  }
+
+  TrackPlayer.play()
+    .then(() => {
+      store.dispatch(playChosenSong(index));
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

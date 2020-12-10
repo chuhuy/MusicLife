@@ -21,7 +21,7 @@ export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
       <View style={styles.container}>
-        <Pressable style={styles.contentContainer} onPressOut={onClick}>
+        <Pressable style={styles.contentContainer} onPress={onClick}>
           <Image style={styles.image} source={{uri: image}} />
           <View style={styles.titleColumn}>
             <Text style={styles.song} numberOfLines={1}>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   titleColumn: {
     flex: 1,
     justifyContent: 'center',
-    marginLeft: 10,
+    marginLeft: 15,
   },
   image: {
     height: 55,

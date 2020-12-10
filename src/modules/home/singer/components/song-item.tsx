@@ -11,21 +11,29 @@ interface Props {
     onOptionClick: () => void,
 }
 export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
+    const {
+        name,
+        artist,
+        onClick,
+        image,
+        onOptionClick,
+    } = props;
+
     return (
         <>
             <View style={styles.container}>
                 <Pressable
-                    onPressOut={() => props.onClick()}
+                    onPress={onClick}
                     style={styles.song}
                 >
-                    <Image source={{uri: props.image}} style={styles.img}/>
+                    <Image source={{uri: image}} style={styles.img}/>
                     <View style={styles.songContent}>
-                        <Text style={styles.name}>{props.name}</Text>
-                        <Text style={styles.artist}>{props.artist}</Text>
+                        <Text style={styles.name}>{name}</Text>
+                        <Text style={styles.artist}>{artist}</Text>
                     </View>
                 </Pressable>
                 <View style={styles.option}>
-                    <IconButton onClick={() => props.onOptionClick()} icon={OptionIcon}/>
+                    <IconButton onClick={onOptionClick} icon={OptionIcon}/>
                 </View>
             </View>
         </>
