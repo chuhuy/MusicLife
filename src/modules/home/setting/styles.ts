@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
   avatar: {
     width: 85,
     height: 85,
-    borderRadius: 30,
+    borderRadius: 50,
   },
   name: {
     color: styleVars.white,

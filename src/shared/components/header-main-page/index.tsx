@@ -54,8 +54,8 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (
               ) : (
                 <>
                   <Image
-                    source={props.image_url}
-                    style={{height: 40, width: 40}}
+                    source={{uri: props.image_url}}
+                    style={{height: 40, width: 40, borderRadius: 20}}
                   />
                 </>
               )

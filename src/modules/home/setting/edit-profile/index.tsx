@@ -53,7 +53,7 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
           </>
         ) : (
           <>
-            <Image source={props.image_url} style={styles.avatar} />
+            <Image source={{uri: props.image_url}} style={styles.avatar} />
           </>
         )}
         <TextInput
