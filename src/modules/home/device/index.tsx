@@ -1,23 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Alert, PermissionsAndroid, Text} from 'react-native';
+import {Alert, PermissionsAndroid} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import {connect} from 'react-redux';
-import {getLatestSongs} from '../../../api/explore';
 import {Genre} from '../../../models/genre';
 import {Playlist} from '../../../models/playlist';
 import {Song} from '../../../models/song';
 import {BaseScreen, Button} from '../../../shared/components';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import {Screen} from '../../../shared/constance/screen';
-import {playSong} from '../../../shared/helper/player';
-import {album, genre} from './../../../data';
-import {
-  pauseMusic,
-  playMusic,
-  skipMusic,
-} from './../../../redux/modules/player/actions';
+import { Screen } from '../../../shared/constance/screen';
+import { playSong } from '../../../shared/helper/player';
+import { pauseMusic, playMusic, skipMusic } from './../../../redux/modules/player/actions';
 import I18n from './../../../i18n';
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -46,15 +40,6 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
 
   useEffect(() => {
     fetchDownloadedSong();
-    // setIsLoading(true);
-    // getLatestSongs()
-    //   .then((data) => {
-    //     setLatestSong(data.latestSongs);
-    //     setLatestAlbum(data.latestAlbums);
-    //     setGenreList(data.genres);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => console.log(err));
   }, []);
 
   const fetchDownloadedSong = async () => {
@@ -98,32 +83,13 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const handleLastestSong = () => {
-    navigation.navigate(Screen.Common.Song, {
-      songs: latestSong,
-      isLatest: true,
-    });
-  };
+    return (
+        <>
+          <BaseScreen isScroll={false}>
+              <HeaderMainPage />
 
-  const handleLatestAlbum = () => {
-    navigation.navigate(Screen.Common.Playlist, {
-      isAlbum: true,
-      isLatest: true,
-      playlist: album,
-    });
-  };
-
-  const handleGenreList = () => {
-    // navigation.navigate(Screen.Device.GenreList, { genre })
-  };
-
-  return (
-    <>
-      <BaseScreen isScroll={false}>
-        <HeaderMainPage />
-
-        {/* <Text style={{color: 'white'}}>Device screen</Text> */}
-        <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
+          {/* <Text style={{color: 'white'}}>Device screen</Text> */}
+          <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
       </BaseScreen>
     </>
   );

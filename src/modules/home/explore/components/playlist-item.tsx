@@ -10,7 +10,7 @@ interface Props {
 export const PlaylistItem: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
-      <Pressable style={styles.container} onPressOut={props.onClick}>
+      <Pressable style={styles.container} onPress={props.onClick}>
         <Image style={styles.image} source={{uri: props.image}} />
         <Text style={styles.title}>{props.title}</Text>
       </Pressable>

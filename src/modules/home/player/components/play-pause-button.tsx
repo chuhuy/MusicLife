@@ -15,7 +15,7 @@ const PlayPauseButton: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <Pressable
             style={styles.container}
-            onPressOut={props.onClick}>
+            onPress={props.onClick}>
                     {props.isPlaying ? <Pause height={30} width={30}/> : <Play height={30} width={30} marginLeft={5}/>}
             </Pressable>
         </>

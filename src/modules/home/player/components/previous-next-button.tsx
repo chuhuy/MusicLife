@@ -14,7 +14,7 @@ const PreviousNextButton: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <Pressable
                 style={styles.container}
-                onPressOut={props.onClick}>
+                onPress={props.onClick}>
                 {props.type === 'previous' ? <Previous width={20} height={20}/> : <Next width={20} height={20}/>}
             </Pressable>
         </>

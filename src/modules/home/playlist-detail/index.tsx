@@ -12,36 +12,48 @@ import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/exp
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
 import { playSong } from '../../../shared/helper/player';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
+import { connect } from 'react-redux';
 
-interface Props {
+interface Props extends DispatchProps {
     navigation: any;
     route: any;
 }
 
-const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
-    const { route } = props;
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+      enableLoading: () => dispatch(enableLoading()),
+      disableLoading: () => dispatch(disableLoading()),
+    };
+};
+
+const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
+    const {
+        route,
+        enableLoading,
+        disableLoading,
+    } = props;
     const { playlist, isChart, isAlbum, isTop100 } = route.params;
     const { album_id, title, artists, image_url } = playlist;
 
     const [songList, setSongList] = useState<Array<Song>>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
-        setIsLoading(true);
+        enableLoading();
         
         if (!isChart) {
             if (isAlbum) {
                 fetchAlbumDetail(album_id)
                     .then((data) => {
-                        setSongList(data.songsByAlbum);
-                        setIsLoading(false);
+                        setSongList(data.songs);
+                        disableLoading();
                     }).catch((err) => console.log(err));
             } else if (isTop100) {
                 fetchTop100(album_id)
                     .then((data) => {
-                        setSongList(data.top100);
-                        setIsLoading(false);
+                        setSongList(data.songs);
+                        disableLoading();
                     }).catch((err) => console.log(err));
             } else {
                 // Personal playlist
@@ -49,8 +61,8 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
         } else {
             fetchMusicChart(album_id)
                 .then((data) => {
-                    setSongList(data.chart);
-                    setIsLoading(false);
+                    setSongList(data.songs);
+                    disableLoading();
                 })
                 .catch((err) => console.log(err));
         }
@@ -70,7 +82,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     const closeModal = () => {
         setIsVisible(!isVisible);
-    }
+    };
     
     return (
         <>
@@ -120,11 +132,7 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
                 </ImageBackground>
 
                 <View style={styles.sectionTwo}>
-                    {isLoading ? (
-                        <LoadingLayer />
-                    ) : (
-                        <SongList songs={songList} />
-                    )}
+                    <SongList songs={songList} />
                 </View>
 
                 <ModalBottom
@@ -140,4 +148,6 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
     );
 };
 
-export default PlaylistScreen;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+export default connect(null, mapDispatchToProps)(PlaylistDetailScreen);

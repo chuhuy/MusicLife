@@ -113,7 +113,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
         <View style={styles.main}>
           {/* Edit Profile */}
           {refresh_token !== null && (
-            <Pressable onPressOut={handleEditProfile}>
+            <Pressable onPress={handleEditProfile}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
                   <View style={styles.main__left__svgView}>
@@ -128,7 +128,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </Pressable>
           )}
           {/* Change Language */}
-          <Pressable onPressOut={toggleModalLanguage}>
+          <Pressable onPress={toggleModalLanguage}>
             <View style={styles.main__item}>
               <View style={styles.main__left}>
                 <View style={styles.main__left__svgView}>
@@ -143,7 +143,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
           </Pressable>
           {/* Change Password */}
           {refresh_token !== null && (
-            <Pressable onPressOut={handleChangePassword}>
+            <Pressable onPress={handleChangePassword}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
                   <View style={styles.main__left__svgView}>
@@ -161,7 +161,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
           {refresh_token !== null && (
             <>
               <View style={styles.main__rule} />
-              <Pressable onPressOut={handleLogout}>
+              <Pressable onPress={handleLogout}>
                 <View style={[styles.main__item]}>
                   <View style={styles.main__left__svgView}>
                     <LogoutSvg width={22} height={22} />
@@ -182,7 +182,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
           <View style={{marginTop: 5, marginBottom: -15}}>
             <Pressable
               style={styles.modal__group}
-              onPressOut={() => setLanguageActive('vi')}>
+              onPress={() => setLanguageActive('vi')}>
               <RadioButton
                 selected={languageActive === 'vi'}
                 inputStyle={{

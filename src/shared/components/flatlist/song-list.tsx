@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { Song } from '../../../models/song';
 import {
     pauseMusic,
-    playMusic
+    playMusic,
+    togglePlayMusic,
 } from '../../../redux/modules/player/actions';
 import { Screen } from '../../constance/screen';
 import { playSong } from '../../helper/player';
@@ -25,9 +26,11 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         playMusic: (song: Song) => dispatch(playMusic([song])),
         pauseMusic: () => dispatch(pauseMusic()),
+        togglePlayMusic: () => dispatch(togglePlayMusic()),
     };
 };
 const mapStateToProps = (state: any) => ({
+    isPlaying: state.player.isPlaying,
     // refresh_token: state.auth.refresh_token,
 });
 
@@ -35,10 +38,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     const {
         songs,
         disableScroll,
-        playMusic,
-        pauseMusic,
+        togglePlayMusic,
         children,
-        onEndReached
+        onEndReached,
+        isPlaying,
     } = props;
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -49,11 +52,14 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         console.log('play music');
         try {
             playSong([song]);
-            playMusic(song);
             navigation.navigate(Screen.Common.Player);
         } catch (err) {
-            console.log(err)
-            TrackPlayer.pause().then(() => pauseMusic());
+            TrackPlayer.pause()
+                .then(() => {
+                    if (isPlaying) {
+                        togglePlayMusic();
+                    }
+                });
         }
     };
 
@@ -65,7 +71,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
 
     const renderItem = (item: Song) => {
         return (
-            <Item 
+            <Item
                 key={item.music_id}
                 name={item.title}
                 image={item.image_url}
@@ -82,14 +88,14 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
                 songs?.length ? (
                     <>
                         {
-                            disableScroll ? 
+                            disableScroll ?
                             <View style={styles.flatListContainer}>
                                 {songs.map((item) => renderItem(item))}
                                 <View style={styles.flatListFooter}>
                                     {children}
                                 </View>
-                            </View> 
-                            : <FlatList 
+                            </View>
+                            : <FlatList
                                 showsVerticalScrollIndicator={false}
                                 style={styles.flatListContainer}
                                 data={songs}
