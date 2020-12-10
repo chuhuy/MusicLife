@@ -10,11 +10,9 @@ export const styles = StyleSheet.create({
         fontSize: styleVars.smallFontSize,
         fontWeight: '600',
         letterSpacing: 2,
-        textAlign: 'center',
     },
     center: {
         alignItems: 'center',
-        justifyContent: 'center',
     },
     touchArea: {
         padding: 10,

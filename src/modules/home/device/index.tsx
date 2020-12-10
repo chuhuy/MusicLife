@@ -1,28 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
-import {Alert, PermissionsAndroid, View} from 'react-native';
-import {connect} from 'react-redux';
-import {Song} from '../../../models/song';
-import {BaseScreen, Button, SongList} from '../../../shared/components';
-import HeaderMainPage from '../../../shared/components/header-main-page';
-import {
-  pauseMusic,
-  playMusic,
-  skipMusic,
-} from './../../../redux/modules/player/actions';
-import I18n from './../../../i18n';
+import React, { useEffect, useState } from 'react';
+import { Alert, PermissionsAndroid, View } from 'react-native';
+import { connect } from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
+import NotFoundSong from '../../../assets/icons/not-found-song.svg';
+import { Song } from '../../../models/song';
+import { BaseScreen, Button, NotFoundItem, SongList } from '../../../shared/components';
+import HeaderMainPage from '../../../shared/components/header-main-page';
+import I18n from './../../../i18n';
 
-interface Props extends DispatchProps, StateProps {}
+interface Props extends StateProps {}
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    skipMusic: (isNext: boolean) => dispatch(skipMusic(isNext)),
-    playMusic: (song: Song) => dispatch(playMusic([song])),
-    pauseMusic: () => dispatch(pauseMusic()),
-  };
-};
 const mapStateToProps = (state: any) => ({
   refresh_token: state.auth.refresh_token,
 });
@@ -80,16 +69,24 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
     <>
       <BaseScreen isScroll={false}>
         <HeaderMainPage />
-        <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
-        <View style={{marginTop: 30}}>
-          <SongList songs={songList} />
+
+        <Button onClick={fetchDownloadedSong} title="Refresh" />
+
+        <View style={{marginTop: 30, flex: 1}}>
+          {songList.length ? (
+            <SongList songs={songList} />
+          ) : (
+            <NotFoundItem
+              icon={<NotFoundSong />}
+              text={I18n.translate('device.not-found-song')}
+            />
+          )}
         </View>
       </BaseScreen>
     </>
   );
 };
 
-type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 type StateProps = ReturnType<typeof mapStateToProps>;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Device);
+export default connect(mapStateToProps, null)(Device);

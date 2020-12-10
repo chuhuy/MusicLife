@@ -1,35 +1,45 @@
-import React, {useEffect, useState} from 'react';
-import { View, Image, ImageBackground, Text, SafeAreaView } from 'react-native';
-import { HeaderBack, IconButton, LoadingLayer } from '../../../shared/components';
-import { styles } from './styles';
-import Heart from './../../../assets/icons/heart.svg';
-import Option from './../../../assets/icons/option.svg';
-import Play from '../../../assets/icons/play-red.svg';
-import {SongList} from '../../../shared/components/flatlist';
-import Controller from '../controller';
-import { Song } from '../../../models/song';
+import React, { useEffect, useState } from 'react';
+import { Image, ImageBackground, SafeAreaView, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/explore';
+import { fetchIsFavoriteAlbum, postFavoriteAlbum } from '../../../api/personal';
+import Play from '../../../assets/icons/play-red.svg';
+import { Song } from '../../../models/song';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
+import { HeaderBack, IconButton } from '../../../shared/components';
+import { SongList } from '../../../shared/components/flatlist';
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
 import { playSong } from '../../../shared/helper/player';
-import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
-import { connect } from 'react-redux';
+import Controller from '../controller';
+import Heart from './../../../assets/icons/heart.svg';
+import HeartActive from './../../../assets/icons/heart-active.svg';
+import Option from './../../../assets/icons/option.svg';
+import { styles } from './styles';
+import { notifyError, notifySuccess } from '../../../shared/components/notify';
+import Toast from 'react-native-root-toast';
+import I18n from '../../../i18n';
 
-interface Props extends DispatchProps {
+interface Props extends StateProps, DispatchProps {
     navigation: any;
     route: any;
 }
 
+const mapStateToProps = (state: any) => ({
+    access_token: state.auth.access_token,
+});
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
-      enableLoading: () => dispatch(enableLoading()),
-      disableLoading: () => dispatch(disableLoading()),
+        enableLoading: () => dispatch(enableLoading()),
+        disableLoading: () => dispatch(disableLoading()),
     };
 };
 
 const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
     const {
         route,
+        access_token,
         enableLoading,
         disableLoading,
     } = props;
@@ -38,16 +48,27 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
 
     const [songList, setSongList] = useState<Array<Song>>([]);
     const [isVisible, setIsVisible] = useState<boolean>(false);
-
+    const [isFavorite, setIsFavorite] = useState<boolean>(true);
+    console.log(access_token)
     useEffect(() => {
         enableLoading();
-        
+
         if (!isChart) {
             if (isAlbum) {
                 fetchAlbumDetail(album_id)
                     .then((data) => {
                         setSongList(data.songs);
                         disableLoading();
+                        fetchIsFavoriteAlbum(access_token, album_id)
+                            .then((res) => {
+                                console.log(res)
+                                if (!res.isFavoriteAlbum) {
+                                    setIsFavorite(false);
+                                }
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
                     }).catch((err) => console.log(err));
             } else if (isTop100) {
                 fetchTop100(album_id)
@@ -72,6 +93,16 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
         setIsVisible(true);
     };
     const handleHeartClick = () => {
+        if (!isFavorite) {
+            postFavoriteAlbum(access_token, album_id)
+                .then(() => {
+                    notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+                })
+                .catch((err) => {
+                    console.log(err);
+                    notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+                });
+        }
         console.log('Heart Click');
     };
 
@@ -83,7 +114,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
     const closeModal = () => {
         setIsVisible(!isVisible);
     };
-    
+
     return (
         <>
             <SafeAreaView style={styles.container}>
@@ -122,7 +153,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
 
                                 {isAlbum && (
                                     <View style={styles.button}>
-                                        <IconButton icon={Heart} onClick={handleHeartClick} />
+                                        <IconButton icon={isFavorite ? HeartActive : Heart} onClick={handleHeartClick} />
                                     </View>
                                 )}
 
@@ -144,13 +175,14 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     item={{image_url, artists, title}}>
                     <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
                 </ModalBottom>
-                
+
                 <Controller />
             </SafeAreaView>
         </>
     );
 };
 
+type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
 export default connect(null, mapDispatchToProps)(PlaylistDetailScreen);

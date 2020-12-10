@@ -103,8 +103,11 @@ export const styles = StyleSheet.create({
   },
   modal__footer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: 10,
+    alignItems: 'center',
+    paddingTop: 20,
+    // flexDirection: 'row',
+    // justifyContent: 'flex-end',
+    // marginTop: 10,
   },
   modal__language__group: {
     marginLeft: '5%',
@@ -113,5 +116,8 @@ export const styles = StyleSheet.create({
   modal__restart__main__text: {
     color: styleVars.greyColor,
     fontSize: styleVars.baseFontSize,
+  },
+  touchArea: {
+    flex: 1,
   },
 });

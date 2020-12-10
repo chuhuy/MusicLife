@@ -8,6 +8,7 @@ import {
   TOKEN,
   CHANGE_PASSWORD,
   CHANGE_DISPLAY_NAME,
+  FORGOT,
 } from './../shared/constance/api';
 
 export const signinWithEmail = (email: string, password: string) => {
@@ -75,4 +76,12 @@ export const changeDisplayName = async (display_name: string) => {
     display_name,
   };
   return API.postWithAccessToken(AUTH_URL + CHANGE_DISPLAY_NAME, body);
+};
+
+export const forgotPassword = async (email: string) => {
+  const body = {
+    email,
+  };
+
+  return API.post(AUTH_URL + FORGOT, body);
 };

@@ -41,6 +41,7 @@ export const authentication = {
         'error-required-email': 'Bạn không được để trống email',
         'error-email': 'Email không hợp lệ',
         'email-placeholder': 'Hãy nhập email',
-        'confirm-email': 'Đồng ý',
+        'confirm-email': 'Gửi',
+        'send-email': 'Thư đã gửi đến email của bạn',
     },
 };

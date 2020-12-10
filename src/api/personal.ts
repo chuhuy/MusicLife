@@ -64,3 +64,43 @@ export const createPlaylist = (access_token: string, playlist_name: string) => {
 
   return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
 };
+
+export const postFavoriteSong = (access_token: string, music_id: number) => {
+  const query = `
+    mutation {
+      addFavoriteSong(music_id: ${music_id})
+    } 
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};
+
+export const fetchIsFavoriteSong = (access_token: string, music_id: number) => {
+  const query = `
+    query {
+      isFavoriteSong(music_id: ${music_id})
+    } 
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};
+
+export const postFavoriteAlbum = (access_token: string, album_id: number) => {
+  const query = `
+    mutation {
+      addFavoriteAlbum(album_id: ${album_id})
+    } 
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};
+
+export const fetchIsFavoriteAlbum = (access_token: string, album_id: number) => {
+  const query = `
+    query {
+      isFavoriteAlbum(album_id: ${album_id})
+    } 
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};

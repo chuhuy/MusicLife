@@ -61,11 +61,6 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </View>
         </Pressable>
-        {!isPlaylist && (
-          <View style={styles.touchAreaTwo}>
-            <IconButton icon={Option} onClick={onOptionClick} />
-          </View>
-        )}
       </View>
     </>
   );
@@ -85,11 +80,11 @@ const styles = StyleSheet.create({
   },
   touchAreaOne: {
     flex: 1,
+    paddingRight: 10,
   },
   touchAreaTwo: {
     justifyContent: 'center',
     padding: 5,
-    marginLeft: 10,
   },
   image: {
     height: 55,

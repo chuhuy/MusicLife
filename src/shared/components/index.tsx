@@ -5,7 +5,7 @@ export {GoogleButton} from './google-button';
 export {LinkButton} from './link-button';
 export {IconButton} from './icon-button';
 export * from './flatlist';
-export * from './layout';
+export {BaseScreen} from './layout';
 
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';

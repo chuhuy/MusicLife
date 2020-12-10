@@ -44,6 +44,9 @@ import {
   downloadSong,
 } from './../../../services/file-system';
 import {PermissionsAndroid} from 'react-native';
+import { fetchIsFavoriteSong, postFavoriteSong } from '../../../api/personal';
+import { notifyError, notifySuccess } from '../../../shared/components/notify';
+import Toast from 'react-native-root-toast';
 
 interface Props extends DispatchProps, StateProps {
   route: any;
@@ -75,6 +78,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   const [activeTab, setActiveTab] = useState<number>(-1);
   const scrollViewRef = useRef(null);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   let spinAnim = useRef(new Animated.Value(0));
   let diskAnimation = useRef(Animated.loop(
@@ -93,6 +97,20 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
+
+  useEffect(() => {
+    if (access_token) {
+      fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
+        .then((data) => {
+          if (data.isFavoriteSong) {
+            setIsFavorite(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     if (isPlaying) {
@@ -168,7 +186,19 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     navigation.goBack();
   };
 
-  const handleLove = () => {};
+  const handleAddToFavorite = () => {
+    if (!isFavorite) {
+      postFavoriteSong(access_token, songs[songIndex].music_id)
+        .then(() => {
+          notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+          setIsFavorite(true);
+        })
+        .catch(err => {
+          console.log(err);
+          notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+        });
+    }
+  };
 
   const renderLyric = () => {
     let song = songs[songIndex];
@@ -306,8 +336,8 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
                 {access_token ? (
                   <IconButton
-                    icon={songs[songIndex]?.isLove ? HeartActive : Heart}
-                    onClick={handleLove}/>
+                    icon={isFavorite ? HeartActive : Heart}
+                    onClick={handleAddToFavorite}/>
                 ) : null}
 
                 <IconButton icon={List} onClick={() => toggleTab(Tab.playlist)}/>

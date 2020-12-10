@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import { Text, Pressable, View} from 'react-native';
+import { styleVars } from '../../constance/style-variables';
 import { styles } from './styles';
 
 interface Props {
@@ -16,7 +17,6 @@ export const LinkButton: FunctionComponent<Props> = (props: Props) => {
         title,
         color,
         position,
-        border,
     } = props;
 
     return (
@@ -26,7 +26,7 @@ export const LinkButton: FunctionComponent<Props> = (props: Props) => {
                 onPressIn={onClick}
             >
                 <View style={styles.touchArea}>
-                    <Text style={[styles.title, {color}, border && styles.border]}>{title}</Text>
+                    <Text style={[styles.title, {color}]}>{title}</Text>
                 </View>
             </Pressable>
         </>

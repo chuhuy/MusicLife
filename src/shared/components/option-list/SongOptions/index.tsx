@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
+import Toast from 'react-native-root-toast';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
+import { fetchIsFavoriteSong, postFavoriteSong } from '../../../../api/personal';
 import TrashIcon from '../../../../assets/icons/delete.svg';
 import { Song } from '../../../../models/song';
-import { removeSong } from '../../../../redux/modules/player/actions';
 import { addSongs, removeSongs } from '../../../helper/player';
+import { notifyError, notifySuccess } from '../../notify';
 import DownloadSvg from './../../../../assets/icons/download.svg';
 import HeartSvg from './../../../../assets/icons/heart.svg';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
@@ -13,20 +15,19 @@ import PlusSvg from './../../../../assets/icons/plus.svg';
 import I18n from './../../../../i18n';
 import { styles } from './styles';
 
-interface Props extends DispatchProps {
+interface Props extends StateProps {
     song: Song,
     closeModal: () => void,
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        removeSong: (song: Song) => dispatch(removeSong(song))
-    };
-};
+const mapStateToProps = (state: any) => ({
+    access_token: state.auth.access_token,
+});
 
 const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
-    const {removeSong, song, closeModal} = props;
+    const {access_token, song, closeModal} = props;
     const [isAddPlaying, setIsAddPlaying] = useState<boolean>(false);
+    const [isFavorite, setIsFavorite] = useState<boolean>(true);
 
     useEffect(() => {
         const handleAddedToPlaying = async () => {
@@ -36,9 +37,21 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
             if (songIndex !== -1) {
                 setIsAddPlaying(true);
             }
-        }
+        };
 
         handleAddedToPlaying();
+
+        if (access_token) {
+            fetchIsFavoriteSong(access_token, song.music_id)
+              .then((data) => {
+                if (!data.isFavoriteSong) {
+                    setIsFavorite(false);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+            }
     }, []);
 
     const handleNowPlayingPlaylist = async () => {
@@ -49,9 +62,18 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
             addSongs([song]);
         }
         closeModal();
-    }
+    };
 
     const handleAddToFavorite = () => {
+        postFavoriteSong(access_token, song.music_id)
+            .then(() => {
+                notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+                setIsFavorite(true);
+            })
+            .catch(err => {
+                console.log(err);
+                notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+            });
         console.log('Add to favorite');
     };
     const handleAddToPlaylist = () => {
@@ -60,7 +82,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     const handleDownload = () => {
         console.log('Download');
     };
-    
+
     return (
         <>
             <Fragment>
@@ -79,16 +101,18 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                     </Text>
                 </Pressable>
 
-                <Pressable
-                    style={styles.optionItem}
-                    onPress={handleAddToFavorite}>
-                    <View style={styles.svg}>
-                        <HeartSvg width={25} height={25} />
-                    </View>
-                    <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.add-to-favorite')}
-                    </Text>
-                </Pressable>
+                {!isFavorite ? (
+                    <Pressable
+                        style={styles.optionItem}
+                        onPress={handleAddToFavorite}>
+                        <View style={styles.svg}>
+                            <HeartSvg width={25} height={25} />
+                        </View>
+                        <Text style={styles.optionText}>
+                            {I18n.translate('optionModal.add-to-favorite')}
+                        </Text>
+                    </Pressable>
+                ) : null}
 
                 <Pressable
                     style={styles.optionItem}
@@ -116,5 +140,5 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
     );
 };
 
-export default connect(null, mapDispatchToProps)(SongOptions);
-type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+export default connect(mapStateToProps, null)(SongOptions);
+type StateProps = ReturnType<typeof mapStateToProps>;

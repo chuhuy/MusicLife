@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: styleVars.lightPrimaryColor,
         borderRadius: 20,
+        width: '90%',
+        alignSelf: 'center',
     },
     modalLayout: {
         // alignSelf: 'center',
@@ -18,5 +20,5 @@ export const styles = StyleSheet.create({
         color: styleVars.white,
         fontSize: styleVars.baseFontSize,
         fontWeight: '600',
-    }
-})
+    },
+});

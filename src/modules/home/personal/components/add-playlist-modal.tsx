@@ -82,16 +82,22 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
                                     color={styleVars.greyColor}
                                     title={I18n.translate('personal.cancel')}
                                     onClick={onHide}
-                                    border
+                                    position
                                 />
                             </View>
+
+                            <View style={{
+                                height: '50%',
+                                width: 1,
+                                backgroundColor: styleVars.greyColor,
+                            }}/>
 
                             <View style={styles.touchArea}>
                                 <LinkButton
                                     color={styleVars.secondaryColor}
                                     title={I18n.translate('personal.save')}
                                     onClick={() => handleAddPlaylist(values)}
-                                    position={true}
+                                    position
                                 />
                             </View>
                         </View>
@@ -128,6 +134,7 @@ const styles = StyleSheet.create({
     },
     buttonGroup: {
         flexDirection: 'row',
+        alignItems: 'center',
         paddingTop: 20,
     },
     touchArea: {

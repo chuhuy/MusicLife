@@ -44,7 +44,7 @@ const CommentList: React.FC<Props> = (props: Props) => {
                     </View>
                 );
             }}
-            keyExtractor={(item) => item.comment_id.toString()}
+            keyExtractor={(item, index) => index.toString()}
         />
     );
 };

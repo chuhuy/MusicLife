@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     commentWrapper: {
-        paddingVertical: 10,
         marginVertical: 10,
         flexDirection: 'row',
     },
