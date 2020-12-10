@@ -58,32 +58,32 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
   }, []);
 
   const fetchDownloadedSong = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          title: 'Music Life',
-          message: I18n.translate('player.ask-for-permission'),
-          buttonNeutral: I18n.translate('player.ask-me-later'),
-          buttonNegative: I18n.translate('player.cancel'),
-          buttonPositive: I18n.translate('player.agree'),
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        //   await downloadFile(title, url);
-        RNFetchBlob.fs
-          .ls(RNFetchBlob.fs.dirs.DownloadDir)
-          .then((files) => {
-              files = files.filter((value) => value.slice(-3) === 'mp3')
-            console.log(files);
-          })
-          .catch((error) => console.log(error));
-      } else {
-        Alert.alert(I18n.translate('player.do-not-have-permission'));
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   const granted = await PermissionsAndroid.request(
+    //     PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    //     {
+    //       title: 'Music Life',
+    //       message: I18n.translate('player.ask-for-permission'),
+    //       buttonNeutral: I18n.translate('player.ask-me-later'),
+    //       buttonNegative: I18n.translate('player.cancel'),
+    //       buttonPositive: I18n.translate('player.agree'),
+    //     },
+    //   );
+    //   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+    //     //   await downloadFile(title, url);
+    //     RNFetchBlob.fs
+    //       .ls(RNFetchBlob.fs.dirs.DownloadDir)
+    //       .then((files) => {
+    //           files = files.filter((value) => value.slice(-3) === 'mp3')
+    //         console.log(files);
+    //       })
+    //       .catch((error) => console.log(error));
+    //   } else {
+    //     Alert.alert(I18n.translate('player.do-not-have-permission'));
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   const handlePlayMusic = (song: Song) => {

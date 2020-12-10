@@ -23,25 +23,33 @@ export const requestToPermissions = async () => {
   }
 };
 
-export const downloadFile = async (title: string, url: string, artists: string) => {
-  RNFetchBlob.config({
-    fileCache: true,
-    appendExt: 'mp3',
-    addAndroidDownloads: {
-      useDownloadManager: true,
-      notification: true,
-      title: title,
-      path: RNFetchBlob.fs.dirs.DownloadDir + `/${title} - ${artists}.mp3`, // Android platform
-      description: 'Downloading the file',
-    },
-  })
-    .fetch('GET', url)
-    .then((res) => {
-      console.log('The file is save to ', res.path());
-      return true;
+export const downloadFile = async (
+  title: string,
+  url: string,
+  artists: string,
+) => {
+  try {
+    RNFetchBlob.config({
+      fileCache: true,
+      // appendExt: 'mp3',
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        title: title,
+        path: RNFetchBlob.fs.dirs.DownloadDir + `/${title} - ${artists}.mp3`, // Android platform
+        description: 'Downloading the file',
+      },
     })
-    .catch((err) => {
-      console.log(err);
-      return false;
-    });
+      .fetch('GET', url)
+      .then((res) => {
+        console.log('The file is save to ', res.path());
+        return true;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
