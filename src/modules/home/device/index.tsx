@@ -1,18 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Alert, PermissionsAndroid, Text} from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import {Alert, PermissionsAndroid, View} from 'react-native';
 import {connect} from 'react-redux';
-import {getLatestSongs} from '../../../api/explore';
-import {Genre} from '../../../models/genre';
-import {Playlist} from '../../../models/playlist';
 import {Song} from '../../../models/song';
-import {BaseScreen, Button} from '../../../shared/components';
+import {BaseScreen, Button, SongList} from '../../../shared/components';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import {Screen} from '../../../shared/constance/screen';
-import {playSong} from '../../../shared/helper/player';
-import {album, genre} from './../../../data';
 import {
   pauseMusic,
   playMusic,
@@ -36,94 +30,60 @@ const mapStateToProps = (state: any) => ({
 
 const Device: React.FunctionComponent<Props> = (props: Props) => {
   const navigation = useNavigation();
-  const {playMusic} = props;
-
-  const [isTop100, setTop100] = useState<boolean>(false);
-  const [latestSong, setLatestSong] = useState<Array<Song>>(null);
-  const [latestAlbum, setLatestAlbum] = useState<Array<Playlist>>(null);
-  const [genreList, setGenreList] = useState<Array<Genre>>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [songList, setSongList] = useState<Array<Song>>([]);
 
   useEffect(() => {
     fetchDownloadedSong();
-    // setIsLoading(true);
-    // getLatestSongs()
-    //   .then((data) => {
-    //     setLatestSong(data.latestSongs);
-    //     setLatestAlbum(data.latestAlbums);
-    //     setGenreList(data.genres);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => console.log(err));
   }, []);
 
   const fetchDownloadedSong = async () => {
-    // try {
-    //   const granted = await PermissionsAndroid.request(
-    //     PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-    //     {
-    //       title: 'Music Life',
-    //       message: I18n.translate('player.ask-for-permission'),
-    //       buttonNeutral: I18n.translate('player.ask-me-later'),
-    //       buttonNegative: I18n.translate('player.cancel'),
-    //       buttonPositive: I18n.translate('player.agree'),
-    //     },
-    //   );
-    //   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    //     //   await downloadFile(title, url);
-    //     RNFetchBlob.fs
-    //       .ls(RNFetchBlob.fs.dirs.DownloadDir)
-    //       .then((files) => {
-    //           files = files.filter((value) => value.slice(-3) === 'mp3')
-    //         console.log(files);
-    //       })
-    //       .catch((error) => console.log(error));
-    //   } else {
-    //     Alert.alert(I18n.translate('player.do-not-have-permission'));
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-
-  const handlePlayMusic = (song: Song) => {
-    console.log('play music');
     try {
-      playSong([song]);
-      playMusic(song);
-      navigation.navigate(Screen.Common.Player);
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Music Life',
+          message: I18n.translate('player.ask-for-permission'),
+          buttonNeutral: I18n.translate('player.ask-me-later'),
+          buttonNegative: I18n.translate('player.cancel'),
+          buttonPositive: I18n.translate('player.agree'),
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        RNFetchBlob.fs
+          .ls(RNFetchBlob.fs.dirs.DownloadDir)
+          .then((files) => {
+            files = files.filter((value) => value.slice(-3) === 'mp3');
+            const songsList = files.map((value, index) => {
+              const song: Song = {
+                music_id: index,
+                title: value.split('-')[0].trim(),
+                image_url: `file://${RNFetchBlob.fs.dirs.DownloadDir}/${value.replace('mp3', 'jpg')}`,
+                artists: value.split('-')[1].trim().replace('.mp3', ''),
+                url: `${RNFetchBlob.fs.dirs.DownloadDir}/${value}`,
+              };
+              return song;
+            });
+            setSongList(songsList);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        Alert.alert(I18n.translate('player.do-not-have-permission'));
+      }
     } catch (err) {
       console.log(err);
-      TrackPlayer.pause().then(() => pauseMusic());
     }
-  };
-
-  const handleLastestSong = () => {
-    navigation.navigate(Screen.Common.Song, {
-      songs: latestSong,
-      isLatest: true,
-    });
-  };
-
-  const handleLatestAlbum = () => {
-    navigation.navigate(Screen.Common.Playlist, {
-      isAlbum: true,
-      isLatest: true,
-      playlist: album,
-    });
-  };
-
-  const handleGenreList = () => {
-    // navigation.navigate(Screen.Device.GenreList, { genre })
   };
 
   return (
     <>
       <BaseScreen isScroll={false}>
         <HeaderMainPage />
-
-        {/* <Text style={{color: 'white'}}>Device screen</Text> */}
         <Button onClick={() => fetchDownloadedSong()} title="Refresh" />
+        <View style={{marginTop: 30}}>
+          <SongList songs={songList} />
+        </View>
       </BaseScreen>
     </>
   );

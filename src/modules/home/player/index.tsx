@@ -40,7 +40,7 @@ import I18n from '../../../i18n';
 import TrackPlayer from 'react-native-track-player';
 import NowPlaying from './components/now-playing';
 import {
-  downloadFile,
+  downloadSong,
 } from './../../../services/file-system';
 import {PermissionsAndroid} from 'react-native';
 
@@ -203,7 +203,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const handleDownload = async (url: string, title: string, artists: string) => {
+  const handleDownload = async (url: string, title: string, artists: string, image_url: string) => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -216,7 +216,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        await downloadFile(title, url, artists);
+        await downloadSong(title, url, artists, image_url);
       } else {
         Alert.alert(I18n.translate('player.do-not-have-permission'));
       }
@@ -335,7 +335,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               <IconButton
                 icon={Download}
                 onClick={() =>
-                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists)
+                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
                 }
               />
 
