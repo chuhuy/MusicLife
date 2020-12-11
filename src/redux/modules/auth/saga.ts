@@ -39,7 +39,7 @@ function* signInWorker(action: any) {
         image_url: response.data.image_url,
         default_avatar: response.data.default_avatar,
       };
-      yield call(saveTokenToLocalStorage, payload.refresh_token);
+      yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
       yield put(loginSuccess(payload));
     } else {
       const {errorMessage} = response;
@@ -74,7 +74,7 @@ function* signInUsernameWorker(action: any) {
         image_url: response.data.image_url,
         default_avatar: response.data.default_avatar,
       };
-      yield call(saveTokenToLocalStorage, payload.refresh_token);
+      yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
       yield put(loginSuccess(payload));
     } else {
       const {errorMessage} = response;
@@ -110,7 +110,7 @@ function* signInFacebookWorker(action: any) {
         image_url: response.data.image_url,
         default_avatar: response.data.default_avatar,
       };
-
+      yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
       yield put(loginSuccess(payload));
     } else {
       const {errorMessage} = response;

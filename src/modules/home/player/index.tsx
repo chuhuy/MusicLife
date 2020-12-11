@@ -103,15 +103,16 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   useEffect(() => {
     if (access_token) {
-      fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
-        .then((data) => {
-          if (data.isFavoriteSong) {
-            setIsFavorite(true);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log('access_token');
+      // fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
+      //   .then((data) => {
+      //     if (data.isFavoriteSong) {
+      //       setIsFavorite(true);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
   }, []);
 
