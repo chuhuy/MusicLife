@@ -18,6 +18,7 @@ import {Button, LinkButton} from '../../../shared/components';
 import {Screen} from '../../../shared/constance/screen';
 import RadioButton from '../../../shared/components/radio-button';
 import DefaultAvatar from './components/default-avatar';
+import { useNetInfo } from '@react-native-community/netinfo';
 interface Props extends DispatchProps, StateProps {
   navigation: any;
 }
@@ -29,14 +30,16 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  refresh_token: state.auth.refresh_token,
+  accesss_token: state.auth.accesss_token,
   display_name: state.auth.display_name,
   default_avatar: state.auth.default_avatar,
   image_url: state.auth.image_url,
 });
 
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
-  const {navigation, refresh_token, logout} = props;
+  let netInfo = useNetInfo();
+  let { isConnected } = netInfo;
+  const {navigation, accesss_token, logout} = props;
   const [isModalLanguageVisible, setModalLanguageVisible] = useState(false);
   const [isModalRestartVisible, setModalRestartVisible] = useState(false);
   const [languageActive, setLanguageActive] = useState<string>();
@@ -49,6 +52,13 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
     };
     getLanguageActive();
   }, []);
+
+  useEffect(() => {
+    if (!isConnected) {
+      navigation.navigate(Screen.Device);
+    }
+  }, [isConnected])
+
   const handleChangeLanguage = (language: string) => {
     changeLanguage(language);
   };
@@ -77,42 +87,45 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
   const handleSignIn = () => {
     navigation.navigate(Screen.Authentication.Login);
   };
-
+  console.log(accesss_token)
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.info}>
-          <View style={styles.info__left}>
-            {refresh_token !== null ? (
-              <>
-                {
-                    props.image_url === null ?
-                    (<>
-                        <DefaultAvatar size={85} type={props.default_avatar} />
-                    </>)
-                    : (<>
-                        <Image
-                            source={{uri: props.image_url}}
-                            style={styles.avatar}
-                        />
-                    </>)
-                }
-                <Text style={styles.name}>{props.display_name}</Text>
-              </>
-            ) : (
-              <View style={styles.loginContainer}>
-                <Button
-                  title={I18n.translate('setting.signin')}
-                  onClick={handleSignIn}
-                  size="big"
-                />
+        {isConnected ? (
+          <View style={styles.info}>
+            <View style={styles.info__left}>
+              {accesss_token ? (
+                <>
+                  {
+                      props.image_url === null ?
+                      (<>
+                          <DefaultAvatar size={85} type={props.default_avatar} />
+                      </>)
+                      : (<>
+                          <Image
+                              source={{uri: props.image_url}}
+                              style={styles.avatar}
+                          />
+                      </>)
+                  }
+                  <Text style={styles.name}>{props.display_name}</Text>
+                </>
+              ) : (
+                <View style={styles.loginContainer}>
+                  <Button
+                    title={I18n.translate('setting.signin')}
+                    onClick={handleSignIn}
+                    size="big"
+                  />
+                </View>
+              )}
               </View>
-            )}
           </View>
-        </View>
+        ) : null}
+
         <View style={styles.main}>
           {/* Edit Profile */}
-          {refresh_token !== null && (
+          {accesss_token && isConnected ? (
             <Pressable onPress={handleEditProfile}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -126,7 +139,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <ArrowSvg width={11} height={20} />
               </View>
             </Pressable>
-          )}
+          ) : null}
           {/* Change Language */}
           <Pressable onPress={toggleModalLanguage}>
             <View style={styles.main__item}>
@@ -142,7 +155,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </Pressable>
           {/* Change Password */}
-          {refresh_token !== null && (
+          {accesss_token && isConnected ? (
             <Pressable onPress={handleChangePassword}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -156,9 +169,9 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <ArrowSvg width={11} height={20} />
               </View>
             </Pressable>
-          )}
+          ) : null}
           {/* Logout */}
-          {refresh_token !== null && (
+          {accesss_token && (
             <>
               <View style={styles.main__rule} />
               <Pressable onPress={handleLogout}>
@@ -260,16 +273,32 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </Text>
           </View>
           <View style={styles.modal__footer}>
-            <LinkButton
-              title={I18n.translate('changeLanguage.cancel')}
-              onClick={toggleModalRestart}
-              color={styleVars.greyColor}
-            />
-            <LinkButton
-              title={I18n.translate('changeLanguage.save')}
-              onClick={() => handleChangeLanguage(languageActive)}
-              color={styleVars.secondaryColor}
-            />
+            <View style={styles.touchArea}>
+              <LinkButton
+                title={I18n.translate('changeLanguage.save')}
+                onClick={() => handleChangeLanguage(languageActive)}
+                color={styleVars.secondaryColor}
+                position
+              />
+            </View>
+
+            <View style={{
+              height: '50%',
+              width: 1,
+              backgroundColor: styleVars.greyColor,
+            }}/>
+
+            <View style={styles.touchArea}>
+              <LinkButton
+                title={I18n.translate('changeLanguage.save')}
+                onClick={() => {
+                  toggleModalLanguage();
+                  toggleModalRestart();
+                }}
+                color={styleVars.secondaryColor}
+                position
+              />
+            </View>
           </View>
         </CustomModal>
       </View>

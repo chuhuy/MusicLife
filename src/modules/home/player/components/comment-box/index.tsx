@@ -105,7 +105,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
                 <NotFoundItem icon={<ErrorIcon />} text={error} />
               ) : (
                 <>
-                  {comments.length ? (
+                  {comments && comments.length ? (
                     <View style={styles.commentList}>
                       <CommentList comments={comments} />
                     </View>

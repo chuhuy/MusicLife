@@ -52,9 +52,6 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
         notifySuccess('Internet connect');
       }
     }
-
-    
-    console.log(renderTimes.current)
   }, [isConnected]);
 
   const fetchDownloadedSong = async () => {
