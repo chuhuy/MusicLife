@@ -115,4 +115,19 @@ export const addSongToPlaylist = (access_token: string, music_id: number, playli
   `;
 
   return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
-}
+};
+
+export const fetchSongByPlaylist = (access_token: string, playlist_id: number) => {
+  const query = `
+    songs: getSongByPlaylist(playlist_id: ${playlist_id}) {
+      music_id
+      title
+      url
+      image_url
+      artists
+      lyric
+    }
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+};

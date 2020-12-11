@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/explore';
-import { fetchIsFavoriteAlbum, postFavoriteAlbum } from '../../../api/personal';
+import { fetchIsFavoriteAlbum, fetchSongByPlaylist, postFavoriteAlbum } from '../../../api/personal';
 import Play from '../../../assets/icons/play-red.svg';
 import { Song } from '../../../models/song';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
@@ -49,7 +49,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
     const [songList, setSongList] = useState<Array<Song>>([]);
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [isFavorite, setIsFavorite] = useState<boolean>(true);
-    console.log(access_token)
+
     useEffect(() => {
         enableLoading();
 
@@ -78,6 +78,11 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     }).catch((err) => console.log(err));
             } else {
                 // Personal playlist
+                fetchSongByPlaylist(access_token, album_id)
+                    .then((data) => {
+                        setSongList(data.songs);
+                        disableLoading();
+                    }).catch((err) => console.log(err));
             }
         } else {
             fetchMusicChart(album_id)
@@ -151,7 +156,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     </View>
                                 ) : null}
 
-                                {isAlbum && (
+                                {isAlbum && access_token && (
                                     <View style={styles.button}>
                                         <IconButton icon={isFavorite ? HeartActive : Heart} onClick={handleHeartClick} />
                                     </View>
