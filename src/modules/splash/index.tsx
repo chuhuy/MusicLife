@@ -9,8 +9,9 @@ import {
   TOKEN_FROM_STORAGE,
   FETCH_CURRENT_USER,
   REFRESH_TOKEN,
+  REFRESH_TOKEN_SUCCESS,
 } from './../../redux/modules/auth/actions';
-import {getTokenFromLocalStorage} from './../../shared/helper/authentication';
+import {getAccessTokenFromLocalStorage, getTokenFromLocalStorage} from './../../shared/helper/authentication';
 import Logo from './../../assets/images/logo-vector.svg';
 import AppName from './../../assets/images/app-name.svg';
 
@@ -23,6 +24,8 @@ const mapDispatchToProps = (dispatch: any) => {
     getCurrentLanguage: () => dispatch({type: GET_CURRENT_LANGUAGE}),
     setRefreshToken: (token: string) =>
       dispatch({type: TOKEN_FROM_STORAGE, payload: token}),
+    setAccessToken: (access_token: string) =>
+      dispatch({type: REFRESH_TOKEN_SUCCESS, payload: {access_token}}),
     fetchUser: (refresh_token: string) =>
       dispatch({type: FETCH_CURRENT_USER, payload: {refresh_token}}),
     refreshToken: (refresh_token: string) =>
@@ -32,15 +35,21 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const SplashScreen: React.FunctionComponent<Props> = (props: Props) => {
   let refresh_token = null;
+  let access_token = null;
+
   useEffect(() => {
     props.getCurrentLanguage();
     refresh_token = getTokenFromLocalStorage();
+    access_token = getAccessTokenFromLocalStorage();
     const timer = setTimeout(() => {
       refresh_token = refresh_token._W;
+      access_token = access_token._W;
       if (refresh_token !== null) {
         props.setRefreshToken(refresh_token);
         props.fetchUser(refresh_token);
-        props.refreshToken(refresh_token);
+        // props.refreshToken(refresh_token);
+        console.log(access_token);
+        props.setAccessToken(access_token);
         console.log(refresh_token);
       }
       props.navigation.dispatch(StackActions.replace('TabNavigator'));

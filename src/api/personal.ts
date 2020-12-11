@@ -77,6 +77,7 @@ export const postFavoriteSong = (access_token: string, music_id: number) => {
 };
 
 export const fetchIsFavoriteSong = (access_token: string, music_id: number) => {
+  console.log(access_token)
   const query = `
     query {
       isFavoriteSong(music_id: ${music_id})
