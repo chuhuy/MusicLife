@@ -3,7 +3,7 @@ import { styleVars } from './../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
     contentContainer: {
-        marginVertical: 30,
+        marginVertical: 10,
     },
     item: {
         height: 90,

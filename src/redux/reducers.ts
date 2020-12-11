@@ -5,6 +5,7 @@ import {languageReducer} from './modules/i18n/reducer';
 import {playerReducer} from './modules/player/reducer';
 import {searchReducer} from './modules/search/reducer';
 import {loadingReducer} from './modules/loading/reducer';
+import { networkReducer } from './modules/network/reducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   player: playerReducer,
   search: searchReducer,
   loading: loadingReducer,
+  network: networkReducer,
 });

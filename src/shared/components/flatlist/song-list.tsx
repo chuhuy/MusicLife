@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import {connect} from 'react-redux';
+import { addSongToPlaylist, fetchPersonalPlaylist } from '../../../api/personal';
+import { Playlist } from '../../../models/playlist';
 import {Song} from '../../../models/song';
 import {
   pauseMusic,
@@ -11,9 +13,13 @@ import {
 } from '../../../redux/modules/player/actions';
 import {Screen} from '../../constance/screen';
 import {playSong} from '../../helper/player';
+import { Button } from '../button';
 import ModalBottom from '../modal-bottom';
+import { notifyError, notifySuccess } from '../notify';
 import SongOptions from '../option-list/SongOptions';
 import {Item} from './item';
+import PlaylistList from './playlist';
+import I18n from '../../../i18n';
 
 interface Props extends DispatchProps, StateProps {
   songs: Array<Song>;
@@ -31,12 +37,13 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 const mapStateToProps = (state: any) => ({
   isPlaying: state.player.isPlaying,
-  // refresh_token: state.auth.refresh_token,
+  access_token: state.auth.access_token,
 });
 
 const List: React.FunctionComponent<Props> = (props: Props) => {
   const {
     songs,
+    access_token,
     disableScroll,
     togglePlayMusic,
     children,
@@ -47,6 +54,7 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [songModal, setSongModal] = useState<any>(null);
   const navigation = useNavigation();
+  const [personalPlaylist, setPersonalPlaylist] = useState<Array<Playlist>>([]);
 
   const handlePlayMusic = async (song) => {
     console.log('play music');
@@ -68,6 +76,34 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
     console.log(song);
   };
 
+  const handleAddToPlaylist = () => {
+    if (songModal) {
+      fetchPersonalPlaylist(access_token)
+        .then((data) => {
+          setPersonalPlaylist(data.personalPlaylist);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsVisible(false);
+    setPersonalPlaylist([]);
+  };
+
+  const addSong = (playlist_id: number) => {
+    addSongToPlaylist(access_token, songModal.music_id, playlist_id)
+      .then(() => {
+        notifySuccess(I18n.translate('add-song-playlist'));
+      })
+      .catch((err) => {
+        console.log(err);
+        notifyError(I18n.translate('add-song-playlist-fail'));
+      });
+  };
+
   const renderItem = (item: Song) => {
     return (
       <Item
@@ -78,6 +114,21 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
         onClick={() => handlePlayMusic(item)}
         onOptionClick={() => handleOpenOption(item)}
       />
+    );
+  };
+
+  const renderPlaylist = () => {
+    return (
+      <>
+        {/* <Button
+          title={I18n.translate('personal.add-playlist')} 
+          onClick={}
+        /> */}
+        <PlaylistList
+          playlist={personalPlaylist}
+          onClick={addSong}
+        />
+      </>
     );
   };
 
@@ -108,12 +159,15 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
               )}
               <ModalBottom
                 isVisible={isVisible}
-                onHide={() => setIsVisible(false)}
+                onHide={handleCloseModal}
                 item={songModal}>
-                <SongOptions
-                  song={songModal}
-                  closeModal={() => setIsVisible(false)}
-                />
+                {personalPlaylist.length ? renderPlaylist() : (
+                  <SongOptions
+                    song={songModal}
+                    handleAddToPlaylist={handleAddToPlaylist}
+                    closeModal={handleCloseModal}
+                  />
+                )}
               </ModalBottom>
             </View>
           ) : null}

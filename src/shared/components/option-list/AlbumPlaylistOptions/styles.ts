@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
-        paddingLeft: 20,
         paddingVertical: 15,
     },
     optionText: {

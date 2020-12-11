@@ -1,38 +1,48 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Search from '../modules/home/search';
-import Singer from '../modules/home/singer';
+import Device from '../modules/home/device';
+import { toggleConnection } from '../redux/modules/network/action';
 import { Screen } from '../shared/constance/screen';
-// import Register from './../modules/authentication/register';
+import { styleVars } from '../shared/constance/style-variables';
 import ForgotPassword from './../modules/authentication/forgot-password';
-import Notification from './../modules/home/notification';
 import Player from './../modules/home/player';
 import Splash from './../modules/splash';
-// import Login from './../modules/authentication/login';
 import TabNavigator from './tab-navigator';
 
 const Stack = createStackNavigator();
 
-interface Props extends StateProps {}
+interface Props extends StateProps, DispathProps {}
 
 const mapStateToProps = (state: any) => ({
     refresh_token: state.auth.refresh_token,
+    network: state.network,
 });
 
-// const Splash = React.lazy(() => import('./../modules/splash'));
+const mapDispatchToProps = (dispatch: any) => ({
+    toggleNetWork: () => dispatch(toggleConnection()),
+});
+
 const Login = React.lazy(() => import('./../modules/authentication/login'));
-// const TabNavigator = React.lazy(() => import('./tab-navigator'));
 const Register = React.lazy(() => import('./../modules/authentication/register'));
-// const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
-// const Player = React.lazy(() => import('./../modules/home/player'));
-// const ChangePassword = React.lazy(() => import('../modules/home/change-password'));
-// const ChangeLanguage = React.lazy(() => import('../modules/home/change-language'));
-// const Notification = React.lazy(() => import('../modules/home/notification'));
-// const EditProfile = React.lazy(() => import('../modules/home/edit-profile'));
-// const Playlist = React.lazy(() => import('./../modules/home/playlist'));
 
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
+    let {
+        network,
+        toggleNetWork,
+    } = props;
+    let netInfo = useNetInfo();
+    let { isConnected } = netInfo;
+    
+    useEffect(() => {
+        
+        console.log(isConnected);
+        console.log(network)
+        if (network !== isConnected) {
+            toggleNetWork();
+        }
+    }, [netInfo.isConnected]);
 
     //TODO: Splash Screen
 
@@ -59,5 +69,6 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>
+type DispathProps = ReturnType<typeof mapDispatchToProps>
 
-export default connect(mapStateToProps, null)(MainNavigator);
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavigator);

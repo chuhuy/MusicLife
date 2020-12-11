@@ -21,7 +21,7 @@ interface Props {
 
 export const AllTab: React.FunctionComponent<Props> = (props: Props) => {
     const {artist, song, album, chooseType} = props;
-    console.log(song)
+
     return (
         <>
             {artist.length || song.length || album.length ? (
@@ -86,5 +86,5 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
         marginTop: 10,
-    }
-})
+    },
+});

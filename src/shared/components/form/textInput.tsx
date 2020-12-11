@@ -26,36 +26,36 @@ const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <View style={styles.inputGroup}>
             <Text style={styles.textInputLabel}>{ label }</Text>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, error && styles.inputError]}>
                 <TextInput
                     {...props}
                     ref={(r) => inputRef && inputRef(r)}
-                    style={[styles.textInput, error ? styles.inputError : undefined]}
+                    style={[styles.textInput]}
                     placeholderTextColor={styleVars.greyColor}
                 />
                 {
-                    secureTextEntry !== undefined && 
-                    <ShowPasswordButton 
+                    secureTextEntry !== undefined &&
+                    <ShowPasswordButton
                         onPress={onToggleShowPassword}
                         isPasswordShown={!secureTextEntry}
-                    /> 
+                    />
                 }
             </View>
-            { error ? 
+            { error ?
                 <View style={styles.errorContainer}>
                     <Text style={styles.error}>
                         {error}
                     </Text>
                 </View> : null}
         </View>
-    )
-}
+    );
+};
 
 export default TextInputGroup;
 
 const styles = StyleSheet.create({
     inputGroup: {
-        marginBottom: 15
+        marginBottom: 15,
     },
     inputContainer: {
         flexDirection: 'row',
@@ -64,16 +64,16 @@ const styles = StyleSheet.create({
         height: 45,
         backgroundColor: styleVars.lightPrimaryColor,
         borderRadius: 4,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
     },
     textInput: {
         flex: 1,
         color: styleVars.white,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     inputError: {
         borderWidth: 1,
-        borderColor: styleVars.redColor
+        borderColor: styleVars.secondaryColor,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
@@ -83,17 +83,17 @@ const styles = StyleSheet.create({
     textSecurity: {
         height: '100%',
         justifyContent: 'center',
-        marginRight: -10
+        marginRight: -10,
     },
     errorContainer: {
-        marginTop: 10
-    }, 
+        marginTop: 10,
+    },
     error: {
-        color: styleVars.redColor
+        color: styleVars.secondaryColor,
     },
     eyeIcon: {
-        padding: 10
-    }
+        padding: 10,
+    },
 });
 
 // EyeIcon for password input
@@ -110,12 +110,12 @@ const ShowPasswordButton: React.FunctionComponent<showPasswordButtonProps> = (pr
             <Pressable onPress={onPress}>
                 <View style={styles.eyeIcon}>
                     {
-                        !isPasswordShown ? 
+                        !isPasswordShown ?
                             <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
-                            <EyeyHideIcon fill={styleVars.white} width={24} height={24} /> 
+                            <EyeyHideIcon fill={styleVars.white} width={24} height={24} />
                     }
                 </View>
             </Pressable>
         </View>
-    )
-}
+    );
+};

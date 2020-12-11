@@ -1,3 +1,4 @@
+import { string } from 'yup';
 import {RESOURCE_URL, PERSONAL} from './../shared/constance/api';
 import {API} from './index';
 
@@ -104,3 +105,13 @@ export const fetchIsFavoriteAlbum = (access_token: string, album_id: number) => 
 
   return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
 };
+
+export const addSongToPlaylist = (access_token: string, music_id: number, playlist_id: number) => {
+  const query = `
+    mutation {
+      addSongToPlaylist(music_id: ${music_id} playlist_id: ${playlist_id})
+    } 
+  `;
+
+  return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
+}

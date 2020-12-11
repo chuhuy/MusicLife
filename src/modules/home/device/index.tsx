@@ -1,27 +1,61 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import React, { useEffect, useRef, useState } from 'react';
 import { Alert, PermissionsAndroid, View } from 'react-native';
 import { connect } from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
 import { Song } from '../../../models/song';
+import { disableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen, Button, NotFoundItem, SongList } from '../../../shared/components';
 import HeaderMainPage from '../../../shared/components/header-main-page';
+import { notifyError, notifySuccess } from '../../../shared/components/notify';
 import I18n from './../../../i18n';
 
-interface Props extends StateProps {}
+interface Props extends StateProps, DispatchProps {}
 
 const mapStateToProps = (state: any) => ({
   refresh_token: state.auth.refresh_token,
+  network: state.network,
+  loading: state.loading.loading,
 });
 
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    disableLoading: () => dispatch(disableLoading())
+  };
+};
+
 const Device: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    loading,
+    disableLoading,
+  } = props;
   const [songList, setSongList] = useState<Array<Song>>([]);
+  let netInfo = useNetInfo();
+  let { isConnected } = netInfo;
+  let renderTimes = useRef(0);
 
   useEffect(() => {
     fetchDownloadedSong();
   }, []);
+  console.log(isConnected)
+  useEffect(() => {
+    if (renderTimes.current && !isConnected) {
+      notifyError('Internet disconnect');
+      if (loading) {
+        disableLoading();
+      }
+    } else {
+      if (renderTimes.current++) {
+        notifySuccess('Internet connect');
+      }
+    }
+
+    
+    console.log(renderTimes.current)
+  }, [isConnected]);
 
   const fetchDownloadedSong = async () => {
     try {
@@ -68,11 +102,9 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
       <BaseScreen isScroll={false}>
-        <HeaderMainPage />
+        {isConnected ? <HeaderMainPage /> : null}
 
-        <Button onClick={fetchDownloadedSong} title="Refresh" />
-
-        <View style={{marginTop: 30, flex: 1}}>
+        <View style={{marginVertical: 30, flex: 1}}>
           {songList.length ? (
             <SongList songs={songList} />
           ) : (
@@ -82,11 +114,14 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
             />
           )}
         </View>
+
+        <Button onClick={fetchDownloadedSong} title="Refresh" />
       </BaseScreen>
     </>
   );
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
-export default connect(mapStateToProps, null)(Device);
+export default connect(mapStateToProps, mapDispatchToProps)(Device);

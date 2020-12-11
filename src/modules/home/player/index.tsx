@@ -47,6 +47,7 @@ import {PermissionsAndroid} from 'react-native';
 import { fetchIsFavoriteSong, postFavoriteSong } from '../../../api/personal';
 import { notifyError, notifySuccess } from '../../../shared/components/notify';
 import Toast from 'react-native-root-toast';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 interface Props extends DispatchProps, StateProps {
   route: any;
@@ -64,8 +65,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const Tab = {
-  playlist: 0,
-  playing: 1,
+  playing: 0,
+  playlist: 1,
   lyric: 2,
 };
 
@@ -75,6 +76,8 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   const {songs, isPlaying, songIndex, isRepeat, isShuffle} = player;
 
   const navigation = useNavigation();
+  let netInfo = useNetInfo();
+  let {isConnected} = netInfo;
 
   const [activeTab, setActiveTab] = useState<number>(-1);
   const scrollViewRef = useRef(null);
@@ -119,12 +122,6 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
       diskAnimation.current.stop();
     }
   }, [isPlaying]);
-
-  useEffect(() => {
-    if (scrollViewRef.current) {
-      toggleTab(Tab.playing);
-    }
-  }, [scrollViewRef.current]);
 
   const toggleTab = (index: number) => {
     if (index !== activeTab) {
@@ -247,7 +244,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         await downloadSong(title, url, artists, image_url);
       } else {
-        Alert.alert(I18n.translate('player.do-not-have-permission'));
+        notifyError(I18n.translate('player.do-not-have-permission'));
       }
     } catch (err) {
       console.log(err);
@@ -300,10 +297,6 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               onMomentumScrollEnd={handleScrollTab}
             >
               <View style={styles.tab}>
-                <NowPlaying />
-              </View>
-
-              <View style={styles.tab}>
                 <View style={styles.body}>
                   <Animated.Image source={{uri: songs[songIndex]?.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
                   <Text style={styles.song}>{songs[songIndex]?.title}</Text>
@@ -315,6 +308,10 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                 {renderLyric()}
               </View>
             </ScrollView>
+
+            <View style={styles.tab}>
+                <NowPlaying />
+              </View>
 
             <SeekBar currentTime={route.params?.currentTime} />
 
@@ -330,11 +327,13 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               <View style={styles.buttonGroup2}>
                 {access_token ? <IconButton icon={Plus} onClick={() => {}}/> : null}
 
-                <IconButton icon={Download} onClick={() =>
-                  handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
-                }/>
+                {isConnected ? (
+                  <IconButton icon={Download} onClick={() =>
+                    handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
+                  }/>
+                ) : null}
 
-                {access_token ? (
+                {access_token && isConnected ? (
                   <IconButton
                     icon={isFavorite ? HeartActive : Heart}
                     onClick={handleAddToFavorite}/>

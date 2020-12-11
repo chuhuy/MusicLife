@@ -152,11 +152,14 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             <BaseScreen>
                 <View style={styles.header}>
                     <SearchBar size='"big' />
-                    <LinkButton
-                        title={I18n.translate('search.cancel')}
-                        onClick={handleBack}
-                        color={styleVars.secondaryColor}
-                    />
+
+                    <View style={{marginHorizontal: -10}}>
+                        <LinkButton
+                            title={I18n.translate('search.cancel')}
+                            onClick={handleBack}
+                            color={styleVars.secondaryColor}
+                        />
+                    </View>
                 </View>
 
                 {loading ? null : (

@@ -1,24 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-// import {Setting} from './modules/home/setting';
-import {store} from './redux/store';
-import {Provider} from 'react-redux';
-import MainNavigator from './navigators/main-navigator';
+import notifee, {
+  AndroidImportance, AndroidStyle,
+
+  AndroidVisibility
+} from '@notifee/react-native';
+import { GoogleSignin } from '@react-native-community/google-signin';
+import messaging from '@react-native-firebase/messaging';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import QuickActions from 'react-native-quick-actions';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import SQLite from 'react-native-sqlite-storage';
 import TrackPlayer from 'react-native-track-player';
-import {RootSiblingParent} from 'react-native-root-siblings';
-import messaging from '@react-native-firebase/messaging';
-import notifee, {
-  AndroidStyle,
-  AndroidImportance,
-  AndroidVisibility,
-} from '@notifee/react-native';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import QuickActions from 'react-native-quick-actions';
-import {Notification} from './models/notification';
-import {insertNotification} from './shared/helper/sqlite';
+import { Provider } from 'react-redux';
+import { Notification } from './models/notification';
+import MainNavigator from './navigators/main-navigator';
+// import {Setting} from './modules/home/setting';
+import { store } from './redux/store';
 import LoadingComponent from './shared/components/loading';
+import { insertNotification } from './shared/helper/sqlite';
 
 //  Set up quick action
 QuickActions.setShortcutItems([

@@ -24,6 +24,10 @@ export const styles = StyleSheet.create({
         padding: 20,
     },
     main: {
+        width: '100%',
+        // marginVertical: -15,
+        paddingVertical: 20,
+        paddingHorizontal: 20,
     },
     image: {
         width: 50,
@@ -41,10 +45,5 @@ export const styles = StyleSheet.create({
     artist: {
         color: styleVars.greyColor,
         fontSize: styleVars.smallFontSize
-    },
-    options: {
-        width: '100%',
-        marginVertical: -15,
-        paddingVertical: 20
     },
 });

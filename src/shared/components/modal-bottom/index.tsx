@@ -55,9 +55,7 @@ const ModalBottom: React.FunctionComponent<Props> = (props: Props) => {
                 </View>
 
                 <View style={styles.main}>
-                    <View style={styles.options}>
-                        {children}
-                    </View>
+                    {children}
                 </View>
             </View>
         </Modal>
