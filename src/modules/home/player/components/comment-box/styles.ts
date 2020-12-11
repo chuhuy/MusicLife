@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         borderRadius: 43,
         paddingHorizontal: 20,
         alignSelf: 'center',
-        marginVertical: 20,
+        marginBottom: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -44,6 +44,7 @@ export const styles = StyleSheet.create({
     commentList: {
         flex: 1,
         paddingHorizontal: 20,
+        paddingVertical: 15,
     },
     input: {
         color: styleVars.white,

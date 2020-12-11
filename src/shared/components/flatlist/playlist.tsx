@@ -17,6 +17,7 @@ interface Props {
     disableScroll?: boolean,
     isChart?: boolean,
     isTop100?: boolean,
+    onClick?: (album_id: number) => void,
 }
 
 const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
@@ -29,18 +30,23 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
         isAlbum = false,
         isChart = false,
         isTop100 = false,
+        onClick,
     } = props;
 
     const navigation = useNavigation();
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
     const [itemModal, setItemModal] = React.useState<any>(null);
     const handlePlaylist = (album) => {
-        navigation.navigate(Screen.Common.PlaylistDetail, {
-            playlist: album,
-            isAlbum,
-            isChart,
-            isTop100,
-        });
+        if (onClick) {
+            onClick(album.album_id);
+        } else {
+            navigation.navigate(Screen.Common.PlaylistDetail, {
+                playlist: album,
+                isAlbum,
+                isChart,
+                isTop100,
+            });
+        }
     };
 
     const handleOpenOption = (item) => {
@@ -70,7 +76,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
             />
         );
     };
-    
+
     return (
         <>
             {disableScroll ?

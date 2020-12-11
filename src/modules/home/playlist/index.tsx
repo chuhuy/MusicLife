@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchAblumByGenre } from '../../../api/explore';
+import { fetchAblumByGenre, fetchLatestAlbum } from '../../../api/explore';
 import { Playlist } from '../../../models/playlist';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen, PlaylistList } from '../../../shared/components';
@@ -22,23 +22,34 @@ const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
         enableLoading,
         disableLoading,
     } = props;
-    const { isAlbum, genre_id } = route.params;
+    const { isAlbum, genre_id, isLatest, artistAlbums } = route.params;
     const [playlists, setPlaylists] = useState<Array<Playlist>>([]);
 
     useEffect(() => {
         enableLoading();
 
-        fetchAblumByGenre(genre_id)
-            .then((data) => {
-                setPlaylists(data.albumsByGenre);
-                disableLoading();
-            })
-            .catch((err) => {
-                console.log(err);
-                disableLoading();
-            });
+        try {
+            if (isLatest) {
+                fetchLatestAlbum()
+                    .then((data) => {
+                        setPlaylists(data.albums);
+                    });
+            } else if (genre_id) {
+                fetchAblumByGenre(genre_id)
+                    .then((data) => {
+                        setPlaylists(data.albumsByGenre);
+                    });
+            } else {
+                setPlaylists(artistAlbums);
+            }
+        } catch (err) {
+            console.log(err);
+            disableLoading();
+        }
+
+        disableLoading();
     }, []);
-    
+
     return (
         <>
             <BaseScreen>

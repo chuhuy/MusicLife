@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.blackColor,
         width: '100%',
         height: '100%',
-        opacity: 0.4
+        opacity: 0.4,
     },
     imageBackground: {
         flex: 1,
-        resizeMode: "center",
-        justifyContent: "center",
+        resizeMode: 'center',
+        justifyContent: 'center',
     },
     container: {
         marginBottom: -30,
@@ -22,11 +22,13 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
         opacity: 0.8,
     },
+    body: {
+        paddingVertical: 20,
+    },
     avatarView: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
-        marginBottom: 30
+        marginBottom: 30,
     },
     avatar: {
         width: 250,
@@ -42,7 +44,7 @@ export const styles = StyleSheet.create({
     },
     group:{
         paddingBottom: 30,
-        marginTop: -5
+        marginTop: -5,
     },
     title: {
         color: styleVars.white,

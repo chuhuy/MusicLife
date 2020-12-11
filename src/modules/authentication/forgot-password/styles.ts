@@ -11,11 +11,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
-    flex: 1,
-  },
   inputGroup: {
-    marginTop: 100,
+    marginTop: 50,
   },
-  buttonGroup: {},
 });

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {View, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import {View, KeyboardAvoidingView, Platform} from 'react-native';
 import {styles} from './styles';
 import Header from '../components/header';
 import {Formik} from 'formik';
@@ -10,6 +10,9 @@ import {Button} from '../../../shared/components';
 import {Screen} from '../../../shared/constance/screen';
 import {ForgotPasswordForm} from '../../../models/form/forgot-pasword';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import { forgotPassword } from '../../../api/authentication';
+import { notifySuccess } from '../../../shared/components/notify';
+import Toast from 'react-native-root-toast';
 
 interface Props {
   navigation: any;
@@ -31,7 +34,13 @@ const ForgotPassword: React.FunctionComponent<Props> = (props: Props) => {
     navigation.navigate(Screen.Authentication.Login);
   };
   const handleSubmit = (value: ForgotPasswordForm) => {
-    console.log(value);
+    forgotPassword(value.email)
+      .then((data) => {
+        notifySuccess(I18n.translate('authentication.send-email'), {position: Toast.positions.BOTTOM - 50});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
@@ -39,55 +48,55 @@ const ForgotPassword: React.FunctionComponent<Props> = (props: Props) => {
         <KeyboardAvoidingView
           style={styles.container}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <ScrollView style={styles.scrollView}>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}>
-              {({
-                errors,
-                isValid,
-                values,
-                handleReset,
-                handleChange,
-                handleBlur,
-                setFieldTouched,
-              }) => (
-                <Fragment>
-                  <Header
-                    goBack={() => {
-                      handleReset();
-                      handleSignIn();
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}>
+            {({
+              errors,
+              isValid,
+              values,
+              handleReset,
+              handleChange,
+              handleBlur,
+              setFieldTouched,
+            }) => (
+              <Fragment>
+                <Header
+                  goBack={() => {
+                    handleReset();
+                    handleSignIn();
+                  }}
+                />
+
+                <View style={styles.inputGroup}>
+                  <TextInputGroup
+                    onBlur={() => {
+                      handleBlur('email');
+                      setFieldTouched('email');
                     }}
+                    label={'Email'}
+                    onChangeText={handleChange('email')}
+                    value={values.email}
+                    error={errors.email}
+                    placeholder={I18n.translate(
+                      'authentication.reset-password.email-placeholder',
+                    )}
                   />
-                  <View style={styles.inputGroup}>
-                    <TextInputGroup
-                      onBlur={() => {
-                        handleBlur('email');
-                        setFieldTouched('email');
-                      }}
-                      label={'Email'}
-                      onChangeText={handleChange('email')}
-                      value={values.email}
-                      error={errors.email}
-                      placeholder={I18n.translate(
-                        'authentication.reset-password.email-placeholder',
-                      )}
-                    />
-                  </View>
-                  <View>
-                    <Button
-                      title={I18n.translate(
-                        'authentication.reset-password.confirm-email',
-                      )}
-                      onClick={() => handleSubmit(values)}
-                      disabled={!isValid}
-                    />
-                  </View>
-                </Fragment>
-              )}
-            </Formik>
-          </ScrollView>
+                </View>
+
+                <View style={{marginTop: 5, marginBottom: 10}}>
+                  <Button
+                    title={I18n.translate(
+                      'authentication.reset-password.confirm-email',
+                    )}
+                    onClick={() => handleSubmit(values)}
+                    disabled={!isValid}
+                  />
+                </View>
+              </Fragment>
+            )}
+          </Formik>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </>

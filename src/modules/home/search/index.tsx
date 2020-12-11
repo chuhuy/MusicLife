@@ -1,4 +1,3 @@
-import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -6,7 +5,7 @@ import { fetchSearchResult } from '../../../api/explore';
 import { Artist } from '../../../models/artist';
 import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
-import { BaseScreen, LinkButton, LoadingLayer } from '../../../shared/components';
+import { BaseScreen, LinkButton } from '../../../shared/components';
 import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import { styleVars } from '../../../shared/constance/style-variables';
@@ -26,6 +25,7 @@ interface Props extends StateProps, DispatchProps {
 
 const mapStateToProps = (state: any) => ({
     keyword: state.search.keyword,
+    loading: state.loading.loading,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -51,6 +51,7 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
         enableLoading,
         disableLoading,
         deleteKeyWord,
+        loading,
     } = props;
 
     const [activeTab, setActiveTab] = useState<string>(TYPE.ALL);
@@ -71,65 +72,67 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
     }>>([]);
 
     useEffect(() => {
-        enableLoading();
+        if (keyword !== '') {
+            enableLoading();
 
-        fetchSearchResult(keyword)
-            .then((data) => {
-                let menu = [];
-
-                if (data) {
-                    const {artists, songs, albums} = data;
-
-                    menu.push({
-                        title: I18n.translate('search.all'),
-                        type: TYPE.ALL,
-                        onClick: handleOpenTab,
-                    });
-
-                    if (artists.length) {
-                        setResultArtist(artists);
-                        setTopArtist(artists.slice(0, 2));
-
+            fetchSearchResult(keyword)
+                .then((data) => {
+                    let menu = [];
+    
+                    if (data) {
+                        const {artists, songs, albums} = data;
+    
                         menu.push({
-                            title: I18n.translate('search.artists'),
-                            type: TYPE.ARTIST,
+                            title: I18n.translate('search.all'),
+                            type: TYPE.ALL,
                             onClick: handleOpenTab,
                         });
+    
+                        if (artists.length) {
+                            setResultArtist(artists);
+                            setTopArtist(artists.slice(0, 2));
+    
+                            menu.push({
+                                title: I18n.translate('search.artists'),
+                                type: TYPE.ARTIST,
+                                onClick: handleOpenTab,
+                            });
+                        }
+    
+                        if (songs.length) {
+                            setResultSong(songs);
+                            setTopSong(songs.slice(0, 2));
+    
+                            menu.push({
+                                title: I18n.translate('search.songs'),
+                                type: TYPE.SONG,
+                                onClick: handleOpenTab,
+                            });
+                        }
+    
+                        if (albums.length) {
+                            setResultAlbum(albums);
+                            setTopAlbum(albums.slice(0, 2));
+    
+                            menu.push({
+                                title: I18n.translate('search.albums'),
+                                type: TYPE.ALBUM,
+                                onClick: handleOpenTab,
+                            });
+                        }
+    
+                        disableLoading();
+    
+                        if (menu !== tabMenu) {
+                            setTabMenu(menu);
+                        }
                     }
-
-                    if (songs.length) {
-                        setResultSong(songs);
-                        setTopSong(songs.slice(0, 2));
-
-                        menu.push({
-                            title: I18n.translate('search.songs'),
-                            type: TYPE.SONG,
-                            onClick: handleOpenTab,
-                        });
-                    }
-
-                    if (albums.length) {
-                        setResultAlbum(albums);
-                        setTopAlbum(albums.slice(0, 2));
-
-                        menu.push({
-                            title: I18n.translate('search.albums'),
-                            type: TYPE.ALBUM,
-                            onClick: handleOpenTab,
-                        });
-                    }
-
+                })
+                .catch(err => {
+                    console.log(err);
                     disableLoading();
-
-                    if (menu !== tabMenu) {
-                        setTabMenu(menu);
-                    }
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                disableLoading();
-            });
+                });
+        }
     }, [keyword]);
 
     const handleOpenTab = (type: string) => {
@@ -149,55 +152,62 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             <BaseScreen>
                 <View style={styles.header}>
                     <SearchBar size='"big' />
-                    <LinkButton
-                        title={I18n.translate('search.cancel')}
-                        onClick={handleBack}
-                        color={styleVars.secondaryColor}
-                    />
+
+                    <View style={{marginHorizontal: -10}}>
+                        <LinkButton
+                            title={I18n.translate('search.cancel')}
+                            onClick={handleBack}
+                            color={styleVars.secondaryColor}
+                        />
+                    </View>
                 </View>
 
-                {tabMenu.length ? (
+                {loading ? null : (
                     <>
-                        <UnderlineTabBar options={tabMenu} activeTab={activeTab}/>
+                        {tabMenu.length ? (
+                            <>
+                                <UnderlineTabBar options={tabMenu} activeTab={activeTab}/>
 
-                        {activeTab === TYPE.ALL && (
-                            <ScrollView style={styles.body}>
-                                <AllTab
-                                    song={topSong}
-                                    album={topAlbum}
-                                    artist={topArtist}
-                                    chooseType={handleOpenTab}
+                                {activeTab === TYPE.ALL && (
+                                    <ScrollView style={styles.body}>
+                                        <AllTab
+                                            song={topSong}
+                                            album={topAlbum}
+                                            artist={topArtist}
+                                            chooseType={handleOpenTab}
+                                        />
+                                    </ScrollView>
+                                )}
+
+                                {activeTab === TYPE.SONG && (
+                                    <View style={styles.body}>
+                                        <SongList songs={resultSong} />
+                                    </View>
+                                )}
+
+                                {activeTab === TYPE.ALBUM && (
+                                    <View style={styles.body}>
+                                        <PlaylistList playlist={resultAlbum} />
+                                    </View>
+                                )}
+
+                                {activeTab === TYPE.ARTIST && (
+                                    <View style={styles.body}>
+                                        <ArtistList
+                                            artist={resultArtist}
+                                            isHorizontal={false}
+                                        />
+                                    </View>
+                                )}
+                            </>
+                        ) : (
+                            <>
+                                <NotFoundItem
+                                    icon={<NotFound />}
+                                    text={I18n.translate('search.not-found')}
                                 />
-                            </ScrollView>
+                            </>
                         )}
-
-                        {activeTab === TYPE.SONG && (
-                            <View style={styles.body}>
-                                <SongList songs={resultSong} />
-                            </View>
-                        )}
-
-                        {activeTab === TYPE.ALBUM && (
-                            <View style={styles.body}>
-                                <PlaylistList playlist={resultAlbum} />
-                            </View>
-                        )}
-
-                        {activeTab === TYPE.ARTIST && (
-                            <View style={styles.body}>
-                                <ArtistList
-                                    artist={resultArtist}
-                                    isHorizontal={false}
-                                />
-                            </View>
-                        )}
-                    </>
-                ) : (
-                    <>
-                        <NotFoundItem
-                            icon={<NotFound />}
-                            text={I18n.translate('search.not-found')}
-                        />
                     </>
                 )}
             </BaseScreen>

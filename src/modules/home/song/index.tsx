@@ -26,29 +26,33 @@ export const SongScreen: React.FunctionComponent<Props> = (props: Props) => {
     const [songList, setSongList] = useState<Array<Song>>([]);
 
     const fetchData = () => {
-        const {isLatest, genre_id, album_id} = route.params;
+        const { isLatest, genre_id } = route.params;
         
         if (isLatest) {
             return fetchLatestSong();
         } else if (genre_id) {
             return fetchSongByGenre(genre_id);
-        } else {
-            return fetchAlbumDetail(album_id);
         }
     };
 
     useEffect(() => {
         enableLoading();
+        let { artistSongs } = route.params;
 
-        fetchData()
-            .then(data => {
-                setSongList([...songList, ...data.songs]);
-                disableLoading();
-            })
-            .catch(err => {
-                console.log(err);
-                disableLoading();
-            });
+        if (artistSongs) {
+            setSongList(artistSongs);
+            disableLoading();
+        } else {
+            fetchData()
+                .then(data => {
+                    setSongList([...songList, ...data.songs]);
+                    disableLoading();
+                })
+                .catch(err => {
+                    console.log(err);
+                    disableLoading();
+                });
+        }
     }, []);
 
     return (

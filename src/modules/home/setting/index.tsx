@@ -174,6 +174,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </>
           )}
         </View>
+
         {/* <ChangeLanguage /> */}
         <CustomModal
           isVisible={isModalLanguageVisible}
@@ -196,6 +197,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 {I18n.translate('changeLanguage.vietnamese')}
               </Text>
             </Pressable>
+
             <Pressable
               style={styles.modal__group}
               onPress={() => setLanguageActive('en')}>
@@ -213,23 +215,37 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
               </Text>
             </Pressable>
           </View>
+
           <View style={styles.modal__footer}>
-            <LinkButton
-              title={I18n.translate('changeLanguage.cancel')}
-              onClick={() => {
-                toggleModalLanguage();
-                setLanguageActive(currentLanguage);
-              }}
-              color={styleVars.greyColor}
-            />
-            <LinkButton
-              title={I18n.translate('changeLanguage.save')}
-              onClick={() => {
-                toggleModalLanguage();
-                toggleModalRestart();
-              }}
-              color={styleVars.secondaryColor}
-            />
+              <View style={styles.touchArea}>
+                <LinkButton
+                  title={I18n.translate('changeLanguage.cancel')}
+                  onClick={() => {
+                    toggleModalLanguage();
+                    setLanguageActive(currentLanguage);
+                  }}
+                  color={styleVars.greyColor}
+                  position
+                />
+              </View>
+
+              <View style={{
+                height: '50%',
+                width: 1,
+                backgroundColor: styleVars.greyColor,
+              }}/>
+
+              <View style={styles.touchArea}>
+                <LinkButton
+                  title={I18n.translate('changeLanguage.save')}
+                  onClick={() => {
+                    toggleModalLanguage();
+                    toggleModalRestart();
+                  }}
+                  color={styleVars.secondaryColor}
+                  position
+                />
+              </View>
           </View>
         </CustomModal>
 

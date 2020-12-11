@@ -179,7 +179,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
       <KeyboardAvoidingView
         style={{flex: 1}}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-        <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ }}>
           <Formik
             initialValues={initialFormValue}
             onSubmit={(values) => validateForm(values)}
@@ -300,7 +300,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
                     onToggleShowPassword={() => toggleShowPassword(1)}
                   />
 
-                  <View style={{marginTop: 20}}>
+                  <View style={{marginTop: 5, marginBottom: 10}}>
                     <Button
                       title={I18n.translate('authentication.register.signup')}
                       onClick={() => handleSubmit()}

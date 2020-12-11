@@ -41,6 +41,7 @@ export const authentication = {
         'error-required-email': 'You have to enter email',
         'error-email': 'You entered an invalid email',
         'email-placeholder': 'Enter email',
-        'confirm-email': 'Confirm',
+        'confirm-email': 'Send',
+        'send-email': 'Mail has been sent to your email',
     },
 };
