@@ -23,7 +23,6 @@ const initState = {
   refresh_token: null,
   default_avatar: 1,
   image_url: null,
-  loading: false,
 };
 
 export const authReducer = (state: any = initState, action: Action) => {
@@ -35,7 +34,6 @@ export const authReducer = (state: any = initState, action: Action) => {
     case FETCH_CURRENT_USER:
       return {
         ...state,
-        loading: true,
       };
     case LOGIN_SUCCESS:
       return {
@@ -45,13 +43,11 @@ export const authReducer = (state: any = initState, action: Action) => {
         default_avatar: action.payload.default_avatar,
         access_token: action.payload.access_token,
         refresh_token: action.payload.refresh_token,
-        loading: false,
       };
     case REFRESH_TOKEN_SUCCESS:
       return {
         ...state,
         access_token: action.payload.access_token,
-        loading: false,
       };
     case LOGIN_FAILED:
     case LOGOUT:
@@ -59,7 +55,6 @@ export const authReducer = (state: any = initState, action: Action) => {
         username: null,
         access_token: null,
         refresh_token: null,
-        loading: false,
       };
 
     case FETCH_CURRENT_USER_SUCCESS:
@@ -68,12 +63,10 @@ export const authReducer = (state: any = initState, action: Action) => {
         display_name: action.payload.display_name,
         image_url: action.payload.image_url,
         default_avatar: action.payload.default_avatar,
-        loading: false,
       };
     case FETCH_CURRENT_USER_FAILED:
       return {
         ...state,
-        loading: false,
       };
     case TOKEN_FROM_STORAGE:
       return {

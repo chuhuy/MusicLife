@@ -1,5 +1,7 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import {styleVars} from '../../constance/style-variables';
+import { Dimensions, StyleSheet } from 'react-native';
+import { styleVars } from '../../constance/style-variables';
+
+const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     modalContainer: {
@@ -25,7 +27,7 @@ export const styles = StyleSheet.create({
     },
     main: {
         width: '100%',
-        // marginVertical: -15,
+        minHeight: height * 0.3,
         paddingVertical: 20,
         paddingHorizontal: 20,
     },

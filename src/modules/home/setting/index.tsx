@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  refresh_token: state.auth.refresh_token,
+  access_token: state.auth.access_token,
   display_name: state.auth.display_name,
   default_avatar: state.auth.default_avatar,
   image_url: state.auth.image_url,
@@ -39,7 +39,7 @@ const mapStateToProps = (state: any) => ({
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
   let netInfo = useNetInfo();
   let { isConnected } = netInfo;
-  const {navigation, refresh_token, logout} = props;
+  const {navigation, access_token, logout} = props;
   const [isModalLanguageVisible, setModalLanguageVisible] = useState(false);
   const [isModalRestartVisible, setModalRestartVisible] = useState(false);
   const [languageActive, setLanguageActive] = useState<string>();
@@ -81,14 +81,14 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
   const handleSignIn = () => {
     navigation.navigate(Screen.Authentication.Login);
   };
-  console.log(refresh_token)
+
   return (
     <>
       <View style={styles.container}>
         {isConnected ? (
           <View style={styles.info}>
             <View style={styles.info__left}>
-              {refresh_token ? (
+              {access_token ? (
                 <>
                   {
                       props.image_url === null ?
@@ -119,7 +119,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
 
         <View style={styles.main}>
           {/* Edit Profile */}
-          {refresh_token && isConnected ? (
+          {access_token && isConnected ? (
             <Pressable onPress={handleEditProfile}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -149,7 +149,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </Pressable>
           {/* Change Password */}
-          {refresh_token && isConnected ? (
+          {access_token && isConnected ? (
             <Pressable onPress={handleChangePassword}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -165,7 +165,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </Pressable>
           ) : null}
           {/* Logout */}
-          {refresh_token && (
+          {access_token && (
             <>
               <View style={styles.main__rule} />
               <Pressable onPress={handleLogout}>

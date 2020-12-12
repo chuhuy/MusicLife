@@ -37,6 +37,7 @@ import {Messages} from '../../../shared/constance/messages';
 import TextInputGroup from '../../../shared/components/form/textInput';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import Header from '../components/header';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
 
 interface Props extends DispatchProps, StateProps {
   navigation: any;
@@ -50,6 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    enableLoading: () => dispatch(enableLoading()),
+    disableLoading: () => dispatch(disableLoading()),
     onLoginUsername: (user: SignInForm, callbacks?: ReduxCallbacks) =>
       dispatch(loginUsername(user, callbacks)),
     onLoginEmail: (user: SignInForm, callbacks?: ReduxCallbacks) =>
@@ -60,7 +63,14 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const Login: React.FunctionComponent<Props> = (props: Props) => {
-  const {loading, onLoginUsername, onLoginEmail, onLoginFacebook} = props;
+  const {
+    loading,
+    onLoginUsername,
+    onLoginEmail,
+    onLoginFacebook,
+    enableLoading,
+    disableLoading,
+  } = props;
 
   // Loading
   useEffect(() => {
@@ -104,6 +114,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     validationSchema
       .validate(values, {abortEarly: false})
       .then(() => {
+        enableLoading();
         //  Validate successfully
         handleSignIn(values);
       })
@@ -128,13 +139,20 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
   // Login
   const handleSignIn = (values: SignInForm) => {
     console.log(values);
+    
     if (/^.+@.+$/.test(values.username)) {
       onLoginEmail(values, {
-        onFailed: (error) => renderToast({error}),
+        onFailed: (error) => {
+          disableLoading();
+          renderToast({error});
+        },
       });
     } else {
       onLoginUsername(values, {
-        onFailed: (error) => renderToast({error}),
+        onFailed: (error) => {
+          disableLoading();
+          renderToast({error});
+        },
       });
     }
   };
@@ -147,9 +165,14 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
         } else {
           const {accessToken} = await AccessToken.getCurrentAccessToken();
           console.log(accessToken);
+          enableLoading();
           onLoginFacebook(accessToken, {
-            onFailed: (error) => renderToast({error}),
+            onFailed: (error) => {
+              disableLoading();
+              renderToast({error});
+            },
           });
+          disableLoading();
           console.log(
             'Login success with permissions: ' +
               result.grantedPermissions.toString(),
@@ -159,6 +182,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
       function (error) {
         renderToast({error});
         console.log('Login fail with error: ' + error);
+        disableLoading();
       },
     );
   };
@@ -196,7 +220,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
   const renderToast = (errors) => {
     const keys = Object.keys(errors);
     const totalErrors = keys.length;
-    console.log(errors);
+
     if (totalErrors) {
       let errorMessage = '';
 

@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 interface Props extends StateProps {}
 
 const mapStateToProps = (state: any) => ({
-    refresh_token: state.auth.refresh_token,
+    access_token: state.auth.access_token,
     network: state.network,
 });
 
@@ -30,9 +30,9 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                 {(
                     <>
                         <Stack.Screen name={Screen.Splash} component={Splash}/>
-                        {props.refresh_token && <Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
-                        {props.refresh_token && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
-                        {props.refresh_token && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
+                        {<Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
+                        {<Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
+                        {<Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name={Screen.Common.Player} component={Player}/>
                     </>

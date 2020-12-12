@@ -28,6 +28,7 @@ interface Props extends StateProps, DispatchProps {
 
 const mapStateToProps = (state: any) => ({
     access_token: state.auth.access_token,
+    loading: state.loading.loading,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -43,6 +44,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
         access_token,
         enableLoading,
         disableLoading,
+        loading,
     } = props;
     const { playlist, isChart, isAlbum, isTop100 } = route.params;
     const { album_id, title, artists, image_url } = playlist;
@@ -181,25 +183,29 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
                 </ImageBackground>
 
-                {songList.length ? (
+                {!loading ? (
                     <>
-                        <View style={styles.sectionTwo}>
-                            <SongList songs={songList} />
-                        </View>
+                        {songList.length ? (
+                            <>
+                                <View style={styles.sectionTwo}>
+                                    <SongList songs={songList} />
+                                </View>
 
-                        <ModalBottom
-                            isVisible={isVisible}
-                            onHide={() => setIsVisible(false)}
-                            item={{image_url, artists, title}}>
-                            <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
-                        </ModalBottom>
+                                <ModalBottom
+                                    isVisible={isVisible}
+                                    onHide={() => setIsVisible(false)}
+                                    item={{image_url, artists, title}}>
+                                    <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
+                                </ModalBottom>
+                            </>
+                        ) : (
+                            <NotFoundItem
+                                text={I18n.translate('personal.song-not-found')}
+                                icon={<NotFoundSong />}
+                            />
+                        )}
                     </>
-                ) : (
-                    <NotFoundItem
-                        text={I18n.translate('personal.song-not-found')}
-                        icon={<NotFoundSong />}
-                    />
-                )}
+                ) : null}
 
                 <Controller />
             </SafeAreaView>

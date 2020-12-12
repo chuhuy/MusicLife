@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import { useNetInfo } from '@react-native-community/netinfo';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, PermissionsAndroid, View } from 'react-native';
 import { connect } from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -9,8 +8,6 @@ import NotFoundSong from '../../../assets/icons/not-found-song.svg';
 import { Song } from '../../../models/song';
 import { disableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen, Button, NotFoundItem, SongList } from '../../../shared/components';
-import HeaderMainPage from '../../../shared/components/header-main-page';
-import { notifyError, notifySuccess } from '../../../shared/components/notify';
 import I18n from './../../../i18n';
 
 interface Props extends StateProps, DispatchProps {}
@@ -33,26 +30,10 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
     disableLoading,
   } = props;
   const [songList, setSongList] = useState<Array<Song>>([]);
-  let netInfo = useNetInfo();
-  let { isConnected } = netInfo;
-  let renderTimes = useRef(0);
 
   useEffect(() => {
     fetchDownloadedSong();
   }, []);
-  console.log(isConnected)
-  useEffect(() => {
-    if (renderTimes.current && !isConnected) {
-      notifyError('Internet disconnect');
-      if (loading) {
-        disableLoading();
-      }
-    } else {
-      if (renderTimes.current++) {
-        notifySuccess('Internet connect');
-      }
-    }
-  }, [isConnected]);
 
   const fetchDownloadedSong = async () => {
     try {
