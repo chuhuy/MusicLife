@@ -1,4 +1,3 @@
-import { string } from 'yup';
 import {RESOURCE_URL, PERSONAL} from './../shared/constance/api';
 import {API} from './index';
 

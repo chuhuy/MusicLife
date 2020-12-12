@@ -9,6 +9,7 @@ const mergeOptions = (options?: ToastOptions) =>
 		{
             containerStyle:{
                 width: width - 40,
+                paddingVertical: 20,
             },
             backgroundColor: styleVars.lightPrimaryColor,
             hideOnPress: true,

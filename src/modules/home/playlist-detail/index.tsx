@@ -136,10 +136,8 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <SafeAreaView style={styles.container}>
-                <ImageBackground
-                    style={styles.sectionOne}
-                    blurRadius={5}
-                    source={{uri: image_url || ''}}>
+                <View style={styles.sectionOne}>
+                    <Image source={{uri: image_url || ''}} style={styles.imageBg}/>
 
                     <View style={styles.blurLayer} />
 
@@ -181,7 +179,8 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                             </View>
                         </View>
                     </View>
-                </ImageBackground>
+
+                </View>
 
                 {!loading ? (
                     <>
