@@ -18,6 +18,7 @@ import {Button, LinkButton} from '../../../shared/components';
 import {Screen} from '../../../shared/constance/screen';
 import RadioButton from '../../../shared/components/radio-button';
 import DefaultAvatar from './components/default-avatar';
+import { useNetInfo } from '@react-native-community/netinfo';
 interface Props extends DispatchProps, StateProps {
   navigation: any;
 }
@@ -36,6 +37,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
+  let netInfo = useNetInfo();
+  let { isConnected } = netInfo;
   const {navigation, refresh_token, logout} = props;
   const [isModalLanguageVisible, setModalLanguageVisible] = useState(false);
   const [isModalRestartVisible, setModalRestartVisible] = useState(false);
@@ -49,6 +52,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
     };
     getLanguageActive();
   }, []);
+
   const handleChangeLanguage = (language: string) => {
     changeLanguage(language);
   };
@@ -77,42 +81,45 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
   const handleSignIn = () => {
     navigation.navigate(Screen.Authentication.Login);
   };
-
+  console.log(refresh_token)
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.info}>
-          <View style={styles.info__left}>
-            {refresh_token !== null ? (
-              <>
-                {
-                    props.image_url === null ?
-                    (<>
-                        <DefaultAvatar size={85} type={props.default_avatar} />
-                    </>)
-                    : (<>
-                        <Image
-                            source={{uri: props.image_url}}
-                            style={styles.avatar}
-                        />
-                    </>)
-                }
-                <Text style={styles.name}>{props.display_name}</Text>
-              </>
-            ) : (
-              <View style={styles.loginContainer}>
-                <Button
-                  title={I18n.translate('setting.signin')}
-                  onClick={handleSignIn}
-                  size="big"
-                />
+        {isConnected ? (
+          <View style={styles.info}>
+            <View style={styles.info__left}>
+              {refresh_token ? (
+                <>
+                  {
+                      props.image_url === null ?
+                      (<>
+                          <DefaultAvatar size={85} type={props.default_avatar} />
+                      </>)
+                      : (<>
+                          <Image
+                              source={{uri: props.image_url}}
+                              style={styles.avatar}
+                          />
+                      </>)
+                  }
+                  <Text style={styles.name}>{props.display_name}</Text>
+                </>
+              ) : (
+                <View style={styles.loginContainer}>
+                  <Button
+                    title={I18n.translate('setting.signin')}
+                    onClick={handleSignIn}
+                    size="big"
+                  />
+                </View>
+              )}
               </View>
-            )}
           </View>
-        </View>
+        ) : null}
+
         <View style={styles.main}>
           {/* Edit Profile */}
-          {refresh_token !== null && (
+          {refresh_token && isConnected ? (
             <Pressable onPress={handleEditProfile}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -126,7 +133,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <ArrowSvg width={11} height={20} />
               </View>
             </Pressable>
-          )}
+          ) : null}
           {/* Change Language */}
           <Pressable onPress={toggleModalLanguage}>
             <View style={styles.main__item}>
@@ -142,7 +149,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </Pressable>
           {/* Change Password */}
-          {refresh_token !== null && (
+          {refresh_token && isConnected ? (
             <Pressable onPress={handleChangePassword}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -156,9 +163,9 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
                 <ArrowSvg width={11} height={20} />
               </View>
             </Pressable>
-          )}
+          ) : null}
           {/* Logout */}
-          {refresh_token !== null && (
+          {refresh_token && (
             <>
               <View style={styles.main__rule} />
               <Pressable onPress={handleLogout}>
