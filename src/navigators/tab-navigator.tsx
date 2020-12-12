@@ -1,5 +1,4 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useNetInfo } from '@react-native-community/netinfo';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Text } from 'react-native';
@@ -30,9 +29,6 @@ const mapStateToProps = (state: any) => ({
 interface Props extends StateProps {}
 
 const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
-    const netInfo = useNetInfo();
-    let { isConnected } = netInfo;
-
     return (
         <Tab.Navigator
             tabBarOptions={{
@@ -43,11 +39,11 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
             }}
             screenOptions={({route}) => ({
                 tabBarLabel: ({focused}) => {
-                    if (isConnected && route.name === Screen.Explore.Main) {
+                    if (route.name === Screen.Explore.Main) {
                         return (
                             <Text style={{color: focused ? styleVars.secondaryColor : styleVars.greyColor, fontSize: 12}}>{I18n.translate('explore.title')}</Text>
                         );
-                    } else if (isConnected && route.name === Screen.Personal) {
+                    } else if (route.name === Screen.Personal) {
                         return (
                             <Text style={{color: focused ? styleVars.secondaryColor : styleVars.greyColor, fontSize: 12}}>{I18n.translate('personal.title')}</Text>
                         );
@@ -62,10 +58,10 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                     }
                 },
                 tabBarIcon: ({focused}) => {
-                    if (isConnected && route.name === Screen.Explore.Main) {
+                    if (route.name === Screen.Explore.Main) {
                         if (!focused) {return (<ExploreIcon/>);}
                         else {return (<ExploreActiveIcon/>);}
-                    } else if (isConnected && route.name === Screen.Personal) {
+                    } else if (route.name === Screen.Personal) {
                         if (!focused) {return (<PersonalIcon/>);}
                         else {return (<PersonalActiveIcon/>);}
                     } else if (route.name === Screen.Setting.Main) {
@@ -78,8 +74,8 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
                 },
             })}
         >
-            {isConnected && <Tab.Screen name={Screen.Explore.Main} component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>}
-            {isConnected && props.refresh_token && <Tab.Screen name={Screen.Personal} component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
+            {<Tab.Screen name={Screen.Explore.Main} component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>}
+            {props.refresh_token && <Tab.Screen name={Screen.Personal} component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name={Screen.Device} component={Device} options={{title: I18n.translate('explore.title')}}/>
             <Tab.Screen name={Screen.Setting.Main} component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>
