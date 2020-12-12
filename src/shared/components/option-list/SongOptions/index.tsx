@@ -24,6 +24,7 @@ interface Props extends StateProps {
 
 const mapStateToProps = (state: any) => ({
     access_token: state.auth.access_token,
+    songs: state.player.songs,
 });
 
 const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
@@ -32,6 +33,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
         song,
         closeModal,
         handleAddToPlaylist,
+        songs,
     } = props;
     const [isAddPlaying, setIsAddPlaying] = useState<boolean>(false);
     const [isFavorite, setIsFavorite] = useState<boolean>(true);
@@ -83,12 +85,15 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
             },
           );
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            notifyError(I18n.translate('player.start-download'));
             await downloadSong(title, url, artists, image_url);
+            notifyError(I18n.translate('player.end-download'));
           } else {
             notifyError(I18n.translate('player.do-not-have-permission'));
           }
         } catch (err) {
           console.log(err);
+          notifyError(I18n.translate('player.fail-download'));
         }
       };
 
@@ -102,26 +107,27 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
                 console.log(err);
                 notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
             });
-        console.log('Add to favorite');
     };
 
     return (
         <>
             <Fragment>
-                <Pressable
-                    style={styles.optionItem}
-                    onPress={handleNowPlayingPlaylist}>
-                    <View style={styles.svg}>
-                        {isAddPlaying ? (
-                            <TrashIcon width={25} height={25} />
-                        ) : (
-                            <PlayListAddSvg width={25} height={25} />
-                        )}
-                    </View>
-                    <Text style={styles.optionText}>
-                        {isAddPlaying ? I18n.translate('optionModal.remove-to-now-playlist') : I18n.translate('optionModal.add-to-now-playlist')}
-                    </Text>
-                </Pressable>
+                {songs.length ? (
+                    <Pressable
+                        style={styles.optionItem}
+                        onPress={handleNowPlayingPlaylist}>
+                        <View style={styles.svg}>
+                            {isAddPlaying ? (
+                                <TrashIcon width={25} height={25} />
+                            ) : (
+                                <PlayListAddSvg width={25} height={25} />
+                            )}
+                        </View>
+                        <Text style={styles.optionText}>
+                            {isAddPlaying ? I18n.translate('optionModal.remove-to-now-playlist') : I18n.translate('optionModal.add-to-now-playlist')}
+                        </Text>
+                    </Pressable>
+                ) : null}
 
                 {!isFavorite ? (
                     <Pressable

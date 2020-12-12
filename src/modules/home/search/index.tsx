@@ -78,55 +78,53 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
             fetchSearchResult(keyword)
                 .then((data) => {
                     let menu = [];
+                    console.log(data);
     
                     if (data) {
                         const {artists, songs, albums} = data;
-    
-                        menu.push({
-                            title: I18n.translate('search.all'),
-                            type: TYPE.ALL,
-                            onClick: handleOpenTab,
-                        });
-    
-                        if (artists.length) {
-                            setResultArtist(artists);
-                            setTopArtist(artists.slice(0, 2));
-    
+                        if (artists.length || songs.length || albums.length) {
                             menu.push({
-                                title: I18n.translate('search.artists'),
-                                type: TYPE.ARTIST,
+                                title: I18n.translate('search.all'),
+                                type: TYPE.ALL,
                                 onClick: handleOpenTab,
                             });
+        
+                            if (artists.length) {
+                                setResultArtist(artists);
+                                setTopArtist(artists.slice(0, 2));
+        
+                                menu.push({
+                                    title: I18n.translate('search.artists'),
+                                    type: TYPE.ARTIST,
+                                    onClick: handleOpenTab,
+                                });
+                            }
+        
+                            if (songs.length) {
+                                setResultSong(songs);
+                                setTopSong(songs.slice(0, 2));
+        
+                                menu.push({
+                                    title: I18n.translate('search.songs'),
+                                    type: TYPE.SONG,
+                                    onClick: handleOpenTab,
+                                });
+                            }
+        
+                            if (albums.length) {
+                                setResultAlbum(albums);
+                                setTopAlbum(albums.slice(0, 2));
+        
+                                menu.push({
+                                    title: I18n.translate('search.albums'),
+                                    type: TYPE.ALBUM,
+                                    onClick: handleOpenTab,
+                                });
+                            }
                         }
-    
-                        if (songs.length) {
-                            setResultSong(songs);
-                            setTopSong(songs.slice(0, 2));
-    
-                            menu.push({
-                                title: I18n.translate('search.songs'),
-                                type: TYPE.SONG,
-                                onClick: handleOpenTab,
-                            });
-                        }
-    
-                        if (albums.length) {
-                            setResultAlbum(albums);
-                            setTopAlbum(albums.slice(0, 2));
-    
-                            menu.push({
-                                title: I18n.translate('search.albums'),
-                                type: TYPE.ALBUM,
-                                onClick: handleOpenTab,
-                            });
-                        }
-    
-                        disableLoading();
-    
-                        if (menu !== tabMenu) {
-                            setTabMenu(menu);
-                        }
+                        setTabMenu(menu);
                     }
+                    disableLoading();
                 })
                 .catch(err => {
                     console.log(err);

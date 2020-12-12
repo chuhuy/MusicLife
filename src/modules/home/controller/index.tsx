@@ -42,11 +42,11 @@ const Controller: React.FunctionComponent<Props> = (props: Props) => {
         >
             <View style={styles.container}>
                 <View style={styles.section}>
-                    <Image style={styles.image} source={{uri: songs[songIndex].image_url}}/>
+                    <Image style={styles.image} source={{uri: songs[songIndex]?.image_url}}/>
                     
                     <View style={styles.titleGroup}>
-                        <Text style={styles.song} numberOfLines={1}>{songs[songIndex].title}</Text>
-                        <Text style={styles.artist} numberOfLines={1}>{songs[songIndex].artists}</Text>
+                        <Text style={styles.song} numberOfLines={1}>{songs[songIndex]?.title}</Text>
+                        <Text style={styles.artist} numberOfLines={1}>{songs[songIndex]?.artists}</Text>
                     </View>
                 </View>
 

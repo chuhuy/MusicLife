@@ -4,7 +4,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   Animated,
   Dimensions,
   Easing,
@@ -79,7 +78,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   let netInfo = useNetInfo();
   let {isConnected} = netInfo;
 
-  const [activeTab, setActiveTab] = useState<number>(-1);
+  const [activeTab, setActiveTab] = useState<number>(Tab.playing);
   const scrollViewRef = useRef(null);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
@@ -103,15 +102,16 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
   useEffect(() => {
     if (access_token) {
-      fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
-        .then((data) => {
-          if (data.isFavoriteSong) {
-            setIsFavorite(true);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log('access_token');
+      // fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
+      //   .then((data) => {
+      //     if (data.isFavoriteSong) {
+      //       setIsFavorite(true);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
   }, []);
 
@@ -126,7 +126,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   const toggleTab = (index: number) => {
     if (index !== activeTab) {
       setActiveTab(index);
-      console.log(Dimensions.get('window').width * (index));
+
       scrollViewRef.current.scrollTo({
         x: Dimensions.get('window').width * index,
         y: 0,
@@ -224,6 +224,7 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         <NotFoundItem
           icon={<NotFoundLyric />}
           text={I18n.translate('player.not-found-lyric')}
+          theme="light"
         />
       );
     }
@@ -271,14 +272,14 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
                 style={{padding: 5}}
                 onPress={() => toggleTab(Tab.playlist)}
               >
-                <View style={[styles.dot, activeTab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
+                <View style={[styles.dot, activeTab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
               </Pressable>
 
               <Pressable
                 style={{padding: 5}}
                 onPress={() => toggleTab(Tab.playing)}
               >
-                <View style={[styles.dot, activeTab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
+                <View style={[styles.dot, activeTab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
               </Pressable>
 
               <Pressable
@@ -305,13 +306,13 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               </View>
 
               <View style={styles.tab}>
+                <NowPlaying />
+              </View>
+
+              <View style={styles.tab}>
                 {renderLyric()}
               </View>
             </ScrollView>
-
-            <View style={styles.tab}>
-                <NowPlaying />
-              </View>
 
             <SeekBar currentTime={route.params?.currentTime} />
 

@@ -11,4 +11,7 @@ export const player = {
     'cancel': 'Hủy',
     'agree': 'Đồng ý',
     'do-not-have-permission': 'Chúng tôi chưa có quyền để tải bài hát',
+    'start-download': 'Bài hát đang được tải',
+    'end-download': 'Tải bài hát thành công',
+    'fail-download': 'Tải bài hát không thành công',
 };

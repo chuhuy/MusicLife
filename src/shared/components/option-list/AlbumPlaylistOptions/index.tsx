@@ -58,14 +58,6 @@ const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
         playSong(songs);
         closeModal();
     };
-    const handleDownloadSongs = () => {
-        console.log('Download songs');
-        closeModal();
-    };
-    const handleDelete = () => {
-        console.log('Delete');
-        closeModal();
-    };
 
     return (
         <>
@@ -93,30 +85,6 @@ const AlbumPlayOptions: React.FunctionComponent<Props> = (props: Props) => {
 
                     <Text style={styles.optionText}>
                         {I18n.translate('optionModal.play')}
-                    </Text>
-                </Pressable>
-
-                <Pressable
-                    style={styles.optionItem}
-                    onPress={handleDownloadSongs}>
-                    <View style={styles.svg}>
-                        <DownloadSvg width={25} height={25}/>
-                    </View>
-
-                    <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.download-songs')}
-                    </Text>
-                </Pressable>
-
-                <Pressable
-                    style={styles.optionItem}
-                    onPress={handleDelete}>
-                    <View style={styles.svg}>
-                        <DeleteSvg width={25} height={25}/>
-                    </View>
-
-                    <Text style={styles.optionText}>
-                        {I18n.translate('optionModal.delete-from-library')}
                     </Text>
                 </Pressable>
             </Fragment>

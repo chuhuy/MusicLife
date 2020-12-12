@@ -78,6 +78,9 @@ const styles = StyleSheet.create({
     fontSize: styleVars.baseFontSize,
     paddingTop: 15,
   },
+  lightText: {
+    color: styleVars.lightWhite,
+  },
 });
 
 // Go Back Header
@@ -113,20 +116,21 @@ export const LoadingLayer: React.FC = () => {
 };
 
 interface NotFoundItemProps {
-  icon: SVGElement;
-  text: string;
+  icon: SVGElement,
+  text: string,
+  theme?: string,
 }
 
 export const NotFoundItem: React.FunctionComponent<NotFoundItemProps> = (
   props: NotFoundItemProps,
 ) => {
-  const {icon, text} = props;
+  const {icon, text, theme} = props;
 
   return (
     <>
       <View style={styles.notFoundContainer}>
         {icon}
-        <Text style={styles.notFoundText}>{text}</Text>
+        <Text style={[styles.notFoundText, theme && styles.lightText]}>{text}</Text>
       </View>
     </>
   );

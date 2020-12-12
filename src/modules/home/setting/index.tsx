@@ -260,16 +260,29 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </Text>
           </View>
           <View style={styles.modal__footer}>
-            <LinkButton
-              title={I18n.translate('changeLanguage.cancel')}
-              onClick={toggleModalRestart}
-              color={styleVars.greyColor}
-            />
-            <LinkButton
-              title={I18n.translate('changeLanguage.save')}
-              onClick={() => handleChangeLanguage(languageActive)}
-              color={styleVars.secondaryColor}
-            />
+            <View style={styles.touchArea}>
+              <LinkButton
+                title={I18n.translate('changeLanguage.cancel')}
+                onClick={toggleModalRestart}
+                color={styleVars.greyColor}
+                position
+              />
+            </View>
+
+            <View style={{
+              height: '50%',
+              width: 1,
+              backgroundColor: styleVars.greyColor,
+            }}/>
+
+            <View style={styles.touchArea}>
+              <LinkButton
+                title={I18n.translate('changeLanguage.save')}
+                onClick={() => handleChangeLanguage(languageActive)}
+                color={styleVars.secondaryColor}
+                position
+              />
+            </View>
           </View>
         </CustomModal>
       </View>

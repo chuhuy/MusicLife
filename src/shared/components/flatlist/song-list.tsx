@@ -59,8 +59,10 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
   const handlePlayMusic = async (song) => {
     console.log('play music');
     try {
-      playSong([song]);
-      navigation.navigate(Screen.Common.Player);
+      playSong([song])
+        .then(() => {
+          navigation.navigate(Screen.Common.Player);
+        });
     } catch (err) {
       TrackPlayer.pause().then(() => {
         if (isPlaying) {

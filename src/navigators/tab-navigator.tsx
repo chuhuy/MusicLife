@@ -79,7 +79,7 @@ const TabNavigator: React.FunctionComponent<Props> = (props: Props) => {
             })}
         >
             {isConnected && <Tab.Screen name={Screen.Explore.Main} component={ExploreStackScreen} options={{title: I18n.translate('explore.title')}}/>}
-            {isConnected && props.refresh_token !== null && <Tab.Screen name={Screen.Personal} component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
+            {isConnected && props.refresh_token && <Tab.Screen name={Screen.Personal} component={PersonalStackScreen} options={{title: I18n.translate('personal.title')}}/>}
             <Tab.Screen name={Screen.Device} component={Device} options={{title: I18n.translate('explore.title')}}/>
             <Tab.Screen name={Screen.Setting.Main} component={SettingStackScreen} options={{title: I18n.translate('setting.title')}}/>
         </Tab.Navigator>

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchAlbumDetail, fetchMusicChart, fetchTop100 } from '../../../api/explore';
-import { fetchIsFavoriteAlbum, postFavoriteAlbum } from '../../../api/personal';
+import { fetchIsFavoriteAlbum, fetchSongByPlaylist, postFavoriteAlbum } from '../../../api/personal';
 import Play from '../../../assets/icons/play-red.svg';
 import { Song } from '../../../models/song';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
-import { HeaderBack, IconButton } from '../../../shared/components';
+import { HeaderBack, IconButton, NotFoundItem } from '../../../shared/components';
 import { SongList } from '../../../shared/components/flatlist';
 import ModalBottom from '../../../shared/components/modal-bottom';
 import AlbumPlaylistOptions from '../../../shared/components/option-list/AlbumPlaylistOptions';
@@ -19,6 +19,7 @@ import { styles } from './styles';
 import { notifyError, notifySuccess } from '../../../shared/components/notify';
 import Toast from 'react-native-root-toast';
 import I18n from '../../../i18n';
+import NotFoundSong from '../../../assets/icons/not-found-song.svg';
 
 interface Props extends StateProps, DispatchProps {
     navigation: any;
@@ -49,7 +50,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
     const [songList, setSongList] = useState<Array<Song>>([]);
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [isFavorite, setIsFavorite] = useState<boolean>(true);
-    console.log(access_token)
+
     useEffect(() => {
         enableLoading();
 
@@ -68,6 +69,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                             })
                             .catch(err => {
                                 console.log(err);
+                                disableLoading();
                             });
                     }).catch((err) => console.log(err));
             } else if (isTop100) {
@@ -75,9 +77,20 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     .then((data) => {
                         setSongList(data.songs);
                         disableLoading();
-                    }).catch((err) => console.log(err));
+                    }).catch((err) => {
+                        console.log(err);
+                        disableLoading();
+                    });
             } else {
                 // Personal playlist
+                fetchSongByPlaylist(access_token, album_id)
+                    .then((data) => {
+                        setSongList(data.songs);
+                        disableLoading();
+                    }).catch((err) => {
+                        console.log(err);
+                        disableLoading();
+                    });
             }
         } else {
             fetchMusicChart(album_id)
@@ -85,7 +98,10 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     setSongList(data.songs);
                     disableLoading();
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    disableLoading();
+                });
         }
     }, []);
 
@@ -151,7 +167,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     </View>
                                 ) : null}
 
-                                {isAlbum && (
+                                {isAlbum && access_token && (
                                     <View style={styles.button}>
                                         <IconButton icon={isFavorite ? HeartActive : Heart} onClick={handleHeartClick} />
                                     </View>
@@ -165,16 +181,25 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
                 </ImageBackground>
 
-                <View style={styles.sectionTwo}>
-                    <SongList songs={songList} />
-                </View>
+                {songList.length ? (
+                    <>
+                        <View style={styles.sectionTwo}>
+                            <SongList songs={songList} />
+                        </View>
 
-                <ModalBottom
-                    isVisible={isVisible}
-                    onHide={() => setIsVisible(false)}
-                    item={{image_url, artists, title}}>
-                    <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
-                </ModalBottom>
+                        <ModalBottom
+                            isVisible={isVisible}
+                            onHide={() => setIsVisible(false)}
+                            item={{image_url, artists, title}}>
+                            <AlbumPlaylistOptions songs={songList} closeModal={closeModal}/>
+                        </ModalBottom>
+                    </>
+                ) : (
+                    <NotFoundItem
+                        text={I18n.translate('personal.song-not-found')}
+                        icon={<NotFoundSong />}
+                    />
+                )}
 
                 <Controller />
             </SafeAreaView>

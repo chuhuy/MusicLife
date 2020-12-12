@@ -11,4 +11,7 @@ export const player = {
     'cancel': 'Cancel',
     'agree': 'Agree',
     'do-not-have-permission': 'We do not have permission to download song',
+    'start-download': 'Song is downloading',
+    'end-download': 'Your download succeeded',
+    'fail-download': 'Your download failed',
 };

@@ -105,7 +105,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
                 <NotFoundItem icon={<ErrorIcon />} text={error} />
               ) : (
                 <>
-                  {comments.length ? (
+                  {comments && comments.length ? (
                     <View style={styles.commentList}>
                       <CommentList comments={comments} />
                     </View>
@@ -175,7 +175,7 @@ const CommentBox: React.FunctionComponent<Props> = (props: Props) => {
       commentSong(comment.content, props.music_id, props.access_token)
         .then((response) => {
           if (response.commentSong) {
-            setComments([...comments, comment]);
+            setComments([comment, ...comments]);
             postComment(props.music_id, comment);
             setCommentField('');
           }

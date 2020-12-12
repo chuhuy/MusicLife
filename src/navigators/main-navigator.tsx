@@ -56,9 +56,9 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
                 {(
                     <>
                         <Stack.Screen name={Screen.Splash} component={Splash}/>
-                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
-                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
-                        {props.refresh_token === null && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
+                        {!props.refresh_token && <Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
+                        {!props.refresh_token && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
+                        {!props.refresh_token && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
                         <Stack.Screen name={Screen.Common.Player} component={Player}/>
                     </>

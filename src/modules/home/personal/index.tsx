@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchPersonalDetail, fetchPersonalPlaylist } from '../../../api/personal';
+import { fetchPersonalDetail, fetchPersonalPlaylist, fetchSongByPlaylist } from '../../../api/personal';
 import NotFoundAlbum from '../../../assets/icons/not-found-album.svg';
 import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
@@ -11,9 +11,8 @@ import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen } from '../../../shared/components';
-import { AlbumList, PlaylistList, SongList } from '../../../shared/components/flatlist';
+import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import MessageModal from '../../../shared/components/message-modal';
 import { notifyError, notifySuccess } from '../../../shared/components/notify';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import I18n from './../../../i18n';
@@ -68,6 +67,15 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
                 } = data;
 
                 setSongs(personalSong);
+
+                personalPlaylist = personalPlaylist.map((playlist) => {
+                    let image = '../../../assets/images/logo.png';
+                    return {
+                        ...playlist,
+                        image_url: image,
+                    };
+                });
+
                 setPlaylists(personalPlaylist);
                 setAlbums(personalAlbum);
 
@@ -135,11 +143,12 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
         }
 
         return (
-            <AlbumList playlist={albums}/>
+            <PlaylistList playlist={albums}/>
         );
     };
 
     const renderPlaylistTab = () => {
+        console.log(playlists)
         if (!playlists.length){
             return (
                 <NotFoundItem
@@ -155,14 +164,27 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const getResult = (isError: boolean) => {
+        console.log('get result')
+        console.log(isError)
         if (!isError) {
             notifyError(I18n.translate('personal.create-playlist-fail'));
         } else {
             notifySuccess(I18n.translate('personal.create-playlist-success'));
-
+            enableLoading();
             fetchPersonalPlaylist(access_token)
                 .then((data) => {
-                    setPlaylists(data.personalPlaylist);
+                    console.log('add playlist');
+                    console.log(data);
+                    let personalPlaylist = data.personalPlaylist.map((playlist) => {
+                        let image = '../../../assets/images/logo.png';
+                        return {
+                            ...playlist,
+                            image_url: image,
+                        };
+                    });
+                    
+                    setPlaylists(personalPlaylist);
+                    disableLoading();
                 })
                 .catch((err) => {
                     console.log(err);

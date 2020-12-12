@@ -52,9 +52,6 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
         notifySuccess('Internet connect');
       }
     }
-
-    
-    console.log(renderTimes.current)
   }, [isConnected]);
 
   const fetchDownloadedSong = async () => {
@@ -102,8 +99,6 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
       <BaseScreen isScroll={false}>
-        {isConnected ? <HeaderMainPage /> : null}
-
         <View style={{marginVertical: 30, flex: 1}}>
           {songList.length ? (
             <SongList songs={songList} />
@@ -115,7 +110,7 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
           )}
         </View>
 
-        <Button onClick={fetchDownloadedSong} title="Refresh" />
+        <Button onClick={fetchDownloadedSong} title={I18n.translate('device.refresh')} />
       </BaseScreen>
     </>
   );

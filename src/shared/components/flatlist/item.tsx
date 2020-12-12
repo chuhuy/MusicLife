@@ -27,6 +27,8 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
     hideOption = false,
   } = props;
 
+  const isLocalImage = (/\.\.*/).test(image);
+
   return (
     <>
       <View>
