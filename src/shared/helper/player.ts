@@ -222,11 +222,11 @@ export const playSongNowPlaying = (index: number) => {
   let remainSongs = index - songIndex;
 
   if (remainSongs > 0) {
-    while (remainSongs--) {
+    while (remainSongs-- >= 0) {
       TrackPlayer.skipToNext();
     }
   } else {
-    while (remainSongs++) {
+    while (remainSongs++ <= 0) {
       TrackPlayer.skipToPrevious();
     }
   }

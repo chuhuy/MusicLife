@@ -6,7 +6,7 @@ export const API = {
   get: async (url: string, param: any) => {
     try {
       const response = await axios.get(
-        'https://' + url + queryString.stringify(param),
+        'http://' + url + queryString.stringify(param),
       );
       return response;
     } catch (error) {
@@ -16,7 +16,7 @@ export const API = {
 
   post: async (url: string, body: any) => {
     try {
-      const response = await axios.post('https://' + url, body);
+      const response = await axios.post('http://' + url, body);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -27,7 +27,7 @@ export const API = {
     try {
       if (access_token) {
         const response = await axios.post(
-          'https://' + url,
+          'http://' + url,
           {query: query},
           {
             headers: {
@@ -38,7 +38,7 @@ export const API = {
         );
         return response.data.data;
       } else {
-        const response = await axios.post('https://' + url, {query: query});
+        const response = await axios.post('http://' + url, {query: query});
         return response.data.data;
       }
     } catch (error) {
@@ -54,7 +54,7 @@ export const API = {
     const {auth} = store.getState();
     console.log(auth.access_token);
     try {
-      const response = await axios.post('https://' + url, body, {
+      const response = await axios.post('http://' + url, body, {
         headers: {
           Authorization:
             'Bearer ' + (access_token ? access_token : auth.access_token),
@@ -72,7 +72,7 @@ export const API = {
   ) => {
     const {auth} = store.getState();
     try {
-      const response = await axios.post('https://' + url, body, {
+      const response = await axios.post('http://' + url, body, {
         headers: {
           Authorization:
             'Bearer ' + (refresh_token ? refresh_token : auth.refresh_token),
