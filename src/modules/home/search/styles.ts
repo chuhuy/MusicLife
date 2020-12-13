@@ -16,14 +16,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 30,
     },
-    bodyContainer: {
-        marginHorizontal: -15,
-    },
     body: {
-        width: width - 30,
-        // paddingH: 15,
-        // marginHorizontal: -15,
-        // paddingHorizontal: 15,
-        // paddingRight: 15,
+        width: width,
+        paddingHorizontal: 15,
     },
 });

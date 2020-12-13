@@ -76,12 +76,16 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
     useEffect(() => {
         if (keyword !== '') {
             enableLoading();
-
+            setActiveTab(0);
             fetchSearchResult(keyword)
                 .then((data) => {
                     let menu = [];
                     if (data) {
                         const {artists, songs, albums} = data;
+                        setResultArtist(artists);
+                        setResultSong(songs);
+                        setResultAlbum(albums);
+
                         if (artists.length || songs.length || albums.length) {
                             let totalTab = 0;
 
@@ -93,7 +97,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
 
                             if (artists.length) {
                                 ++totalTab;
-                                setResultArtist(artists);
                                 setTopArtist(artists.slice(0, 2));
 
                                 menu.push({
@@ -102,11 +105,9 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                                     onClick: handleOpenTab,
                                 });
                             }
-                            console.log(songs)
 
                             if (songs.length) {
                                 ++totalTab;
-                                setResultSong(songs);
                                 setTopSong(songs.slice(0, 2));
 
                                 menu.push({
@@ -118,7 +119,6 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
 
                             if (albums.length) {
                                 ++totalTab;
-                                setResultAlbum(albums);
                                 setTopAlbum(albums.slice(0, 2));
 
                                 menu.push({
@@ -129,7 +129,18 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                             }
                         }
                         setTabMenu(menu);
-                        console.log(menu)
+
+                        if (!artists.length) {
+                            setTopArtist([]);
+                        }
+
+                        if (!songs.length) {
+                            setTopSong([]);
+                        }
+
+                        if (!albums.length) {
+                            setTopAlbum([]);
+                        }
                     }
                     disableLoading();
                 })
@@ -143,7 +154,7 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
     const handleOpenTab = (type: number) => {
         setActiveTab(type);
         scrollViewRef.current.scrollTo({
-            x: (Dimensions.get('window').width - 30) * type,
+            x: (Dimensions.get('window').width) * type,
             y: 0,
             animated: true,
         });
@@ -159,10 +170,10 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
 
     const handleScrollTab = (event: any) => {
         let index = Math.floor(
-          event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 30),
+          event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1),
         );
+        console.log(index);
         setActiveTab(index);
-        console.log(index)
     };
 
     return (
@@ -186,48 +197,45 @@ const Search: React.FunctionComponent<Props> = (props: Props) => {
                             <>
                                 <UnderlineTabBar options={tabMenu} activeTab={activeTab}/>
 
-                                <ScrollView
-                                    ref={scrollViewRef}
-                                    contentContainerStyle={styles.bodyContainer}
-                                    horizontal={true}
-                                    pagingEnabled={true}
-                                    showsHorizontalScrollIndicator={false}
-                                    onMomentumScrollEnd={handleScrollTab}
-                                >
-                                    <ScrollView style={styles.body}>
-                                        <AllTab
-                                            song={topSong}
-                                            album={topAlbum}
-                                            artist={topArtist}
-                                            chooseType={handleOpenTab}
-                                        />
-                                    </ScrollView>
-                                    
-
-                                    {resultArtist.length ? (
-                                    <View style={{paddingHorizontal: 15}}>
-                                        <View style={styles.body}>
-                                            <ArtistList
-                                                artist={resultArtist}
-                                                isHorizontal={false}
+                                <View style={{marginHorizontal: -15}}>
+                                    <ScrollView
+                                        ref={scrollViewRef}
+                                        horizontal
+                                        pagingEnabled
+                                        showsHorizontalScrollIndicator={false}
+                                        onMomentumScrollEnd={handleScrollTab}
+                                    >
+                                        <ScrollView style={styles.body}>
+                                            <AllTab
+                                                song={topSong}
+                                                album={topAlbum}
+                                                artist={topArtist}
+                                                chooseType={handleOpenTab}
                                             />
-                                        </View>
-                                    </View>
-                                        
-                                    ) : null}
+                                        </ScrollView>
 
-                                    {resultSong.length ? (
-                                        <View style={styles.body}>
-                                            <SongList songs={resultSong} />
-                                        </View>
-                                    ) : null}
+                                        {resultArtist.length ? (
+                                            <View style={styles.body}>
+                                                <ArtistList
+                                                    artist={resultArtist}
+                                                    isHorizontal={false}
+                                                />
+                                            </View>
+                                        ) : null}
 
-                                    {resultAlbum.length ? (
-                                        <View style={styles.body}>
-                                            <PlaylistList playlist={resultAlbum} />
-                                        </View>
-                                    ) : null}
-                                </ScrollView>
+                                        {resultSong.length ? (
+                                            <View style={styles.body}>
+                                                <SongList songs={resultSong} />
+                                            </View>
+                                        ) : null}
+
+                                        {resultAlbum.length ? (
+                                            <View style={styles.body}>
+                                                <PlaylistList playlist={resultAlbum} />
+                                            </View>
+                                        ) : null}
+                                    </ScrollView>
+                                </View>
                             </>
                         ) : (
                             <>
