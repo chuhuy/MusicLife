@@ -1,41 +1,79 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import { Text, View, Image, TextInput, Alert } from 'react-native';
-import {styles} from './styles';
+import {Alert, Image, Pressable, Text, TextInput, View} from 'react-native';
+import {connect} from 'react-redux';
+import {changeDisplayName} from '../../../../api/authentication';
 import I18n from '../../../../i18n';
-import ArrowBackSvg from '../../../../assets/icons/arrow-back.svg';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-interface Props {
-    navigation: any,
+import {Screen} from '../../../../shared/constance/screen';
+import {styles} from './styles';
+import DefaultAvatar from '../components/default-avatar';
+import {SET_DISPLAY_NAME} from './../../../../redux/modules/auth/actions';
+import OnlineScreen from '../../../../shared/components/online-screen';
+
+interface Props extends StateProps, DispatchProps {
+  navigation: any;
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setDisplayName: (display_name: string) =>
+      dispatch({type: SET_DISPLAY_NAME, payload: {display_name}}),
+  };
+};
+
+const mapStateToProps = (state: any) => ({
+  display_name: state.auth.display_name,
+  default_avatar: state.auth.default_avatar,
+  image_url: state.auth.image_url,
+});
 const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
-    const [name, setName] = useState<string>('Hoang Anh');
-    const handleSaveName = () => {
-        Alert.alert(`Your name has been changed to ${name}`)
-    } 
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
-                    <ArrowBackSvg width={20} height={20} />
-                </TouchableOpacity>
-                <View style={styles.header__right}>
-                    <Text style={styles.title}>{I18n.translate('setting.editProfile')}</Text>
-                </View>
-            </View>
-            <View>
-                <Image source={ require( '../../../../assets/img/avatar.png')} style={styles.avatar} />
-                <TextInput
-                    style={styles.input}
-                    defaultValue={name}
-                    onChangeText={text => setName(text)}
-                />
-            </View>
-            <TouchableOpacity onPressOut={handleSaveName}>
-                    <View style={styles.btn}>
-                        <Text style={styles.btn__title}>{I18n.translate('setting.save')}</Text>
-                    </View>
-            </TouchableOpacity>
-        </View>
-    )
-}
-export default EditProfile;
+  const navigation = useNavigation();
+
+  const [name, setName] = useState<string>(props.display_name);
+  const handleSaveName = () => {
+    changeDisplayName(name)
+      .then((response) => {
+        if (response.status) {
+          props.setDisplayName(name);
+          navigation.navigate(Screen.Setting.Main);
+        } else {
+          Alert.alert(response.errorMessage);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  return (
+    <OnlineScreen isScroll={true}>
+      <View style={styles.content}>
+        {props.image_url === null ? (
+          <>
+            <DefaultAvatar size={250} type={props.default_avatar} />
+          </>
+        ) : (
+          <>
+            <Image source={{uri: props.image_url}} style={styles.avatar} />
+          </>
+        )}
+        <TextInput
+          style={styles.input}
+          defaultValue={name}
+          onChangeText={(text) => setName(text)}
+        />
+        <Pressable onPress={handleSaveName}>
+          <View style={styles.btn}>
+            <Text style={styles.btn__title}>
+              {I18n.translate('setting.save')}
+            </Text>
+          </View>
+        </Pressable>
+      </View>
+    </OnlineScreen>
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;

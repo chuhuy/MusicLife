@@ -1,58 +1,68 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text, Dimensions, View } from 'react-native';
-import { styleVars } from './../../../../shared/constance/style-variables';
-
-const { width } = Dimensions.get('window');
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  Pressable,
+} from 'react-native';
+import {styleVars} from './../../../../shared/constance/style-variables';
 
 interface Props {
-    name: string,
-    artist: string,
-    onClick: () => void,
-    image: string
+  name: string;
+  artist: string;
+  onClick: () => void;
+  image: string;
 }
 
 export const SongItem: React.FunctionComponent<Props> = (props: Props) => {
-    return (
-        <>
-            <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.container}
-            onPressOut={props.onClick}>
-                <Image style={styles.image} source={{uri: props.image}}/>
-                <View style={styles.titleColumn}>
-                    <Text style={styles.song}>{props.name}</Text>
-                    <Text style={styles.artist}>{props.artist}</Text>
-                </View>
-            </TouchableOpacity>
-        </>
-    );
+  const {name, artist, onClick, image} = props;
+
+  return (
+    <>
+      <View style={styles.container}>
+        <Pressable style={styles.contentContainer} onPress={onClick}>
+          <Image style={styles.image} source={{uri: image}} />
+          <View style={styles.titleColumn}>
+            <Text style={styles.song} numberOfLines={1}>
+              {name}
+            </Text>
+            <Text style={styles.artist} numberOfLines={1}>
+              {artist}
+            </Text>
+          </View>
+        </Pressable>
+      </View>
+    </>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width: (width - 50) / 2,
-        height: 45,
-        flexDirection: 'row',
-        backgroundColor: styleVars.lightPrimaryColor,
-        marginRight: 10,
-        marginBottom: 10,
-        overflow: 'hidden',
-    },
-    titleColumn: {
-        height: 45,
-        justifyContent: 'center',
-        marginLeft: 5,
-    },
-    image: {
-        height: 45,
-        width: 45,
-    },
-    song: {
-        fontSize: 14,
-        color: '#FFFFFF',
-    },
-    artist: {
-        fontSize: 12,
-        color: styleVars.greyColor,
-    },
+  container: {
+    width: '50%',
+    padding: 7.5,
+  },
+  contentContainer: {
+    height: 55,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: styleVars.lightPrimaryColor,
+  },
+  titleColumn: {
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 15,
+  },
+  image: {
+    height: 55,
+    width: 55,
+  },
+  song: {
+    fontSize: styleVars.baseFontSize,
+    color: styleVars.white,
+  },
+  artist: {
+    fontSize: styleVars.smallFontSize,
+    color: styleVars.greyColor,
+  },
 });

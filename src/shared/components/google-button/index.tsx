@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import { TouchableOpacity} from 'react-native';
+import { Pressable } from 'react-native';
 import { styles } from './styles';
 import GoogleIcon from '../../../assets/icons/google-plus.svg';
 
@@ -10,13 +10,12 @@ interface Props {
 export const GoogleButton: FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
-                delayPressIn={0}
+            <Pressable
                 style={styles.container}
-                onPressOut={props.onClick}
+                onPress={props.onClick}
             >
                 <GoogleIcon width={50} height={50} />
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

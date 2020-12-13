@@ -9,4 +9,9 @@ export const personal = {
     'add-playlist-placeholder': "Insert playlist's name",
     'cancel': 'Cancel',
     'save': 'Save',
+    'song-not-found': 'No song has been added',
+    'album-not-found': 'No album has been added',
+    'playlist-not-found': 'No playlist has been added',
+    'create-playlist-success': 'Create playlist successfully',
+    'create-playlist-fail': 'Create playlist failed',
 };

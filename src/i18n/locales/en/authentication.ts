@@ -30,11 +30,18 @@ export const authentication = {
         'error-email': 'You entered an invalid email',
         'error-required-password': 'You have to enter password',
         'error-length-password': 'The minimum length for password is 8',
-        'error-password': 'Password must contain at least 1 numberic, 1 lowercase and 1 uppercase characters',
+        'error-password': 'Password must contain at least 1 numeric, 1 lowercase and 1 uppercase characters',
         'error-required-repeat-password': 'You have to enter repeat password',
-        'error-repeat-password': 'The password and repeat password are not the same'
+        'error-repeat-password': 'The password and repeat password are not the same',
+        'display-name': 'Display name',
+        'display-name-placeholder': 'Enter your display name',
+        'fail-to-register': 'Fail to register',
     },
     'reset-password': {
-
+        'error-required-email': 'You have to enter email',
+        'error-email': 'You entered an invalid email',
+        'email-placeholder': 'Enter email',
+        'confirm-email': 'Send',
+        'send-email': 'Mail has been sent to your email',
     },
 };

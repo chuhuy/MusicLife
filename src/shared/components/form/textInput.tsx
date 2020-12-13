@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, KeyboardTypeOptions, ReturnKeyTypeOptions } from 'react-native';
-import { TextInput, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { styleVars } from '../../constance/style-variables';
-import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
+import { KeyboardTypeOptions, Pressable, ReturnKeyTypeOptions, StyleSheet, Text, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import EyeyHideIcon from '../../../assets/icons/eye-hide-password.svg';
+import EyeShowIcon from '../../../assets/icons/eye-show-password.svg';
+import { styleVars } from '../../constance/style-variables';
 
 interface Props {
     inputRef?: (ref: HTMLElement) => void,
     label: string,
     value: string,
-    placeholder: string,
+    placeholder?: string,
     secureTextEntry?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
@@ -26,53 +26,54 @@ const TextInputGroup: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <View style={styles.inputGroup}>
             <Text style={styles.textInputLabel}>{ label }</Text>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, error && styles.inputError]}>
                 <TextInput
                     {...props}
                     ref={(r) => inputRef && inputRef(r)}
-                    style={[styles.textInput, error ? styles.inputError : undefined]}
+                    style={[styles.textInput]}
                     placeholderTextColor={styleVars.greyColor}
                 />
                 {
-                    secureTextEntry !== undefined ? 
-                        <View style={styles.textSecurity}>
-                            <ShowPasswordButton 
-                                onPress={onToggleShowPassword}
-                                isPasswordShown={!secureTextEntry}
-                            /> 
-                        </View> : null
+                    secureTextEntry !== undefined &&
+                    <ShowPasswordButton
+                        onPress={onToggleShowPassword}
+                        isPasswordShown={!secureTextEntry}
+                    />
                 }
             </View>
-            { error ? 
+            { error ?
                 <View style={styles.errorContainer}>
                     <Text style={styles.error}>
                         {error}
                     </Text>
                 </View> : null}
         </View>
-    )
-}
+    );
+};
 
 export default TextInputGroup;
 
 const styles = StyleSheet.create({
     inputGroup: {
-        marginBottom: 15
+        marginBottom: 15,
     },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 45,
+        backgroundColor: styleVars.lightPrimaryColor,
+        borderRadius: 4,
+        paddingHorizontal: 10,
     },
     textInput: {
-        backgroundColor: styleVars.lightPrimaryColor,
-        color: styleVars.white,
-        borderRadius: 4,
-        padding: 10,
         flex: 1,
+        color: styleVars.white,
+        overflow: 'hidden',
     },
     inputError: {
         borderWidth: 1,
-        borderColor: styleVars.redColor
+        borderColor: styleVars.secondaryColor,
     },
     textInputLabel: {
         fontSize: styleVars.baseFontSize,
@@ -80,19 +81,19 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     textSecurity: {
-        width: 24,
         height: '100%',
         justifyContent: 'center',
-        position: 'absolute',
-        right: 5,
-        zIndex: 10
+        marginRight: -10,
     },
     errorContainer: {
-        marginTop: 10
-    }, 
+        marginTop: 10,
+    },
     error: {
-        color: styleVars.redColor
-    }
+        color: styleVars.secondaryColor,
+    },
+    eyeIcon: {
+        padding: 10,
+    },
 });
 
 // EyeIcon for password input
@@ -106,13 +107,15 @@ const ShowPasswordButton: React.FunctionComponent<showPasswordButtonProps> = (pr
 
     return (
         <View style={styles.textSecurity}>
-            <TouchableWithoutFeedback onPress = {onPress}>
-                {
-                    isPasswordShown ? 
-                        <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
-                        <EyeyHideIcon fill={styleVars.white} width={24} height={24} /> 
-                }
-            </TouchableWithoutFeedback>
+            <Pressable onPress={onPress}>
+                <View style={styles.eyeIcon}>
+                    {
+                        !isPasswordShown ?
+                            <EyeShowIcon fill={styleVars.white} width={24} height={24} /> :
+                            <EyeyHideIcon fill={styleVars.white} width={24} height={24} />
+                    }
+                </View>
+            </Pressable>
         </View>
-    )
-}
+    );
+};

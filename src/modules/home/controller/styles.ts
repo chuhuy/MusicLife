@@ -1,44 +1,54 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { styleVars } from './../../../shared/constance/style-variables';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: styleVars.lightPrimaryColor,
         width: width,
-        height: 65,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingHorizontal: 20,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: styleVars.lightPrimaryColor,
+        padding: 15,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     section: {
         flexDirection: 'row',
+        flex: 1,
+        marginRight: 20
     },
     image: {
-        height: 45,
-        width: 45,
-        marginRight: 10,
+        height: 50,
+        width: 50,
+        marginRight: 15,
     },
     titleGroup: {
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
     },
     song: {
-        color: 'white',
-        fontSize: 16,
+        color: styleVars.white,
+        fontSize: styleVars.baseFontSize,
     },
     artist: {
         color: styleVars.greyColor,
-        fontSize: 14,
+        fontSize: styleVars.smallFontSize,
     },
     view: {
-        backgroundColor: styleVars.primaryColor,
+        backgroundColor: 'transparent',
+    },
+    buttonGroup: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginRight: -8,
     },
     button: {
-        marginHorizontal: 5,
+        paddingHorizontal: 8,
     },
 });

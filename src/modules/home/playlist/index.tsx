@@ -1,63 +1,68 @@
-import React from 'react';
-import { View, Image, ImageBackground, Text, FlatList } from 'react-native';
-import { IconButton } from '../../../shared/components';
-import { styles } from './styles';
-import ArrowLeft from './../../../assets/icons/arrow-left.svg';
-import Heart from './../../../assets/icons/heart.svg';
-import Option from './../../../assets/icons/option.svg';
-import { SongItem } from './components';
-import { songs } from './../../../data/song';
-interface Props {
-    navigation: any,
-    route: any,
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { fetchAblumByGenre, fetchLatestAlbum } from '../../../api/explore';
+import { Playlist } from '../../../models/playlist';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
+import { BaseScreen, PlaylistList } from '../../../shared/components';
+
+interface Props extends DispatchProps {
+    route: any
 }
 
-const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+      enableLoading: () => dispatch(enableLoading()),
+      disableLoading: () => dispatch(disableLoading()),
+    };
+};
 
-    const { newPlaylist } = props.route.params;
-    const handleBack = () => {
-        props.navigation.goBack();
-    };
-    const handlePlayMusic = () => {
-        props.navigation.navigate('Player');
-    };
-    const handleOpenOption = () => {
-        console.log('Opened option');
-    };
+const PlaylistScreen: React.FunctionComponent<Props> = (props: Props) => {
+    const {
+        route,
+        enableLoading,
+        disableLoading,
+    } = props;
+    const { isAlbum, genre_id, isLatest, artistAlbums } = route.params;
+    const [playlists, setPlaylists] = useState<Array<Playlist>>([]);
+
+    useEffect(() => {
+        enableLoading();
+
+        try {
+            if (isLatest) {
+                fetchLatestAlbum()
+                    .then((data) => {
+                        setPlaylists(data.albums);
+                    });
+            } else if (genre_id) {
+                fetchAblumByGenre(genre_id)
+                    .then((data) => {
+                        setPlaylists(data.albumsByGenre);
+                    });
+            } else {
+                setPlaylists(artistAlbums);
+            }
+        } catch (err) {
+            console.log(err);
+            disableLoading();
+        }
+
+        disableLoading();
+    }, []);
 
     return (
         <>
-            <View style={styles.container}>
-                <ImageBackground style={styles.sectionOne} blurRadius={10} source={{uri: newPlaylist.image_url || ''}}>
-                    <View style={styles.header}>
-                        <IconButton icon={ArrowLeft} onClick={() => handleBack()}/>
-                    </View>
-                    <Image source={{uri: newPlaylist.image_url || ''}} style={styles.image}/>
-                    <View style={styles.control}>
-                        <View style={styles.titleGroup}>
-                            <Text style={styles.playlistName}>{newPlaylist.name || ''}</Text>
-                            {/* <Text style={styles.artist}>Artist</Text> */}
-                        </View>
-                        <View style={styles.buttonGroup}>
-                            <View style={styles.button}>
-                                <IconButton icon={Heart} onClick={() => {}}/>
-                            </View>
-                            <View style={styles.button}>
-                                <IconButton icon={Option} onClick={() => {}}/>
-                            </View>
-                        </View>
-                    </View>
-                </ImageBackground>
-                <View style={styles.sectionTwo}>
-                    <FlatList
-                        data={songs}
-                        renderItem={({item}) => (<SongItem title={item.title} artist={item.artists[0].name} image={item.image_url} onOptionClick={() => handleOpenOption()} onClick={() => handlePlayMusic()}/>)}
-                        keyExtractor={item => item.id.toString()}
-                    />
-                </View>
-            </View>
+            <BaseScreen>
+                <PlaylistList
+                    isAlbum={isAlbum}
+                    playlist={playlists}
+                    numsColumn={2}
+                />
+            </BaseScreen>
         </>
     );
 };
 
-export default PlaylistScreen;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+export default connect(null, mapDispatchToProps)(PlaylistScreen);

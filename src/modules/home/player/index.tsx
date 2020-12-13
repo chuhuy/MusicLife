@@ -1,187 +1,364 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, ScrollView, Animated, Easing, Dimensions } from 'react-native';
-import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Animated,
+  Dimensions,
+  Easing,
+  ImageBackground,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import Toast from 'react-native-root-toast';
 import TrackPlayer from 'react-native-track-player';
-import { PlayPauseButton, PreviousNextButton, PlaybackMode, Comment } from './components';
-import { IconButton } from '../../../shared/components';
-import I18n from './../../../i18n';
-import { styleVars } from './../../../shared/constance/style-variables';
-import Plus from './../../../assets/icons/plus.svg';
+import { connect } from 'react-redux';
+import { addSongToPlaylist, fetchPersonalPlaylist, postFavoriteSong } from '../../../api/personal';
+import NotFoundLyric from '../../../assets/icons/not-found-lyric.svg';
+import I18n from '../../../i18n';
+import { Playlist } from '../../../models/playlist';
+import { repeat, shuffle } from '../../../redux/modules/player/actions';
+import { IconButton, NotFoundItem, PlaylistList } from '../../../shared/components';
+import ModalBottom from '../../../shared/components/modal-bottom';
+import { notify } from '../../../shared/components/notify';
+import {
+  handleDownload,
+  handleNext,
+  handlePrevious,
+  togglePlay
+} from '../../../shared/helper/player';
+import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import Download from './../../../assets/icons/download.svg';
+import HeartActive from './../../../assets/icons/heart-active.svg';
 import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
-import ArrowDown from './../../../assets/icons/arrow-down.svg';
-import { connect } from 'react-redux';
-import { SKIP, PLAY, PAUSE } from './../../../redux/modules/player/actions';
-import { Song } from './../../../models/song';
+import Plus from './../../../assets/icons/plus.svg';
+import {
+  CommentBox,
+  PlaybackMode,
+  PlayPauseButton,
+  PreviousNextButton,
+} from './components';
+import NowPlaying from './components/now-playing';
+import SeekBar from './components/seek-bar';
+import { styles } from './styles';
+import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
 
 interface Props extends DispatchProps, StateProps {
-    navigation: any,
+  route: any;
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-    return {
-        saveSongToStore: (song: Song) => dispatch({type: SKIP, payload: song}),
-        playMusic: () => dispatch({type: PLAY}),
-        pauseMusic: () => dispatch({type: PAUSE}),
-    };
+  return {
+    repeatMusic: () => dispatch(repeat()),
+    shuffleMusic: () => dispatch(shuffle()),
+  };
 };
 const mapStateToProps = (state: any) => ({
-    song: state.player,
+  player: state.player,
+  access_token: state.auth.access_token,
+  network: state.network,
 });
 
+const Tab = {
+  playing: 0,
+  playlist: 1,
+  lyric: 2,
+};
+
 const Player: React.FunctionComponent<Props> = (props: Props) => {
+  const {route, shuffleMusic, repeatMusic, player, access_token, network} = props;
 
-    const [isNowPlaying, setNowPlaying] = useState<boolean>(false);
+  const {songs, isPlaying, songIndex, isRepeat, isShuffle} = player;
 
-    useEffect(() => {
-        TrackPlayer.addEventListener('playback-track-changed', async (data) => {
-            await TrackPlayer.getTrack(data.nextTrack)
-            .then((value) => {
-                const song: Song = {
-                    id: value.id,
-                    url: value.url,
-                    artist: value.artist,
-                    image_url: value.artwork,
-                    title: value.title,
-                };
-                props.saveSongToStore(song);
-            })
-            .catch((error) => {
-                diskAnimation.stop();
-            });
-        });
-    });
+  const navigation = useNavigation();
 
-    let spinValue = new Animated.Value(0);
+  const [activeTab, setActiveTab] = useState<number>(Tab.playing);
+  const scrollViewRef = useRef(null);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [playlists, setPlaylists] = useState<Array<Playlist>>(null);
 
-    let diskAnimation = Animated.loop(
-        Animated.timing(
-          spinValue,
-          {
-           toValue: 1,
-           duration: 30000,
-           easing: Easing.linear,
-           useNativeDriver: true,
-          }
-        )
-    );
-
-    const togglePlayPause = () => {
-        if (props.song.isPlaying) {
-            TrackPlayer.pause()
-            .then(() => {props.pauseMusic()})
-            .catch((error) => console.log(error));
-        } else {
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        }
-    };
-    const handlePrevious = () => {
-        TrackPlayer.skipToPrevious()
-        .then(() => {
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        })
-        .catch((e) => {
-            console.log(e);
-            TrackPlayer.seekTo(0);
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        });
-    };
-    const handleNext = () => {
-        TrackPlayer.skipToNext()
-        .then(() => {
-            TrackPlayer.play()
-            .then(() => {props.playMusic()})
-            .catch((error) => console.log(error));;
-        })
-        .catch((e) => {
-            console.log(e);
-            TrackPlayer.pause()
-            .then(() => {props.pauseMusic()})
-            .catch((error) => console.log(error));
-        });
-    };
-    const handleShuffle = () => {
-
-    };
-    const handleRepeat = () => {
-
-    };
-    const handleBack = () => {
-        props.navigation.goBack();
-    };
-    const handleScrollTab = (event: any) => {
-        if (Math.floor(event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1))) {setNowPlaying(true);}
-        else {setNowPlaying(false);}
-    };
-
-    useEffect(() => {
-        if(props.song.isPlaying) diskAnimation.start();
-        else diskAnimation;
-    }, [props.song.isPlaying]);
-
-    // Second interpolate beginning and end values (in this case 0 and 1)
-    const spin = spinValue.interpolate({
+  let spinAnim = useRef(new Animated.Value(0));
+  let diskAnimation = useRef(Animated.loop(
+    Animated.timing(
+      spinAnim.current,
+      {
+        toValue: 1,
+        duration: 25000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }
+    )
+  ));
+  // Second interpolate beginning and end values (in this case 0 and 1)
+  let spin = spinAnim.current.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
-    });
+  });
 
-    return (
-        <>
-            <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: props.song.image_url}}>
-                <View style={styles.container}>
-                    <View style={styles.header}>
-                        <IconButton icon={ArrowDown} onClick={() => handleBack()}/>
-                        <Text style={styles.headerTitle}>{props.song.title}</Text>
-                        <View style={{width: 20}}/>
-                    </View>
-                    <View style={styles.dotGroup}>
-                        <View style={[styles.dot, isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
-                        <View style={[styles.dot, !isNowPlaying ? {borderColor: 'white'} : {borderColor: styleVars.secondaryColor, backgroundColor: styleVars.secondaryColor}]}/>
-                    </View>
-                    <ScrollView
-                        horizontal={true}
-                        pagingEnabled={true}
-                        showsHorizontalScrollIndicator={false}
-                        onMomentumScrollEnd={handleScrollTab}
-                        >
-                        <View style={styles.tab}>
-                            <View style={styles.body}>
-                                <Animated.Image source={{uri: props.song.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
-                                <Text style={styles.song}>{props.song.title}</Text>
-                                <Text style={styles.artist}>{props.song.artist}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tab} />
-                    </ScrollView>
-                    <View style={styles.buttonGroup}>
-                        <PlaybackMode mode="shuffle" onClick={() => handleShuffle()}/>
-                        <PreviousNextButton type="previous" onClick={() => handlePrevious()}/>
-                        <PlayPauseButton isPlaying={props.song.isPlaying} onClick={() => togglePlayPause()}/>
-                        <PreviousNextButton type="next" onClick={() => handleNext()}/>
-                        <PlaybackMode mode="repeat" onClick={() => handleRepeat()}/>
-                    </View>
-                    <View style={styles.buttonGroup2}>
-                        <IconButton icon={Plus} onClick={() => {}}/>
-                        <IconButton icon={Download} onClick={() => {}}/>
-                        <IconButton icon={Heart} onClick={() => {}}/>
-                        <IconButton icon={List} onClick={() => {}}/>
-                    </View>
-                    <View style={styles.comment}>
-                        <Comment />
-                    </View>
-                </View>
-            </ImageBackground>
-        </>
+  useEffect(() => {
+    if (isPlaying) {
+      diskAnimation.current.start();
+    } else {
+      diskAnimation.current.stop();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (showModal && !playlists) {
+      fetchPersonalPlaylist(access_token)
+        .then((data) => {
+          setPlaylists(data.personalPlaylist);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [showModal]);
+
+  const toggleTab = (index: number) => {
+    if (index !== activeTab) {
+      setActiveTab(index);
+
+      scrollViewRef.current.scrollTo({
+        x: Dimensions.get('window').width * index,
+        y: 0,
+        animated: true,
+      });
+    }
+  };
+
+  const togglePlaylistModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const addSong = (playlist_id: number) => {
+    addSongToPlaylist(access_token, songs[songIndex].music_id, playlist_id)
+      .then(() => {
+        notify(I18n.translate('common.add-song-playlist'));
+        togglePlaylistModal();
+      })
+      .catch((err) => {
+        console.log(err);
+        notify(I18n.translate('common.add-song-playlist-fail'));
+        togglePlaylistModal();
+      });
+  };
+
+  const handleScrollTab = (event: any) => {
+    let index = Math.floor(
+      event.nativeEvent.contentOffset.x / (Dimensions.get('window').width - 1),
     );
+    setActiveTab(index);
+  };
+
+  const handleShuffle = () => {
+    shuffleMusic();
+
+    if (songs.length > 1) {
+      try {
+        TrackPlayer.reset().then(() => {
+          let tracks = songs.map((song) => {
+            return {
+              id: song.music_id.toString(),
+              url: song.url,
+              title: song.title,
+              artist: song.artists,
+              album: song.album || '',
+              genre: song.genre || '',
+              date: '2020-10-20T07:00:00+00:00',
+              artwork: song.image_url,
+            };
+          });
+
+          TrackPlayer.add(tracks).then(() => {
+            if (isPlaying) {
+              TrackPlayer.play();
+            }
+          });
+        });
+      } catch (err) {
+        console.log(err);
+        TrackPlayer.pause();
+      }
+    }
+  };
+
+  const handleRepeat = () => {
+    repeatMusic();
+    console.log('repeat');
+  };
+
+  const handleBack = () => {
+    navigation.goBack();
+  };
+
+  const handleAddToFavorite = () => {
+    if (!isFavorite) {
+      postFavoriteSong(access_token, songs[songIndex].music_id)
+        .then(() => {
+          notify(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+          setIsFavorite(true);
+        })
+        .catch(err => {
+          console.log(err);
+          notify(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+        });
+    }
+  };
+
+  const renderLyric = () => {
+    let song = songs[songIndex];
+
+    if (song && song.lyric) {
+      let lyricRows = song.lyric.split('{\"\\n\"}');
+      let rows = lyricRows.map((text, index) => {
+        return (
+          <Text
+            key={index}
+            style={styles.lyricRow}>
+            {text}
+          </Text>
+        );
+      });
+
+      return (
+        <ScrollView
+          style={styles.lyricContainer}
+          showsVerticalScrollIndicator={false}>
+          {rows}
+        </ScrollView>
+      );
+    } else {
+      return (
+        <NotFoundItem
+          icon={<NotFoundLyric />}
+          text={I18n.translate('player.not-found-lyric')}
+          theme="light"
+        />
+      );
+    }
+  };
+
+  return (
+    <>
+      <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: songs[songIndex]?.image_url}}>
+          <View style={styles.layer}/>
+
+          <View style={styles.container}>
+            <View style={styles.header}>
+              <IconButton icon={ArrowDown} onClick={handleBack}/>
+              <Text
+                style={styles.headerTitle}
+                numberOfLines={1}>
+                {activeTab === Tab.playlist ? I18n.translate('player.nowPlaying') : songs[songIndex]?.title}
+              </Text>
+            </View>
+
+            <View style={styles.dotGroup}>
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.playing)}
+              >
+                <View style={[styles.dot, activeTab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.playlist)}
+              >
+                <View style={[styles.dot, activeTab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+
+              <Pressable
+                style={{padding: 5}}
+                onPress={() => toggleTab(Tab.lyric)}
+              >
+                <View style={[styles.dot, activeTab === Tab.lyric ? styles.dotActive : styles.dotDefault]} />
+              </Pressable>
+            </View>
+
+            <ScrollView
+              ref={scrollViewRef}
+              horizontal={true}
+              pagingEnabled={true}
+              showsHorizontalScrollIndicator={false}
+              onMomentumScrollEnd={handleScrollTab}
+            >
+              <View style={styles.tab}>
+                <View style={styles.body}>
+                  <Animated.Image source={{uri: songs[songIndex]?.image_url}} style={[styles.disk, {transform: [{rotate: spin}]}]}/>
+                  <Text style={styles.song}>{songs[songIndex]?.title}</Text>
+                  <Text style={styles.artist}>{songs[songIndex]?.artists}</Text>
+                </View>
+              </View>
+
+              <View style={styles.tab}>
+                <NowPlaying />
+              </View>
+
+              <View style={styles.tab}>
+                {renderLyric()}
+              </View>
+            </ScrollView>
+
+            <SeekBar currentTime={route.params?.currentTime} />
+
+            <View style={styles.control}>
+              <View style={styles.buttonGroup}>
+                <PlaybackMode mode="shuffle" isActive={isShuffle} onClick={handleShuffle}/>
+                <PreviousNextButton type="previous" onClick={handlePrevious}/>
+                <PlayPauseButton isPlaying={isPlaying} onClick={togglePlay}/>
+                <PreviousNextButton type="next" onClick={handleNext}/>
+                <PlaybackMode mode="repeat" isActive={isRepeat} onClick={handleRepeat}/>
+              </View>
+
+              <View style={styles.buttonGroup2}>
+                {access_token ? <IconButton icon={Plus} onClick={togglePlaylistModal}/> : null}
+
+                {network ? (
+                  <IconButton icon={Download} onClick={() =>
+                    handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
+                  }/>
+                ) : null}
+
+                {access_token && network ? (
+                  <IconButton
+                    icon={isFavorite ? HeartActive : Heart}
+                    onClick={handleAddToFavorite}/>
+                ) : null}
+
+                <IconButton icon={List} onClick={() => toggleTab(Tab.playlist)}/>
+              </View>
+            </View>
+
+            <CommentBox music_id={songs[songIndex]?.music_id}/>
+          </View>
+          <ModalBottom
+            isVisible={showModal}
+            onHide={togglePlaylistModal}
+            item={{
+              header: I18n.translate('optionModal.add-to-playlist'),
+            }}
+          >
+            {playlists ? (
+              <>
+                {playlists.length ? <PlaylistList playlist={playlists} onClick={addSong}/> : (
+                  <NotFoundItem
+                    icon={<NotFoundPlaylist />}
+                    text={I18n.translate('personal.playlist-not-found')}
+                  />
+                )}
+              </>
+            ) : null}
+          </ModalBottom>
+        </ImageBackground>
+    </>
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

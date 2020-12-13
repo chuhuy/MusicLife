@@ -6,5 +6,5 @@ export const changeLanguage = {
     'restartContent': 'You have restart app to change language.',
     'restart': 'Restart',
     'english': 'English',
-    'vietnamese' : 'Vietnamses'
+    'vietnamese' : 'Vietnamese'
 };

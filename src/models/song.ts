@@ -1,10 +1,12 @@
 export interface Song {
-    id: string,
+    music_id: number,
     title: string,
-    artist: string,
+    artists: string,
     image_url: string,
     isPlaying?: boolean,
     url: string,
     album?: string,
     genre?: any,
+    lyric?: string,
+    isLoved?: boolean,
 }

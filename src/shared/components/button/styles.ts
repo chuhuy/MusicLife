@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 50,
     },
+    button: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     bigButton: {
         paddingHorizontal: 5,
         paddingVertical: 10,
@@ -16,6 +21,7 @@ export const styles = StyleSheet.create({
     text: {
         color: styleVars.white,
         fontSize: styleVars.bigFontSize,
+        paddingHorizontal: 10,
         fontWeight: 'bold',
         textTransform: 'uppercase',
         letterSpacing: 1.5

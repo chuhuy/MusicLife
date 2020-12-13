@@ -1,14 +1,29 @@
-import { all } from 'redux-saga/effects';
-import { signInWatcher, signInUsernameWatcher, signInFacebookWatcher } from './modules/auth/saga';
-import { getLanguageWatcher } from './modules/i18n/saga';
+import {all} from 'redux-saga/effects';
+import {
+  signInWatcher,
+  signInUsernameWatcher,
+  signInFacebookWatcher,
+  fetchUserWatcher,
+  refreshTokenWatcher,
+} from './modules/auth/saga';
+import {getLanguageWatcher} from './modules/i18n/saga';
+import {counterWatcher} from './modules/player/saga';
 
 export function* rootSaga() {
-    yield all([
-        getLanguageWatcher(),
+  yield all([
+    getLanguageWatcher(),
 
-        // Sign in
-        signInWatcher(),
-        signInUsernameWatcher(),
-        signInFacebookWatcher(),
-    ]);
+    // Sign in
+    signInWatcher(),
+    signInUsernameWatcher(),
+    signInFacebookWatcher(),
+
+    // Fetch user
+    fetchUserWatcher(),
+
+    // Refresh token
+    refreshTokenWatcher(),
+
+    counterWatcher(),
+  ]);
 }

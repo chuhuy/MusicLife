@@ -1,40 +1,40 @@
-import React from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { createStackNavigator } from '@react-navigation/stack';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Splash from './../modules/splash';
-// import Login from './../modules/authentication/login';
-import TabNavigator from './tab-navigator';
-// import Register from './../modules/authentication/register';
-import ForgotPassword from './../modules/authentication/forgot-password';
-import Player from './../modules/home/player';
-import ChangePassword from '../modules/home/setting/change-password'
-import Notification from './../modules/home/notification';
-import EditProfile from '../modules/home/setting/edit-profile';
-import Playlist from './../modules/home/playlist';
+import { toggleConnection } from '../redux/modules/network/action';
+import { Screen } from '../shared/constance/screen';
 
 const Stack = createStackNavigator();
 
-interface Props extends StateProps {}
+interface Props extends StateProps, DispatchProps {}
 
 const mapStateToProps = (state: any) => ({
-    refresh_token: state.auth.refresh_token,
+    access_token: state.auth.access_token,
+    network: state.network,
 });
 
-// const Splash = React.lazy(() => import('./../modules/splash'));
-const Login = React.lazy(() => import('./../modules/authentication/login'));
-// const TabNavigator = React.lazy(() => import('./tab-navigator'));
-const Register = React.lazy(() => import('./../modules/authentication/register'));
-// const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
-// const Player = React.lazy(() => import('./../modules/home/player'));
-// const ChangePassword = React.lazy(() => import('../modules/home/change-password'));
-// const ChangeLanguage = React.lazy(() => import('../modules/home/change-language'));
-// const Notification = React.lazy(() => import('../modules/home/notification'));
-// const EditProfile = React.lazy(() => import('../modules/home/edit-profile'));
-// const Playlist = React.lazy(() => import('./../modules/home/playlist'));
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        toggleConnect: (isConnected: boolean) => dispatch(toggleConnection(isConnected)),
+    };
+};
+
+const Login = React.lazy(() => import('../modules/authentication/login'));
+const Register = React.lazy(() => import('../modules/authentication/register'));
+const ForgotPassword = React.lazy(() => import('./../modules/authentication/forgot-password'));
+const Player = React.lazy(() => import('./../modules/home/player'));
+const Splash = React.lazy(() => import('./../modules/splash'));
+const TabNavigator = React.lazy(() => import('./tab-navigator'));
 
 const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
+    const { toggleConnect } = props;
+    const netInfo = useNetInfo();
+    const { isConnected } = netInfo;
 
-    //TODO: Splash Screen
+    useEffect(() => {
+        toggleConnect(isConnected);
+    }, [isConnected]);
 
     return (
         <>
@@ -45,43 +45,20 @@ const MainNavigator: React.FunctionComponent<Props> = (props: Props) => {
             >
                 {(
                     <>
-                        <Stack.Screen name="Splash" component={Splash}/>
-                        {props.refresh_token === null && <Stack.Screen name="Login" component={Login}/>}
-                        {props.refresh_token === null && <Stack.Screen name="Register" component={Register}/>}
-                        {props.refresh_token === null && <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>}
+                        <Stack.Screen name={Screen.Splash} component={Splash}/>
+                        {!props.access_token && <Stack.Screen name={Screen.Authentication.Login} component={Login}/>}
+                        {!props.access_token && <Stack.Screen name={Screen.Authentication.Register} component={Register}/>}
+                        {!props.access_token && <Stack.Screen name={Screen.Authentication.ForgotPassword} component={ForgotPassword}/>}
                         <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-                        <Stack.Screen name="Player" component={Player}/>
-                        <Stack.Screen name="ChangePassword" component={ChangePassword}/>
-                        <Stack.Screen name="Notification" component={Notification}/>
-                        <Stack.Screen name="EditProfile" component={EditProfile}/>
-                        <Stack.Screen name="Playlist" component={Playlist}/>
+                        <Stack.Screen name={Screen.Common.Player} component={Player}/>
                     </>
                 )}
-                {/* {props.refresh_token === null ? (
-                    <>
-                        <Stack.Screen name="Splash" component={Splash}/>
-                        <Stack.Screen name="Login" component={Login}/>
-                        <Stack.Screen name="Register" component={Register}/>
-                        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
-                    </>
-                ) :
-                (
-                    <>
-                        <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-                        <Stack.Screen name="Player" component={Player}/>
-                        <Stack.Screen name="ChangePassword" component={ChangePassword}/>
-                        <Stack.Screen name="ChangeLanguage" component={ChangeLanguage}/>
-                        <Stack.Screen name="Notification" component={Notification}/>
-                        <Stack.Screen name="EditProfile" component={EditProfile}/>
-                        <Stack.Screen name="Playlist" component={Playlist}/>
-                    </>
-
-                )} */}
             </Stack.Navigator>
         </>
     );
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>
+type DispatchProps = ReturnType<typeof mapDispatchToProps>
 
-export default connect(mapStateToProps, null)(MainNavigator);
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavigator);

@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { styleVars } from '../../constance/style-variables';
 
 export const styles = StyleSheet.create({
     container: {
         backgroundColor: 'transparent',
+        margin: -8,
     },
     touchArea: {
-        paddingVertical: 5,
-        paddingHorizontal: 5,
+        padding: 8
     },
 });

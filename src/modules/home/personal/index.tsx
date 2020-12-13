@@ -1,20 +1,39 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
-import Modal from 'react-native-modal';
-import { styles } from './styles';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchPersonalDetail, fetchPersonalPlaylist, fetchSongByPlaylist } from '../../../api/personal';
+import NotFoundAlbum from '../../../assets/icons/not-found-album.svg';
+import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
+import NotFoundSong from '../../../assets/icons/not-found-song.svg';
+import Plus from '../../../assets/icons/plus.svg';
+import { Playlist } from '../../../models/playlist';
+import { Song } from '../../../models/song';
+import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
+import { BaseScreen } from '../../../shared/components';
+import { PlaylistList, SongList } from '../../../shared/components/flatlist';
+import HeaderMainPage from '../../../shared/components/header-main-page';
+import { notify } from '../../../shared/components/notify';
+import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import I18n from './../../../i18n';
 import { Button } from './../../../shared/components/button';
-import { SearchBar } from './../../../shared/components';
-import UserIcon from './../../../assets/icons/user.svg';
-import NotificationIcon from './../../../assets/icons/notification-active.svg';
-import Controller from '../controller';
-import { Formik } from 'formik';
 import AddPlaylistModal from './components/add-playlist-modal';
+import NotFoundItem from './components/not-found-item';
+import { styles } from './styles';
 
-interface Props {
-    navigation: any,
-}
+interface Props extends StateProps, DispatchProps {}
+
+const mapStateToProps = (state: any) => ({
+    access_token: state.auth.access_token,
+    loading: state.loading.loading,
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        enableLoading: () => dispatch(enableLoading()),
+        disableLoading: () => dispatch(disableLoading()),
+    };
+};
 
 const TYPE = {
     SONG: 'SONG',
@@ -22,105 +41,178 @@ const TYPE = {
     PLAYLIST: 'PLAYLIST',
 };
 
-export const Personal: React.FunctionComponent<Props> = (props: Props) => {
+const Personal: React.FunctionComponent<Props> = (props: Props) => {
+    const {
+        access_token,
+        enableLoading,
+        disableLoading,
+        loading,
+    } = props;
+
     const [addPlaylistModalVisibility, setAddPlaylistVisibility] = useState<boolean>(false);
-    const [isShowAll, setShowAll] = useState(true);
-    const [type, setType] = useState(TYPE.SONG);
+    const [currentType, setType] = useState(TYPE.SONG);
+    const [songs, setSongs] = useState<Array<Song>>([]);
+    const [albums, setAlbums] = useState<Array<Playlist>>([]);
+    const [playlists, setPlaylists] = useState<Array<Playlist>>([]);
+    const [message, setMessage] = useState<string>('');
 
-    const handlePlayMusic = () => {
-        props.navigation.navigate('Player');
-    };
-    const handleUserProfile = () => {
-        props.navigation.navigate('Setting');
-    };
-    const handleNotification = () => {
+    useEffect(() => {
+        enableLoading();
+        fetchPersonalDetail(access_token)
+            .then((data) => {
+                let {
+                    personalSong,
+                    personalPlaylist,
+                    personalAlbum,
+                } = data;
 
+                setSongs(personalSong);
+
+                setPlaylists(personalPlaylist);
+                setAlbums(personalAlbum);
+
+                disableLoading();
+            })
+            .catch((err) => {
+                console.log(err);
+                disableLoading();
+            });
+    }, []);
+
+    const toggleAddPlaylistModal = () => {
+        setAddPlaylistVisibility(!addPlaylistModalVisibility);
     };
-    const addPlaylist = () => {
-        setAddPlaylistVisibility(true);
+
+    // Tab menu for type
+    const handleOpenTab = (type: string) => {
+        setType(type);
     };
+
+    const typeMenu = [
+        {
+            title: I18n.translate('personal.songs'),
+            type: TYPE.SONG,
+            active: currentType === TYPE.SONG,
+            onClick: handleOpenTab,
+        },
+        {
+            title: I18n.translate('personal.albums'),
+            type: TYPE.ALBUM,
+            active: currentType === TYPE.ALBUM,
+            onClick: handleOpenTab,
+        },
+        {
+            title: I18n.translate('personal.playlists'),
+            type: TYPE.PLAYLIST,
+            active: currentType === TYPE.PLAYLIST,
+            onClick: handleOpenTab,
+        },
+    ];
+
+    const renderSongTab = () => {
+        if (!songs.length) {
+            return (
+                <NotFoundItem
+                    icon={<NotFoundSong />}
+                    text={I18n.translate('personal.song-not-found')}
+                />
+            );
+        }
+
+        return (
+            <SongList songs={songs} />
+        );
+    };
+
+    const renderAlbumTab = () => {
+        if (!albums.length) {
+            return (
+                <NotFoundItem
+                    icon={<NotFoundAlbum />}
+                    text={I18n.translate('personal.album-not-found')}
+                />
+            );
+        }
+
+        return (
+            <PlaylistList playlist={albums}/>
+        );
+    };
+
+    const renderPlaylistTab = () => {
+        if (!playlists.length){
+            return (
+                <NotFoundItem
+                    icon={<NotFoundPlaylist />}
+                    text={I18n.translate('personal.playlist-not-found')}
+                />
+            );
+        }
+
+        return (
+            <PlaylistList playlist={playlists}/>
+        );
+    };
+
+    const getResult = (isError: boolean) => {
+        console.log('get result')
+        console.log(isError)
+        if (!isError) {
+            notify(I18n.translate('personal.create-playlist-fail'));
+        } else {
+            notify(I18n.translate('personal.create-playlist-success'));
+            enableLoading();
+            fetchPersonalPlaylist(access_token)
+                .then((data) => {
+                    console.log(data);
+                    setPlaylists(data.personalPlaylist);
+                    disableLoading();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }
 
     return (
         <>
-            <View style={styles.header}>
-                    <TouchableOpacity
-                        delayPressOut={0}
-                        onPressOut={() => handleNotification()}>
-                        <NotificationIcon />
-                    </TouchableOpacity>
-                    <SearchBar/>
-                    <TouchableOpacity
-                        style={styles.userButton}
-                        onPressOut={() => handleUserProfile()}>
-                        <UserIcon />
-                    </TouchableOpacity>
-            </View>
-            <View style={styles.container}>
-                <View style={styles.locationTitle}>
-                    <TouchableOpacity
-                        style={styles.locationButton}
-                        activeOpacity={1}
-                        onPressIn={() => {setShowAll(true);}}>
-                        <Text style={isShowAll ? styles.locationTitleActive : styles.locationTitleInactive}>{I18n.translate('personal.all')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPressIn={() => {setShowAll(false);}}>
-                        <Text style={isShowAll ? styles.locationTitleInactive : styles.locationTitleActive}>{I18n.translate('personal.device')}</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.typeTitle}>
-                    <TouchableOpacity
-                        style={styles.typeButton}
-                        activeOpacity={1}
-                        onPressIn={() => {setType(TYPE.SONG);}}>
-                        <Text style={type === TYPE.SONG ? styles.typeTitleActive : styles.typeTitleInactive}>{I18n.translate('personal.songs')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.typeButton}
-                        activeOpacity={1}
-                        onPressIn={() => {setType(TYPE.ALBUM);}}>
-                        <Text style={type === TYPE.ALBUM ? styles.typeTitleActive : styles.typeTitleInactive}>{I18n.translate('personal.albums')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPressIn={() => {setType(TYPE.PLAYLIST);}}>
-                        <Text style={type === TYPE.PLAYLIST ? styles.typeTitleActive : styles.typeTitleInactive}>{I18n.translate('personal.playlists')}</Text>
-                    </TouchableOpacity>
-                </View>
-                {type === TYPE.SONG && <></>}
-                {type === TYPE.ALBUM && <></>}
-                {type === TYPE.PLAYLIST &&
-                <>
-                    <View style={styles.body}>
-                        <Button title={'+ ' + I18n.translate('personal.add-playlist')} onClick={() => addPlaylist()}/>
-                    </View>
-                </>}
-            </View>
-            <AddPlaylistModal 
-                isShow={addPlaylistModalVisibility} 
-                onHide={() => setAddPlaylistVisibility(false)} />
-            {/* <Modal
-                useNativeDriver={true}
-                backdropColor={'white'}
-                onBackButtonPress={() => setAddPlaylistVisibility(false)}
-                onBackdropPress={() => setAddPlaylistVisibility(false)}
-                backdropOpacity={0.1}
-                avoidKeyboard={true}
-                isVisible={addPlaylistModalVisibility}>
-                <View style={styles.addPlaylistModal}>
-                    <Text style={styles.modalTitle}>{I18n.translate('personal.add-playlist')}</Text>
-                    <Formik
-                    
-                    >
-                        {({values}) =>
-                        <React.Fragment>
-                            <TextInput></TextInput>
-                        </React.Fragment>}
-                    </Formik>
-                </View>
-            </Modal> */}
-            <Controller />
+            <BaseScreen>
+                <HeaderMainPage/>
+
+                <UnderlineTabBar activeTab={currentType} options={typeMenu} />
+                {!loading ? (
+                    <>
+                        <View style={styles.body}>
+                            {currentType === TYPE.SONG && renderSongTab()}
+                            {currentType === TYPE.ALBUM && renderAlbumTab()}
+                            {currentType === TYPE.PLAYLIST &&
+                            <>
+                                <View style={styles.addBtnContainer}>
+                                    <Button
+                                        title={I18n.translate('personal.add-playlist')}
+                                        onClick={toggleAddPlaylistModal}
+                                        icon={<Plus width={18} height={18} />}
+                                    />
+                                </View>
+
+                                {renderPlaylistTab()}
+                            </>}
+                        </View>
+
+                        <AddPlaylistModal
+                            access_token={access_token}
+                            isShow={addPlaylistModalVisibility}
+                            onHide={() => setAddPlaylistVisibility(false)}
+                            getResult={getResult}
+                        />
+                    </>
+                ) : null}
+            </BaseScreen>
         </>
     );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Personal);
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;

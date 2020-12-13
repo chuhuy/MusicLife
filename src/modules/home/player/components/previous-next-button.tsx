@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import Previous from './../../../../assets/icons/previous.svg';
 import Next from './../../../../assets/icons/next.svg';
 import { styleVars } from './../../../../shared/constance/style-variables';
@@ -12,11 +12,11 @@ interface Props {
 const PreviousNextButton: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
-            <TouchableOpacity
-            style={styles.container}
-            onPressOut={props.onClick}>
+            <Pressable
+                style={styles.container}
+                onPress={props.onClick}>
                 {props.type === 'previous' ? <Previous width={20} height={20}/> : <Next width={20} height={20}/>}
-            </TouchableOpacity>
+            </Pressable>
         </>
     );
 };

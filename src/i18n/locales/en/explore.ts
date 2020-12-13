@@ -4,5 +4,6 @@ export const explore = {
     'top100': 'Top 100',
     'latest-song': 'Latest Song',
     'latest-playlist': 'Latest Playlist',
+    'latest-album': 'Latest Album',
     'genre': 'Genre',
 };
