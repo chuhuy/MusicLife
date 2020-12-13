@@ -9,12 +9,13 @@ import { Genre } from '../../../models/genre';
 import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
 import { search } from '../../../redux/modules/search/actions';
-import { BaseScreen, SectionTitle } from '../../../shared/components';
+import { SectionTitle } from '../../../shared/components';
 import { PlaylistList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
+import OnlineScreen from '../../../shared/components/online-screen';
 import { Screen } from '../../../shared/constance/screen';
 import { playSong } from '../../../shared/helper/player';
-import { album, genre } from './../../../data';
+import { genre } from './../../../data';
 import I18n from './../../../i18n';
 import { disableLoading, enableLoading } from './../../../redux/modules/loading/actions';
 import { skipMusic } from './../../../redux/modules/player/actions';
@@ -35,6 +36,7 @@ const mapDispatchToProps = (dispatch: any) => {
 const mapStateToProps = (state: any) => ({
   refresh_token: state.auth.refresh_token,
   keyword: state.search.keyword,
+  network: state.network,
 });
 
 const Explore: React.FunctionComponent<Props> = (props: Props) => {
@@ -42,8 +44,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
   const {
     enableLoading,
     disableLoading,
-    keyword,
-    deleteKeyWord,
+    network,
   } = props;
 
   const [isTop100, setIsTop100] = useState<boolean>(false);
@@ -126,7 +127,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <BaseScreen isScroll={false}>
+      <OnlineScreen>
         <HeaderMainPage />
 
         <ScrollView style={styles.contentContainer}>
@@ -209,7 +210,7 @@ const Explore: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </View>
         </ScrollView>
-      </BaseScreen>
+      </OnlineScreen>
     </>
   );
 };

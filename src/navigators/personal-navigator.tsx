@@ -1,26 +1,21 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { connect } from 'react-redux';
-import NotificationScreen from '../modules/home/notification';
-import Personal from '../modules/home/personal';
-import Search from '../modules/home/search';
-import Singer from '../modules/home/singer';
 import { Screen } from '../shared/constance/screen';
 import { screenOptions } from './explore-navigator';
 
 const PersonalStack = createStackNavigator();
 
-interface Props extends StateProps {}
+const Personal = React.lazy(() => import('../modules/home/personal'));
+const NotificationScreen =  React.lazy(() => import('../modules/home/notification'));
+const PlaylistDetail =  React.lazy(() => import('../modules/home/playlist-detail'));
+const Search =  React.lazy(() => import('../modules/home/search'));
+const Singer =  React.lazy(() => import('../modules/home/singer'));
 
-const mapStateToProps = (state: any) => ({
-    refresh_token: state.auth.refresh_token,
-});
-
-const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
+const ExploreNavigator: React.FunctionComponent = () => {
     return (
         <>
             <PersonalStack.Navigator screenOptions={{
-                headerShown: false
+                headerShown: false,
             }}>
                 <>
                     <PersonalStack.Screen name={Screen.Personal} component={Personal}/>
@@ -29,16 +24,19 @@ const ExploreNavigator: React.FunctionComponent<Props> = (props: Props) => {
 
                     <PersonalStack.Screen name={Screen.Common.Singer} component={Singer}/>
 
-                    <PersonalStack.Screen 
-                        name={Screen.Common.Notification} 
+                    <PersonalStack.Screen
+                        name={Screen.Common.Notification}
                         component={NotificationScreen}
                         options={screenOptions}/>
+
+                    <PersonalStack.Screen
+                        name={Screen.Common.PlaylistDetail}
+                        component={PlaylistDetail}
+                    />
                 </>
             </PersonalStack.Navigator>
         </>
     );
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>
-
-export default connect(mapStateToProps, null)(ExploreNavigator);
+export default ExploreNavigator;

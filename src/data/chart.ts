@@ -10,7 +10,7 @@ export const chartDummyData = [
         title: 'K-pop',
     },
     {
-        album_id: 'US-UK',
+        album_id: 'USUK',
         image_url: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/0/2/9/d/029d613e30bbd38670e75b78b977257d.jpg',
         title: 'US-UK',
     },

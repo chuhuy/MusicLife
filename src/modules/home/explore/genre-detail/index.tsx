@@ -1,25 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import {fetchGenreDetail} from '../../../../api/explore';
-import {songs} from '../../../../data';
+import { fetchGenreDetail } from '../../../../api/explore';
+import { songs } from '../../../../data';
 import I18n from '../../../../i18n';
-import {Playlist} from '../../../../models/playlist';
-import {Song} from '../../../../models/song';
+import { Playlist } from '../../../../models/playlist';
+import { Song } from '../../../../models/song';
 import { disableLoading, enableLoading } from '../../../../redux/modules/loading/actions';
-import {
-  BaseScreen,
-  LoadingLayer,
-  SectionTitle,
-} from '../../../../shared/components';
-import {
-  PlaylistList,
-  SongList,
-} from '../../../../shared/components/flatlist';
-import {Screen} from '../../../../shared/constance/screen';
-import {MoreButton} from '../../search/components/more-button';
-import {styles} from './styles';
+import { SectionTitle } from '../../../../shared/components';
+import { PlaylistList, SongList } from '../../../../shared/components/flatlist';
+import OnlineScreen from '../../../../shared/components/online-screen';
+import { Screen } from '../../../../shared/constance/screen';
+import { MoreButton } from '../../search/components/more-button';
+import { styles } from './styles';
 
 interface Props extends DispatchProps {
   navigation: any;
@@ -77,7 +71,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <BaseScreen isScroll={true}>
+      <OnlineScreen isScroll={true}>
         {songList.length ? (
           <View style={styles.section}>
             <SectionTitle
@@ -103,7 +97,7 @@ const GenreDetail: React.FunctionComponent<Props> = (props: Props) => {
             </PlaylistList>
           </View>
         ) : null}
-      </BaseScreen>
+      </OnlineScreen>
     </>
   );
 };

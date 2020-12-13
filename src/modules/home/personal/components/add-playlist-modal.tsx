@@ -39,12 +39,12 @@ const AddPlaylistModal: React.FunctionComponent<Props> = (props: Props) => {
                 // Save playlist
                 createPlaylist(access_token, values.name)
                     .then(() => {
-                        getResult(true);
+                        getResult(false);
                     })
                     .catch((err) => {
                         console.log(err);
-                        getResult(false);
-                    })
+                        getResult(true);
+                    });
                 onHide();
             })
             .catch((errors) => {

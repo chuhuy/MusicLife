@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useRef, useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
@@ -13,18 +13,27 @@ import {
   Text,
   View,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {repeat, shuffle} from '../../../redux/modules/player/actions';
-import {IconButton, NotFoundItem} from '../../../shared/components';
+import Toast from 'react-native-root-toast';
+import TrackPlayer from 'react-native-track-player';
+import { connect } from 'react-redux';
+import { addSongToPlaylist, fetchPersonalPlaylist, postFavoriteSong } from '../../../api/personal';
+import NotFoundLyric from '../../../assets/icons/not-found-lyric.svg';
+import I18n from '../../../i18n';
+import { Playlist } from '../../../models/playlist';
+import { repeat, shuffle } from '../../../redux/modules/player/actions';
+import { IconButton, NotFoundItem, PlaylistList } from '../../../shared/components';
+import ModalBottom from '../../../shared/components/modal-bottom';
+import { notify } from '../../../shared/components/notify';
 import {
+  handleDownload,
   handleNext,
   handlePrevious,
-  togglePlay,
+  togglePlay
 } from '../../../shared/helper/player';
 import ArrowDown from './../../../assets/icons/arrow-down.svg';
 import Download from './../../../assets/icons/download.svg';
-import Heart from './../../../assets/icons/heart.svg';
 import HeartActive from './../../../assets/icons/heart-active.svg';
+import Heart from './../../../assets/icons/heart.svg';
 import List from './../../../assets/icons/list.svg';
 import Plus from './../../../assets/icons/plus.svg';
 import {
@@ -33,20 +42,10 @@ import {
   PlayPauseButton,
   PreviousNextButton,
 } from './components';
-import SeekBar from './components/seek-bar';
-import {styles} from './styles';
-import NotFoundLyric from '../../../assets/icons/not-found-lyric.svg';
-import I18n from '../../../i18n';
-import TrackPlayer from 'react-native-track-player';
 import NowPlaying from './components/now-playing';
-import {
-  downloadSong,
-} from './../../../services/file-system';
-import {PermissionsAndroid} from 'react-native';
-import { fetchIsFavoriteSong, postFavoriteSong } from '../../../api/personal';
-import { notifyError, notifySuccess } from '../../../shared/components/notify';
-import Toast from 'react-native-root-toast';
-import { useNetInfo } from '@react-native-community/netinfo';
+import SeekBar from './components/seek-bar';
+import { styles } from './styles';
+import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
 
 interface Props extends DispatchProps, StateProps {
   route: any;
@@ -61,6 +60,7 @@ const mapDispatchToProps = (dispatch: any) => {
 const mapStateToProps = (state: any) => ({
   player: state.player,
   access_token: state.auth.access_token,
+  network: state.network,
 });
 
 const Tab = {
@@ -70,17 +70,17 @@ const Tab = {
 };
 
 const Player: React.FunctionComponent<Props> = (props: Props) => {
-  const {route, shuffleMusic, repeatMusic, player, access_token} = props;
+  const {route, shuffleMusic, repeatMusic, player, access_token, network} = props;
 
   const {songs, isPlaying, songIndex, isRepeat, isShuffle} = player;
 
   const navigation = useNavigation();
-  let netInfo = useNetInfo();
-  let {isConnected} = netInfo;
 
   const [activeTab, setActiveTab] = useState<number>(Tab.playing);
   const scrollViewRef = useRef(null);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [playlists, setPlaylists] = useState<Array<Playlist>>(null);
 
   let spinAnim = useRef(new Animated.Value(0));
   let diskAnimation = useRef(Animated.loop(
@@ -101,27 +101,24 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
   });
 
   useEffect(() => {
-    if (access_token) {
-      console.log('access_token');
-      // fetchIsFavoriteSong(access_token, songs[songIndex].music_id)
-      //   .then((data) => {
-      //     if (data.isFavoriteSong) {
-      //       setIsFavorite(true);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-    }
-  }, []);
-
-  useEffect(() => {
     if (isPlaying) {
       diskAnimation.current.start();
     } else {
       diskAnimation.current.stop();
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (showModal && !playlists) {
+      fetchPersonalPlaylist(access_token)
+        .then((data) => {
+          setPlaylists(data.personalPlaylist);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [showModal]);
 
   const toggleTab = (index: number) => {
     if (index !== activeTab) {
@@ -133,6 +130,23 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
         animated: true,
       });
     }
+  };
+
+  const togglePlaylistModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const addSong = (playlist_id: number) => {
+    addSongToPlaylist(access_token, songs[songIndex].music_id, playlist_id)
+      .then(() => {
+        notify(I18n.translate('common.add-song-playlist'));
+        togglePlaylistModal();
+      })
+      .catch((err) => {
+        console.log(err);
+        notify(I18n.translate('common.add-song-playlist-fail'));
+        togglePlaylistModal();
+      });
   };
 
   const handleScrollTab = (event: any) => {
@@ -187,12 +201,12 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     if (!isFavorite) {
       postFavoriteSong(access_token, songs[songIndex].music_id)
         .then(() => {
-          notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+          notify(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
           setIsFavorite(true);
         })
         .catch(err => {
           console.log(err);
-          notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+          notify(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
         });
     }
   };
@@ -230,28 +244,6 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const handleDownload = async (url: string, title: string, artists: string, image_url: string) => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          title: 'Music Life',
-          message: I18n.translate('player.ask-for-permission'),
-          buttonNeutral: I18n.translate('player.ask-me-later'),
-          buttonNegative: I18n.translate('player.cancel'),
-          buttonPositive: I18n.translate('player.agree'),
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        await downloadSong(title, url, artists, image_url);
-      } else {
-        notifyError(I18n.translate('player.do-not-have-permission'));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <>
       <ImageBackground style={styles.imageBackground} blurRadius={3} source={{uri: songs[songIndex]?.image_url}}>
@@ -270,14 +262,14 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.dotGroup}>
               <Pressable
                 style={{padding: 5}}
-                onPress={() => toggleTab(Tab.playlist)}
+                onPress={() => toggleTab(Tab.playing)}
               >
                 <View style={[styles.dot, activeTab === Tab.playing ? styles.dotActive : styles.dotDefault]} />
               </Pressable>
 
               <Pressable
                 style={{padding: 5}}
-                onPress={() => toggleTab(Tab.playing)}
+                onPress={() => toggleTab(Tab.playlist)}
               >
                 <View style={[styles.dot, activeTab === Tab.playlist ? styles.dotActive : styles.dotDefault]} />
               </Pressable>
@@ -326,15 +318,15 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
               </View>
 
               <View style={styles.buttonGroup2}>
-                {access_token ? <IconButton icon={Plus} onClick={() => {}}/> : null}
+                {access_token ? <IconButton icon={Plus} onClick={togglePlaylistModal}/> : null}
 
-                {isConnected ? (
+                {network ? (
                   <IconButton icon={Download} onClick={() =>
                     handleDownload(songs[songIndex].url, songs[songIndex].title, songs[songIndex].artists, songs[songIndex].image_url)
                   }/>
                 ) : null}
 
-                {access_token && isConnected ? (
+                {access_token && network ? (
                   <IconButton
                     icon={isFavorite ? HeartActive : Heart}
                     onClick={handleAddToFavorite}/>
@@ -346,6 +338,24 @@ const Player: React.FunctionComponent<Props> = (props: Props) => {
 
             <CommentBox music_id={songs[songIndex]?.music_id}/>
           </View>
+          <ModalBottom
+            isVisible={showModal}
+            onHide={togglePlaylistModal}
+            item={{
+              header: I18n.translate('optionModal.add-to-playlist'),
+            }}
+          >
+            {playlists ? (
+              <>
+                {playlists.length ? <PlaylistList playlist={playlists} onClick={addSong}/> : (
+                  <NotFoundItem
+                    icon={<NotFoundPlaylist />}
+                    text={I18n.translate('personal.playlist-not-found')}
+                  />
+                )}
+              </>
+            ) : null}
+          </ModalBottom>
         </ImageBackground>
     </>
   );

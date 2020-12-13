@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     image: {
         height: 50,
         width: 50,
-        marginRight: 10,
+        marginRight: 15,
     },
     titleGroup: {
         flex: 1,

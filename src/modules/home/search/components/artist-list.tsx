@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
     artistListVertical: {
         marginVertical: -15,
     },
-})
+});

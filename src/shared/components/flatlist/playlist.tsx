@@ -99,7 +99,7 @@ const PlaylistList: React.FunctionComponent<Props> = (props: Props) => {
                         
                         data={playlist}
                         horizontal={isHorizontal}
-                        renderItem={(({item}) => renderItem(item))}
+                        renderItem={(({item}) => item ? renderItem(item) : null)}
                         keyExtractor={(item) => item.album_id.toString()}
                         ListFooterComponent={!isHorizontal && children}
                         ListFooterComponentStyle={!isHorizontal && {...styles.flatListFooter}}

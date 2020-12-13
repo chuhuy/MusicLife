@@ -1,24 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
-import {Text, View, Pressable, Image} from 'react-native';
-import CustomModal from '../../../shared/components/modal';
-import {styles} from './styles';
-import {LOGOUT} from './../../../redux/modules/auth/actions';
-import {connect} from 'react-redux';
-import I18n from './../../../i18n';
+import React, { useEffect, useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import ArrowSvg from '../../../assets/icons/arrow.svg';
+import EditProfileSvg from '../../../assets/icons/edit-profile.svg';
 import LanguageSvg from '../../../assets/icons/language.svg';
 import LockSvg from '../../../assets/icons/lock.svg';
 import LogoutSvg from '../../../assets/icons/logout.svg';
-import EditProfileSvg from '../../../assets/icons/edit-profile.svg';
-import {removeTokenFromLocalStorage} from './../../../shared/helper/authentication';
-import {changeLanguage, getLanguage} from '../../../i18n/utils';
-import {styleVars} from '../../../shared/constance/style-variables';
-import {Button, LinkButton} from '../../../shared/components';
-import {Screen} from '../../../shared/constance/screen';
+import { changeLanguage, getLanguage } from '../../../i18n/utils';
+import { BaseScreen, Button, LinkButton } from '../../../shared/components';
+import CustomModal from '../../../shared/components/modal';
 import RadioButton from '../../../shared/components/radio-button';
+import { Screen } from '../../../shared/constance/screen';
+import { styleVars } from '../../../shared/constance/style-variables';
+import I18n from './../../../i18n';
+import { LOGOUT } from './../../../redux/modules/auth/actions';
+import { removeTokenFromLocalStorage } from './../../../shared/helper/authentication';
 import DefaultAvatar from './components/default-avatar';
-import { useNetInfo } from '@react-native-community/netinfo';
+import { styles } from './styles';
 interface Props extends DispatchProps, StateProps {
   navigation: any;
 }
@@ -30,16 +29,14 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  accesss_token: state.auth.accesss_token,
+  access_token: state.auth.access_token,
   display_name: state.auth.display_name,
   default_avatar: state.auth.default_avatar,
   image_url: state.auth.image_url,
 });
 
 const Setting: React.FunctionComponent<Props> = (props: Props) => {
-  let netInfo = useNetInfo();
-  let { isConnected } = netInfo;
-  const {navigation, accesss_token, logout} = props;
+  const {navigation, access_token, logout} = props;
   const [isModalLanguageVisible, setModalLanguageVisible] = useState(false);
   const [isModalRestartVisible, setModalRestartVisible] = useState(false);
   const [languageActive, setLanguageActive] = useState<string>();
@@ -52,12 +49,6 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
     };
     getLanguageActive();
   }, []);
-
-  useEffect(() => {
-    if (!isConnected) {
-      navigation.navigate(Screen.Device);
-    }
-  }, [isConnected])
 
   const handleChangeLanguage = (language: string) => {
     changeLanguage(language);
@@ -87,45 +78,43 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
   const handleSignIn = () => {
     navigation.navigate(Screen.Authentication.Login);
   };
-  console.log(accesss_token)
+
   return (
     <>
-      <View style={styles.container}>
-        {isConnected ? (
-          <View style={styles.info}>
-            <View style={styles.info__left}>
-              {accesss_token ? (
-                <>
-                  {
-                      props.image_url === null ?
-                      (<>
-                          <DefaultAvatar size={85} type={props.default_avatar} />
-                      </>)
-                      : (<>
-                          <Image
-                              source={{uri: props.image_url}}
-                              style={styles.avatar}
-                          />
-                      </>)
-                  }
-                  <Text style={styles.name}>{props.display_name}</Text>
-                </>
-              ) : (
-                <View style={styles.loginContainer}>
-                  <Button
-                    title={I18n.translate('setting.signin')}
-                    onClick={handleSignIn}
-                    size="big"
-                  />
-                </View>
-              )}
+      <BaseScreen>
+        <View style={styles.info}>
+          <View style={styles.info__left}>
+            {access_token ? (
+              <>
+                {
+                    !props.image_url ?
+                    (<>
+                        <DefaultAvatar size={85} type={props.default_avatar} />
+                    </>)
+                    : (<>
+                        <Image
+                            source={{uri: props.image_url}}
+                            style={styles.avatar}
+                        />
+                    </>)
+                }
+                <Text style={styles.name}>{props.display_name}</Text>
+              </>
+            ) : (
+              <View style={styles.loginContainer}>
+                <Button
+                  title={I18n.translate('setting.signin')}
+                  onClick={handleSignIn}
+                  size="big"
+                />
               </View>
-          </View>
-        ) : null}
+            )}
+            </View>
+        </View>
 
         <View style={styles.main}>
           {/* Edit Profile */}
-          {accesss_token && isConnected ? (
+          {access_token ? (
             <Pressable onPress={handleEditProfile}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -155,7 +144,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </View>
           </Pressable>
           {/* Change Password */}
-          {accesss_token && isConnected ? (
+          {access_token ? (
             <Pressable onPress={handleChangePassword}>
               <View style={styles.main__item}>
                 <View style={styles.main__left}>
@@ -171,7 +160,7 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             </Pressable>
           ) : null}
           {/* Logout */}
-          {accesss_token && (
+          {access_token && (
             <>
               <View style={styles.main__rule} />
               <Pressable onPress={handleLogout}>
@@ -275,9 +264,9 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
           <View style={styles.modal__footer}>
             <View style={styles.touchArea}>
               <LinkButton
-                title={I18n.translate('changeLanguage.save')}
-                onClick={() => handleChangeLanguage(languageActive)}
-                color={styleVars.secondaryColor}
+                title={I18n.translate('changeLanguage.cancel')}
+                onClick={toggleModalRestart}
+                color={styleVars.greyColor}
                 position
               />
             </View>
@@ -291,17 +280,14 @@ const Setting: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.touchArea}>
               <LinkButton
                 title={I18n.translate('changeLanguage.save')}
-                onClick={() => {
-                  toggleModalLanguage();
-                  toggleModalRestart();
-                }}
+                onClick={() => handleChangeLanguage(languageActive)}
                 color={styleVars.secondaryColor}
                 position
               />
             </View>
           </View>
         </CustomModal>
-      </View>
+      </BaseScreen>
     </>
   );
 };

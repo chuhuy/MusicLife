@@ -25,7 +25,6 @@ const NowPlaying: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <>
             <FlatList
-                contentContainerStyle={styles.nowPlaying}
                 showsVerticalScrollIndicator={false}
                 data={songs}
                 renderItem={({item, index}) => {

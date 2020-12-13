@@ -11,16 +11,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   info: {
+    marginHorizontal: -15,
     backgroundColor: styleVars.lightPrimaryColor,
     height: '20%',
-    width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
   },
   header: {
     backgroundColor: styleVars.primaryColor,
-    // height: '10%',
+    
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -41,8 +41,8 @@ export const styles = StyleSheet.create({
   info__left: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 15,
     paddingVertical: 30,
+    paddingHorizontal: 15,
   },
   avatar: {
     width: 85,
@@ -63,7 +63,6 @@ export const styles = StyleSheet.create({
   },
   main__item: {
     flexDirection: 'row',
-    paddingHorizontal: '4%',
     paddingVertical: 20,
     alignItems: 'center',
   },

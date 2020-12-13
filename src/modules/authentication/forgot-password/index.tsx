@@ -11,7 +11,7 @@ import {Screen} from '../../../shared/constance/screen';
 import {ForgotPasswordForm} from '../../../models/form/forgot-pasword';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { forgotPassword } from '../../../api/authentication';
-import { notifySuccess } from '../../../shared/components/notify';
+import { notify } from '../../../shared/components/notify';
 import Toast from 'react-native-root-toast';
 
 interface Props {
@@ -36,7 +36,7 @@ const ForgotPassword: React.FunctionComponent<Props> = (props: Props) => {
   const handleSubmit = (value: ForgotPasswordForm) => {
     forgotPassword(value.email)
       .then((data) => {
-        notifySuccess(I18n.translate('authentication.send-email'), {position: Toast.positions.BOTTOM - 50});
+        notify(I18n.translate('authentication.send-email'), {position: Toast.positions.BOTTOM - 50});
       })
       .catch((err) => {
         console.log(err);

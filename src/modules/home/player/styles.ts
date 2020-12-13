@@ -81,6 +81,7 @@ export const styles = StyleSheet.create({
     tab: {
         width: width,
         paddingHorizontal: 20,
+        paddingVertical: 10,
     },
     dotGroup: {
         width: '100%',

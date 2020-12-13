@@ -1,4 +1,3 @@
-import { string } from 'yup';
 import {RESOURCE_URL, PERSONAL} from './../shared/constance/api';
 import {API} from './index';
 
@@ -77,7 +76,6 @@ export const postFavoriteSong = (access_token: string, music_id: number) => {
 };
 
 export const fetchIsFavoriteSong = (access_token: string, music_id: number) => {
-  console.log(access_token)
   const query = `
     query {
       isFavoriteSong(music_id: ${music_id})
@@ -117,15 +115,19 @@ export const addSongToPlaylist = (access_token: string, music_id: number, playli
   return API.graphql(RESOURCE_URL + PERSONAL, query, access_token);
 };
 
-export const fetchSongByPlaylist = (access_token: string, playlist_id: number) => {
+export const fetchSongByPlaylist = (access_token: string, playlist_id: number, first?: number, offset?: number) => {
+  const limit = first ? `first: ${first} offset: ${offset}` : '';
+
   const query = `
-    songs: getSongByPlaylist(playlist_id: ${playlist_id}) {
-      music_id
-      title
-      url
-      image_url
-      artists
-      lyric
+    query {
+      songs: getSongByPlaylist(playlist_id: ${playlist_id} ${limit}) {
+        music_id
+        title
+        url
+        image_url
+        artists
+        lyric
+      }
     }
   `;
 

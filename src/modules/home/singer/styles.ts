@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
         height: '100%',
         opacity: 0.4,
     },
+    headerBack: {
+        marginBottom: 15,
+    },
     imageBackground: {
         flex: 1,
         resizeMode: 'center',
@@ -22,12 +25,8 @@ export const styles = StyleSheet.create({
         backgroundColor: styleVars.primaryColor,
         opacity: 0.8,
     },
-    body: {
-        paddingVertical: 20,
-    },
     avatarView: {
         alignItems: 'center',
-        justifyContent: 'center',
         marginBottom: 30,
     },
     avatar: {
@@ -55,6 +54,6 @@ export const styles = StyleSheet.create({
     description: {
         color: styleVars.white,
         fontSize: styleVars.baseFontSize,
-        lineHeight: 20,
+        textAlign: 'justify',
     },
 });

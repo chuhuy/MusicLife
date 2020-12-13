@@ -5,9 +5,12 @@ const initState = false;
 
 export const networkReducer = (state: any = initState, action: Action) => {
   switch (action.type) {
-    case TOGGLE_CONNECTION: {
-      return !initState;
-    }
+    case TOGGLE_CONNECTION:
+      console.log('toggle connect')
+      if (state !== action.payload) {
+        return action.payload;
+      }
+      return state;
     default:
       return state;
   }

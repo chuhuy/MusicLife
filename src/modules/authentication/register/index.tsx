@@ -6,7 +6,7 @@ import {Screen} from '../../../shared/constance/screen';
 import {styles} from './styles';
 import I18n from '../../../i18n';
 import {Messages} from '../../../shared/constance/messages';
-import {notifyError} from '../../../shared/components/notify';
+import {notify} from '../../../shared/components/notify';
 import Toast from 'react-native-root-toast';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Formik} from 'formik';
@@ -171,7 +171,7 @@ const Register: React.FunctionComponent<Props> = (props: Props) => {
         error = I18n.translate('authentication.register.fail-to-register');
     }
 
-    notifyError(error, {position: Toast.positions.CENTER});
+    notify(error, {position: Toast.positions.CENTER});
   };
 
   return (

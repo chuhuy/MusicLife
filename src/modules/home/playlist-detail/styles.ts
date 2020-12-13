@@ -25,16 +25,21 @@ export const styles = StyleSheet.create({
         width: (height * 0.4) - 150,
         height: (height * 0.4) - 150,
     },
+    imageBg: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
     sectionOne: {
-        flex: 1,
         width: '100%',
         paddingVertical: 20,
     },
     sectionOneContent: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingBottom: 15,
+        paddingTop: 15,
     },
     sectionTwo: {
         flex: 1,
@@ -46,7 +51,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         paddingHorizontal: 15,
-        paddingTop: 15,
+        paddingTop: 30,
         justifyContent: 'space-between',
         alignItems: 'center',
     },

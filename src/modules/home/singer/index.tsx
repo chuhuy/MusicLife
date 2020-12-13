@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchArtistDetail } from '../../../api/explore';
-import { playlist } from '../../../data';
-import { album } from '../../../data/album';
 import { Artist } from '../../../models/artist';
 import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
@@ -37,6 +35,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
     const [shortSongs, setShortSongs] = useState<Array<Song>>([]);
     const [songs, setSongs] = useState<Array<Song>>([]);
     const [albums, setAlbums] = useState<Array<Playlist>>([]);
+    const [showDetail, setShowDetail] = useState<boolean>(false);
 
     useEffect(() => {
         enableLoading();
@@ -72,6 +71,10 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
         });
     };
 
+    const toggleInfo = () => {
+        setShowDetail(!showDetail);
+    }
+
     const renderArtistInfo = () => {
         return (
             <>
@@ -85,11 +88,17 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                 <View style={styles.group}>
                     <SectionTitle
                         title={I18n.translate('singer.info')}
-                        onClick={() => {}}
+                        onClick={toggleInfo}
                     />
-                    <Text numberOfLines={2} style={styles.description}>
-                        {currentArtist.description}
-                    </Text>
+                    {showDetail ? (
+                        <Text style={styles.description}>
+                            {currentArtist.description.replace(/<br>/g, '')}
+                        </Text>
+                    ) : (
+                        <Text numberOfLines={2} style={styles.description}>
+                            {currentArtist.description.replace(/<br>/g, '')}
+                        </Text>
+                    )}
                 </View>
             </>
         );
@@ -107,9 +116,11 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
                 <View style={styles.layer} />
 
                 <View style={styles.container}>
-                    <HeaderBack/>
+                    <View style={styles.headerBack}>
+                        <HeaderBack/>
+                    </View>
 
-                    <ScrollView style={styles.body} nestedScrollEnabled={true}>
+                    <ScrollView nestedScrollEnabled={true}>
                         {renderArtistInfo()}
 
                         <View style={styles.group}>
@@ -122,7 +133,7 @@ const Singer: React.FunctionComponent<Props> = (props: Props) => {
 
                         <View style={styles.group}>
                             <SectionTitle title={I18n.translate('singer.album')} onClick={handleAlbum}/>
-                            <AlbumList playlist={album} isHorizontal={true}/>
+                            <AlbumList playlist={albums} isHorizontal={true}/>
                         </View>
                     </ScrollView>
                 </View>

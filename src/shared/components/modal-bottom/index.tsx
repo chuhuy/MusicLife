@@ -24,31 +24,39 @@ const ModalBottom: React.FunctionComponent<Props> = (props: Props) => {
         >
             <View style={styles.modalContainer}>
                 <View style={styles.header}>
-                    {item && (
+                    {item ? (
                         <View style={styles.headerLeft}>
-                            <Image
-                                source={{uri: item.image_url}}
-                                style={styles.image}
-                            />
-                            <View style={{
-                                flex: 1,
-                                marginLeft: 15,
-                                flexDirection: 'column',
-                                justifyContent: 'center'
-                            }}>
-                                <Text style={styles.title} numberOfLines={1}>
-                                    {item.title || item.name}
+                            {item.header ? (
+                                <Text style={[styles.title, styles.headerTitle]} numberOfLines={1}>
+                                    {item.header}
                                 </Text>
-                                {item.artists && (
-                                    <Text style={styles.artist} numberOfLines={1}>
-                                        {item.artists}
-                                    </Text>
-                                )}
-                            </View>
+                            ) : (
+                                <>
+                                    <Image
+                                        source={{uri: item.image_url}}
+                                        style={styles.image}
+                                    />
+                                    <View style={{
+                                        flex: 1,
+                                        marginLeft: 15,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text style={styles.title} numberOfLines={1}>
+                                            {item.title || item.name}
+                                        </Text>
+                                        {item.artists && (
+                                            <Text style={styles.artist} numberOfLines={1}>
+                                                {item.artists}
+                                            </Text>
+                                        )}
+                                    </View>
+                                </>
+                            )}
                         </View>
-                    )}
+                    ) : null}
 
-                    <IconButton 
+                    <IconButton
                         onClick={onHide}
                         icon={ArrowDown}
                     />

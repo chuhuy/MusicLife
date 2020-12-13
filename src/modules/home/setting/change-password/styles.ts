@@ -4,6 +4,6 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     saveButtonContainer: {
-        marginTop: 20
+        marginTop: 5,
     }
 });

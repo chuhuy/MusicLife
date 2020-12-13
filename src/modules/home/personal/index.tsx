@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchPersonalDetail, fetchPersonalPlaylist } from '../../../api/personal';
+import { fetchPersonalDetail, fetchPersonalPlaylist, fetchSongByPlaylist } from '../../../api/personal';
 import NotFoundAlbum from '../../../assets/icons/not-found-album.svg';
 import NotFoundPlaylist from '../../../assets/icons/not-found-playlist.svg';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
@@ -11,10 +11,9 @@ import { Playlist } from '../../../models/playlist';
 import { Song } from '../../../models/song';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen } from '../../../shared/components';
-import { AlbumList, PlaylistList, SongList } from '../../../shared/components/flatlist';
+import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import MessageModal from '../../../shared/components/message-modal';
-import { notifyError, notifySuccess } from '../../../shared/components/notify';
+import { notify } from '../../../shared/components/notify';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import I18n from './../../../i18n';
 import { Button } from './../../../shared/components/button';
@@ -68,6 +67,7 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
                 } = data;
 
                 setSongs(personalSong);
+
                 setPlaylists(personalPlaylist);
                 setAlbums(personalAlbum);
 
@@ -135,7 +135,7 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
         }
 
         return (
-            <AlbumList playlist={albums}/>
+            <PlaylistList playlist={albums}/>
         );
     };
 
@@ -155,14 +155,18 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const getResult = (isError: boolean) => {
+        console.log('get result')
+        console.log(isError)
         if (!isError) {
-            notifyError(I18n.translate('personal.create-playlist-fail'));
+            notify(I18n.translate('personal.create-playlist-fail'));
         } else {
-            notifySuccess(I18n.translate('personal.create-playlist-success'));
-
+            notify(I18n.translate('personal.create-playlist-success'));
+            enableLoading();
             fetchPersonalPlaylist(access_token)
                 .then((data) => {
+                    console.log(data);
                     setPlaylists(data.personalPlaylist);
+                    disableLoading();
                 })
                 .catch((err) => {
                     console.log(err);

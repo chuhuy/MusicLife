@@ -41,6 +41,7 @@ function* signInWorker(action: any) {
       };
       yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
       yield put(loginSuccess(payload));
+      yield call(action.payload.callbacks.onSuccess);
     } else {
       const {errorMessage} = response;
       yield call(action.payload.callbacks.onFailed, errorMessage);
@@ -76,6 +77,7 @@ function* signInUsernameWorker(action: any) {
       };
       yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
       yield put(loginSuccess(payload));
+      yield call(action.payload.callbacks.onSuccess);
     } else {
       const {errorMessage} = response;
       yield call(action.payload.callbacks.onFailed, errorMessage);
