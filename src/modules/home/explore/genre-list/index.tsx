@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { fetchGenres } from '../../../../api/explore';
 import { Genre } from '../../../../models/genre';
 import { disableLoading, enableLoading } from '../../../../redux/modules/loading/actions';
-import { BaseScreen } from '../../../../shared/components';
 import { SquareItem } from '../../../../shared/components/flatlist/square-item';
+import OnlineScreen from '../../../../shared/components/online-screen';
 import { Screen } from '../../../../shared/constance/screen';
 import { styles } from './styles';
 
@@ -45,7 +45,7 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <BaseScreen>
+      <OnlineScreen>
         <FlatList
           contentContainerStyle={styles.genreList}
           showsVerticalScrollIndicator={false}
@@ -70,7 +70,7 @@ const GenreListScreen: React.FunctionComponent<Props> = (props: Props) => {
           }}
           keyExtractor={(item) => item.genre_id.toString()}
         />
-      </BaseScreen>
+      </OnlineScreen>
     </>
   );
 };

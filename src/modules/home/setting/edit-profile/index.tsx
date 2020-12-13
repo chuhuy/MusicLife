@@ -4,11 +4,11 @@ import {Alert, Image, Pressable, Text, TextInput, View} from 'react-native';
 import {connect} from 'react-redux';
 import {changeDisplayName} from '../../../../api/authentication';
 import I18n from '../../../../i18n';
-import {BaseScreen} from '../../../../shared/components';
 import {Screen} from '../../../../shared/constance/screen';
 import {styles} from './styles';
 import DefaultAvatar from '../components/default-avatar';
 import {SET_DISPLAY_NAME} from './../../../../redux/modules/auth/actions';
+import OnlineScreen from '../../../../shared/components/online-screen';
 
 interface Props extends StateProps, DispatchProps {
   navigation: any;
@@ -45,7 +45,7 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
       });
   };
   return (
-    <BaseScreen isScroll={true}>
+    <OnlineScreen isScroll={true}>
       <View style={styles.content}>
         {props.image_url === null ? (
           <>
@@ -69,7 +69,7 @@ const EditProfile: React.FunctionComponent<Props> = (props: Props) => {
           </View>
         </Pressable>
       </View>
-    </BaseScreen>
+    </OnlineScreen>
   );
 };
 

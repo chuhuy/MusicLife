@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     },
     main: {
         width: '100%',
+        maxHeight: height * 0.5,
         minHeight: height * 0.3,
         paddingVertical: 20,
         paddingHorizontal: 20,
@@ -38,14 +39,17 @@ export const styles = StyleSheet.create({
     headerLeft: {
         flex: 1,
         flexDirection: 'row',
-        marginRight: 20
+        marginRight: 20,
     },
     title: {
         color: styleVars.white,
         fontSize: styleVars.baseFontSize,
     },
+    headerTitle: {
+        fontSize: styleVars.bigFontSize,
+    },
     artist: {
         color: styleVars.greyColor,
-        fontSize: styleVars.smallFontSize
+        fontSize: styleVars.smallFontSize,
     },
 });

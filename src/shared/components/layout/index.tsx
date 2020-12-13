@@ -15,7 +15,7 @@ export const BaseScreen: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <SafeAreaView style={styles.view}>
                 {isScroll ? (
-                    <ScrollView 
+                    <ScrollView
                         contentContainerStyle={styles.container}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}>

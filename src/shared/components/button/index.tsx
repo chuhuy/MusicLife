@@ -12,7 +12,7 @@ interface Props {
 
 export const Button: FunctionComponent<Props> = (props: Props) => {
     const { onClick, title, disabled = false, size, icon } = props;
-
+    console.log(disabled)
     return (
         <>
             <Pressable

@@ -40,12 +40,13 @@ function* signInWorker(action: any) {
         default_avatar: response.data.default_avatar,
       };
       yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
+      yield put(loginSuccess(payload));
+      yield call(action.payload.callbacks.onSuccess);
     } else {
       const {errorMessage} = response;
       yield call(action.payload.callbacks.onFailed, errorMessage);
       yield loginFailed(errorMessage);
     }
-    yield call(action.payload.callbacks.onSuccess);
   } catch (error) {
     yield call(action.payload.callbacks.onFailed, error);
     yield put(loginFailed(error));
@@ -75,12 +76,13 @@ function* signInUsernameWorker(action: any) {
         default_avatar: response.data.default_avatar,
       };
       yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
+      yield put(loginSuccess(payload));
+      yield call(action.payload.callbacks.onSuccess);
     } else {
       const {errorMessage} = response;
       yield call(action.payload.callbacks.onFailed, errorMessage);
       yield loginFailed(errorMessage);
     }
-    yield call(action.payload.callbacks.onSuccess);
   } catch (error) {
     yield call(action.payload.callbacks.onFailed, error);
     yield put(loginFailed(error));
@@ -111,6 +113,7 @@ function* signInFacebookWorker(action: any) {
         default_avatar: response.data.default_avatar,
       };
       yield call(saveTokenToLocalStorage, payload.refresh_token, payload.access_token);
+      yield put(loginSuccess(payload));
     } else {
       const {errorMessage} = response;
       yield call(action.payload.callbacks.onFailed, errorMessage);

@@ -13,7 +13,7 @@ import { disableLoading, enableLoading } from '../../../redux/modules/loading/ac
 import { BaseScreen } from '../../../shared/components';
 import { PlaylistList, SongList } from '../../../shared/components/flatlist';
 import HeaderMainPage from '../../../shared/components/header-main-page';
-import { notifyError, notifySuccess } from '../../../shared/components/notify';
+import { notify } from '../../../shared/components/notify';
 import UnderlineTabBar from '../../../shared/components/underline-tab-bar';
 import I18n from './../../../i18n';
 import { Button } from './../../../shared/components/button';
@@ -67,14 +67,6 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
                 } = data;
 
                 setSongs(personalSong);
-
-                personalPlaylist = personalPlaylist.map((playlist) => {
-                    let image = '../../../assets/images/logo.png';
-                    return {
-                        ...playlist,
-                        image_url: image,
-                    };
-                });
 
                 setPlaylists(personalPlaylist);
                 setAlbums(personalAlbum);
@@ -148,7 +140,6 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
     };
 
     const renderPlaylistTab = () => {
-        console.log(playlists)
         if (!playlists.length){
             return (
                 <NotFoundItem
@@ -167,23 +158,14 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
         console.log('get result')
         console.log(isError)
         if (!isError) {
-            notifyError(I18n.translate('personal.create-playlist-fail'));
+            notify(I18n.translate('personal.create-playlist-fail'));
         } else {
-            notifySuccess(I18n.translate('personal.create-playlist-success'));
+            notify(I18n.translate('personal.create-playlist-success'));
             enableLoading();
             fetchPersonalPlaylist(access_token)
                 .then((data) => {
-                    console.log('add playlist');
                     console.log(data);
-                    let personalPlaylist = data.personalPlaylist.map((playlist) => {
-                        let image = '../../../assets/images/logo.png';
-                        return {
-                            ...playlist,
-                            image_url: image,
-                        };
-                    });
-                    
-                    setPlaylists(personalPlaylist);
+                    setPlaylists(data.personalPlaylist);
                     disableLoading();
                 })
                 .catch((err) => {

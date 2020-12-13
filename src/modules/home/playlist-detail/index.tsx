@@ -16,10 +16,11 @@ import Heart from './../../../assets/icons/heart.svg';
 import HeartActive from './../../../assets/icons/heart-active.svg';
 import Option from './../../../assets/icons/option.svg';
 import { styles } from './styles';
-import { notifyError, notifySuccess } from '../../../shared/components/notify';
+import { notify } from '../../../shared/components/notify';
 import Toast from 'react-native-root-toast';
 import I18n from '../../../i18n';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
+import { DEFAULT_IMAGE } from '../../../shared/constance/link';
 
 interface Props extends StateProps, DispatchProps {
     navigation: any;
@@ -61,37 +62,45 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                 fetchAlbumDetail(album_id)
                     .then((data) => {
                         setSongList(data.songs);
+
+                        if (access_token) {
+                            fetchIsFavoriteAlbum(access_token, album_id)
+                                .then((res) => {
+                                    if (!res.isFavoriteAlbum) {
+                                        setIsFavorite(false);
+                                    }
+                                }).catch((err) => {
+                                    disableLoading();
+                                    console.log(err);
+                                });
+                        }
                         disableLoading();
-                        fetchIsFavoriteAlbum(access_token, album_id)
-                            .then((res) => {
-                                console.log(res)
-                                if (!res.isFavoriteAlbum) {
-                                    setIsFavorite(false);
-                                }
-                            })
-                            .catch(err => {
-                                console.log(err);
-                                disableLoading();
-                            });
-                    }).catch((err) => console.log(err));
+                    })
+                    .catch((err) => {
+                        disableLoading();
+                        console.log(err);
+                    });
             } else if (isTop100) {
                 fetchTop100(album_id)
                     .then((data) => {
                         setSongList(data.songs);
                         disableLoading();
-                    }).catch((err) => {
-                        console.log(err);
+                    })
+                    .catch((err) => {
                         disableLoading();
+                        console.log(err);
                     });
             } else {
                 // Personal playlist
+                console.log(access_token)
                 fetchSongByPlaylist(access_token, album_id)
                     .then((data) => {
                         setSongList(data.songs);
                         disableLoading();
-                    }).catch((err) => {
-                        console.log(err);
+                    })
+                    .catch((err) => {
                         disableLoading();
+                        console.log(err);
                     });
             }
         } else {
@@ -101,8 +110,8 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     disableLoading();
                 })
                 .catch((err) => {
-                    console.log(err);
                     disableLoading();
+                    console.log(err);
                 });
         }
     }, []);
@@ -114,11 +123,11 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
         if (!isFavorite) {
             postFavoriteAlbum(access_token, album_id)
                 .then(() => {
-                    notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+                    notify(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
                 })
                 .catch((err) => {
                     console.log(err);
-                    notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+                    notify(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
                 });
         }
         console.log('Heart Click');
@@ -137,7 +146,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
         <>
             <SafeAreaView style={styles.container}>
                 <View style={styles.sectionOne}>
-                    <Image source={{uri: image_url || ''}} style={styles.imageBg}/>
+                    <ImageBackground source={{uri: image_url || DEFAULT_IMAGE}} blurRadius={3} style={styles.imageBg}/>
 
                     <View style={styles.blurLayer} />
 
@@ -146,7 +155,7 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                     </View>
 
                     <View style={styles.sectionOneContent}>
-                        <Image source={{ uri: image_url || '' }} style={styles.image} />
+                        <Image source={{ uri: image_url || DEFAULT_IMAGE }} style={styles.image} />
 
                         <View style={styles.control}>
                             <View style={styles.titleGroup}>
@@ -167,15 +176,17 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
                                     </View>
                                 ) : null}
 
-                                {isAlbum && access_token && (
+                                {isAlbum && access_token ? (
                                     <View style={styles.button}>
                                         <IconButton icon={isFavorite ? HeartActive : Heart} onClick={handleHeartClick} />
                                     </View>
-                                )}
+                                ) : null}
 
-                                <View style={styles.button}>
-                                    <IconButton icon={Option} onClick={handleOptionClick} />
-                                </View>
+                                {(isAlbum || songList.length) ? (
+                                    <View style={styles.button}>
+                                        <IconButton icon={Option} onClick={handleOptionClick} />
+                                    </View>
+                                ) : null}
                             </View>
                         </View>
                     </View>
@@ -215,4 +226,4 @@ const PlaylistDetailScreen: React.FunctionComponent<Props> = (props: Props) => {
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
-export default connect(null, mapDispatchToProps)(PlaylistDetailScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistDetailScreen);

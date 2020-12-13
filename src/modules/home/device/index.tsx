@@ -2,33 +2,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from 'react';
 import { Alert, PermissionsAndroid, View } from 'react-native';
-import { connect } from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
 import NotFoundSong from '../../../assets/icons/not-found-song.svg';
 import { Song } from '../../../models/song';
-import { disableLoading } from '../../../redux/modules/loading/actions';
 import { BaseScreen, Button, NotFoundItem, SongList } from '../../../shared/components';
 import I18n from './../../../i18n';
 
-interface Props extends StateProps, DispatchProps {}
-
-const mapStateToProps = (state: any) => ({
-  refresh_token: state.auth.refresh_token,
-  network: state.network,
-  loading: state.loading.loading,
-});
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    disableLoading: () => dispatch(disableLoading())
-  };
-};
-
-const Device: React.FunctionComponent<Props> = (props: Props) => {
-  const {
-    loading,
-    disableLoading,
-  } = props;
+const Device: React.FunctionComponent = () => {
   const [songList, setSongList] = useState<Array<Song>>([]);
 
   useEffect(() => {
@@ -91,13 +71,10 @@ const Device: React.FunctionComponent<Props> = (props: Props) => {
           )}
         </View>
 
-        <Button onClick={fetchDownloadedSong} title={I18n.translate('device.refresh')} />
+        <Button disabled={false} onClick={fetchDownloadedSong} title={I18n.translate('device.refresh')} />
       </BaseScreen>
     </>
   );
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = ReturnType<typeof mapDispatchToProps>;
-
-export default connect(mapStateToProps, mapDispatchToProps)(Device);
+export default Device;

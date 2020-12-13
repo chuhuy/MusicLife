@@ -1,25 +1,27 @@
-import React, {Fragment, useState} from 'react';
-import {Formik} from 'formik';
-import {Alert, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Formik } from 'formik';
+import React, { Fragment, useState } from 'react';
+import { Alert, View } from 'react-native';
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import I18n from '../../../../i18n';
-import {BaseScreen, Button} from '../../../../shared/components';
+import { ChangePasswordForm } from '../../../../models/form/change-password';
+import { BaseScreen, Button } from '../../../../shared/components';
 import TextInputGroup from '../../../../shared/components/form/textInput';
-import {styles} from './styles';
-import {ChangePasswordForm} from '../../../../models/form/change-password';
-import {connect} from 'react-redux';
-import {changePassword} from './../../../../api/authentication';
-import {useNavigation} from '@react-navigation/native';
+import { NetworkErr } from '../../../../shared/components/network-err';
 import { Screen } from '../../../../shared/constance/screen';
+import { changePassword } from './../../../../api/authentication';
+import { styles } from './styles';
 interface Props extends StateProps {
   navigation: any;
 }
 const mapStateToProps = (state: any) => ({
   access_token: state.auth.access_token,
+  network: state.network,
 });
 const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
   const navigation = useNavigation();
-  const {} = props;
+  const { network } = props;
   const [isPasswordShown, setPasswordShown] = useState<Array<boolean>>([
     false,
     false,
@@ -81,67 +83,71 @@ const ChangePassword: React.FunctionComponent<Props> = (props: Props) => {
   });
   return (
     <>
-      <BaseScreen isScroll={true}>
+      <BaseScreen>
         <View style={styles.main}>
-          <Formik
-            initialValues={initialValues}
-            onSubmit={(values) => handleChangePassword(values)}
-            validationSchema={validationSchema}>
-            {({values, handleChange, errors, setFieldTouched, isValid}) => (
-              <Fragment>
-                <View>
-                  <TextInputGroup
-                    placeholder={I18n.translate(
-                      'changePassword.oldPasswordPlaceHolder',
-                    )}
-                    label={I18n.translate('changePassword.oldPasswordLabel')}
-                    value={values.oldPassword}
-                    onChangeText={handleChange('oldPassword')}
-                    onBlur={() => setFieldTouched('oldPassword')}
-                    secureTextEntry={!isPasswordShown[0]}
-                    onToggleShowPassword={() => toggleShowPassword(0)}
-                    error={errors.oldPassword}
-                  />
-
-                  <TextInputGroup
-                    placeholder={I18n.translate(
-                      'changePassword.newPasswordPlaceholder',
-                    )}
-                    label={I18n.translate('changePassword.newPasswordLabel')}
-                    value={values.newPassword}
-                    onChangeText={handleChange('newPassword')}
-                    onBlur={() => setFieldTouched('newPassword')}
-                    secureTextEntry={!isPasswordShown[1]}
-                    onToggleShowPassword={() => toggleShowPassword(1)}
-                    error={errors.newPassword}
-                  />
-
-                  <TextInputGroup
-                    placeholder={I18n.translate(
-                      'changePassword.repeatNewPasswordPlaceholder',
-                    )}
-                    label={I18n.translate(
-                      'changePassword.repeatNewPasswordLabel',
-                    )}
-                    value={values.reNewPassword}
-                    onChangeText={handleChange('reNewPassword')}
-                    onBlur={() => setFieldTouched('reNewPassword')}
-                    secureTextEntry={!isPasswordShown[2]}
-                    onToggleShowPassword={() => toggleShowPassword(2)}
-                    error={errors.reNewPassword}
-                  />
-                  <View style={styles.saveButtonContainer}>
-                    <Button
-                      title={I18n.translate('changePassword.save')}
-                      onClick={() => handleChangePassword(values)}
-                      disabled={!isValid}
-                      size={'big'}
+          {network ? (
+            <Formik
+              initialValues={initialValues}
+              onSubmit={(values) => handleChangePassword(values)}
+              validationSchema={validationSchema}>
+              {({values, handleChange, errors, setFieldTouched, isValid}) => (
+                <Fragment>
+                  <View>
+                    <TextInputGroup
+                      placeholder={I18n.translate(
+                        'changePassword.oldPasswordPlaceHolder',
+                      )}
+                      label={I18n.translate('changePassword.oldPasswordLabel')}
+                      value={values.oldPassword}
+                      onChangeText={handleChange('oldPassword')}
+                      onBlur={() => setFieldTouched('oldPassword')}
+                      secureTextEntry={!isPasswordShown[0]}
+                      onToggleShowPassword={() => toggleShowPassword(0)}
+                      error={errors.oldPassword}
                     />
+
+                    <TextInputGroup
+                      placeholder={I18n.translate(
+                        'changePassword.newPasswordPlaceholder',
+                      )}
+                      label={I18n.translate('changePassword.newPasswordLabel')}
+                      value={values.newPassword}
+                      onChangeText={handleChange('newPassword')}
+                      onBlur={() => setFieldTouched('newPassword')}
+                      secureTextEntry={!isPasswordShown[1]}
+                      onToggleShowPassword={() => toggleShowPassword(1)}
+                      error={errors.newPassword}
+                    />
+
+                    <TextInputGroup
+                      placeholder={I18n.translate(
+                        'changePassword.repeatNewPasswordPlaceholder',
+                      )}
+                      label={I18n.translate(
+                        'changePassword.repeatNewPasswordLabel',
+                      )}
+                      value={values.reNewPassword}
+                      onChangeText={handleChange('reNewPassword')}
+                      onBlur={() => setFieldTouched('reNewPassword')}
+                      secureTextEntry={!isPasswordShown[2]}
+                      onToggleShowPassword={() => toggleShowPassword(2)}
+                      error={errors.reNewPassword}
+                    />
+                    <View style={styles.saveButtonContainer}>
+                      <Button
+                        title={I18n.translate('changePassword.save')}
+                        onClick={() => handleChangePassword(values)}
+                        disabled={!isValid}
+                        size={'big'}
+                      />
+                    </View>
                   </View>
-                </View>
-              </Fragment>
-            )}
-          </Formik>
+                </Fragment>
+              )}
+            </Formik>
+          ) : (
+            <NetworkErr />
+          )}
         </View>
       </BaseScreen>
     </>

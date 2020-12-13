@@ -10,6 +10,10 @@ import {
   skipMusic,
   togglePlayMusic,
 } from '../../redux/modules/player/actions';
+import { PermissionsAndroid } from 'react-native';
+import { downloadSong } from '../../services/file-system';
+import { notify } from '../components/notify';
+import I18n from '../../i18n';
 
 // Handle controller
 export const togglePlay = async () => {
@@ -222,11 +226,11 @@ export const playSongNowPlaying = (index: number) => {
   let remainSongs = index - songIndex;
 
   if (remainSongs > 0) {
-    while (remainSongs-- >= 0) {
+    while (remainSongs--) {
       TrackPlayer.skipToNext();
     }
   } else {
-    while (remainSongs++ <= 0) {
+    while (remainSongs++) {
       TrackPlayer.skipToPrevious();
     }
   }
@@ -238,4 +242,26 @@ export const playSongNowPlaying = (index: number) => {
     .catch(err => {
       console.log(err);
     });
+};
+
+export const handleDownload = async (url: string, title: string, artists: string, image_url: string) => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        title: 'Music Life',
+        message: I18n.translate('player.ask-for-permission'),
+        buttonNeutral: I18n.translate('player.ask-me-later'),
+        buttonNegative: I18n.translate('player.cancel'),
+        buttonPositive: I18n.translate('player.agree'),
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      await downloadSong(title, url, artists, image_url);
+    } else {
+      notify(I18n.translate('player.do-not-have-permission'));
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };

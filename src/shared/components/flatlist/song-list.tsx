@@ -15,7 +15,7 @@ import {Screen} from '../../constance/screen';
 import {playSong} from '../../helper/player';
 import { Button } from '../button';
 import ModalBottom from '../modal-bottom';
-import { notifyError, notifySuccess } from '../notify';
+import { notify } from '../notify';
 import SongOptions from '../option-list/SongOptions';
 import {Item} from './item';
 import PlaylistList from './playlist';
@@ -98,11 +98,13 @@ const List: React.FunctionComponent<Props> = (props: Props) => {
   const addSong = (playlist_id: number) => {
     addSongToPlaylist(access_token, songModal.music_id, playlist_id)
       .then(() => {
-        notifySuccess(I18n.translate('add-song-playlist'));
+        notify(I18n.translate('common.add-song-playlist'));
+        handleCloseModal();
       })
       .catch((err) => {
         console.log(err);
-        notifyError(I18n.translate('add-song-playlist-fail'));
+        notify(I18n.translate('common.add-song-playlist-fail'));
+        handleCloseModal();
       });
   };
 

@@ -15,7 +15,7 @@ import Toast from 'react-native-root-toast';
 import {connect} from 'react-redux';
 import * as Yup from 'yup';
 import {SignInForm} from '../../../models/form/signin';
-import {notifyError} from '../../../shared/components/notify';
+import {notify} from '../../../shared/components/notify';
 import I18n from './../../../i18n';
 import {ErrorMessage} from './../../../models/error-message';
 import {LoginUser} from './../../../models/LoginUser';
@@ -38,6 +38,8 @@ import TextInputGroup from '../../../shared/components/form/textInput';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import Header from '../components/header';
 import { disableLoading, enableLoading } from '../../../redux/modules/loading/actions';
+import { useNavigation } from '@react-navigation/native';
+import { Screen } from '../../../shared/constance/screen';
 
 interface Props extends DispatchProps, StateProps {
   navigation: any;
@@ -72,6 +74,8 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     disableLoading,
   } = props;
 
+  const navigation = useNavigation();
+
   // Loading
   useEffect(() => {
     console.log(loading);
@@ -87,7 +91,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     refresh_token: 'refresh_token',
     access_token: 'token',
   });
-  // Empty input
+
   const [isEmptyInput, setEmptyInput] = useState<boolean>(true);
 
   // Form control
@@ -114,7 +118,6 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
     validationSchema
       .validate(values, {abortEarly: false})
       .then(() => {
-        enableLoading();
         //  Validate successfully
         handleSignIn(values);
       })
@@ -139,9 +142,13 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
   // Login
   const handleSignIn = (values: SignInForm) => {
     console.log(values);
-    
+    enableLoading();
     if (/^.+@.+$/.test(values.username)) {
       onLoginEmail(values, {
+        onSuccess: () => {
+          disableLoading();
+          navigation.navigate(Screen.Explore.Main);
+        },
         onFailed: (error) => {
           disableLoading();
           renderToast({error});
@@ -149,6 +156,10 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
       });
     } else {
       onLoginUsername(values, {
+        onSuccess: () => {
+          disableLoading();
+          navigation.navigate(Screen.Explore.Main);
+        },
         onFailed: (error) => {
           disableLoading();
           renderToast({error});
@@ -246,8 +257,9 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
             );
         }
       }
+      console.log(errorMessage)
 
-      notifyError(errorMessage, {position: Toast.positions.BOTTOM - 50});
+      notify(errorMessage, {position: Toast.positions.BOTTOM - 50});
     }
   };
 
@@ -267,7 +279,7 @@ const Login: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior="height"
         style={styles.container}>
         <Formik
           initialValues={initialFormValue}

@@ -5,10 +5,10 @@ import { styles } from './styles';
 interface Props {
     options: Array<{
         title: string,
-        type: string,
-        onClick: (type: string) => void
+        type: number,
+        onClick: (type: number) => void
     }>,
-    activeTab: string
+    activeTab: number
 }
 
 const UnderlineTabBar: React.FunctionComponent<Props> = (props: Props) => {

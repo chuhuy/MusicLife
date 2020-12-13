@@ -1,0 +1,1 @@
+export const DEFAULT_IMAGE = 'https://photo-zmp3.zadn.vn/album_default.png';

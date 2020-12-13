@@ -8,8 +8,10 @@ const mergeOptions = (options?: ToastOptions) =>
 	Object.assign<ToastOptions, ToastOptions | undefined>(
 		{
             containerStyle:{
-                width: width - 40,
-                paddingVertical: 20,
+                maxWidth: width - 40,
+                paddingVertical: 15,
+                paddingHorizontal: 20,
+                borderRadius: 10,
             },
             backgroundColor: styleVars.lightPrimaryColor,
             hideOnPress: true,
@@ -19,25 +21,18 @@ const mergeOptions = (options?: ToastOptions) =>
             visible: true,
             textStyle: {
                 fontSize: styleVars.baseFontSize,
+                color: styleVars.lightWhite,
+                textAlign: 'left',
             },
 		},
 		options
-	);
+    );
 
-export const notifySuccess = (
+export const notify = (
     message: string,
     options?: ToastOptions | undefined
 ) => {
-        DefaultToast.show(message, mergeOptions({
-            ...options,
-            textColor: styleVars.greenColor,
-        }));
+    DefaultToast.show(message, mergeOptions({
+        ...options,
+    }));
 };
-
-export const notifyError = (
-    message: string,
-    options?: ToastOptions | undefined
-) => DefaultToast.show(message, mergeOptions({
-    ...options,
-    textColor: styleVars.secondaryColor,
-}));

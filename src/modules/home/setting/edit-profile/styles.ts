@@ -3,6 +3,8 @@ import {styleVars} from '../../../../shared/constance/style-variables';
 
 export const styles = StyleSheet.create({
   content: {
+    flex: 1,
+    marginTop: 30,
     alignItems: 'center',
   },
   avatar: {
@@ -11,17 +13,18 @@ export const styles = StyleSheet.create({
     borderRadius: 125,
   },
   input: {
+    maxWidth: '70%',
     color: styleVars.white,
     borderBottomWidth: 3,
     borderBottomColor: styleVars.greyColor,
-    marginTop: 40,
+    marginTop: 20,
     paddingHorizontal: 20,
     fontSize: styleVars.largeFontSize,
     fontWeight: '700',
     textAlign: 'center',
   },
   btn: {
-    marginTop: 80,
+    marginTop: 40,
     alignItems: 'center',
     paddingVertical: 20,
     paddingHorizontal: 50,

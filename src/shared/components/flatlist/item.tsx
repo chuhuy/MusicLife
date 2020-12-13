@@ -3,6 +3,7 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {IconButton} from '../icon-button';
 import Option from '../../../assets/icons/option.svg';
 import {styleVars} from '../../constance/style-variables';
+import { DEFAULT_IMAGE } from '../../constance/link';
 
 interface Props {
   onOptionClick?: () => void;
@@ -27,8 +28,6 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
     hideOption = false,
   } = props;
 
-  const isLocalImage = (/\.\.*/).test(image);
-
   return (
     <>
       <View>
@@ -37,7 +36,7 @@ export const Item: React.FunctionComponent<Props> = (props: Props) => {
             <View style={styles.container}>
               <Pressable style={styles.touchAreaOne} onPress={onClick}>
                 <View style={styles.metadata}>
-                  <Image source={{uri: image}} style={styles.image} />
+                  <Image source={{uri: image || DEFAULT_IMAGE}} style={styles.image} />
                   <View style={styles.titleGroup}>
                     <Text style={styles.title} numberOfLines={1}>
                       {name}

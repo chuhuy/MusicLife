@@ -1,13 +1,15 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import NotificationScreen from '../modules/home/notification';
-import Personal from '../modules/home/personal';
-import Search from '../modules/home/search';
-import Singer from '../modules/home/singer';
 import { Screen } from '../shared/constance/screen';
 import { screenOptions } from './explore-navigator';
 
 const PersonalStack = createStackNavigator();
+
+const Personal = React.lazy(() => import('../modules/home/personal'));
+const NotificationScreen =  React.lazy(() => import('../modules/home/notification'));
+const PlaylistDetail =  React.lazy(() => import('../modules/home/playlist-detail'));
+const Search =  React.lazy(() => import('../modules/home/search'));
+const Singer =  React.lazy(() => import('../modules/home/singer'));
 
 const ExploreNavigator: React.FunctionComponent = () => {
     return (
@@ -26,6 +28,11 @@ const ExploreNavigator: React.FunctionComponent = () => {
                         name={Screen.Common.Notification}
                         component={NotificationScreen}
                         options={screenOptions}/>
+
+                    <PersonalStack.Screen
+                        name={Screen.Common.PlaylistDetail}
+                        component={PlaylistDetail}
+                    />
                 </>
             </PersonalStack.Navigator>
         </>

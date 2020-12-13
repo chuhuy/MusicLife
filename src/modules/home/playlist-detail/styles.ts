@@ -34,8 +34,7 @@ export const styles = StyleSheet.create({
     },
     sectionOne: {
         width: '100%',
-        paddingTop: 20,
-        paddingBottom: 10,
+        paddingVertical: 20,
     },
     sectionOneContent: {
         alignItems: 'center',
@@ -52,7 +51,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         paddingHorizontal: 15,
-        paddingTop: 20,
+        paddingTop: 30,
         justifyContent: 'space-between',
         alignItems: 'center',
     },

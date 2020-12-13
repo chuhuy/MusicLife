@@ -76,7 +76,6 @@ export const postFavoriteSong = (access_token: string, music_id: number) => {
 };
 
 export const fetchIsFavoriteSong = (access_token: string, music_id: number) => {
-  console.log(access_token)
   const query = `
     query {
       isFavoriteSong(music_id: ${music_id})
@@ -120,13 +119,15 @@ export const fetchSongByPlaylist = (access_token: string, playlist_id: number, f
   const limit = first ? `first: ${first} offset: ${offset}` : '';
 
   const query = `
-    songs: getSongByPlaylist(playlist_id: ${playlist_id} ${limit}) {
-      music_id
-      title
-      url
-      image_url
-      artists
-      lyric
+    query {
+      songs: getSongByPlaylist(playlist_id: ${playlist_id} ${limit}) {
+        music_id
+        title
+        url
+        image_url
+        artists
+        lyric
+      }
     }
   `;
 

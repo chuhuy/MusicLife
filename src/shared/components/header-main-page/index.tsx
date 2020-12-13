@@ -19,7 +19,7 @@ import DefaultAvatar from '../../../modules/home/setting/components/default-avat
 interface Props extends StateProps {}
 
 const mapStateToProps = (state: any) => ({
-  refresh_token: state.auth.refresh_token,
+  access_token: state.auth.access_token,
   default_avatar: state.auth.default_avatar,
   image_url: state.auth.image_url,
 });
@@ -46,8 +46,8 @@ export const HeaderMainPage: React.FunctionComponent<Props> = (
 
         <Pressable style={styles.userButton} onPress={handleUserProfile}>
           <View>
-            {props.refresh_token !== null ? (
-              props.image_url === null ? (
+            {props.access_token ? (
+              !props.image_url ? (
                 <>
                   <DefaultAvatar size={40} type={props.default_avatar} />
                 </>

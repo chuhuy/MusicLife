@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { PermissionsAndroid, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import Toast from 'react-native-root-toast';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { fetchIsFavoriteSong, postFavoriteSong } from '../../../../api/personal';
 import TrashIcon from '../../../../assets/icons/delete.svg';
 import { Song } from '../../../../models/song';
-import { downloadSong } from '../../../../services/file-system';
-import { addSongs, removeSongs } from '../../../helper/player';
-import { notifyError, notifySuccess } from '../../notify';
+import { addSongs, handleDownload, removeSongs } from '../../../helper/player';
+import { notify } from '../../notify';
 import DownloadSvg from './../../../../assets/icons/download.svg';
 import HeartSvg from './../../../../assets/icons/heart.svg';
 import PlayListAddSvg from './../../../../assets/icons/playlist-add.svg';
@@ -72,42 +71,23 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
         closeModal();
     };
 
-    const handleDownload = async (url: string, title: string, artists: string, image_url: string) => {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-            {
-              title: 'Music Life',
-              message: I18n.translate('player.ask-for-permission'),
-              buttonNeutral: I18n.translate('player.ask-me-later'),
-              buttonNegative: I18n.translate('player.cancel'),
-              buttonPositive: I18n.translate('player.agree'),
-            },
-          );
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            notifyError(I18n.translate('player.start-download'));
-            await downloadSong(title, url, artists, image_url);
-            notifyError(I18n.translate('player.end-download'));
-          } else {
-            notifyError(I18n.translate('player.do-not-have-permission'));
-          }
-        } catch (err) {
-          console.log(err);
-          notifyError(I18n.translate('player.fail-download'));
-        }
-      };
-
     const handleAddToFavorite = () => {
         postFavoriteSong(access_token, song.music_id)
             .then(() => {
-                notifySuccess(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
+                closeModal();
+                notify(I18n.translate('common.add-favorite-success'), {position: Toast.positions.CENTER});
                 setIsFavorite(true);
             })
             .catch(err => {
                 console.log(err);
-                notifyError(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
+                notify(I18n.translate('common.add-favorite-fail'), {position: Toast.positions.CENTER});
             });
     };
+
+    const onDownload = () => {
+        handleDownload(song.url, song.title, song.artists, song.image_url)
+            .then(() => closeModal());
+    }
 
     return (
         <>
@@ -157,9 +137,7 @@ const SongOptions: React.FunctionComponent<Props> = (props: Props) => {
 
                 <Pressable
                     style={styles.optionItem}
-                    onPress={() =>
-                        handleDownload(song.url, song.title, song.artists, song.image_url)
-                    }>
+                    onPress={onDownload}>
                     <View style={styles.svg}>
                         <DownloadSvg width={25} height={25}/>
                     </View>
