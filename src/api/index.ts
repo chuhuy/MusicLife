@@ -38,7 +38,7 @@ export const API = {
         );
         return response.data.data;
       } else {
-        const response = await axios.post('http://' + url, {query: query});
+        const response = await axios.post('https://' + url, {query: query});
         return response.data.data;
       }
     } catch (error) {

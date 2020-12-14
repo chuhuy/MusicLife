@@ -114,7 +114,7 @@ export const playerReducer = (state: any = initialState, action: Action) => {
       }
 
       if (isShuffle) {
-        songs.sort();
+        songs.sort((a, b) => a.title.toLowerCase().charCodeAt(0) - b.title.toLowerCase().charCodeAt(0));
       } else {
         for (let i = songs.length - 1; i > 0; i--) {
           // Generate random number
