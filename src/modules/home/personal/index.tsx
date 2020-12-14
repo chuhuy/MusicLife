@@ -67,7 +67,6 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
                 } = data;
 
                 setSongs(personalSong);
-
                 setPlaylists(personalPlaylist);
                 setAlbums(personalAlbum);
 
@@ -158,8 +157,6 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
         console.log('get result')
         console.log(isError)
         if (!isError) {
-            notify(I18n.translate('personal.create-playlist-fail'));
-        } else {
             notify(I18n.translate('personal.create-playlist-success'));
             enableLoading();
             fetchPersonalPlaylist(access_token)
@@ -170,7 +167,10 @@ const Personal: React.FunctionComponent<Props> = (props: Props) => {
                 })
                 .catch((err) => {
                     console.log(err);
+                    disableLoading();
                 });
+        } else {
+            notify(I18n.translate('personal.create-playlist-fail'));
         }
     }
 
